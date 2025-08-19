@@ -1,0 +1,186 @@
+ 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}A LAIZ PROD | L'Art qui élève, la musique qui relie{% endblock %}</title>
+    
+    <!-- Meta tags pour SEO -->
+    <meta name="description" content="A LAIZ PROD - Prestations artistiques et pédagogiques d'exception avec technologies immersives">
+    <meta name="keywords" content="musique, formation, IA, réalité virtuelle, Cameroun, Hervé Nanfang">
+    <meta name="author" content="A LAIZ PROD">
+    
+    <!-- Open Graph pour réseaux sociaux -->
+    <meta property="og:title" content="A LAIZ PROD - L'Art qui élève">
+    <meta property="og:description" content="Expérience musicale révolutionnaire avec IA et VR">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    
+    <!-- Fonts et icônes -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Three.js pour effets 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <!-- Loader avancé -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">A LAIZ PROD</div>
+            <div class="loader-progress">
+                <div class="loader-bar"></div>
+            </div>
+            <p>Initialisation de l'expérience immersive...</p>
+            <p style="opacity: 0.7; font-size: 0.9rem;">Chargement des modules IA...</p>
+        </div>
+    </div>
+
+    <!-- Canvas 3D Background -->
+    <canvas id="threejs-background"></canvas>
+
+    <!-- Curseur intelligent -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Background holographique -->
+    <div class="bg-animation"></div>
+
+    <!-- Visualiseur musical -->
+    <div class="music-visualizer" id="musicVisualizer"></div>
+
+    <!-- Formes morphiques -->
+    <div class="morphing-shape" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
+    <div class="morphing-shape" style="top: 60%; right: 10%; animation-delay: 5s;"></div>
+    <div class="morphing-shape" style="bottom: 20%; left: 15%; animation-delay: 10s;"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('home') }}" class="logo">A LAIZ PROD</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="{{ url_for('home') }}" class="nav-link {{ 'active' if page == 'accueil' else '' }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('services') }}" class="nav-link {{ 'active' if page == 'services' else '' }}">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('label') }}" class="nav-link {{ 'active' if page == 'label' else '' }}">Label</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('artiste') }}" class="nav-link {{ 'active' if page == 'artiste' else '' }}">Artiste</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('boutique') }}" class="nav-link {{ 'active' if page == 'boutique' else '' }}">Boutique</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('contact') }}" class="nav-link {{ 'active' if page == 'contact' else '' }}">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Panneau d'actions flottant -->
+    <div class="floating-panel">
+        <div class="floating-btn" onclick="toggleTheme()" title="Changer de thème">
+            <i class="fas fa-palette"></i>
+        </div>
+        <div class="floating-btn" onclick="toggleFullscreen()" title="Plein écran">
+            <i class="fas fa-expand"></i>
+        </div>
+        <div class="floating-btn" onclick="shareWebsite()" title="Partager">
+            <i class="fas fa-share-alt"></i>
+        </div>
+        <div class="floating-btn" onclick="toggleMusicVisualizer()" title="Visualiseur musical">
+            <i class="fas fa-music"></i>
+        </div>
+    </div>
+
+    <!-- Widget météo -->
+    <div class="weather-widget" id="weatherWidget">
+        <div class="weather-icon">🌤️</div>
+        <div style="text-align: center;">
+            <div style="font-size: 1.2rem; font-weight: bold;" id="temperature">24°C</div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">Yaoundé</div>
+            <div style="font-size: 0.7rem; opacity: 0.6;" id="condition">Partiellement nuageux</div>
+        </div>
+    </div>
+
+    <!-- Reconnaissance vocale -->
+    <div class="voice-indicator" id="voiceIndicator" onclick="toggleVoiceRecognition()">
+        <i class="fas fa-microphone" id="voiceIcon"></i>
+    </div>
+
+    <!-- Assistant IA -->
+    <div class="ai-chat" id="aiChat">
+        <div class="ai-chat-header">
+            <i class="fas fa-robot"></i>
+            <span>Assistant LAIZ IA</span>
+            <div style="margin-left: auto; cursor: pointer;" onclick="toggleAIChat()">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="ai-chat-messages" id="chatMessages">
+            <div class="ai-message bot">
+                👋 Bonjour ! Je suis l'assistant IA d'A LAIZ PROD. Comment puis-je vous aider aujourd'hui ?
+            </div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="chatInput" placeholder="Tapez votre message..." onkeypress="handleChatInput(event)">
+            <button onclick="sendChatMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Moniteur de performance -->
+    <div class="performance-monitor" id="performanceMonitor">
+        <div>FPS: <span class="fps-counter" id="fpsCounter">60</span></div>
+        <div>Latence: <span id="latencyCounter">12ms</span></div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="notification" id="notification" style="display: none;"></div>
+
+    <!-- Contenu principal -->
+    <main class="page-container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(30px); border-top: 1px solid var(--glass-border); padding: 3rem 2rem; text-align: center; position: relative;">
+        <div style="max-width: 1200px; margin: 0 auto; color: var(--text-light);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; background: var(--hologram); background-size: 400% 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: hologramShift 3s ease infinite; margin-bottom: 1rem;">A LAIZ PROD</div>
+            <p style="font-size: 1.2rem; margin-bottom: 1rem; font-style: italic; color: var(--neon-blue);">
+                L'Art qui élève, la musique qui relie, la technologie qui transforme.
+            </p>
+            <p style="opacity: 0.8; margin-bottom: 2rem;">
+                &copy; 2025 A LAIZ PROD - Tous droits réservés | Hervé & Flavie Nanfang
+            </p>
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+                <a href="#" style="color: var(--neon-blue); font-size: 1.5rem; transition: all 0.3s ease;"><i class="fab fa-facebook"></i></a>
+                <a href="#" style="color: var(--neon-pink); font-size: 1.5rem; transition: all 0.3s ease;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: var(--neon-blue); font-size: 1.5rem; transition: all 0.3s ease;"><i class="fab fa-youtube"></i></a>
+                <a href="#" style="color: var(--neon-pink); font-size: 1.5rem; transition: all 0.3s ease;"><i class="fab fa-spotify"></i></a>
+            </div>
+            <p style="opacity: 0.6; font-size: 0.9rem;">
+                🌍 Présence internationale : Cameroun • Togo • Bénin | 🚀 Technologie du futur
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript principal -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

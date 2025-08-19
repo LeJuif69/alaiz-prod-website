@@ -1,0 +1,376 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Page d'accueil -->
+{% if page == 'accueil' %}
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title hologram-text">A LAIZ PROD</h1>
+        <p class="hero-slogan">L'Art qui élève, la musique qui relie.</p>
+        <p class="hero-description">
+            Des prestations artistiques et pédagogiques d'exception, signées Hervé & Flavie Nanfang.
+            Une approche révolutionnaire qui fusionne tradition africaine et innovation technologique.
+        </p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                <i class="fas fa-music"></i> Réserver une prestation
+            </a>
+            <a href="{{ url_for('services') }}" class="btn btn-secondary">
+                <i class="fas fa-graduation-cap"></i> Explorer les formations
+            </a>
+            <button class="btn btn-secondary" onclick="toggleAIChat()">
+                <i class="fas fa-robot"></i> Assistant IA
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title hologram-text">Notre Univers Artistique</h2>
+        <div class="glass-card">
+            <p style="text-align: center; font-size: 1.3rem; color: var(--text-light); line-height: 2;">
+                <strong>A LAIZ PROD</strong> révolutionne l'art musical en Afrique. 
+                Nous créons des expériences immersives qui transcendent les frontières 
+                culturelles et technologiques, portées par l'excellence artistique 
+                et l'innovation pédagogique.
+            </p>
+        </div>
+
+        <!-- Services avec animations avancées -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 4rem 0;">
+            <div class="glass-card" style="text-align: center; transform-style: preserve-3d;">
+                <div style="font-size: 4rem; margin-bottom: 1.5rem; animation: iconFloat 3s ease-in-out infinite;">🎶</div>
+                <h3 style="color: var(--neon-blue); font-size: 1.5rem; margin-bottom: 1rem;">Musique Live Premium</h3>
+                <p style="color: var(--text-light); line-height: 1.8;">
+                    Performances artistiques exceptionnelles avec sonorisation 3D 
+                    et effets visuels holographiques pour des événements inoubliables.
+                </p>
+            </div>
+            
+            <div class="glass-card" style="text-align: center; transform-style: preserve-3d;">
+                <div style="font-size: 4rem; margin-bottom: 1.5rem; animation: iconFloat 3s ease-in-out infinite 1s;">🎓</div>
+                <h3 style="color: var(--neon-pink); font-size: 1.5rem; margin-bottom: 1rem;">Formation IA-Assistée</h3>
+                <p style="color: var(--text-light); line-height: 1.8;">
+                    Programmes pédagogiques révolutionnaires intégrant intelligence artificielle 
+                    et réalité augmentée pour un apprentissage optimal.
+                </p>
+            </div>
+            
+            <div class="glass-card" style="text-align: center; transform-style: preserve-3d;">
+                <div style="font-size: 4rem; margin-bottom: 1.5rem; animation: iconFloat 3s ease-in-out infinite 2s;">🎧</div>
+                <h3 style="color: #8338ec; font-size: 1.5rem; margin-bottom: 1rem;">Production 360°</h3>
+                <p style="color: var(--text-light); line-height: 1.8;">
+                    Studio d'enregistrement virtuel avec mixage spatial, 
+                    mastering IA et distribution multiplateforme automatisée.
+                </p>
+            </div>
+            
+            <div class="glass-card" style="text-align: center; transform-style: preserve-3d;">
+                <div style="font-size: 4rem; margin-bottom: 1.5rem; animation: iconFloat 3s ease-in-out infinite 3s;">📘</div>
+                <h3 style="color: #3a86ff; font-size: 1.5rem; margin-bottom: 1rem;">Édition Interactive</h3>
+                <p style="color: var(--text-light); line-height: 1.8;">
+                    Manuels augmentés avec contenus interactifs, 
+                    simulation 3D et accompagnement vocal intelligent.
+                </p>
+            </div>
+        </div>
+
+        <!-- Player audio avancé -->
+        <div class="glass-card" style="display: flex; align-items: center; gap: 2rem;">
+            <button style="width: 80px; height: 80px; background: var(--hologram); border: none; border-radius: 50%; color: white; font-size: 2rem; cursor: pointer; animation: playerPulse 2s ease-in-out infinite;" onclick="toggleAdvancedAudio()">
+                <i class="fas fa-play" id="advancedPlayIcon"></i>
+            </button>
+            <div style="flex: 1; color: var(--text-light);">
+                <h3 style="margin-bottom: 0.5rem;">Découvrez notre univers sonore</h3>
+                <p style="opacity: 0.8;">Composition exclusive - Hervé Nanfang feat. IA Compositeur</p>
+                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.2); border-radius: 3px; margin-top: 1rem;">
+                    <div id="audioProgress" style="width: 0%; height: 100%; background: var(--hologram); border-radius: 3px; transition: width 0.3s ease;"></div>
+                </div>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button style="background: none; border: 1px solid var(--glass-border); border-radius: 50%; width: 40px; height: 40px; color: var(--text-light); cursor: pointer;">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button style="background: none; border: 1px solid var(--glass-border); border-radius: 50%; width: 40px; height: 40px; color: var(--text-light); cursor: pointer;">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% elif page == 'services' %}
+<!-- Page Services -->
+<section class="section" style="padding-top: 8rem;">
+    <div class="container">
+        <h2 class="section-title hologram-text">Services d'Excellence Technologique</h2>
+        
+        <div class="glass-card">
+            <h3 style="color: var(--neon-blue); font-size: 2.5rem; margin-bottom: 2rem; text-align: center;">
+                <i class="fas fa-microphone"></i> Prestations Artistiques Immersives
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; color: var(--text-light); font-size: 1.1rem; line-height: 1.8;">
+                <div>
+                    <h4 style="color: #f39c12; margin-bottom: 1rem;">🎹 Piano-Bar 360°</h4>
+                    <p>• Performances en solo ou duo avec effets holographiques</p>
+                    <p>• Interaction temps réel avec le public via IA</p>
+                    <p>• Projection visuelle synchronisée</p>
+                </div>
+                <div>
+                    <h4 style="color: #f39c12; margin-bottom: 1rem;">👑 Événements Premium</h4>
+                    <p>• Mariages avec mise en scène cinématographique</p>
+                    <p>• Événements culturels et religieux sur mesure</p>
+                    <p>• Captation vidéo 4K multicaméras</p>
+                </div>
+                <div>
+                    <h4 style="color: #f39c12; margin-bottom: 1rem;">🎭 Spectacles Hybrides</h4>
+                    <p>• Concerts avec réalité augmentée</p>
+                    <p>• Cabarets interactifs technologiques</p>
+                    <p>• Expériences VR musicales</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h3 style="color: var(--neon-pink); font-size: 2.5rem; margin-bottom: 2rem; text-align: center;">
+                <i class="fas fa-sliders-h"></i> Sonorisation & Technologie Avancée
+            </h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; color: var(--text-light); font-size: 1.1rem; line-height: 1.8;">
+                <div>
+                    <h4 style="color: #f39c12; margin-bottom: 1rem;">🔊 Audio Spatial 3D</h4>
+                    <p>• Systèmes de sonorisation immersive</p>
+                    <p>• Traitement audio en temps réel</p>
+                    <p>• Acoustique adaptative automatique</p>
+                </div>
+                <div>
+                    <h4 style="color: #f39c12; margin-bottom: 1rem;">💡 Éclairage Intelligent</h4>
+                    <p>• Éclairage LED programmable</p>
+                    <p>• Synchronisation musique-lumière IA</p>
+                    <p>• Effets laser et projection mapping</p>
+                </div>
+                <div>
+                    <h4 style="color: #f39c12; margin-bottom: 1rem;">📡 Streaming Live</h4>
+                    <p>• Diffusion multi-plateforme simultanée</p>
+                    <p>• Interaction en direct avec le public</p>
+                    <p>• Réalité virtuelle partagée</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem;">
+            <button class="btn btn-primary" onclick="openCalculator()" style="margin-right: 1rem;">
+                <i class="fas fa-calculator"></i> Calculateur de devis IA
+            </button>
+            <button class="btn btn-secondary" onclick="scheduleVR()">
+                <i class="fas fa-vr-cardboard"></i> Démo VR gratuite
+            </button>
+        </div>
+    </div>
+</section>
+
+{% elif page == 'label' %}
+<!-- Page Label -->
+<section class="section" style="padding-top: 8rem;">
+    <div class="container">
+        <h2 class="section-title hologram-text">Label A LAIZ MUSIC - Studio Digital</h2>
+        <div class="glass-card">
+            <h3 style="color: var(--neon-blue); font-size: 2.5rem; margin-bottom: 2rem; text-align: center;">
+                <i class="fas fa-microchip"></i> Production Musicale IA-Assistée
+            </h3>
+            <p style="color: var(--text-light); font-size: 1.2rem; line-height: 1.8; text-align: center; margin-bottom: 3rem;">
+                Studio virtuel avec intelligence artificielle pour composition, arrangement et mastering automatisés.
+                Technologie blockchain pour la protection des droits d'auteur et distribution décentralisée.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div class="glass-card" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎵</div>
+                    <h4 style="color: var(--neon-blue); margin-bottom: 1rem;">Composition IA</h4>
+                    <p style="color: var(--text-light);">Création automatisée de mélodies et arrangements avec notre IA compositeur</p>
+                </div>
+                <div class="glass-card" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔗</div>
+                    <h4 style="color: var(--neon-pink); margin-bottom: 1rem;">Blockchain Rights</h4>
+                    <p style="color: var(--text-light);">Protection et gestion des droits d'auteur sur blockchain sécurisée</p>
+                </div>
+                <div class="glass-card" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌐</div>
+                    <h4 style="color: #8338ec; margin-bottom: 1rem;">Distribution Globale</h4>
+                    <p style="color: var(--text-light);">Diffusion automatique sur 200+ plateformes de streaming mondial</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% elif page == 'artiste' %}
+<!-- Page Artiste -->
+<section class="section" style="padding-top: 8rem;">
+    <div class="container">
+        <h2 class="section-title hologram-text">Hervé Nanfang - Artiste Technologique</h2>
+        <div class="glass-card">
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center;">
+                <div style="text-align: center;">
+                    <div style="width: 300px; height: 300px; background: var(--hologram); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 5rem; color: white; animation: profileHologram 4s ease-in-out infinite; position: relative; overflow: hidden;">
+                        🎹
+                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 100 100&quot;><defs><pattern id=&quot;grid&quot; width=&quot;10&quot; height=&quot;10&quot; patternUnits=&quot;userSpaceOnUse&quot;><path d=&quot;M 10 0 L 0 0 0 10&quot; fill=&quot;none&quot; stroke=&quot;rgba(255,255,255,0.1)&quot; stroke-width=&quot;1&quot;/></pattern></defs><rect width=&quot;100&quot; height=&quot;100&quot; fill=&quot;url(%23grid)&quot; /></svg>'); opacity: 0.3;"></div>
+                    </div>
+                </div>
+                <div style="color: var(--text-light);">
+                    <h3 style="color: var(--neon-blue); font-size: 2rem; margin-bottom: 1rem;">
+                        🚀 Pionnier de l'Art Musical Technologique
+                    </h3>
+                    <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;">
+                        Hervé Nanfang révolutionne la musique africaine en intégrant intelligence artificielle, 
+                        réalité virtuelle et blockchain dans ses créations artistiques et pédagogiques.
+                    </p>
+                    <div style="background: var(--dark-glass); padding: 2rem; border-radius: 15px; border-left: 4px solid var(--neon-pink);">
+                        <i style="font-style: italic; font-size: 1.3rem; line-height: 1.8;">
+                            "L'art musical du futur naît de la fusion entre tradition africaine et innovation technologique. 
+                            Nous créons des expériences qui transcendent le temps et l'espace."
+                        </i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 4rem 0;">
+            <div class="glass-card" style="text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🏆</div>
+                <h4 style="color: var(--neon-blue); margin-bottom: 1rem;">Récompenses</h4>
+                <p style="color: var(--text-light);">Prix Innovation Musicale Africaine 2024</p>
+                <p style="color: var(--text-light);">Certification IA-Music UNESCO</p>
+            </div>
+            <div class="glass-card" style="text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎪</div>
+                <h4 style="color: var(--neon-pink); margin-bottom: 1rem;">Performances</h4>
+                <p style="color: var(--text-light);">500+ événements internationaux</p>
+                <p style="color: var(--text-light);">Concerts VR pour 50,000+ spectateurs</p>
+            </div>
+            <div class="glass-card" style="text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+                <h4 style="color: #8338ec; margin-bottom: 1rem;">Publications</h4>
+                <p style="color: var(--text-light);">15 manuels pédagogiques augmentés</p>
+                <p style="color: var(--text-light);">Recherche IA-Musicologie</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% elif page == 'boutique' %}
+<!-- Page Boutique -->
+<section class="section" style="padding-top: 8rem;">
+    <div class="container">
+        <h2 class="section-title hologram-text">Boutique Futuriste</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div class="glass-card" style="text-align: center; position: relative; overflow: hidden;">
+                <div style="height: 200px; background: var(--hologram); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; position: relative;">
+                    📱
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%); animation: shimmerEffect 2s linear infinite;"></div>
+                </div>
+                <div style="padding: 2rem; color: var(--text-light);">
+                    <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">App Mobile AR</h3>
+                    <p style="margin-bottom: 1.5rem;">Application de réalité augmentée pour l'apprentissage musical interactif</p>
+                    <div style="margin-bottom: 1rem; font-size: 1.5rem; font-weight: bold;">29,99€</div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-download"></i> Télécharger
+                    </button>
+                </div>
+            </div>
+            
+            <div class="glass-card" style="text-align: center; position: relative; overflow: hidden;">
+                <div style="height: 200px; background: var(--hologram); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; position: relative;">
+                    🎧
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%); animation: shimmerEffect 2s linear infinite;"></div>
+                </div>
+                <div style="padding: 2rem; color: var(--text-light);">
+                    <h3 style="color: var(--neon-pink); margin-bottom: 1rem;">Casque Audio 3D</h3>
+                    <p style="margin-bottom: 1.5rem;">Casque spatial avec IA pour immersion musicale totale</p>
+                    <div style="margin-bottom: 1rem; font-size: 1.5rem; font-weight: bold;">299,99€</div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-shopping-cart"></i> Acheter
+                    </button>
+                </div>
+            </div>
+            
+            <div class="glass-card" style="text-align: center; position: relative; overflow: hidden;">
+                <div style="height: 200px; background: var(--hologram); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; position: relative;">
+                    📚
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%); animation: shimmerEffect 2s linear infinite;"></div>
+                </div>
+                <div style="padding: 2rem; color: var(--text-light);">
+                    <h3 style="color: #8338ec; margin-bottom: 1rem;">Manuel Interactif</h3>
+                    <p style="margin-bottom: 1.5rem;">Livre augmenté avec exercices IA et simulations 3D</p>
+                    <div style="margin-bottom: 1rem; font-size: 1.5rem; font-weight: bold;">49,99€</div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-book"></i> Découvrir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% elif page == 'contact' %}
+<!-- Page Contact -->
+<section class="section" style="padding-top: 8rem;">
+    <div class="container">
+        <h2 class="section-title hologram-text">Contact Intelligent</h2>
+        
+        <!-- Formulaire de contact avancé avec IA -->
+        <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
+            <h3 style="color: var(--neon-blue); text-align: center; margin-bottom: 3rem; font-size: 2rem;">
+                <i class="fas fa-robot"></i> Assistant de Contact IA
+            </h3>
+            
+            <form id="smartForm">
+                <div style="margin-bottom: 2rem;">
+                    <label style="color: var(--text-light); margin-bottom: 0.5rem; display: block;">Parlez-nous de votre projet</label>
+                    <textarea id="projectDescription" name="project" style="width: 100%; height: 120px; padding: 1rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 10px; color: var(--text-light); resize: vertical;" placeholder="Décrivez votre projet en détail. Notre IA analysera vos besoins et vous proposera les solutions optimales..." required></textarea>
+                    <div id="aiSuggestions" style="margin-top: 1rem; padding: 1rem; background: var(--dark-glass); border-radius: 10px; display: none;">
+                        <strong style="color: var(--neon-blue);">💡 Suggestions de l'IA :</strong>
+                        <div id="suggestionsList"></div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                    <input type="text" name="name" placeholder="Nom complet" style="padding: 1rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 10px; color: var(--text-light);" required>
+                    <input type="email" name="email" placeholder="Email" style="padding: 1rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 10px; color: var(--text-light);" required>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.5rem 3rem;">
+                        <i class="fas fa-magic"></i> Analyser avec l'IA
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Informations de contact -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem;">
+            <div class="glass-card" style="text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📍</div>
+                <h4 style="color: var(--neon-blue); margin-bottom: 1rem;">Localisation</h4>
+                <p style="color: var(--text-light);">Yaoundé, Cameroun</p>
+                <p style="color: var(--text-light);">Présence : Togo • Bénin</p>
+            </div>
+            
+            <div class="glass-card" style="text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📞</div>
+                <h4 style="color: var(--neon-pink); margin-bottom: 1rem;">Téléphone</h4>
+                <p style="color: var(--text-light);">+237 XXX XXX XXX</p>
+                <p style="color: var(--text-light);">WhatsApp disponible 24/7</p>
+            </div>
+            
+            <div class="glass-card" style="text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">✉️</div>
+                <h4 style="color: #8338ec; margin-bottom: 1rem;">Email</h4>
+                <p style="color: var(--text-light);">contact@alaizprod.com</p>
+                <p style="color: var(--text-light);">Réponse sous 24h garantie</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
