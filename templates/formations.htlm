@@ -1,1 +1,44 @@
-
+def get_seo_data(page='accueil'):
+    """Génère les données SEO pour une page"""
+    lang = get_locale()
+    
+    seo_data = {
+        'accueil': {
+            'title': f"A LAIZ PROD | {get_translation('hero_slogan', lang)}",
+            'description': get_translation('seo_description', lang),
+            'keywords': get_translation('seo_keywords', lang),
+            'og_type': 'website'
+        },
+        'about': {
+            'title': f"À Propos - A LAIZ PROD | L'Histoire des Nanfang",
+            'description': "Découvrez Flavie et Hervé Nanfang, duo artistique d'exception. Piano, chant, projet Tswefap et excellence musicale camerounaise.",
+            'keywords': f"{get_translation('seo_keywords', lang)}, Flavie Nanfang, Hervé Nanfang, histoire, biographie",
+            'og_type': 'website'
+        },
+        'services': {
+            'title': f"{get_translation('Services', lang)} - A LAIZ PROD | Prestations Premium",
+            'description': f"Découvrez nos {get_translation('Services', lang).lower()} : prestations artistiques, formations IA, sonorisation 3D et événements immersifs.",
+            'keywords': f"{get_translation('seo_keywords', lang)}, prestations, sonorisation, événements",
+            'og_type': 'website'
+        },
+        'formations': {
+            'title': f"Formations - A LAIZ PROD | Cours Piano et Chant",
+            'description': "Formations musicales d'exception par Hervé et Flavie Nanfang. Cours piano, chant, stages intensifs à Yaoundé.",
+            'keywords': f"{get_translation('seo_keywords', lang)}, formations, cours piano, cours chant, stages",
+            'og_type': 'website'
+        },
+        'contact': {
+            'title': f"{get_translation('Contact', lang)} - A LAIZ PROD | Devis Gratuit",
+            'description': f"Contactez A LAIZ PROD pour votre projet musical. Devis gratuit et personnalisé. {get_translation('Contact', lang)} par email, téléphone ou WhatsApp.",
+            'keywords': f"{get_translation('seo_keywords', lang)}, devis, contact, projet musical",
+            'og_type': 'website'
+        },
+        'boutique': {
+            'title': f"{get_translation('Boutique', lang)} - A LAIZ PROD | Produits Technologiques",
+            'description': f"{get_translation('Boutique', lang)} en ligne A LAIZ PROD : applications AR, formations premium, équipements audio innovants.",
+            'keywords': f"{get_translation('seo_keywords', lang)}, boutique, applications, formations, AR",
+            'og_type': 'product'
+        }
+    }
+    
+    return seo_data.get(page, seo_data['accueil'])
