@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Label - A LAIZ PROD | Maison de Production Musicale</title>
+    <meta name="description" content="A LAIZ PROD Label - Maison de production musicale camerounaise. Production, distribution, accompagnement d'artistes. Excellence musicale depuis 2012.">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #f59e0b;
+            --accent-color: #8b5cf6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+        }
+        
+        .label-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+        
+        .label-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .label-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .mission-section {
+            background: var(--bg-secondary);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .artists-section {
+            background: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            margin-bottom: 4rem;
+        }
+        
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .artist-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .artist-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .values-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .value-item {
+            text-align: center;
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .partnership-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .label-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>A LAIZ PROD</h2>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/about" class="nav-link">À Propos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/services" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/formations" class="nav-link">Formations</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/boutique" class="nav-link">Boutique</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/label" class="nav-link active">Label</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/artiste" class="nav-link">Artistes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="label-hero">
+        <h1>A LAIZ PROD LABEL</h1>
+        <p>Maison de production musicale d'excellence</p>
+        <p style="opacity: 0.8; margin-top: 1rem;">Depuis 2012 - Yaoundé, Cameroun</p>
+    </section>
+
+    <div class="label-container">
+        <!-- Mission -->
+        <div class="mission-section">
+            <h2 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 2rem;">Notre Mission</h2>
+            <p style="font-size: 1.3rem; line-height: 1.8; color: var(--text-primary); max-width: 800px; margin: 0 auto;">
+                A LAIZ PROD LABEL accompagne les talents musicaux camerounais et africains dans leur développement artistique 
+                et commercial. Nous créons des ponts entre tradition et modernité, entre local et international, 
+                pour porter haut les couleurs de notre musique.
+            </p>
+        </div>
+
+        <!-- Services du Label -->
+        <h2 style="text-align: center; color: var(--primary-color); font-size: 2.5rem; margin-bottom: 3rem;">Nos Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-record-vinyl"></i>
+                </div>
+                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Production Musicale</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    Studio professionnel, arrangements, enregistrement, mixage et mastering avec les standards internationaux.
+                </p>
+                <ul style="list-style: none; padding: 0; color: var(--text-secondary);">
+                    <li>🎵 Enregistrement multipiste</li>
+                    <li>🎹 Arrangements originaux</li>
+                    <li>🎚️ Mixage et mastering</li>
+                    <li>🎼 Composition sur mesure</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Promotion & Marketing</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    Stratégies de communication digitale et traditionnelle pour amplifier votre visibilité.
+                </p>
+                <ul style="list-style: none; padding: 0; color: var(--text-secondary);">
+                    <li>📱 Réseaux sociaux</li>
+                    <li>📻 Relations presse</li>
+                    <li>🎬 Clips vidéo</li>
+                    <li>🌐 Présence digitale</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Management Artistique</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    Accompagnement personnalisé dans le développement de votre carrière et vos projets.
+                </p>
+                <ul style="list-style: none; padding: 0; color: var(--text-secondary);">
+                    <li>📋 Gestion de carrière</li>
+                    <li>🤝 Négociation contrats</li>
+                    <li>🎪 Organisation concerts</li>
+                    <li>💼 Conseil stratégique</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-globe-africa"></i>
+                </div>
+                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Distribution</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    Distribution physique et digitale sur toutes les plateformes nationales et internationales.
+                </p>
+                <ul style="list-style: none; padding: 0; color: var(--text-secondary);">
+                    <li>🎵 Plateformes streaming</li>
+                    <li>💿 Distribution physique</li>
+                    <li>🌍 Marchés internationaux</li>
+                    <li>📊 Suivi des performances</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Nos Artistes -->
+        <div class="artists-section">
+            <h2 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 1rem; text-align: center;">Nos Artistes</h2>
+            <p style="color: var(--text-secondary); text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+                Une famille d'artistes talentueux unis par la passion de l'excellence musicale
+            </p>
+            
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-avatar">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 0.5rem;">Les Nanfang</h3>
+                    <p style="color: var(--secondary-color); font-weight: 600; margin-bottom: 1rem;">Duo Fondateur</p>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        Flavie & Hervé Nanfang, les visionnaires à l'origine du label. Excellence musicale et innovation pédagogique.
+                    </p>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-avatar">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 0.5rem;">Artistes Émergents</h3>
+                    <p style="color: var(--secondary-color); font-weight: 600; margin-bottom: 1rem;">Nouvelle Génération</p>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        Jeunes talents accompagnés dans leur développement artistique et professionnel.
+                    </p>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-avatar">
+                        <i class="fas fa-guitar"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 0.5rem;">Collaborateurs</h3>
+                    <p style="color: var(--secondary-color); font-weight: 600; margin-bottom: 1rem;">Réseau Artistique</p>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        Musiciens, compositeurs et créateurs collaborant sur nos différents projets.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nos Valeurs -->
+        <div class="values-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; text-align: center;">Nos Valeurs</h2>
+            <p style="text-align: center; font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem;">
+                Les principes qui guident notre action au quotidien
+            </p>
+            
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem;">Excellence</h3>
+                    <p style="opacity: 0.9;">Standards de qualité élevés dans toutes nos productions</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem;">Développement</h3>
+                    <p style="opacity: 0.9;">Accompagnement sur mesure de chaque artiste</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem;">Authenticité</h3>
+                    <p style="opacity: 0.9;">Respect et valorisation de l'identité artistique</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem;">Innovation</h3>
+                    <p style="opacity: 0.9;">Intégration des nouvelles technologies musicales</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Partenariat -->
+        <div class="partnership-section">
+            <h2 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 2rem;">Rejoignez A LAIZ PROD LABEL</h2>
+            <p style="color: var(--text-secondary); font-size: 1.2rem; line-height: 1.8; max-width: 600px; margin: 0 auto 2rem;">
+                Vous êtes un artiste talentueux à la recherche d'un label qui comprend votre vision ? 
+                Nous recherchons constamment de nouveaux talents à accompagner dans leur développement.
+            </p>
+            
+            <div style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Ce que nous recherchons :</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left;">
+                    <div>✨ Originalité artistique</div>
+                    <div>🎵 Qualité musicale</div>
+                    <div>🚀 Ambition professionnelle</div>
+                    <div>🤝 Esprit collaboratif</div>
+                    <div>📈 Potentiel de développement</div>
+                    <div>🎯 Vision claire</div>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="/contact" class="btn-primary">Soumettre votre démo</a>
+                <a href="/artiste" class="btn-secondary">Découvrir nos artistes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Navigation mobile
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
