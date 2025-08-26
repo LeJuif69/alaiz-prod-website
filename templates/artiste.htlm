@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistes - A LAIZ PROD | Flavie & Hervé Nanfang</title>
+    <meta name="description" content="Découvrez Flavie et Hervé Nanfang, artistes A LAIZ PROD. Chanteuse virtuose et pianiste pédagogue, duo d'exception de la musique camerounaise.">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #f59e0b;
+            --accent-color: #8b5cf6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+        }
+        
+        .artiste-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+        }
+        
+        .artiste-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .artiste-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .main-artists {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+        }
+        
+        .artist-profile {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .artist-profile:hover {
+            transform: translateY(-10px);
+        }
+        
+        .artist-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .artist-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 4px solid rgba(255,255,255,0.3);
+        }
+        
+        .artist-name {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .artist-title {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .artist-content {
+            padding: 3rem 2rem;
+        }
+        
+        .artist-specialties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .specialty-tag {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .achievements {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .achievements h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .achievements-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .achievements-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .achievements-list li::before {
+            content: '🏆';
+            font-size: 1rem;
+        }
+        
+        .collaboration-section {
+            background: white;
+            padding: 4rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        
+        .duo-story {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .synergy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .synergy-item {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .synergy-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .repertoire-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 30px;
+            margin-bottom: 4rem;
+        }
+        
+        .repertoire-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .repertoire-category {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .testimonials-section {
+            background: white;
+            padding: 4rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 4rem;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 20px;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-color);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+        }
+        
+        .testimonial-author {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        .booking-section {
+            background: linear-gradient(45deg, var(--secondary-color), #f97316);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 30px;
+            text-align: center;
+        }
+        
+        .booking-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .booking-option {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-booking {
+            background: white;
+            color: var(--secondary-color);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 2rem;
+        }
+        
+        .btn-booking:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .artiste-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .main-artists {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>A LAIZ PROD</h2>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/about" class="nav-link">À Propos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/services" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/formations" class="nav-link">Formations</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/boutique" class="nav-link">Boutique</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/label" class="nav-link">Label</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/artiste" class="nav-link active">Artistes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="artiste-hero">
+        <h1>Les Artistes</h1>
+        <p>Flavie & Hervé Nanfang - Duo d'Exception</p>
+        <p style="opacity: 0.8; margin-top: 1rem;">Excellence artistique et pédagogique depuis 2012</p>
+    </section>
+
+    <div class="artiste-container">
+        <!-- Profils Principaux -->
+        <div class="main-artists">
+            <!-- Flavie Nanfang -->
+            <div class="artist-profile">
+                <div class="artist-header">
+                    <div class="artist-photo">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h2 class="artist-name">Flavie Nanfang</h2>
+                    <p class="artist-title">Chanteuse Virtuose</p>
+                </div>
+                <div class="artist-content">
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                        Voix d'exception aux registres étendus, Flavie fascine par sa capacité à transcender les genres musicaux. 
+                        Sa formation internationale et sa maîtrise des techniques vocales font d'elle une interprète d'exception.
+                    </p>
+                    
+                    <div class="artist-specialties">
+                        <span class="specialty-tag">Jazz Vocal</span>
+                        <span class="specialty-tag">Gospel</span>
+                        <span class="specialty-tag">Variété Française</span>
+                        <span class="specialty-tag">Musique Camerounaise</span>
+                        <span class="specialty-tag">Soul</span>
+                    </div>
+                    
+                    <div class="achievements">
+                        <h4>Réalisations Marquantes</h4>
+                        <ul class="achievements-list">
+                            <li>Plus de 150 mariages accompagnés</li>
+                            <li>Soliste dans de nombreux festivals</li>
+                            <li>Formations vocales internationales</li>
+                            <li>Collaborations artistiques prestigieuses</li>
+                            <li>Enregistrements studio professionnels</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <p style="color: var(--primary-color); font-weight: 600;">
+                            "La musique est le langage universel qui unit les âmes"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hervé Nanfang -->
+            <div class="artist-profile">
+                <div class="artist-header">
+                    <div class="artist-photo">
+                        <i class="fas fa-piano"></i>
+                    </div>
+                    <h2 class="artist-name">Hervé Nanfang</h2>
+                    <p class="artist-title">Pianiste & Pédagogue</p>
+                </div>
+                <div class="artist-content">
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                        Maître pianiste alliant virtuosité classique et créativité contemporaine. Pédagogue reconnu, 
+                        Hervé a révolutionné l'enseignement musical au Cameroun avec ses méthodes innovantes.
+                    </p>
+                    
+                    <div class="artist-specialties">
+                        <span class="specialty-tag">Piano Classique</span>
+                        <span class="specialty-tag">Jazz Piano</span>
+                        <span class="specialty-tag">Arrangement</span>
+                        <span class="specialty-tag">Composition</span>
+                        <span class="specialty-tag">Pédagogie</span>
+                    </div>
+                    
+                    <div class="achievements">
+                        <h4>Contributions Remarquables</h4>
+                        <ul class="achievements-list">
+                            <li>Plus de 200 élèves formés</li>
+                            <li>5 méthodes pédagogiques publiées</li>
+                            <li>Projet culturel Tswefap</li>
+                            <li>Arrangements pour orchestre</li>
+                            <li>Formations à l'international</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <p style="color: var(--primary-color); font-weight: 600;">
+                            "Enseigner c'est apprendre deux fois"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- La Synergie du Duo -->
+        <div class="collaboration-section">
+            <h2 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 2rem;">L'Alchimie du Duo</h2>
+            <div class="duo-story">
+                <p style="color: var(--text-secondary); font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;">
+                    Ensemble, Flavie et Hervé Nanfang créent une symbiose artistique unique. Leur complémentarité parfaite 
+                    entre la puissance vocale de Flavie et la virtuosité pianistique d'Hervé donne naissance à des performances 
+                    inoubliables qui marquent profondément leur public.
+                </p>
+            </div>
+            
+            <div class="synergy-grid">
+                <div class="synergy-item">
+                    <div class="synergy-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Connexion Émotionnelle</h3>
+                    <p style="color: var(--text-secondary);">
+                        Une complicité naturelle qui transcende la musique et touche directement le cœur du public.
+                    </p>
+                </div>
+                
+                <div class="synergy-item">
+                    <div class="synergy-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Créativité Sans Limites</h3>
+                    <p style="color: var(--text-secondary);">
+                        Arrangements originaux et interprétations uniques qui renouvellent constamment leur répertoire.
+                    </p>
+                </div>
+                
+                <div class="synergy-item">
+                    <div class="synergy-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Mission Pédagogique</h3>
+                    <p style="color: var(--text-secondary);">
+                        Transmission passionnée de leur savoir-faire aux nouvelles générations d'artistes.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Répertoire -->
+        <div class="repertoire-section">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Notre Répertoire</h2>
+            <p style="text-align: center; font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem;">
+                Un voyage musical qui traverse les genres et les cultures
+            </p>
+            
+            <div class="repertoire-grid">
+                <div class="repertoire-category">
+                    <h3 style="margin-bottom: 1rem;">🎷 Jazz & Standards</h3>
+                    <p style="opacity: 0.9; margin-bottom: 1rem;">
+                        Grands classiques du jazz revisités avec une touche personnelle et moderne.
+                    </p>
+                    <ul style="list-style: none; padding: 0; opacity: 0.8;">
+                        <li>• Standards internationaux</li>
+                        <li>• Jazz manouche</li>
+                        <li>• Swing contemporain</li>
+                    </ul>
+                </div>
+                
+                <div class="repertoire-category">
+                    <h3 style="margin-bottom: 1rem;">🇫🇷 Variété Française</h3>
+                    <p style="opacity: 0.9; margin-bottom: 1rem;">
+                        Chansons françaises intemporelles interprétées avec émotion et sophistication.
+                    </p>
+                    <ul style="list-style: none; padding: 0; opacity: 0.8;">
+                        <li>• Grands auteurs français</li>
+                        <li>• Chansons contemporaines</li>
+                        <li>• Arrangements piano-voix</li>
+                    </ul>
+                </div>
+                
+                <div class="repertoire-category">
+                    <h3 style="margin-bottom: 1rem;">🇨🇲 Musiques Camerounaises</h3>
+                    <p style="opacity: 0.9; margin-bottom: 1rem;">
+                        Patrimoine musical camerounais sublimé par des arrangements sophistiqués.
+                    </p>
+                    <ul style="list-style: none; padding: 0; opacity: 0.8;">
+                        <li>• Musiques traditionnelles</li>
+                        <li>• Makossa moderne</li>
+                        <li>• Créations originales</li>
+                    </ul>
+                </div>
+                
+                <div class="repertoire-category">
+                    <h3 style="margin-bottom: 1rem;">✨ Gospel & Spiritual</h3>
+                    <p style="opacity: 0.9; margin-bottom: 1rem;">
+                        Musiques spirituelles qui élèvent l'âme et créent des moments de communion.
+                    </p>
+                    <ul style="list-style: none; padding: 0; opacity: 0.8;">
+                        <li>• Negro spirituals</li>
+                        <li>• Gospel contemporain</li>
+                        <li>• Musiques liturgiques</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Témoignages -->
+        <div class="testimonials-section">
+            <h2 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 2rem; text-align: center;">Ce que disent nos clients</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+                        Flavie et Hervé ont transformé notre mariage en un moment magique. Leur complicité sur scène 
+                        et la qualité exceptionnelle de leur prestation ont ému tous nos invités. Incontournables !
+                    </p>
+                    <p class="testimonial-author">— Marie & Paul, Mariage Yaoundé 2024</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+                        Professionnalisme, talent et passion : les Nanfang possèdent toutes les qualités qui font 
+                        la différence. Nos événements corporatifs n'ont jamais eu autant de succès.
+                    </p>
+                    <p class="testimonial-author">— Direction Hôtel Hilton Yaoundé</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+                        Les méthodes d'enseignement d'Hervé ont révolutionné mon apprentissage du piano. 
+                        En quelques mois, j'ai progressé plus qu'en années d'enseignement traditionnel.
+                    </p>
+                    <p class="testimonial-author">— Sarah K., Élève</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+                        La voix de Flavie a cette rare capacité à toucher directement l'âme. 
+                        Chaque note résonne avec une émotion authentique qui marque à vie.
+                    </p>
+                    <p class="testimonial-author">— Festival Jazz de Douala</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Réservation -->
+        <div class="booking-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Réservez les Nanfang</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Offrez à votre événement l'excellence artistique que vous méritez. Disponibles pour prestations 
+                au Cameroun et à l'international.
+            </p>
+            
+            <div class="booking-options">
+                <div class="booking-option">
+                    <h3 style="margin-bottom: 1rem;">🎹 Piano-Bar</h3>
+                    <p style="opacity: 0.9; margin-bottom: 1rem;">Ambiance intimiste et raffinée</p>
+                    <p style="font-weight: bold;">À partir de 150 000 FCFA</p>
+                </div>
+                
+                <div class="booking-option">
+                    <h3 style="margin-bottom: 1rem;">💒 Mariages</h3>
+                    <p style="opacity: 0.9; margin-bottom: 1rem;">Cérémonie et réception complètes</p>
+                    <p style="font-weight: bold;">À partir de 250 000 FCFA</p>
+                </div>
+                
+                <div class="booking-option">
+                    <h3 style="margin-bottom: 1rem;">🌍 International</h3>
+                    <p style="opacity: 0.9; margin-bottom: 1rem;">Festivals et événements privés</p>
+                    <p style="font-weight: bold;">Sur devis personnalisé</p>
+                </div>
+            </div>
+            
+            <a href="/contact" class="btn-booking">Demander un devis</a>
+            
+            <p style="margin-top: 2rem; opacity: 0.8; font-size: 0.9rem;">
+                Réponse garantie sous 24h • Devis gratuit • Accompagnement personnalisé
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Navigation mobile
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
