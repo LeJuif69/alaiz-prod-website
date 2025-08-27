@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Actualités - A LAIZ PROD | Blog Musical Cameroun</title>
+<meta name="description" content="Actualités A LAIZ PROD : concerts, sorties musicales, formations, projet Tswefap. Suivez l'actualité de Flavie et Hervé Nanfang.">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="page-hero blog-hero">
+    <div class="container">
+        <h1>Actualités</h1>
+        <p>Suivez toute l'actualité musicale et culturelle d'A LAIZ PROD</p>
+    </div>
+</section>
+
+<!-- Filtres/Catégories -->
+<section class="blog-filters">
+    <div class="container">
+        <div class="filters-container">
+            <button class="filter-btn active" data-category="all">Toutes</button>
+            <button class="filter-btn" data-category="concerts">Concerts</button>
+            <button class="filter-btn" data-category="formations">Formations</button>
+            <button class="filter-btn" data-category="productions">Productions</button>
+            <button class="filter-btn" data-category="tswefap">Tswefap</button>
+            <button class="filter-btn" data-category="collaborations">Collaborations</button>
+        </div>
+    </div>
+</section>
+
+<!-- Articles Grid -->
+<section class="articles-section">
+    <div class="container">
+        {% if articles %}
+            <div class="articles-grid">
+                {% for article in articles %}
+                <article class="article-card" data-category="{{ article.category }}">
+                    <div class="article-image">
+                        {% if article.image %}
+                            <img src="{{ article.image }}" alt="{{ article.title }}" loading="lazy">
+                        {% else %}
+                            <div class="article-placeholder">
+                                {% if article.category == 'concerts' %}
+                                    <i class="fas fa-music"></i>
+                                {% elif article.category == 'formations' %}
+                                    <i class="fas fa-graduation-cap"></i>
+                                {% elif article.category == 'productions' %}
+                                    <i class="fas fa-record-vinyl"></i>
+                                {% elif article.category == 'tswefap' %}
+                                    <i class="fas fa-globe-africa"></i>
+                                {% elif article.category == 'collaborations' %}
+                                    <i class="fas fa-handshake"></i>
+                                {% else %}
+                                    <i class="fas fa-newspaper"></i>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <div class="article-category">{{ article.category|title }}</div>
+                        <div class="article-date">{{ article.date }}</div>
+                    </div>
+                    
+                    <div class="article-content">
+                        <h2 class="article-title">
+                            <a href="{{ url_for('article', slug=article.slug) }}">{{ article.title }}</a>
+                        </h2>
+                        
+                        <p class="article-excerpt">{{ article.excerpt }}</p>
+                        
+                        <div class="article-meta">
+                            <div class="article-author">
+                                <i class="fas fa-user"></i>
+                                {{ article.author }}
+                            </div>
+                            <div class="article-reading-time">
+                                <i class="fas fa-clock"></i>
+                                {{ article.reading_time }} min
+                            </div>
+                        </div>
+                        
+                        <a href="{{ url_for('article', slug=article.slug) }}" class="article-link">
+                            Lire la suite <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <!-- État vide -->
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <h2>Aucun article pour le moment</h2>
+                <p>Les actualités A LAIZ PROD seront bientôt disponibles. Revenez nous voir !</p>
+                <a href="{{ url_for('index') }}" class="btn btn-primary">
+                    Retour à l'accueil
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-content">
+            <h2>Restez informé de nos actualités</h2>
+            <p>Recevez en exclusivité nos dernières nouvelles, annonces de concerts et formations</p>
+            <form class="newsletter-form" id="newsletter-form">
+                <div class="form-group">
+                    <input type="email" class="newsletter-input" placeholder="Votre email..." required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        S'abonner
+                    </button>
+                </div>
+                <p class="newsletter-note">
+                    Pas de spam, vous pouvez vous désabonner à tout moment.
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Articles en vedette -->
+<section class="featured-articles">
+    <div class="container">
+        <h2>Articles les plus lus</h2>
+        <div class="featured-grid">
+            <article class="featured-card">
+                <div class="featured-date">15 Jan 2025</div>
+                <h3>Nouveau partenariat Festival Jazz Yaoundé</h3>
+                <p>A LAIZ PROD annonce sa collaboration officielle avec le Festival International de Jazz de Yaoundé 2025...</p>
+                <a href="#" class="featured-link">Lire l'article</a>
+            </article>
+            
+            <article class="featured-card">
+                <div class="featured-date">08 Jan 2025</div>
+                <h3>Lancement formations en ligne</h3>
+                <p>Découvrez nos nouvelles formations piano et chant 100% en ligne avec suivi personnalisé...</p>
+                <a href="#" class="featured-link">Lire l'article</a>
+            </article>
+            
+            <article class="featured-card">
+                <div class="featured-date">22 Déc 2024</div>
+                <h3>Projet Tswefap : nouvelle étape</h3>
+                <p>Le projet de valorisation linguistique Batoufam franchit une étape importante...</p>
+                <a href="#" class="featured-link">Lire l'article</a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Archives -->
+<section class="archives-section">
+    <div class="container">
+        <h2>Archives</h2>
+        <div class="archives-grid">
+            <div class="archive-card">
+                <h3>2025</h3>
+                <ul>
+                    <li><a href="#">Janvier (5 articles)</a></li>
+                </ul>
+            </div>
+            
+            <div class="archive-card">
+                <h3>2024</h3>
+                <ul>
+                    <li><a href="#">Décembre (3 articles)</a></li>
+                    <li><a href="#">Novembre (4 articles)</a></li>
+                    <li><a href="#">Octobre (2 articles)</a></li>
+                    <li><a href="#">Septembre (6 articles)</a></li>
+                </ul>
+            </div>
+            
+            <div class="archive-card">
+                <h3>Catégories</h3>
+                <ul>
+                    <li><a href="#" data-filter="concerts">Concerts (12)</a></li>
+                    <li><a href="#" data-filter="formations">Formations (8)</a></li>
+                    <li><a href="#" data-filter="productions">Productions (5)</a></li>
+                    <li><a href="#" data-filter="tswefap">Tswefap (4)</a></li>
+                    <li><a href="#" data-filter="collaborations">Collaborations (7)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Système de filtres
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const articleCards = document.querySelectorAll('.article-card');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const category = this.dataset.category;
+            
+            // Mise à jour des boutons actifs
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filtrage des articles
+            articleCards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Newsletter
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Merci ! Vous êtes maintenant abonné à notre newsletter.');
+        this.reset();
+    });
+});
+</script>
+{% endblock %}
