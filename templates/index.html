@@ -1,431 +1,234 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>À Propos - Les Nanfang | A LAIZ PROD</title>
-    <meta name="description" content="Découvrez l'histoire de Flavie et Hervé Nanfang, duo artistique d'exception. Piano, chant, formation musicale et projet culturel Tswefap à Yaoundé.">
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-color: #4f46e5;
-            --secondary-color: #f59e0b;
-            --accent-color: #8b5cf6;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f9fafb;
-        }
-        
-        .about-hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            padding: 6rem 2rem 4rem;
-            text-align: center;
-        }
-        
-        .about-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .about-hero p {
-            font-size: 1.3rem;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-        
-        .duo-section {
-            padding: 5rem 2rem;
-            background: var(--bg-primary);
-        }
-        
-        .duo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .artist-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .artist-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(79, 70, 229, 0.2);
-        }
-        
-        .artist-image {
-            height: 300px;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4rem;
-        }
-        
-        .artist-content {
-            padding: 2rem;
-        }
-        
-        .artist-name {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .artist-role {
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-        
-        .artist-description {
-            line-height: 1.7;
-            color: var(--text-secondary);
-        }
-        
-        .mission-section {
-            padding: 5rem 2rem;
-            background: var(--bg-secondary);
-        }
-        
-        .mission-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .mission-title {
-            font-size: 2.5rem;
-            color: var(--text-primary);
-            margin-bottom: 2rem;
-        }
-        
-        .mission-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .mission-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        
-        .mission-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .achievements-section {
-            padding: 5rem 2rem;
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 2rem auto 0;
-        }
-        
-        .achievement-item {
-            text-align: center;
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .achievement-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-            display: block;
-        }
-        
-        .achievement-text {
-            margin-top: 0.5rem;
-            opacity: 0.9;
-        }
-        
-        .tswefap-section {
-            padding: 5rem 2rem;
-            background: var(--bg-primary);
-        }
-        
-        .tswefap-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .tswefap-title {
-            font-size: 2.5rem;
-            color: var(--text-primary);
-            margin-bottom: 2rem;
-        }
-        
-        .tswefap-description {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-        
-        .highlight-box {
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            padding: 2rem;
-            border-radius: 15px;
-            color: white;
-            margin: 2rem 0;
-        }
-        
-        @media (max-width: 768px) {
-            .about-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .duo-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .achievements-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>A LAIZ PROD</h2>
+{% extends "base.html" %}
+
+{% block meta %}
+<title>A LAIZ PROD - Duo Musical Flavie & Hervé Nanfang | Yaoundé Cameroun</title>
+<meta name="description" content="A LAIZ PROD - Excellence musicale avec Flavie et Hervé Nanfang. Prestations piano-bar, mariages, formations. Plus de 500 événements depuis 2012 à Yaoundé.">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Excellence Musicale et Transmission Culturelle</h1>
+        <p class="hero-subtitle">Depuis 2012 avec Flavie & Hervé Nanfang</p>
+        <p class="hero-description">
+            Duo artistique d'exception qui incarne la virtuosité musicale camerounaise 
+            avec une vision résolument moderne et authentique.
+        </p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('services') }}" class="btn btn-primary">
+                <i class="fas fa-music"></i>
+                Découvrir nos services
+            </a>
+            <a href="{{ url_for('contact') }}" class="btn btn-secondary">
+                <i class="fas fa-paper-plane"></i>
+                Demander un devis
+            </a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <div class="hero-placeholder">
+            <i class="fas fa-piano"></i>
+            <i class="fas fa-microphone"></i>
+        </div>
+    </div>
+</section>
+
+<!-- Chiffres clés -->
+<section class="stats-section">
+    <div class="container">
+        <h2>Plus d'une décennie au service de l'excellence</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Événements accompagnés</div>
             </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/about" class="nav-link active">À Propos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/services" class="nav-link">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/formations" class="nav-link">Formations</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/boutique" class="nav-link">Boutique</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="stat-item">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Élèves formés</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Mariages célébrés</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Années d'expérience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Publications pédagogiques</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Projet culturel Tswefap</div>
             </div>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="about-hero">
-        <h1>L'Histoire des Nanfang</h1>
-        <p>Un duo artistique qui incarne l'excellence musicale camerounaise avec une vision résolument moderne et authentique</p>
-    </section>
-
-    <!-- Duo Presentation -->
-    <section class="duo-section">
-        <div class="duo-grid">
-            <!-- Flavie -->
-            <div class="artist-card">
-                <div class="artist-image">
-                    <i class="fas fa-microphone"></i>
-                </div>
-                <div class="artist-content">
-                    <h2 class="artist-name">Flavie Nanfang</h2>
-                    <p class="artist-role">La Voix qui Touche l'Âme</p>
-                    <div class="artist-description">
-                        <p>Chanteuse polyvalente aux registres étendus, Flavie maîtrise aussi bien les standards jazz que les rythmes afro-contemporains. Sa présence scénique magnétique et sa capacité à créer une connexion émotionnelle instantanée avec le public font d'elle l'une des voix les plus appréciées du paysage musical camerounais.</p>
-                        
-                        <p>Formée aux techniques vocales internationales, elle apporte une dimension spirituelle et émotionnelle unique à chaque prestation. Son répertoire s'étend de la variété française aux gospel inspirants, en passant par les musiques traditionnelles camerounaises revisitées.</p>
-                    </div>
-                </div>
+<!-- Présentation du duo -->
+<section class="duo-section">
+    <div class="container">
+        <div class="duo-content">
+            <div class="duo-text">
+                <h2>L'Histoire des Nanfang</h2>
+                <p class="lead">
+                    Un duo artistique qui incarne l'excellence musicale camerounaise 
+                    avec une vision résolument moderne et authentique.
+                </p>
+                <p>
+                    A LAIZ PROD n'est pas seulement une entreprise artistique, c'est un pont 
+                    entre traditions et modernité. Née de la rencontre entre deux passions 
+                    complémentaires, notre histoire commence par une vision commune : faire de 
+                    chaque prestation une expérience inoubliable.
+                </p>
+                <a href="{{ url_for('label') }}" class="btn btn-outline">
+                    Découvrir notre histoire
+                </a>
             </div>
-
-            <!-- Hervé -->
-            <div class="artist-card">
-                <div class="artist-image">
-                    <i class="fas fa-piano"></i>
-                </div>
-                <div class="artist-content">
-                    <h2 class="artist-name">Hervé Nanfang</h2>
-                    <p class="artist-role">Le Maestro et Pédagogue</p>
-                    <div class="artist-description">
-                        <p>Pianiste de formation classique et jazz, Hervé est également un enseignant reconnu et auteur de plusieurs ouvrages pédagogiques. Sa maîtrise technique exceptionnelle se double d'une approche pédagogique innovante qui a formé des centaines d'élèves.</p>
-                        
-                        <p>Passionné par la préservation culturelle, il développe le projet <strong>Tswefap</strong> pour valoriser la richesse linguistique Batoufam. Son expertise en arrangement musical et sa vision artistique font de lui un créateur d'expériences musicales uniques.</p>
+            <div class="duo-profiles">
+                <div class="profile-card">
+                    <div class="profile-icon">
+                        <i class="fas fa-microphone"></i>
                     </div>
+                    <h3>Flavie Nanfang</h3>
+                    <p class="profile-title">La Voix qui Touche l'Âme</p>
+                    <p>
+                        Chanteuse polyvalente aux registres étendus, maîtrisant jazz, 
+                        gospel et musiques camerounaises avec une présence scénique magnétique.
+                    </p>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-icon">
+                        <i class="fas fa-piano"></i>
+                    </div>
+                    <h3>Hervé Nanfang</h3>
+                    <p class="profile-title">Le Maestro et Pédagogue</p>
+                    <p>
+                        Pianiste de formation classique et jazz, enseignant reconnu et 
+                        auteur de méthodes pédagogiques qui ont formé des centaines d'élèves.
+                    </p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Mission Section -->
-    <section class="mission-section">
-        <div class="mission-content">
-            <h2 class="mission-title">Notre Mission</h2>
-            <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem;">
-                <strong>A Laiz Prod</strong> n'est pas seulement une entreprise artistique, c'est un pont entre traditions et modernité.
-            </p>
-            
-            <div class="mission-grid">
-                <div class="mission-item">
-                    <div class="mission-icon">
-                        <i class="fas fa-arrow-up"></i>
-                    </div>
-                    <h3>Élever</h3>
-                    <p>Chaque prestation au rang d'expérience inoubliable</p>
-                </div>
-                
-                <div class="mission-item">
-                    <div class="mission-icon">
-                        <i class="fas fa-link"></i>
-                    </div>
-                    <h3>Relier</h3>
-                    <p>Les générations par la transmission musicale</p>
-                </div>
-                
-                <div class="mission-item">
-                    <div class="mission-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Innover</h3>
-                    <p>En intégrant technologies modernes et sagesse ancestrale</p>
-                </div>
-                
-                <div class="mission-item">
-                    <div class="mission-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Inspirer</h3>
-                    <p>Par l'excellence et l'authenticité</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements -->
-    <section class="achievements-section">
-        <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Nos Réalisations</h2>
-            <p style="text-align: center; opacity: 0.9; margin-bottom: 2rem;">Plus d'une décennie au service de l'excellence musicale</p>
-            
-            <div class="achievements-grid">
-                <div class="achievement-item">
-                    <span class="achievement-number">500+</span>
-                    <p class="achievement-text">Événements accompagnés</p>
-                </div>
-                
-                <div class="achievement-item">
-                    <span class="achievement-number">200+</span>
-                    <p class="achievement-text">Élèves formés</p>
-                </div>
-                
-                <div class="achievement-item">
-                    <span class="achievement-number">50+</span>
-                    <p class="achievement-text">Mariages célébrés</p>
-                </div>
-                
-                <div class="achievement-item">
-                    <span class="achievement-number">10+</span>
-                    <p class="achievement-text">Années d'expérience</p>
-                </div>
-                
-                <div class="achievement-item">
-                    <span class="achievement-number">5</span>
-                    <p class="achievement-text">Publications pédagogiques</p>
-                </div>
-                
-                <div class="achievement-item">
-                    <span class="achievement-number">1</span>
-                    <p class="achievement-text">Projet culturel Tswefap</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projet Tswefap -->
-    <section class="tswefap-section">
-        <div class="tswefap-content">
-            <h2 class="tswefap-title">Le Projet Tswefap</h2>
-            
-            <div class="tswefap-description">
-                <p>Au-delà de la musique, Hervé Nanfang porte un projet culturel ambitieux : <strong>Tswefap</strong>, une initiative de valorisation et de préservation de la richesse linguistique Batoufam.</p>
-                
-                <p>Ce projet illustre parfaitement notre philosophie : enraciner notre art dans la tradition tout en utilisant les outils modernes pour la transmission et l'innovation.</p>
-            </div>
-            
-            <div class="highlight-box">
-                <h3 style="margin-bottom: 1rem;"><i class="fas fa-globe-africa"></i> Une Mission Culturelle</h3>
-                <p style="margin: 0;">Préserver et transmettre le patrimoine linguistique camerounais pour les générations futures, en créant des ponts entre tradition orale et technologies numériques.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section style="padding: 4rem 2rem; background: var(--bg-secondary); text-align: center;">
-        <div class="container">
-            <h2 style="color: var(--text-primary); margin-bottom: 1rem;">Rejoignez l'Aventure A Laiz Prod</h2>
-            <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem;">
-                Que vous cherchiez à célébrer un moment special, apprendre la musique ou découvrir notre projet culturel, nous sommes là pour vous accompagner.
-            </p>
-            
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="/services" class="cta-btn" style="background: var(--primary-color); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+<!-- Services phares -->
+<section class="services-preview">
+    <div class="container">
+        <h2>Nos Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
                     <i class="fas fa-music"></i>
-                    Découvrir nos services
+                </div>
+                <h3>Prestations Musicales</h3>
+                <p>Piano-bar, mariages, événements corporatifs avec excellence artistique.</p>
+                <ul>
+                    <li>Piano-bar de 100K à 500K FCFA</li>
+                    <li>Mariages complets 250K FCFA</li>
+                    <li>Prestations internationales</li>
+                </ul>
+                <a href="{{ url_for('services') }}" class="service-link">
+                    Voir tous nos services <i class="fas fa-arrow-right"></i>
                 </a>
-                <a href="/formations" class="cta-btn" style="background: var(--secondary-color); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
                     <i class="fas fa-graduation-cap"></i>
-                    Explorer les formations
+                </div>
+                <h3>Formations Musicales</h3>
+                <p>Cours de piano et chant avec méthodes pédagogiques reconnues.</p>
+                <ul>
+                    <li>Piano débutant 25K FCFA/mois</li>
+                    <li>Chant avec Flavie 30K FCFA/mois</li>
+                    <li>Stages d'arrangement musical</li>
+                </ul>
+                <a href="{{ url_for('formations') }}" class="service-link">
+                    Découvrir nos formations <i class="fas fa-arrow-right"></i>
                 </a>
-                <a href="/contact" class="cta-btn" style="background: var(--accent-color); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
-                    <i class="fas fa-envelope"></i>
-                    Nous contacter
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-record-vinyl"></i>
+                </div>
+                <h3>Production & Label</h3>
+                <p>Maison de production avec accompagnement artistique complet.</p>
+                <ul>
+                    <li>Enregistrement studio</li>
+                    <li>Arrangements originaux</li>
+                    <li>Projet culturel Tswefap</li>
+                </ul>
+                <a href="{{ url_for('label') }}" class="service-link">
+                    Explorer notre label <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Scripts -->
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
-</html>
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Prêt à vivre l'expérience A LAIZ PROD ?</h2>
+            <p>
+                Que vous cherchiez à célébrer un moment spécial, apprendre la musique 
+                ou découvrir notre univers artistique, nous sommes là pour vous accompagner.
+            </p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
+                    <i class="fas fa-paper-plane"></i>
+                    Demander un devis gratuit
+                </a>
+                <a href="https://wa.me/237694723492?text=Bonjour A LAIZ PROD, je souhaite un devis pour:" 
+                   class="btn btn-whatsapp btn-large" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Devis express WhatsApp
+                </a>
+            </div>
+            <p class="cta-note">
+                Réponse garantie sous 24h • Devis gratuit • Accompagnement personnalisé
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Actualités récentes -->
+<section class="recent-news">
+    <div class="container">
+        <h2>Actualités</h2>
+        <div class="news-grid">
+            <article class="news-card">
+                <div class="news-date">15 Jan 2025</div>
+                <h3>Nouveau partenariat Festival Jazz Yaoundé</h3>
+                <p>A LAIZ PROD annonce sa collaboration officielle avec le Festival International de Jazz de Yaoundé 2025...</p>
+                <a href="{{ url_for('blog') }}" class="news-link">Lire la suite</a>
+            </article>
+            
+            <article class="news-card">
+                <div class="news-date">08 Jan 2025</div>
+                <h3>Lancement formations en ligne</h3>
+                <p>Découvrez nos nouvelles formations piano et chant 100% en ligne avec suivi personnalisé...</p>
+                <a href="{{ url_for('blog') }}" class="news-link">Lire la suite</a>
+            </article>
+            
+            <article class="news-card">
+                <div class="news-date">22 Déc 2024</div>
+                <h3>Projet Tswefap : nouvelle étape</h3>
+                <p>Le projet de valorisation linguistique Batoufam franchit une étape importante avec...</p>
+                <a href="{{ url_for('blog') }}" class="news-link">Lire la suite</a>
+            </article>
+        </div>
+        <div class="news-cta">
+            <a href="{{ url_for('blog') }}" class="btn btn-outline">
+                Voir toutes les actualités
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
