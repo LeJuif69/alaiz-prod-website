@@ -1,44 +1,376 @@
-def get_seo_data(page='accueil'):
-    """Génère les données SEO pour une page"""
-    lang = get_locale()
-    
-    seo_data = {
-        'accueil': {
-            'title': f"A LAIZ PROD | {get_translation('hero_slogan', lang)}",
-            'description': get_translation('seo_description', lang),
-            'keywords': get_translation('seo_keywords', lang),
-            'og_type': 'website'
-        },
-        'about': {
-            'title': f"À Propos - A LAIZ PROD | L'Histoire des Nanfang",
-            'description': "Découvrez Flavie et Hervé Nanfang, duo artistique d'exception. Piano, chant, projet Tswefap et excellence musicale camerounaise.",
-            'keywords': f"{get_translation('seo_keywords', lang)}, Flavie Nanfang, Hervé Nanfang, histoire, biographie",
-            'og_type': 'website'
-        },
-        'services': {
-            'title': f"{get_translation('Services', lang)} - A LAIZ PROD | Prestations Premium",
-            'description': f"Découvrez nos {get_translation('Services', lang).lower()} : prestations artistiques, formations IA, sonorisation 3D et événements immersifs.",
-            'keywords': f"{get_translation('seo_keywords', lang)}, prestations, sonorisation, événements",
-            'og_type': 'website'
-        },
-        'formations': {
-            'title': f"Formations - A LAIZ PROD | Cours Piano et Chant",
-            'description': "Formations musicales d'exception par Hervé et Flavie Nanfang. Cours piano, chant, stages intensifs à Yaoundé.",
-            'keywords': f"{get_translation('seo_keywords', lang)}, formations, cours piano, cours chant, stages",
-            'og_type': 'website'
-        },
-        'contact': {
-            'title': f"{get_translation('Contact', lang)} - A LAIZ PROD | Devis Gratuit",
-            'description': f"Contactez A LAIZ PROD pour votre projet musical. Devis gratuit et personnalisé. {get_translation('Contact', lang)} par email, téléphone ou WhatsApp.",
-            'keywords': f"{get_translation('seo_keywords', lang)}, devis, contact, projet musical",
-            'og_type': 'website'
-        },
-        'boutique': {
-            'title': f"{get_translation('Boutique', lang)} - A LAIZ PROD | Produits Technologiques",
-            'description': f"{get_translation('Boutique', lang)} en ligne A LAIZ PROD : applications AR, formations premium, équipements audio innovants.",
-            'keywords': f"{get_translation('seo_keywords', lang)}, boutique, applications, formations, AR",
-            'og_type': 'product'
-        }
-    }
-    
-    return seo_data.get(page, seo_data['accueil'])
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Formations - A LAIZ PROD | Cours Piano & Chant Yaoundé</title>
+<meta name="description" content="Formations musicales A LAIZ PROD : cours piano, chant, arrangement. Méthodes Hervé Nanfang, stages intensifs. Yaoundé et en ligne.">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="page-hero">
+    <div class="container">
+        <h1>Formations Musicales</h1>
+        <p>Apprenez avec les méthodes reconnues de Flavie & Hervé Nanfang</p>
+    </div>
+</section>
+
+<!-- Cours Individuels -->
+<section class="cours-individuels">
+    <div class="container">
+        <h2>Cours Individuels</h2>
+        <div class="cours-grid">
+            <div class="cours-card">
+                <div class="cours-header">
+                    <div class="cours-icon">
+                        <i class="fas fa-piano"></i>
+                    </div>
+                    <h3>Cours de Piano avec Hervé</h3>
+                    <div class="cours-price">25 000 FCFA/mois</div>
+                </div>
+                <div class="cours-content">
+                    <p>Formation complète au piano avec la méthode reconnue d'Hervé Nanfang</p>
+                    <ul class="cours-features">
+                        <li><i class="fas fa-check"></i> 4 cours par mois (1h chacun)</li>
+                        <li><i class="fas fa-check"></i> Méthode pédagogique exclusive</li>
+                        <li><i class="fas fa-check"></i> Support écrit inclus</li>
+                        <li><i class="fas fa-check"></i> Suivi personnalisé</li>
+                        <li><i class="fas fa-check"></i> Progression garantie</li>
+                    </ul>
+                    <div class="cours-levels">
+                        <span class="level-tag">Débutant</span>
+                        <span class="level-tag">Intermédiaire</span>
+                        <span class="level-tag">Avancé</span>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary">S'inscrire</a>
+                </div>
+            </div>
+
+            <div class="cours-card featured">
+                <div class="cours-header">
+                    <div class="cours-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3>Cours de Chant avec Flavie</h3>
+                    <div class="cours-price">30 000 FCFA/mois</div>
+                </div>
+                <div class="cours-content">
+                    <p>Développez votre voix avec Flavie Nanfang, technique vocale et interprétation</p>
+                    <ul class="cours-features">
+                        <li><i class="fas fa-check"></i> 4 séances par mois (1h chacune)</li>
+                        <li><i class="fas fa-check"></i> Exercices vocaux personnalisés</li>
+                        <li><i class="fas fa-check"></i> Répertoire varié (jazz, gospel, variété)</li>
+                        <li><i class="fas fa-check"></i> Enregistrements d'évaluation</li>
+                        <li><i class="fas fa-check"></i> Travail de la scène</li>
+                    </ul>
+                    <div class="cours-levels">
+                        <span class="level-tag">Débutant</span>
+                        <span class="level-tag">Confirmé</span>
+                        <span class="level-tag">Professionnel</span>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary">S'inscrire</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modules Spécialisés -->
+<section class="modules-specialises">
+    <div class="container">
+        <h2>Modules Spécialisés</h2>
+        <div class="modules-grid">
+            <div class="module-card">
+                <div class="module-header">
+                    <h3>Arrangement Musical</h3>
+                    <div class="module-duration">Weekend intensif</div>
+                    <div class="module-price">75 000 FCFA</div>
+                </div>
+                <div class="module-content">
+                    <p>Stage intensif d'arrangement musical avec Hervé Nanfang</p>
+                    <div class="module-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>16 heures de formation</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-users"></i>
+                            <span>Groupe limité à 8 personnes</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certificat de participation</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Projets pratiques inclus</span>
+                        </div>
+                    </div>
+                    <div class="module-program">
+                        <h4>Programme :</h4>
+                        <ul>
+                            <li>Théorie de l'arrangement</li>
+                            <li>Harmonisation avancée</li>
+                            <li>Instrumentation</li>
+                            <li>Arrangement pour orchestre</li>
+                            <li>Logiciels d'arrangement</li>
+                        </ul>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary">Réserver</a>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <h3>Masterclass Performance</h3>
+                    <div class="module-duration">Session mensuelle</div>
+                    <div class="module-price">50 000 FCFA</div>
+                </div>
+                <div class="module-content">
+                    <p>Perfectionnement en performance scénique avec le duo Nanfang</p>
+                    <div class="module-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>8 heures par session</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-users"></i>
+                            <span>Maximum 6 participants</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-video"></i>
+                            <span>Enregistrement inclus</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-star"></i>
+                            <span>Niveau confirmé requis</span>
+                        </div>
+                    </div>
+                    <div class="module-program">
+                        <h4>Contenu :</h4>
+                        <ul>
+                            <li>Présence scénique</li>
+                            <li>Communication avec le public</li>
+                            <li>Gestion du stress</li>
+                            <li>Interaction musicale</li>
+                            <li>Mise en scène</li>
+                        </ul>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary">Participer</a>
+                </div>
+            </div>
+
+            <div class="module-card">
+                <div class="module-header">
+                    <h3>Formation Professeurs</h3>
+                    <div class="module-duration">5 jours</div>
+                    <div class="module-price">150 000 FCFA</div>
+                </div>
+                <div class="module-content">
+                    <p>Formation pour enseignants avec certification méthode Nanfang</p>
+                    <div class="module-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>40 heures de formation</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Certification officielle</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-book"></i>
+                            <span>Kit pédagogique complet</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-headset"></i>
+                            <span>Suivi post-formation</span>
+                        </div>
+                    </div>
+                    <div class="module-program">
+                        <h4>Modules :</h4>
+                        <ul>
+                            <li>Pédagogie musicale moderne</li>
+                            <li>Méthodes d'enseignement</li>
+                            <li>Psychologie de l'apprentissage</li>
+                            <li>Gestion de classe</li>
+                            <li>Évaluation des élèves</li>
+                        </ul>
+                    </div>
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary">Candidater</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Méthodes Pédagogiques -->
+<section class="methodes-section">
+    <div class="container">
+        <h2>Méthodes Pédagogiques</h2>
+        <p class="section-intro">Les ouvrages reconnus de Hervé Nanfang pour l'apprentissage musical</p>
+        
+        <div class="methodes-grid">
+            <div class="methode-card">
+                <div class="methode-image">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="methode-content">
+                    <h3>Méthode Piano Nanfang Vol.1</h3>
+                    <div class="methode-price">15 000 FCFA</div>
+                    <p>Manuel d'apprentissage progressif du piano, niveau débutant à intermédiaire</p>
+                    <ul class="methode-features">
+                        <li>120 pages d'exercices</li>
+                        <li>CD audio inclus</li>
+                        <li>Progression méthodique</li>
+                        <li>Morceaux camerounais adaptés</li>
+                    </ul>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline">Commander</a>
+                </div>
+            </div>
+
+            <div class="methode-card">
+                <div class="methode-image">
+                    <i class="fas fa-file-music"></i>
+                </div>
+                <div class="methode-content">
+                    <h3>Recueil Musiques Camerounaises</h3>
+                    <div class="methode-price">12 000 FCFA</div>
+                    <p>20 morceaux traditionnels arrangés pour piano, niveau intermédiaire</p>
+                    <ul class="methode-features">
+                        <li>20 arrangements exclusifs</li>
+                        <li>Partitions piano/chant</li>
+                        <li>Notation traditionnelle</li>
+                        <li>Guide d'interprétation</li>
+                    </ul>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline">Commander</a>
+                </div>
+            </div>
+
+            <div class="methode-card">
+                <div class="methode-image">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="methode-content">
+                    <h3>Formation Vidéo Piano Débutant</h3>
+                    <div class="methode-price">45 000 FCFA</div>
+                    <p>Cours complet en ligne avec Hervé, accès illimité pendant 1 an</p>
+                    <ul class="methode-features">
+                        <li>12 heures de vidéo HD</li>
+                        <li>Partitions PDF téléchargeables</li>
+                        <li>Exercices interactifs</li>
+                        <li>Support technique inclus</li>
+                    </ul>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Témoignages Élèves -->
+<section class="eleves-temoignages">
+    <div class="container">
+        <h2>Témoignages de nos Élèves</h2>
+        <div class="temoignages-grid">
+            <div class="temoignage-card">
+                <div class="temoignage-content">
+                    "Les méthodes d'enseignement d'Hervé ont révolutionné mon apprentissage du piano. En quelques mois, j'ai progressé plus qu'en années d'enseignement traditionnel."
+                </div>
+                <div class="temoignage-author">
+                    <div class="author-info">
+                        <strong>Sarah K.</strong>
+                        <span>Élève piano depuis 8 mois</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="temoignage-card">
+                <div class="temoignage-content">
+                    "Flavie m'a appris à utiliser ma voix comme un véritable instrument. Sa pédagogie bienveillante et professionnelle m'a donné confiance en moi."
+                </div>
+                <div class="temoignage-author">
+                    <div class="author-info">
+                        <strong>Michel D.</strong>
+                        <span>Cours de chant depuis 1 an</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="temoignage-card">
+                <div class="temoignage-content">
+                    "Le stage d'arrangement a transformé ma vision de la musique. Hervé partage son expertise avec une générosité remarquable."
+                </div>
+                <div class="temoignage-author">
+                    <div class="author-info">
+                        <strong>Aminata B.</strong>
+                        <span>Professeur de musique</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modalités d'inscription -->
+<section class="modalites-section">
+    <div class="container">
+        <h2>Modalités d'Inscription</h2>
+        <div class="modalites-grid">
+            <div class="modalite-item">
+                <div class="modalite-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Inscriptions</h3>
+                <p>Ouvertes toute l'année avec début des cours chaque 1er du mois</p>
+            </div>
+            
+            <div class="modalite-item">
+                <div class="modalite-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Localisation</h3>
+                <p>Cours en présentiel à Yaoundé ou en ligne via plateforme dédiée</p>
+            </div>
+            
+            <div class="modalite-item">
+                <div class="modalite-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3>Paiement</h3>
+                <p>Mensuel ou trimestriel, avec facilités de paiement disponibles</p>
+            </div>
+            
+            <div class="modalite-item">
+                <div class="modalite-icon">
+                    <i class="fas fa-undo-alt"></i>
+                </div>
+                <h3>Engagement</h3>
+                <p>Cours d'essai gratuit, aucun engagement minimum requis</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="formations-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Commencez votre parcours musical aujourd'hui</h2>
+            <p>Rejoignez les 200+ élèves qui ont fait confiance aux méthodes A LAIZ PROD</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
+                    <i class="fas fa-graduation-cap"></i>
+                    S'inscrire maintenant
+                </a>
+                <a href="https://wa.me/237694723492?text=Bonjour, je souhaite des informations sur vos formations :" 
+                   class="btn btn-whatsapp btn-large" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Questions WhatsApp
+                </a>
+            </div>
+            <p class="cta-note">
+                Cours d'essai gratuit • Pédagogie reconnue • Suivi personnalisé
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}
