@@ -1,0 +1,194 @@
+<!-- templates/404.html -->
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Page non trouvée - A LAIZ PROD</title>
+<meta name="description" content="Cette page n'existe pas sur le site A LAIZ PROD. Retournez à l'accueil pour découvrir nos services musicaux.">
+{% endblock %}
+
+{% block content %}
+<section class="error-page">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-icon">
+                <i class="fas fa-music"></i>
+                <span class="error-code">404</span>
+            </div>
+            
+            <h1>Cette page n'existe pas</h1>
+            <p>Désolé, la page que vous cherchez semble avoir disparu comme une note dans le vent...</p>
+            
+            <div class="error-suggestions">
+                <h2>Que diriez-vous de :</h2>
+                <div class="suggestions-grid">
+                    <a href="{{ url_for('index') }}" class="suggestion-card">
+                        <i class="fas fa-home"></i>
+                        <span>Retourner à l'accueil</span>
+                    </a>
+                    <a href="{{ url_for('services') }}" class="suggestion-card">
+                        <i class="fas fa-music"></i>
+                        <span>Découvrir nos services</span>
+                    </a>
+                    <a href="{{ url_for('formations') }}" class="suggestion-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Voir nos formations</span>
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="suggestion-card">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Nous contacter</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="error-contact">
+                <p>Besoin d'aide ? Contactez-nous :</p>
+                <div class="contact-buttons">
+                    <a href="tel:+237682180266" class="btn btn-outline">
+                        <i class="fas fa-phone"></i>
+                        +237 682 180 266
+                    </a>
+                    <a href="https://wa.me/237694723492" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.error-page {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.error-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.error-icon {
+    font-size: 6rem;
+    color: var(--primary-color, #4f46e5);
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.error-code {
+    display: block;
+    font-size: 8rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.error-page h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary, #1f2937);
+    margin-bottom: 1rem;
+}
+
+.error-page p {
+    font-size: 1.2rem;
+    color: var(--text-secondary, #6b7280);
+    margin-bottom: 3rem;
+}
+
+.suggestions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.suggestion-card {
+    padding: 1.5rem;
+    border: 2px solid var(--primary-color, #4f46e5);
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--primary-color, #4f46e5);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.suggestion-card:hover {
+    background: var(--primary-color, #4f46e5);
+    color: white;
+    transform: translateY(-5px);
+}
+
+.error-contact {
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+</style>
+{% endblock %}
+
+<!-- templates/500.html -->
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Erreur serveur - A LAIZ PROD</title>
+<meta name="description" content="Une erreur temporaire s'est produite sur le site A LAIZ PROD. Nous travaillons à la résoudre rapidement.">
+{% endblock %}
+
+{% block content %}
+<section class="error-page">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-icon">
+                <i class="fas fa-tools"></i>
+                <span class="error-code">500</span>
+            </div>
+            
+            <h1>Erreur temporaire</h1>
+            <p>Nos musiciens accordent leurs instruments... Revenez dans un instant !</p>
+            
+            <div class="error-actions">
+                <a href="{{ url_for('index') }}" class="btn btn-primary">
+                    <i class="fas fa-home"></i>
+                    Retour à l'accueil
+                </a>
+                <button onclick="window.location.reload()" class="btn btn-outline">
+                    <i class="fas fa-refresh"></i>
+                    Réessayer
+                </button>
+            </div>
+            
+            <div class="error-contact">
+                <p>Si le problème persiste, contactez-nous :</p>
+                <div class="contact-buttons">
+                    <a href="mailto:contact@alaizopays.art" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i>
+                        contact@alaizopays.art
+                    </a>
+                    <a href="https://wa.me/237694723492?text=Problème technique sur le site" 
+                       class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        Signaler le problème
+                    </a>
+                </div>
+            </div>
+            
+            <div class="error-status">
+                <p><small>Code d'erreur : 500 | {{ moment().format('DD/MM/YYYY HH:mm') }}</small></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
