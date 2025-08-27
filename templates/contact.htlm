@@ -1,310 +1,67 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - A LAIZ PROD | Les Nanfang</title>
-    <meta name="description" content="Contactez A Laiz Prod pour vos projets musicaux. Devis gratuit, prestations professionnelles par Flavie et Hervé Nanfang à Yaoundé.">
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-color: #4f46e5;
-            --secondary-color: #f59e0b;
-            --accent-color: #8b5cf6;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f9fafb;
-        }
-        
-        .contact-hero {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            padding: 6rem 2rem 4rem;
-            text-align: center;
-        }
-        
-        .contact-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
-        
-        .contact-info {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-        }
-        
-        .contact-form {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: 15px;
-        }
-        
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border-radius: 50%;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        
-        .form-submit {
-            width: 100%;
-            padding: 1rem 2rem;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .form-submit:hover {
-            background: var(--accent-color);
-            transform: translateY(-2px);
-        }
-        
-        .devis-express {
-            background: linear-gradient(45deg, var(--secondary-color), #f97316);
-            color: white;
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .whatsapp-cta {
-            background: #25d366;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-        
-        .whatsapp-cta:hover {
-            background: #128c7e;
-            transform: translateY(-2px);
-        }
-        
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .contact-hero h1 {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>A LAIZ PROD</h2>
-            </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/about" class="nav-link">À Propos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/services" class="nav-link">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/formations" class="nav-link">Formations</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/boutique" class="nav-link">Boutique</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/contact" class="nav-link active">Contact</a>
-                </li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+{% extends "base.html" %}
 
-    <!-- Hero Section -->
-    <section class="contact-hero">
+{% block meta %}
+<title>Contact - A LAIZ PROD | Devis Gratuit Prestations Musicales</title>
+<meta name="description" content="Contactez A LAIZ PROD pour vos projets musicaux. Devis gratuit, prestations professionnelles. +237 694723492 WhatsApp Express.">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="page-hero contact-hero">
+    <div class="container">
         <h1>Nous Contacter</h1>
         <p>Concrétisons ensemble votre projet musical</p>
-    </section>
+    </div>
+</section>
 
-    <!-- Devis Express -->
-    <div class="contact-container">
-        <div class="devis-express">
-            <h2 style="font-size: 2rem; margin-bottom: 1rem;">⚡ Devis Express WhatsApp</h2>
-            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 1rem;">
-                Obtenez votre devis personnalisé en moins de 2 heures !
-            </p>
-            <a href="https://wa.me/237694723492?text=Bonjour%20A%20LAIZ%20PROD%2C%20je%20souhaite%20un%20devis%20pour%20:" class="whatsapp-cta">
+<!-- Devis Express -->
+<section class="devis-express">
+    <div class="container">
+        <div class="devis-content">
+            <h2>⚡ Devis Express WhatsApp</h2>
+            <p>Obtenez votre devis personnalisé en moins de 2 heures !</p>
+            <a href="https://wa.me/237694723492?text=Bonjour%20A%20LAIZ%20PROD%2C%20je%20souhaite%20un%20devis%20pour%20:" 
+               class="btn btn-whatsapp btn-large" target="_blank">
                 <i class="fab fa-whatsapp"></i>
                 Devis WhatsApp Express
             </a>
         </div>
+    </div>
+</section>
 
-        <!-- Contact Grid -->
-        <div class="contact-grid">
-            <!-- Informations de contact -->
-            <div class="contact-info">
-                <h2 style="color: var(--primary-color); margin-bottom: 2rem;">Nos Coordonnées</h2>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div>
-                        <h3 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">Email Principal</h3>
-                        <p style="margin: 0; color: var(--text-secondary);">contact@alaizopays.art</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div>
-                        <h3 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">Téléphone</h3>
-                        <p style="margin: 0; color: var(--text-secondary);">+237 682180266</p>
-                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Appels et SMS</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div>
-                        <h3 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">WhatsApp Business</h3>
-                        <p style="margin: 0; color: var(--text-secondary);">+237 694723492</p>
-                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Devis express sous 2h</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div>
-                        <h3 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">Adresse</h3>
-                        <p style="margin: 0; color: var(--text-secondary);">Yaoundé, Cameroun</p>
-                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Déplacements région Centre</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div>
-                        <h3 style="margin: 0 0 0.5rem 0; color: var(--text-primary);">Disponibilités</h3>
-                        <p style="margin: 0; color: var(--text-secondary);">Lun-Sam : 8h-18h</p>
-                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Urgences 7j/7</p>
-                    </div>
-                </div>
-            </div>
-
+<!-- Contact Main -->
+<section class="contact-main">
+    <div class="container">
+        <div class="contact-layout">
             <!-- Formulaire de contact -->
-            <div class="contact-form">
-                <h2 style="color: var(--primary-color); margin-bottom: 2rem;">Votre Projet</h2>
-                
-                <form id="contact-form">
-                    <div class="form-group">
-                        <label for="name">Nom complet *</label>
-                        <input type="text" id="name" name="name" required placeholder="Votre nom et prénom">
+            <div class="contact-form-section">
+                <h2>Votre Projet</h2>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" required 
+                                   placeholder="Votre nom et prénom">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required 
+                                   placeholder="votre@email.com">
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Téléphone / WhatsApp</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+237 682180266">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Téléphone / WhatsApp</label>
+                            <input type="tel" id="phone" name="phone" 
+                                   placeholder="+237 682 180 266">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date">Date souhaitée</label>
+                            <input type="date" id="date" name="date">
+                        </div>
                     </div>
                     
                     <div class="form-group">
@@ -329,11 +86,6 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="date">Date souhaitée</label>
-                        <input type="date" id="date" name="date">
-                    </div>
-                    
-                    <div class="form-group">
                         <label for="budget">Budget approximatif</label>
                         <select id="budget" name="budget">
                             <option value="">Budget indicatif...</option>
@@ -351,65 +103,186 @@
                                   placeholder="Décrivez votre événement, vos attentes, le nombre d'invités, le lieu, vos souhaits particuliers..."></textarea>
                     </div>
                     
-                    <button type="submit" class="form-submit">
+                    <button type="submit" class="btn btn-primary btn-large">
                         <i class="fas fa-paper-plane"></i>
                         Envoyer ma demande
                     </button>
+                    
+                    <p class="form-note">
+                        📧 Réponse sous 24h • 📱 Devis express par WhatsApp
+                    </p>
                 </form>
-                
-                <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem; text-align: center;">
-                    📧 Réponse sous 24h • 📱 Devis express par WhatsApp
-                </p>
             </div>
-        </div>
-
-        <!-- Engagement -->
-        <div style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; text-align: center;">
-            <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Notre Engagement</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                <div>
-                    <i class="fas fa-clock" style="color: var(--primary-color); font-size: 2rem; margin-bottom: 0.5rem;"></i>
-                    <p style="margin: 0; font-weight: 600;">Réponse sous 24h</p>
+            
+            <!-- Informations de contact -->
+            <div class="contact-info-section">
+                <h2>Nos Coordonnées</h2>
+                
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email Principal</h3>
+                            <p>contact@alaizopays.art</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Téléphone</h3>
+                            <p>+237 682 180 266</p>
+                            <span>Appels et SMS</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>WhatsApp Business</h3>
+                            <p>+237 694 723 492</p>
+                            <span>Devis express sous 2h</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Adresse</h3>
+                            <p>Yaoundé, Cameroun</p>
+                            <span>Déplacements région Centre</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Disponibilités</h3>
+                            <p>Lun-Sam : 8h-18h</p>
+                            <span>Urgences 7j/7</span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <i class="fas fa-gift" style="color: var(--primary-color); font-size: 2rem; margin-bottom: 0.5rem;"></i>
-                    <p style="margin: 0; font-weight: 600;">Devis gratuit</p>
-                </div>
-                <div>
-                    <i class="fas fa-handshake" style="color: var(--primary-color); font-size: 2rem; margin-bottom: 0.5rem;"></i>
-                    <p style="margin: 0; font-weight: 600;">Accompagnement personnalisé</p>
-                </div>
-                <div>
-                    <i class="fas fa-shield-alt" style="color: var(--primary-color); font-size: 2rem; margin-bottom: 0.5rem;"></i>
-                    <p style="margin: 0; font-weight: 600;">Prestation garantie</p>
+                
+                <!-- Réseaux sociaux -->
+                <div class="social-section">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="#" class="social-link instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="#" class="social-link youtube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="#" class="social-link linkedin">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Scripts -->
-    <script>
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+<!-- Notre Engagement -->
+<section class="engagement-section">
+    <div class="container">
+        <h2>Notre Engagement</h2>
+        <div class="engagement-grid">
+            <div class="engagement-item">
+                <div class="engagement-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Réponse sous 24h</h3>
+                <p>Garantie de réponse rapide à toutes vos demandes</p>
+            </div>
             
-            // Récupérer les données du formulaire
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
+            <div class="engagement-item">
+                <div class="engagement-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3>Devis gratuit</h3>
+                <p>Estimation personnalisée sans engagement</p>
+            </div>
             
-            // Simuler l'envoi (à remplacer par votre logique)
-            console.log('Données du formulaire:', data);
+            <div class="engagement-item">
+                <div class="engagement-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Accompagnement personnalisé</h3>
+                <p>Suivi complet de votre projet de A à Z</p>
+            </div>
             
-            // Message de confirmation
-            alert('Merci ! Votre demande a été envoyée. Nous vous répondrons sous 24h.');
+            <div class="engagement-item">
+                <div class="engagement-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Prestation garantie</h3>
+                <p>Excellence musicale et professionnalisme assurés</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+        
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
             
-            // Réinitialiser le formulaire
-            this.reset();
+            const result = await response.json();
             
-            // Optionnel : Rediriger vers WhatsApp avec le message pré-rempli
-            const message = `Bonjour A LAIZ PROD,\n\nJe suis ${data.name}.\nJe souhaite un devis pour : ${data.service}\nDate : ${data.date}\nBudget : ${data.budget}\n\nDétails :\n${data.message}`;
-            const whatsappUrl = `https://wa.me/237694723492?text=${encodeURIComponent(message)}`;
-            // window.open(whatsappUrl, '_blank');
-        });
-    </script>
-</body>
-</html>
+            if (result.status === 'success') {
+                alert('Merci ! Votre demande a été envoyée. Nous vous répondrons sous 24h.');
+                
+                // Optionnel : Rediriger vers WhatsApp avec message pré-rempli
+                if (result.whatsapp_url) {
+                    const openWhatsApp = confirm('Voulez-vous également envoyer votre demande via WhatsApp pour une réponse plus rapide ?');
+                    if (openWhatsApp) {
+                        window.open(result.whatsapp_url, '_blank');
+                    }
+                }
+                
+                // Réinitialiser le formulaire
+                this.reset();
+            } else {
+                alert('Erreur : ' + result.message);
+            }
+        } catch (error) {
+            console.error('Erreur:', error);
+            alert('Erreur lors de l\'envoi. Veuillez réessayer ou nous contacter directement.');
+        }
+    });
+});
+</script>
+{% endblock %}
