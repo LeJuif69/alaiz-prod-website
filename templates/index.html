@@ -1,233 +1,47 @@
 {% extends "base.html" %}
 
-{% block meta %}
-<title>A LAIZ PROD - Duo Musical Flavie & Hervé Nanfang | Yaoundé Cameroun</title>
-<meta name="description" content="A LAIZ PROD - Excellence musicale avec Flavie et Hervé Nanfang. Prestations piano-bar, mariages, formations. Plus de 500 événements depuis 2012 à Yaoundé.">
-{% endblock %}
-
 {% block content %}
-<!-- Hero Section -->
 <section class="hero">
     <div class="hero-content">
-        <h1 class="hero-title">Excellence Musicale et Transmission Culturelle</h1>
-        <p class="hero-subtitle">Depuis 2012 avec Flavie & Hervé Nanfang</p>
-        <p class="hero-description">
-            Duo artistique d'exception qui incarne la virtuosité musicale camerounaise 
-            avec une vision résolument moderne et authentique.
-        </p>
+        <h1>A LAIZ PROD</h1>
+        <h2>Excellence Musicale & Transmission Culturelle</h2>
+        <p class="hero-subtitle">Duo musical Flavie & Hervé Nanfang</p>
         <div class="hero-buttons">
-            <a href="{{ url_for('services') }}" class="btn btn-primary">
-                <i class="fas fa-music"></i>
-                Découvrir nos services
-            </a>
-            <a href="{{ url_for('contact') }}" class="btn btn-secondary">
-                <i class="fas fa-paper-plane"></i>
-                Demander un devis
-            </a>
-        </div>
-    </div>
-    <div class="hero-image">
-        <div class="hero-placeholder">
-            <i class="fas fa-piano"></i>
-            <i class="fas fa-microphone"></i>
+            <a href="{{ url_for('services') }}" class="btn-primary">Nos Services</a>
+            <a href="{{ url_for('contact') }}" class="btn-secondary">Nous Contacter</a>
         </div>
     </div>
 </section>
 
-<!-- Chiffres clés -->
-<section class="stats-section">
+<section class="about">
     <div class="container">
-        <h2>Plus d'une décennie au service de l'excellence</h2>
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">500+</div>
-                <div class="stat-label">Événements accompagnés</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">200+</div>
-                <div class="stat-label">Élèves formés</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">150+</div>
-                <div class="stat-label">Mariages célébrés</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">12</div>
-                <div class="stat-label">Années d'expérience</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">5</div>
-                <div class="stat-label">Publications pédagogiques</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">1</div>
-                <div class="stat-label">Projet culturel Tswefap</div>
+        <h2>Qui Sommes-Nous ?</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p><strong>Flavie Nanfang</strong> - Chanteuse professionnelle, spécialisée en jazz et variété française.</p>
+                <p><strong>Hervé Nanfang</strong> - Pianiste-arrangeur, compositeur et pédagogue reconnu.</p>
+                <p>Ensemble, nous formons le duo A LAIZ PROD, actifs sur la scène musicale camerounaise depuis 2012.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Présentation du duo -->
-<section class="duo-section">
-    <div class="container">
-        <div class="duo-content">
-            <div class="duo-text">
-                <h2>L'Histoire des Nanfang</h2>
-                <p class="lead">
-                    Un duo artistique qui incarne l'excellence musicale camerounaise 
-                    avec une vision résolument moderne et authentique.
-                </p>
-                <p>
-                    A LAIZ PROD n'est pas seulement une entreprise artistique, c'est un pont 
-                    entre traditions et modernité. Née de la rencontre entre deux passions 
-                    complémentaires, notre histoire commence par une vision commune : faire de 
-                    chaque prestation une expérience inoubliable.
-                </p>
-                <a href="{{ url_for('label') }}" class="btn btn-outline">
-                    Découvrir notre histoire
-                </a>
-            </div>
-            <div class="duo-profiles">
-                <div class="profile-card">
-                    <div class="profile-icon">
-                        <i class="fas fa-microphone"></i>
-                    </div>
-                    <h3>Flavie Nanfang</h3>
-                    <p class="profile-title">La Voix qui Touche l'Âme</p>
-                    <p>
-                        Chanteuse polyvalente aux registres étendus, maîtrisant jazz, 
-                        gospel et musiques camerounaises avec une présence scénique magnétique.
-                    </p>
-                </div>
-                <div class="profile-card">
-                    <div class="profile-icon">
-                        <i class="fas fa-piano"></i>
-                    </div>
-                    <h3>Hervé Nanfang</h3>
-                    <p class="profile-title">Le Maestro et Pédagogue</p>
-                    <p>
-                        Pianiste de formation classique et jazz, enseignant reconnu et 
-                        auteur de méthodes pédagogiques qui ont formé des centaines d'élèves.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Services phares -->
 <section class="services-preview">
     <div class="container">
-        <h2>Nos Services</h2>
+        <h2>Nos Activités</h2>
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-music"></i>
-                </div>
                 <h3>Prestations Musicales</h3>
-                <p>Piano-bar, mariages, événements corporatifs avec excellence artistique.</p>
-                <ul>
-                    <li>Piano-bar de 100K à 500K FCFA</li>
-                    <li>Mariages complets 250K FCFA</li>
-                    <li>Prestations internationales</li>
-                </ul>
-                <a href="{{ url_for('services') }}" class="service-link">
-                    Voir tous nos services <i class="fas fa-arrow-right"></i>
-                </a>
+                <p>Piano-bar, mariages, concerts, événements corporate</p>
             </div>
-            
             <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <h3>Formations Musicales</h3>
-                <p>Cours de piano et chant avec méthodes pédagogiques reconnues.</p>
-                <ul>
-                    <li>Piano débutant 25K FCFA/mois</li>
-                    <li>Chant avec Flavie 30K FCFA/mois</li>
-                    <li>Stages d'arrangement musical</li>
-                </ul>
-                <a href="{{ url_for('formations') }}" class="service-link">
-                    Découvrir nos formations <i class="fas fa-arrow-right"></i>
-                </a>
+                <h3>Formations</h3>
+                <p>Cours de piano, chant, arrangement musical</p>
             </div>
-            
             <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-record-vinyl"></i>
-                </div>
-                <h3>Production & Label</h3>
-                <p>Maison de production avec accompagnement artistique complet.</p>
-                <ul>
-                    <li>Enregistrement studio</li>
-                    <li>Arrangements originaux</li>
-                    <li>Projet culturel Tswefap</li>
-                </ul>
-                <a href="{{ url_for('label') }}" class="service-link">
-                    Explorer notre label <i class="fas fa-arrow-right"></i>
-                </a>
+                <h3>Label A LAIZ</h3>
+                <p>Production musicale et accompagnement d'artistes</p>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA Section -->
-<section class="cta-section">
-    <div class="container">
-        <div class="cta-content">
-            <h2>Prêt à vivre l'expérience A LAIZ PROD ?</h2>
-            <p>
-                Que vous cherchiez à célébrer un moment spécial, apprendre la musique 
-                ou découvrir notre univers artistique, nous sommes là pour vous accompagner.
-            </p>
-            <div class="cta-buttons">
-                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
-                    <i class="fas fa-paper-plane"></i>
-                    Demander un devis gratuit
-                </a>
-                <a href="https://wa.me/237694723492?text=Bonjour A LAIZ PROD, je souhaite un devis pour:" 
-                   class="btn btn-whatsapp btn-large" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    Devis express WhatsApp
-                </a>
-            </div>
-            <p class="cta-note">
-                Réponse garantie sous 24h • Devis gratuit • Accompagnement personnalisé
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- Actualités récentes -->
-<section class="recent-news">
-    <div class="container">
-        <h2>Actualités</h2>
-        <div class="news-grid">
-            <article class="news-card">
-                <div class="news-date">15 Jan 2025</div>
-                <h3>Nouveau partenariat Festival Jazz Yaoundé</h3>
-                <p>A LAIZ PROD annonce sa collaboration officielle avec le Festival International de Jazz de Yaoundé 2025...</p>
-                <a href="{{ url_for('blog') }}" class="news-link">Lire la suite</a>
-            </article>
-            
-            <article class="news-card">
-                <div class="news-date">08 Jan 2025</div>
-                <h3>Lancement formations en ligne</h3>
-                <p>Découvrez nos nouvelles formations piano et chant 100% en ligne avec suivi personnalisé...</p>
-                <a href="{{ url_for('blog') }}" class="news-link">Lire la suite</a>
-            </article>
-            
-            <article class="news-card">
-                <div class="news-date">22 Déc 2024</div>
-                <h3>Projet Tswefap : nouvelle étape</h3>
-                <p>Le projet de valorisation linguistique Batoufam franchit une étape importante avec...</p>
-                <a href="{{ url_for('blog') }}" class="news-link">Lire la suite</a>
-            </article>
-        </div>
-        <div class="news-cta">
-            <a href="{{ url_for('blog') }}" class="btn btn-outline">
-                Voir toutes les actualités
-            </a>
         </div>
     </div>
 </section>

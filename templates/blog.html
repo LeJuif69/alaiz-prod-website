@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Actualités - A LAIZ PROD{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Actualités</h1>
+        <p>Nos dernières nouvelles et événements</p>
+    </div>
+</section>
+
+<section class="blog-content">
+    <div class="container">
+        {% if articles %}
+            <div class="articles-grid">
+                {% for article in articles %}
+                <article class="article-card">
+                    <h2>{{ article.title }}</h2>
+                    <div class="article-meta">
+                        <span class="date">{{ article.date }}</span>
+                        <span class="author">Par {{ article.author }}</span>
+                    </div>
+                    <p class="excerpt">{{ article.excerpt }}</p>
+                    <div class="article-footer">
+                        <span class="category">{{ article.category }}</span>
+                        <span class="reading-time">{{ article.reading_time }} min de lecture</span>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-articles">
+                <p>Aucun article disponible pour le moment.</p>
+                <p>Revenez bientôt pour nos dernières actualités !</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

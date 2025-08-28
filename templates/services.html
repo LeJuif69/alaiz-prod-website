@@ -1,590 +1,80 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services A Laiz Prod - Tarifs Cameroun</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-color: #4f46e5;
-            --secondary-color: #f59e0b;
-            --accent-color: #8b5cf6;
-            --success-color: #10b981;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f9fafb;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 2rem;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-        }
-        
-        .services-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .services-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .services-title {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .services-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .service-category {
-            margin-bottom: 3rem;
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--bg-secondary);
-        }
-        
-        .category-icon {
-            font-size: 2rem;
-            color: var(--primary-color);
-        }
-        
-        .category-title {
-            font-size: 1.8rem;
-            color: var(--text-primary);
-            margin: 0;
-        }
-        
-        .services-grid {
-            display: grid;
-            gap: 1rem;
-        }
-        
-        .service-row {
-            display: grid;
-            grid-template-columns: 2fr 1.5fr 3fr 1fr;
-            gap: 1rem;
-            align-items: center;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-color);
-            transition: all 0.3s ease;
-        }
-        
-        .service-row:hover {
-            background: #f0f9ff;
-            border-left-color: var(--secondary-color);
-            transform: translateX(5px);
-        }
-        
-        .service-row.prestige {
-            border-left-color: var(--secondary-color);
-            background: linear-gradient(45deg, #fef3c7, #fef9e7);
-        }
-        
-        .service-name {
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 1.1rem;
-        }
-        
-        .service-price {
-            font-weight: 700;
-            color: var(--primary-color);
-            font-size: 1.1rem;
-        }
-        
-        .service-includes {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-        
-        .service-options {
-            color: var(--accent-color);
-            font-size: 0.85rem;
-            font-style: italic;
-        }
-        
-        .service-cta {
-            padding: 0.5rem 1rem;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-        
-        .service-cta:hover {
-            background: var(--accent-color);
-            transform: translateY(-2px);
-        }
-        
-        .service-cta.devis {
-            background: var(--secondary-color);
-        }
-        
-        .devis-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            margin-top: 2rem;
-            text-align: center;
-        }
-        
-        .devis-form {
-            max-width: 600px;
-            margin: 2rem auto 0;
-            display: grid;
-            gap: 1rem;
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-group label {
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 0.75rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            background: rgba(255,255,255,0.9);
-        }
-        
-        .form-submit {
-            padding: 1rem 2rem;
-            background: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-        
-        .form-submit:hover {
-            background: #d97706;
-            transform: translateY(-2px);
-        }
-        
-        .notes {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            border-left: 4px solid var(--secondary-color);
-        }
-        
-        .notes h4 {
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-        }
-        
-        .notes ul {
-            color: var(--text-secondary);
-            margin: 0;
-        }
-        
-        @media (max-width: 768px) {
-            .service-row {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-                text-align: center;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .services-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="services-container">
-        <div class="services-header">
-            <h1 class="services-title">Nos Services & Tarifs</h1>
-            <p class="services-subtitle">Grille tarifaire transparente adaptée au marché camerounais</p>
-        </div>
+{% extends "base.html" %}
 
-        <!-- Piano-Bar -->
+{% block title %}Services - A LAIZ PROD{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Nos Services</h1>
+        <p>Prestations musicales professionnelles au Cameroun et à l'international</p>
+    </div>
+</section>
+
+<section class="services-detail">
+    <div class="container">
         <div class="service-category">
-            <div class="category-header">
-                <i class="fas fa-piano category-icon"></i>
-                <h2 class="category-title">Piano-Bar</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-row">
-                    <div class="service-name">Mini</div>
-                    <div class="service-price">100 000 FCFA</div>
-                    <div class="service-includes">Piano + Voix, set court, sono légère</div>
-                    <a href="/contact" class="service-cta">Réserver</a>
-                </div>
-                <div class="service-options" style="margin-left: 1rem; margin-bottom: 1rem;">
-                    Options : titre dédié, duo
-                </div>
-                
-                <div class="service-row">
-                    <div class="service-name">Standard</div>
-                    <div class="service-price">150 000 - 200 000 FCFA</div>
-                    <div class="service-includes">Piano + Voix (souvent en duo), répertoire élargi, sono légère</div>
-                    <a href="/contact" class="service-cta">Réserver</a>
-                </div>
-                
-                <div class="service-row prestige">
-                    <div class="service-name">Prestige</div>
-                    <div class="service-price">Sur devis</div>
-                    <div class="service-includes">Hors-ville, set personnalisé, coordination technique</div>
-                    <button class="service-cta devis" onclick="scrollToDevis()">Devis</button>
-                </div>
-                <div class="service-options" style="margin-left: 1rem;">
-                    Transport/hébergement en sus
-                </div>
-            </div>
-        </div>
-
-        <!-- Orchestre -->
-        <div class="service-category">
-            <div class="category-header">
-                <i class="fas fa-users category-icon"></i>
-                <h2 class="category-title">Orchestre</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-row">
-                    <div class="service-name">Standard</div>
-                    <div class="service-price">350 000 - 400 000 FCFA</div>
-                    <div class="service-includes">Orchestre réduit, sono de façade de base</div>
-                    <a href="/contact" class="service-cta">Réserver</a>
-                </div>
-                
-                <div class="service-row prestige">
-                    <div class="service-name">Prestige</div>
-                    <div class="service-price">500 000 FCFA</div>
-                    <div class="service-includes">Orchestre complet, retours de scène/backstage, ingé son</div>
-                    <a href="/contact" class="service-cta">Réserver</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sonorisation & Location -->
-        <div class="service-category">
-            <div class="category-header">
-                <i class="fas fa-volume-up category-icon"></i>
-                <h2 class="category-title">Sonorisation & Location</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-row">
-                    <div class="service-name">Sono légère</div>
-                    <div class="service-price">Sur devis (base 50K)</div>
-                    <div class="service-includes">Petits événements/conférences (micros, pieds, mixage)</div>
-                    <button class="service-cta devis" onclick="scrollToDevis()">Devis</button>
-                </div>
-                
-                <div class="service-row">
-                    <div class="service-name">Sono mariage/salle</div>
-                    <div class="service-price">Sur devis (base 100K)</div>
-                    <div class="service-includes">Façade + micros + technicien</div>
-                    <button class="service-cta devis" onclick="scrollToDevis()">Devis</button>
-                </div>
-                
-                <div class="service-row">
-                    <div class="service-name">Sono concert plein air</div>
-                    <div class="service-price">Sur devis (base 300K)</div>
-                    <div class="service-includes">Grosse sono, retours, régie</div>
-                    <button class="service-cta devis" onclick="scrollToDevis()">Devis</button>
-                </div>
-                
-                <div class="service-row">
-                    <div class="service-name">Location instruments</div>
-                    <div class="service-price">Sur devis</div>
-                    <div class="service-includes">Batterie, claviers, guitares, basses, amplis</div>
-                    <button class="service-cta devis" onclick="scrollToDevis()">Devis</button>
-                </div>
-                
-                <div class="service-row">
-                    <div class="service-name">Pack Conférence</div>
-                    <div class="service-price">Sur devis (base 50K)</div>
-                    <div class="service-includes">Micros de table, pupitre, enregistrements (option)</div>
-                    <button class="service-cta devis" onclick="scrollToDevis()">Devis</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Prestations lieux -->
-        <div class="service-category">
-            <div class="category-header">
-                <i class="fas fa-utensils category-icon"></i>
-                <h2 class="category-title">Prestations lieux (restaurants, clubs, hôtels)</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-row">
-                    <div class="service-name">Live ambiance</div>
-                    <div class="service-price">Sur devis</div>
-                    <div class="service-includes">Solo/duo/trio selon lieu, sono adaptée</div>
-                    <button class="service-cta devis" onclick="scrollToDevis()">Devis</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Événementiel & Consulting -->
-        <div class="service-category">
-            <div class="category-header">
-                <i class="fas fa-lightbulb category-icon"></i>
-                <h2 class="category-title">Événementiel & Consulting</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-row">
-                    <div class="service-name">Conseil/Direction artistique</div>
-                    <div class="service-price">Sur devis</div>
-                    <div class="service-includes">Festival, forum, colloque, mariages (plan artistique & technique)</div>
-                    <button class="service-cta devis" onclick="scrollToDevis()">Devis</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Festivals & Événements Internationaux -->
-        <div class="service-category" style="background: linear-gradient(45deg, #1e40af, #7c3aed); color: white;">
-            <div class="category-header" style="border-bottom-color: rgba(255,255,255,0.3);">
-                <i class="fas fa-globe category-icon" style="color: #fbbf24;"></i>
-                <h2 class="category-title" style="color: white;">🌍 Festivals & Événements Internationaux</h2>
-            </div>
-            <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin-bottom: 2rem;">
-                <p style="margin: 0; opacity: 0.9; font-weight: 500;">
-                    <i class="fas fa-info-circle"></i> 
-                    Prestations hors Cameroun • Tarifs en €uros • Conditions spéciales • Logistique internationale
-                </p>
+            <h2>Prestations au Cameroun</h2>
+            
+            <div class="service-item">
+                <h3>Piano-Bar Mini</h3>
+                <p>Prestation intimiste avec piano et voix</p>
+                <ul>
+                    <li>Durée : 2h30</li>
+                    <li>Répertoire : gospel, variété internationnales, standards</li>
+                    <li>Tarif : 100 000 FCFA</li>
+                </ul>
             </div>
             
-            <div class="services-grid">
-                <div class="service-row" style="background: rgba(255,255,255,0.15); border-left-color: #fbbf24;">
-                    <div class="service-name" style="color: white;">Piano-Bar International</div>
-                    <div class="service-price" style="color: #fbbf24;">2 500 € - 3 500 €</div>
-                    <div class="service-includes" style="color: rgba(255,255,255,0.8);">Show 2h-3h, set acoustique ou semi-orchestral</div>
-                    <button class="service-cta" style="background: #fbbf24; color: #1e40af;" onclick="scrollToDevis()">Devis International</button>
-                </div>
-                
-                <div class="service-row" style="background: rgba(255,255,255,0.15); border-left-color: #fbbf24;">
-                    <div class="service-name" style="color: white;">Orchestre Complet Live</div>
-                    <div class="service-price" style="color: #fbbf24;">8 000 € - 12 000 €</div>
-                    <div class="service-includes" style="color: rgba(255,255,255,0.8);">Show live 1h30-2h avec orchestre complet</div>
-                    <button class="service-cta" style="background: #fbbf24; color: #1e40af;" onclick="scrollToDevis()">Devis International</button>
-                </div>
-                
-                <div class="service-row" style="background: rgba(255,255,255,0.15); border-left-color: #fbbf24;">
-                    <div class="service-name" style="color: white;">Festival International / Forum</div>
-                    <div class="service-price" style="color: #fbbf24;">5 000 € minimum</div>
-                    <div class="service-includes" style="color: rgba(255,255,255,0.8);">Participation complète + masterclass/workshops optionnels</div>
-                    <button class="service-cta" style="background: #fbbf24; color: #1e40af;" onclick="scrollToDevis()">Devis International</button>
-                </div>
+            <div class="service-item">
+                <h3>Piano-Bar Standard</h3>
+                <p>Formule complète avec interaction public</p>
+                <ul>
+                    <li>Durée : 4h</li>
+                    <li>Animation interactive</li>
+                    <li>Tarif : 200 000 FCFA</li>
+                </ul>
             </div>
             
-            <div style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 10px; margin-top: 2rem;">
-                <h4 style="color: #fbbf24; margin-bottom: 1rem;"><i class="fas fa-plane"></i> Conditions Internationales</h4>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; color: rgba(255,255,255,0.9);">
-                    <div>
-                        <h5 style="color: white; margin-bottom: 0.5rem;">Non inclus (à charge organisateur) :</h5>
-                        <ul style="margin: 0; padding-left: 1rem; font-size: 0.9rem;">
-                            <li>Transport A/R international</li>
-                            <li>Hébergement 3-4 étoiles</li>
-                            <li>Restauration standard international</li>
-                            <li>Visas & accréditations</li>
-                            <li>Sono/matériel sur place</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h5 style="color: white; margin-bottom: 0.5rem;">Options supplémentaires :</h5>
-                        <ul style="margin: 0; padding-left: 1rem; font-size: 0.9rem;">
-                            <li>Masterclass : +500-1000€</li>
-                            <li>Workshop pédagogique : +500€</li>
-                            <li>Conférence/Table ronde : +750€</li>
-                            <li>Résidence artistique : sur devis</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="service-item">
+                <h3>Mariage Complet</h3>
+                <p>Accompagnement musical total pour votre mariage</p>
+                <ul>
+                    <li>Cérémonie + réception</li>
+                    <li>Sonorisation incluse</li>
+                    <li>Tarif : 350 000 FCFA</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>A LAIZ SONO</h3>
+                <p>Location matériel de sonorisation</p>
+                <ul>
+                    <li>Son + éclairage</li>
+                    <li>Technicien inclus</li>
+                    <li>Tarif : sur devis</li>
+                </ul>
             </div>
         </div>
-
-        <!-- Devis Express -->
-        <div class="devis-section" id="devis-section">
-            <h2 style="font-size: 2rem; margin-bottom: 1rem;">✨ Sur-mesure (Devis express)</h2>
-            <p style="font-size: 1.1rem; opacity: 0.9;">Recevez votre proposition chiffrée adaptée à votre budget sous 24h</p>
+        
+        <div class="service-category">
+            <h2>Prestations Internationales</h2>
             
-            <form class="devis-form" id="devis-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="lieu">Lieu/Ville *</label>
-                        <input type="text" id="lieu" name="lieu" required placeholder="Ex: Yaoundé, Douala...">
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Date & Durée *</label>
-                        <input type="text" id="date" name="date" required placeholder="Ex: 15 mars, 4h">
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="prestation">Type de prestation *</label>
-                        <select id="prestation" name="prestation" required>
-                            <option value="">Choisir...</option>
-                            <optgroup label="🇨🇲 PRESTATIONS CAMEROUN (FCFA)">
-                                <option value="piano-bar-mini">Piano-Bar Mini</option>
-                                <option value="piano-bar-standard">Piano-Bar Standard</option>
-                                <option value="piano-bar-prestige">Piano-Bar Prestige</option>
-                                <option value="orchestre-standard">Orchestre Standard</option>
-                                <option value="orchestre-prestige">Orchestre Prestige</option>
-                                <option value="sono-legere">Sonorisation légère</option>
-                                <option value="sono-mariage">Sono mariage/salle</option>
-                                <option value="sono-concert">Sono concert plein air</option>
-                                <option value="location-instruments">Location instruments</option>
-                                <option value="conference">Pack Conférence</option>
-                                <option value="live-ambiance">Live ambiance</option>
-                                <option value="consulting">Conseil/Direction artistique</option>
-                            </optgroup>
-                            <optgroup label="🌍 INTERNATIONAL (EUROS)">
-                                <option value="piano-bar-international">Piano-Bar International (2500-3500€)</option>
-                                <option value="orchestre-international">Orchestre Complet Live (8000-12000€)</option>
-                                <option value="festival-international">Festival International (5000€+)</option>
-                                <option value="masterclass-internationale">Masterclass/Workshop (+500-1000€)</option>
-                            </optgroup>
-                            <option value="sur-mesure">Totalement sur-mesure</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="musiciens">Nb musiciens *</label>
-                        <select id="musiciens" name="musiciens" required>
-                            <option value="">Choisir...</option>
-                            <option value="solo">Solo (1 musicien)</option>
-                            <option value="duo">Duo (2 musiciens)</option>
-                            <option value="trio">Trio (3 musiciens)</option>
-                            <option value="quartet">Quartet (4 musiciens)</option>
-                            <option value="orchestre">Orchestre (5+ musiciens)</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="sono">Besoin de sono ? *</label>
-                        <select id="sono" name="sono" required>
-                            <option value="">Choisir...</option>
-                            <option value="non">Non, lieu équipé</option>
-                            <option value="legere">Oui, sono légère</option>
-                            <option value="standard">Oui, sono standard</option>
-                            <option value="premium">Oui, sono premium</option>
-                            <option value="concert">Oui, sono concert</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="budget">Budget cible (optionnel)</label>
-                        <input type="text" id="budget" name="budget" placeholder="Ex: 200 000 FCFA">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="style">Style musical souhaité</label>
-                    <input type="text" id="style" name="style" placeholder="Ex: Jazz, variétés, gospel, afro, mix...">
-                </div>
-                
-                <div class="form-group">
-                    <label for="details">Détails supplémentaires</label>
-                    <textarea id="details" name="details" rows="3" placeholder="Précisions sur votre événement, demandes spéciales..."></textarea>
-                </div>
-                
-                <button type="submit" class="form-submit">
-                    <i class="fas fa-paper-plane"></i>
-                    Recevoir mon devis sous 24h
-                </button>
-            </form>
-            
-            <p style="margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">
-                📱 Réponse par WhatsApp/E-mail • ✅ Engagement sous 24h
-            </p>
+            <div class="service-item">
+                <h3>Piano-Bar International</h3>
+                <p>Concerts et prestations hors Cameroun</p>
+                <ul>
+                    <li>Transport et hébergement en sus</li>
+                    <li>Contrat selon destination</li>
+                    <li>Tarif : sur devis</li>
+                </ul>
+            </div>
         </div>
-
-        <!-- Notes importantes -->
-        <div class="notes">
-            <h4><i class="fas fa-info-circle"></i> Remarques importantes</h4>
-            <ul>
-                <li>Les prix indiqués sont <strong>hors transport/logement</strong> hors-ville</li>
-                <li>Options possibles : set list personnalisée, temps supplémentaire, DJ, captation</li>
-                <li>Acompte de 30% à la réservation, solde le jour J</li>
-                <li>Devis gratuit et sans engagement</li>
-                <li>Réduction 10% pour réservation 2 mois à l'avance</li>
-            </ul>
+        
+        <div class="contact-cta">
+            <h2>Demander un Devis</h2>
+            <p>Chaque prestation est adaptée à vos besoins spécifiques</p>
+            <a href="{{ url_for('contact') }}" class="btn-primary">Nous Contacter</a>
         </div>
     </div>
-
-    <script>
-        function scrollToDevis() {
-            document.getElementById('devis-section').scrollIntoView({ 
-                behavior: 'smooth' 
-            });
-        }
-        
-        document.getElementById('devis-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Récupérer les données du formulaire
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Simuler l'envoi (à remplacer par votre logique d'envoi)
-            console.log('Données du devis:', data);
-            
-            // Message de confirmation
-            alert('Merci ! Vous recevrez votre devis sous 24h par WhatsApp/E-mail.');
-            
-            // Réinitialiser le formulaire
-            this.reset();
-        });
-    </script>
-</body>
-</html>
+</section>
+{% endblock %}
