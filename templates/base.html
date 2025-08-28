@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}A LAIZ PROD - Excellence Musicale{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>A LAIZ PROD</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="{{ url_for('index') }}">Accueil</a>
+                <a href="{{ url_for('services') }}">Services</a>
+                <a href="{{ url_for('formations') }}">Formations</a>
+                <a href="{{ url_for('label') }}">Label</a>
+                <a href="{{ url_for('blog') }}">Actualités</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 A LAIZ PROD - Flavie & Hervé Nanfang</p>
+            <p>Excellence musicale et transmission culturelle</p>
+        </div>
+    </footer>
+</body>
+</html>

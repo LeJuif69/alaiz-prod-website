@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Services - A LAIZ PROD{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Nos Services</h1>
+        <p>Prestations musicales professionnelles au Cameroun et à l'international</p>
+    </div>
+</section>
+
+<section class="services-detail">
+    <div class="container">
+        <div class="service-category">
+            <h2>Prestations au Cameroun</h2>
+            
+            <div class="service-item">
+                <h3>Piano-Bar Mini</h3>
+                <p>Prestation intimiste avec piano et voix</p>
+                <ul>
+                    <li>Durée : 2h30</li>
+                    <li>Répertoire : gospel, variété internationnales, standards</li>
+                    <li>Tarif : 100 000 FCFA</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>Piano-Bar Standard</h3>
+                <p>Formule complète avec interaction public</p>
+                <ul>
+                    <li>Durée : 4h</li>
+                    <li>Animation interactive</li>
+                    <li>Tarif : 200 000 FCFA</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>Mariage Complet</h3>
+                <p>Accompagnement musical total pour votre mariage</p>
+                <ul>
+                    <li>Cérémonie + réception</li>
+                    <li>Sonorisation incluse</li>
+                    <li>Tarif : 350 000 FCFA</li>
+                </ul>
+            </div>
+            
+            <div class="service-item">
+                <h3>A LAIZ SONO</h3>
+                <p>Location matériel de sonorisation</p>
+                <ul>
+                    <li>Son + éclairage</li>
+                    <li>Technicien inclus</li>
+                    <li>Tarif : sur devis</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="service-category">
+            <h2>Prestations Internationales</h2>
+            
+            <div class="service-item">
+                <h3>Piano-Bar International</h3>
+                <p>Concerts et prestations hors Cameroun</p>
+                <ul>
+                    <li>Transport et hébergement en sus</li>
+                    <li>Contrat selon destination</li>
+                    <li>Tarif : sur devis</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="contact-cta">
+            <h2>Demander un Devis</h2>
+            <p>Chaque prestation est adaptée à vos besoins spécifiques</p>
+            <a href="{{ url_for('contact') }}" class="btn-primary">Nous Contacter</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
