@@ -2,17 +2,35 @@
 
 {% block content %}
 <section class="hero">
+    <section class="hero">
     <div class="hero-content">
         <h1>A LAIZ PROD</h1>
-        <h2>Excellence Musicale & Transmission Culturelle</h2>
-        <p class="hero-subtitle">Duo musical Flavie & Hervé Nanfang</p>
+        <h2>Excellence Musicale Camerounaise</h2>
+        <p class="hero-subtitle">Duo Flavie & Hervé Nanfang</p>
         <div class="hero-buttons">
-            <a href="{{ url_for('services') }}" class="btn-primary">Nos Services</a>
-            <a href="{{ url_for('contact') }}" class="btn-secondary">Nous Contacter</a>
+            <a href="{{ url_for('contact') }}" class="btn-primary">Réserver une prestation</a>
+            <a href="{{ url_for('formations') }}" class="btn-secondary">Nos formations</a>
         </div>
     </div>
 </section>
-
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Événements réalisés</p>
+            </div>
+            <div class="stat-item">
+                <h3>7</h3>
+                <p>Pays d'Afrique</p>
+            </div>
+            <div class="stat-item">
+                <h3>2013</h3>
+                <p>Prix Cafrim</p>
+            </div>
+        </div>
+    </div>
+</section>
 <div class="about-text">
     <p>Depuis 2010, <strong>Flavie et Hervé Nanfang</strong> forment le duo artistique <strong>A LAIZ PROD</strong>, référence de l'excellence musicale camerounaise. Leur parcours exceptionnel témoigne d'une passion partagée pour la valorisation du patrimoine musical africain.</p>
     
@@ -47,3 +65,4 @@
 </section>
 
 {% endblock %}
+
