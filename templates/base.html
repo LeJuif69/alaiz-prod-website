@@ -3,41 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}A LAIZ PROD - Excellence Musicale{% endblock %}</title>
+    <title>{% block title %}A Laiz Prod | Excellence Musicale Camerounaise{% endblock %}</title>
+    <meta name="description" content="{% block description %}A Laiz Prod - Duo musical professionnel Flavie & Hervé Nanfang. Piano-bar, concerts, mariages, formations musicales au Cameroun.{% endblock %}">
+    
+    <!-- SEO et Open Graph -->
+    <meta property="og:title" content="{% block og_title %}A Laiz Prod - Excellence Musicale Camerounaise{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Duo artistique Flavie & Hervé Nanfang - Piano-bar, Concerts, Mariages, Formations{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ url_for('static', filename='images/alaiz-prod-og.jpg') }}{% endblock %}">
+    <meta property="og:url" content="{{ request.url }}">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Principal -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- CSS supplémentaire par page -->
+    {% block additional_css %}{% endblock %}
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-brand">
-                <h1>A LAIZ PROD</h1>
-            </div>
-            <div class="nav-menu">
-                <a href="{{ url_for('index') }}">Accueil</a>
-                <a href="{{ url_for('services') }}">Services</a>
-                <a href="{{ url_for('formations') }}">Formations</a>
-                <a href="{{ url_for('label') }}">Label</a>
-                <a href="{{ url_for('blog') }}">Actualités</a>
-                <a href="{{ url_for('contact') }}">Contact</a>
-            </div>
-        </nav>
-    </header>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
 
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('index') }}" class="logo">A Laiz Prod</a>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}class="active"{% endif %}>Accueil</a></li>
+                <li><a href="{{ url_for('services') }}" {% if request.endpoint == 'services' %}class="active"{% endif %}>Services</a></li>
+                <li><a href="{{ url_for('about') }}" {% if request.endpoint == 'about' %}class="active"{% endif %}>À Propos</a></li>
+                <li><a href="{{ url_for('formations') }}" {% if request.endpoint == 'formations' %}class="active"{% endif %}>Formations</a></li>
+                <li><a href="{{ url_for('tswefap') }}" {% if request.endpoint == 'tswefap' %}class="active"{% endif %}>Tswefap</a></li>
+                <li><a href="{{ url_for('contact') }}" {% if request.endpoint == 'contact' %}class="active"{% endif %}>Contact</a></li>
+            </ul>
+            
+            <!-- Menu mobile burger -->
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <!-- Menu mobile -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('about') }}">À Propos</a></li>
+                <li><a href="{{ url_for('formations') }}">Formations</a></li>
+                <li><a href="{{ url_for('tswefap') }}">Tswefap</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Messages Flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">
+                        <span>{{ message }}</span>
+                        <button class="flash-close">&times;</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Contenu principal -->
     <main>
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
 
-    <footer>
-    <div class="footer-content">
-        <p>&copy; 2025 A LAIZ PROD - Flavie & Hervé Nanfang</p>
-        <p>Excellence musicale et transmission culturelle</p>
-        <div class="footer-contact">
-            <p>Tel: +237 682 180 255 | Email: contact@alaizopays.art</p>
-            <p>
-                <a href="https://facebook.com/a_laiz_o_pays" target="_blank">Facebook</a> | 
-                <a href="https://instagram.com/alaizprod" target="_blank">Instagram</a>
-            </p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <h3>A Laiz Prod</h3>
+                    <p>Excellence Musicale Camerounaise</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> Flavie : +237 XXX XXX XXX</p>
+                    <p><i class="fas fa-phone"></i> Hervé : +237 XXX XXX XXX</p>
+                    <p><i class="fas fa-envelope"></i> contact@alaizprod.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Yaoundé, Cameroun</p>
+                </div>
+                <div class="footer-services">
+                    <h4>Nos Services</h4>
+                    <ul>
+                        <li><a href="{{ url_for('services') }}#piano-bar">Piano-Bar</a></li>
+                        <li><a href="{{ url_for('services') }}#mariages">Mariages</a></li>
+                        <li><a href="{{ url_for('services') }}#concerts">Concerts</a></li>
+                        <li><a href="{{ url_for('formations') }}">Formations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="footer-bottom">
+                <p>&copy; {{ moment().format('YYYY') }} A Laiz Prod. Tous droits réservés. | Excellence musicale camerounaise depuis 2009</p>
+                <p>Développé avec passion pour l'art et la culture africaine</p>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+
+    <!-- JavaScript Principal -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <!-- JavaScript supplémentaire par page -->
+    {% block additional_js %}{% endblock %}
+    
+    <!-- CSRF Token pour AJAX -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+</body>
+</html>
