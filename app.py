@@ -1,190 +1,283 @@
-from flask import Flask, render_template, jsonify, request, redirect, url_for
-import json
+from flask import Flask, render_template, request, jsonify, flash, redirect, url_for
+from flask_mail import Mail, Message
+from flask_wtf import FlaskForm, CSRFProtect
+from wtforms import StringField, TextAreaField, EmailField, DateField, SelectField
+from wtforms.validators import DataRequired, Email, Length
 import os
 from datetime import datetime
+import logging
 
+# Configuration de l'application
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'alaiz-prod-secret-key-2025'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-change-in-production')
 
-# Fonction pour charger les articles du blog
-def load_articles():
-    try:
-        with open('data/articles.json', 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return []
+# Configuration Email (pour formulaires de contact)
+app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', 'smtp.gmail.com')
+app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', 587))
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 
-# Route principale - Accueil + À Propos
-@app.route("/")
+mail = Mail(app)
+csrf = CSRFProtect(app)
+
+# Formulaire de contact/devis
+class ContactForm(FlaskForm):
+    nom = StringField('Nom complet', validators=[DataRequired(), Length(min=2, max=100)])
+    email = EmailField('Email', validators=[DataRequired(), Email()])
+    telephone = StringField('Téléphone', validators=[DataRequired(), Length(min=8, max=20)])
+    type_evenement = SelectField('Type d\'événement', choices=[
+        ('', 'Sélectionnez un type'),
+        ('piano-bar', 'Piano-Bar'),
+        ('mariage', 'Mariage'),
+        ('concert', 'Concert'),
+        ('formation', 'Formation'),
+        ('sono', 'A Laiz Sono'),
+        ('autre', 'Autre')
+    ])
+    date_evenement = DateField('Date souhaitée', validators=[DataRequired()])
+    message = TextAreaField('Détails de votre projet', validators=[DataRequired(), Length(min=10, max=1000)])
+
+# Routes principales
+@app.route('/')
 def index():
-    """Page d'accueil avec présentation du duo"""
-    return render_template("index.html", page="accueil")
+    """Page d'accueil principale"""
+    stats = {
+        'experience': 15,
+        'evenements': 500,
+        'mariages': 200,
+        'eleves': 1000,
+        'publications': 12
+    }
+    return render_template('index.html', stats=stats)
 
-# Services - Prestations + Boutique
-@app.route("/services")
+@app.route('/services')
 def services():
-    """Page services avec prestations et produits"""
-    return render_template("services.html", page="services")
+    """Page services détaillée"""
+    services_data = [
+        {
+            'id': 'piano-bar',
+            'nom': 'Piano-Bar',
+            'icon': 'fas fa-music',
+            'description': 'Ambiances musicales raffinées pour vos soirées privées, restaurants et hôtels.',
+            'details': 'Répertoire varié alliant jazz, standards internationaux et musiques actuelles.',
+            'duree': '2-6 heures',
+            'public': 'Restaurants, hôtels, événements privés'
+        },
+        {
+            'id': 'mariages',
+            'nom': 'Mariages',
+            'icon': 'fas fa-heart',
+            'description': 'Célébrez votre union avec une musique sur mesure.',
+            'details': 'Cérémonie, cocktail et soirée dansante personnalisés selon vos goûts.',
+            'duree': 'Journée complète',
+            'public': 'Couples, familles'
+        },
+        {
+            'id': 'concerts',
+            'nom': 'Concerts',
+            'icon': 'fas fa-microphone',
+            'description': 'Spectacles live mémorables pour tous types d\'événements.',
+            'details': 'Festivals, centres culturels, événements corporatifs.',
+            'duree': '45 min - 2h',
+            'public': 'Grand public'
+        },
+        {
+            'id': 'formations',
+            'nom': 'Formations',
+            'icon': 'fas fa-graduation-cap',
+            'description': 'Cours de piano, chant et théorie musicale.',
+            'details': 'Méthodes pédagogiques innovantes par Hervé Nanfang.',
+            'duree': 'Cours réguliers',
+            'public': 'Débutants à avancés'
+        }
+    ]
+    return render_template('services.html', services=services_data)
 
-# Formations - Cours et pédagogie
-@app.route("/formations")
+@app.route('/about')
+def about():
+    """Page À propos du duo"""
+    duo_info = {
+        'flavie': {
+            'nom': 'Flavie Nanfang',
+            'role': 'Chanteuse Lead',
+            'specialites': ['Jazz', 'Gospel', 'Variété française', 'Musiques africaines'],
+            'experience': 'Plus de 15 ans sur scène',
+            'description': 'Chanteuse polyvalente aux registres étendus, elle maîtrise aussi bien les standards jazz que les rythmes afro-contemporains.'
+        },
+        'herve': {
+            'nom': 'Hervé Nanfang',
+            'role': 'Pianiste & Pédagogue',
+            'specialites': ['Piano classique', 'Jazz', 'Arrangement', 'Pédagogie musicale'],
+            'publications': 12,
+            'description': 'Pianiste de formation classique et jazz, enseignant reconnu et auteur de plusieurs ouvrages pédagogiques.'
+        }
+    }
+    return render_template('about.html', duo=duo_info)
+
+@app.route('/formations')
 def formations():
-    """Page formations avec cours et méthodes"""
-    return render_template("formations.html", page="formations")
+    """Page formations détaillée"""
+    formations_data = [
+        {
+            'nom': 'Piano Débutant',
+            'duree': '3 mois',
+            'niveau': 'Débutant',
+            'contenu': ['Posture et technique de base', 'Lecture de partitions', 'Premiers morceaux'],
+            'prix': 'Sur devis'
+        },
+        {
+            'nom': 'Chant Individuel',
+            'duree': '6 mois',
+            'niveau': 'Tous niveaux',
+            'contenu': ['Technique vocale', 'Interprétation', 'Répertoire varié'],
+            'prix': 'Sur devis'
+        },
+        {
+            'nom': 'Théorie Musicale',
+            'duree': '4 mois',
+            'niveau': 'Intermédiaire',
+            'contenu': ['Harmonie', 'Analyse musicale', 'Composition'],
+            'prix': 'Sur devis'
+        }
+    ]
+    return render_template('formations.html', formations=formations_data)
 
-# Label - Production + Artistes
-@app.route("/label")
-def label():
-    """Page label avec production et artistes"""
-    return render_template("label.html", page="label")
+@app.route('/tswefap')
+def tswefap():
+    """Page projet culturel Tswefap"""
+    projet_info = {
+        'nom': 'Projet Tswefap',
+        'objectif': 'Préservation du patrimoine linguistique Batoufam',
+        'description': 'Un projet culturel unique alliant tradition et innovation technologique',
+        'realisations': [
+            'Dictionnaire numérique Batoufam-Français',
+            'Archive audio des contes traditionnels',
+            'Application mobile d\'apprentissage',
+            'Ateliers de transmission intergénérationnelle'
+        ],
+        'impact': 'Plus de 1000 locuteurs sensibilisés'
+    }
+    return render_template('tswefap.html', projet=projet_info)
 
-# Blog - Liste des actualités
-@app.route("/blog")
-def blog():
-    """Page blog avec liste des actualités"""
-    articles = load_articles()
-    # Trier par date décroissante
-    articles.sort(key=lambda x: x.get('date', ''), reverse=True)
-    return render_template("blog.html", page="blog", articles=articles)
-
-# Article individuel
-@app.route("/blog/<slug>")
-def article(slug):
-    """Page article individuel"""
-    articles = load_articles()
-    article = next((a for a in articles if a.get('slug') == slug), None)
-    
-    if not article:
-        return redirect(url_for('blog'))
-    
-    return render_template("article.html", page="blog", article=article)
-
-# Contact - Formulaire et coordonnées
-@app.route("/contact")
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    """Page contact avec formulaire"""
-    return render_template("contact.html", page="contact")
+    """Page contact avec formulaire de devis"""
+    form = ContactForm()
+    
+    if form.validate_on_submit():
+        try:
+            # Envoi de l'email de notification
+            msg = Message(
+                subject=f'Nouvelle demande de devis - {form.type_evenement.data}',
+                sender=app.config['MAIL_USERNAME'],
+                recipients=['contact@alaizprod.com'],  # Email de réception
+                body=f"""
+                Nouvelle demande de devis reçue :
+                
+                Nom : {form.nom.data}
+                Email : {form.email.data}
+                Téléphone : {form.telephone.data}
+                Type d'événement : {form.type_evenement.data}
+                Date souhaitée : {form.date_evenement.data}
+                
+                Message :
+                {form.message.data}
+                """
+            )
+            mail.send(msg)
+            
+            # Confirmation à l'utilisateur
+            confirmation = Message(
+                subject='Demande de devis reçue - A Laiz Prod',
+                sender=app.config['MAIL_USERNAME'],
+                recipients=[form.email.data],
+                body=f"""
+                Bonjour {form.nom.data},
+                
+                Nous avons bien reçu votre demande de devis pour votre {form.type_evenement.data}.
+                
+                Nous vous contacterons dans les plus brefs délais pour étudier votre projet.
+                
+                Cordialement,
+                L'équipe A Laiz Prod
+                """
+            )
+            mail.send(confirmation)
+            
+            flash('Votre demande a été envoyée avec succès ! Nous vous contacterons rapidement.', 'success')
+            return redirect(url_for('contact'))
+            
+        except Exception as e:
+            app.logger.error(f'Erreur envoi email: {e}')
+            flash('Erreur lors de l\'envoi. Veuillez réessayer ou nous contacter directement.', 'error')
+    
+    contact_info = {
+        'phones': {
+            'flavie': '+237 XXX XXX XXX',  # À remplacer par les vrais numéros
+            'herve': '+237 XXX XXX XXX'
+        },
+        'email': 'contact@alaizprod.com',
+        'address': 'Yaoundé, Cameroun',
+        'social': {
+            'facebook': '#',  # À remplacer par les vraies URLs
+            'instagram': '#',
+            'youtube': '#',
+            'linkedin': '#',
+            'whatsapp': '#'
+        }
+    }
+    
+    return render_template('contact.html', form=form, contact=contact_info)
 
-# API - Soumission formulaire contact
-@app.route("/api/contact", methods=['POST'])
+# API pour les demandes AJAX
+@app.route('/api/contact', methods=['POST'])
 def api_contact():
-    """API pour traitement formulaire contact"""
+    """API pour traitement AJAX du formulaire"""
+    data = request.get_json()
+    
     try:
-        data = request.get_json()
-        
-        if not data:
-            return jsonify({
-                "status": "error", 
-                "message": "Aucune donnée reçue"
-            }), 400
-        
-        # Validation des champs obligatoires
-        required_fields = ['name', 'email', 'message']
+        # Validation basique
+        required_fields = ['nom', 'email', 'telephone', 'message']
         for field in required_fields:
             if not data.get(field):
-                return jsonify({
-                    "status": "error",
-                    "message": f"Le champ {field} est obligatoire"
-                }), 400
+                return jsonify({'status': 'error', 'message': f'Le champ {field} est requis'}), 400
         
-        # Log pour débogage (remplacer par envoi email en production)
-        print(f"Nouveau contact reçu: {data}")
-        
-        # Génération URL WhatsApp pour transfert
-        whatsapp_message = f"""Bonjour A LAIZ PROD,
-
-Je suis {data.get('name')}.
-Email: {data.get('email')}
-Téléphone: {data.get('phone', 'Non renseigné')}
-
-Type de prestation: {data.get('service', 'Non spécifié')}
-Date souhaitée: {data.get('date', 'Non spécifiée')}
-Budget: {data.get('budget', 'Non spécifié')}
-
-Message:
-{data.get('message')}"""
+        # Traitement de la demande (ici, log simple)
+        app.logger.info(f"Nouvelle demande de contact: {data['nom']} - {data['email']}")
         
         return jsonify({
-            "status": "success",
-            "message": "Message envoyé avec succès!",
-            "whatsapp_url": f"https://wa.me/237694723492?text={whatsapp_message}",
-            "timestamp": datetime.now().isoformat()
+            'status': 'success', 
+            'message': 'Votre demande a été envoyée avec succès !'
         })
         
     except Exception as e:
-        print(f"Erreur API contact: {e}")
-        return jsonify({
-            "status": "error",
-            "message": "Erreur lors de l'envoi"
-        }), 500
+        app.logger.error(f"Erreur API contact: {e}")
+        return jsonify({'status': 'error', 'message': 'Erreur serveur'}), 500
 
-# API - Statut du service
-@app.route("/api/status")
-def api_status():
-    """API de statut pour monitoring"""
-    return jsonify({
-        "status": "online",
-        "service": "A LAIZ PROD Website",
-        "version": "2.0-restructured",
-        "timestamp": datetime.now().isoformat(),
-        "routes_loaded": len([rule.rule for rule in app.url_map.iter_rules()])
-    })
-
-# Route de test pour vérifications
-@app.route("/test")
-def test():
-    """Route de test pour vérifier le déploiement"""
-    return f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Test A LAIZ PROD</title>
-        <meta charset="utf-8">
-    </head>
-    <body style="font-family: Arial; text-align: center; padding: 50px;">
-        <h1 style="color: #4f46e5;">✅ Site A LAIZ PROD Fonctionnel</h1>
-        <p>Nouvelle structure déployée avec succès</p>
-        <p><strong>Routes disponibles:</strong></p>
-        <ul style="list-style: none; padding: 0;">
-            <li><a href="/">/</a> - Accueil</li>
-            <li><a href="/services">/services</a> - Services</li>
-            <li><a href="/formations">/formations</a> - Formations</li>
-            <li><a href="/label">/label</a> - Label</li>
-            <li><a href="/blog">/blog</a> - Actualités</li>
-            <li><a href="/contact">/contact</a> - Contact</li>
-        </ul>
-        <p style="color: #6b7280; margin-top: 2rem;">
-            Test effectué le {datetime.now().strftime('%d/%m/%Y à %H:%M:%S')}
-        </p>
-    </body>
-    </html>
-    """
-
-# Gestion d'erreur 404
+# Routes d'erreur personnalisées
 @app.errorhandler(404)
-def page_not_found(e):
-    """Page d'erreur 404 personnalisée"""
-    return render_template("404.html"), 404
+def not_found(error):
+    return render_template('404.html'), 404
 
-# Gestion d'erreur 500
 @app.errorhandler(500)
-def internal_error(e):
-    """Page d'erreur 500 personnalisée"""
-    return render_template("500.html"), 500
+def internal_error(error):
+    return render_template('500.html'), 500
 
-# Démarrage de l'application
-if __name__ == "__main__":
-    # Création du dossier data s'il n'existe pas
-    os.makedirs('data', exist_ok=True)
+# Configuration de logging pour production
+if not app.debug:
+    if not os.path.exists('logs'):
+        os.mkdir('logs')
     
-    # Mode développement local
-    app.run(
-        host="0.0.0.0", 
-        port=int(os.environ.get("PORT", 5000)), 
-        debug=True
-    )
-else:
-    # Mode production (Render)
-    print(f"🚀 A LAIZ PROD Website v2.0 démarré")
-    print(f"📅 {datetime.now()}")
-    print(f"🔗 Routes: {len([rule.rule for rule in app.url_map.iter_rules()])}")
+    file_handler = logging.FileHandler('logs/alaizprod.log')
+    file_handler.setFormatter(logging.Formatter(
+        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
+    ))
+    file_handler.setLevel(logging.INFO)
+    app.logger.addHandler(file_handler)
+    app.logger.setLevel(logging.INFO)
+    app.logger.info('A Laiz Prod startup')
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=os.environ.get('FLASK_ENV') == 'development')
