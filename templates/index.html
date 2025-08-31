@@ -1,68 +1,220 @@
 {% extends "base.html" %}
+
+{% block title %}A Laiz Prod | Excellence Musicale Camerounaise - Accueil{% endblock %}
+
 {% block content %}
-<section class="hero">
-    <section class="hero">
+<!-- Hero Section -->
+<section class="hero" id="accueil">
     <div class="hero-content">
-        <h1>A LAIZ PROD</h1>
-        <h2>Excellence Musicale Camerounaise</h2>
-        <p class="hero-subtitle">Duo Flavie & Hervé Nanfang</p>
-        <div class="hero-buttons">
-            <a href="{{ url_for('contact') }}" class="btn-primary">Réserver une prestation</a>
-            <a href="{{ url_for('formations') }}" class="btn-secondary">Nos formations</a>
+        <h1>A Laiz Prod</h1>
+        <p class="hero-subtitle">Excellence Musicale Camerounaise</p>
+        <p>Duo artistique Flavie & Hervé Nanfang - Piano-bar, Concerts, Mariages, Formations</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">Réserver Maintenant</a>
+            <a href="{{ url_for('services') }}" class="btn btn-secondary">Découvrir Nos Services</a>
         </div>
     </div>
-</section>
-<section class="stats">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <h3>500+</h3>
-                <p>Événements réalisés</p>
-            </div>
-            <div class="stat-item">
-                <h3>7</h3>
-                <p>Pays d'Afrique</p>
-            </div>
-            <div class="stat-item">
-                <h3>2013</h3>
-                <p>Prix Cafrim</p>
-            </div>
-        </div>
-    </div>
-</section>
-<div class="about-text">
-    <p>Depuis 2010, <strong>Flavie et Hervé Nanfang</strong> forment le duo artistique <strong>A LAIZ PROD</strong>, référence de l'excellence musicale camerounaise. Leur parcours exceptionnel témoigne d'une passion partagée pour la valorisation du patrimoine musical africain.</p>
-    
-    <p><strong>Flavie Nanfang</strong>, chanteuse mézzo-soprano, s'est formée dans les chorales avant de développer ses talents en autodidacte. Spécialisée dans l'interprétation des œuvres africaines en langues locales et le gospel, elle apporte sa voix authentique et son expertise en arrangements vocaux à chaque prestation.</p>
-    
-    <p><strong>Hervé Nanfang</strong>, musicologue et compositeur, a enrichi sa formation initiale par des études approfondies en Afrique de l'Ouest (Bénin, Togo, Sénégal). Expert en musicologie, ethnomusicologie et MAO, il développe des méthodes pédagogiques innovantes tout en préservant les traditions musicales camerounaises.</p>
-    
-    <p>Actifs sur la scène internationale depuis 2015, le duo a réalisé plus de <strong>500 événements</strong> à travers l'Afrique (Cameroun, Congo, Gabon, Sénégal, Bénin, Côte d'Ivoire), partageant la scène avec des artistes de renom comme Assalfo et Toofan. Leur excellence a été reconnue par le <strong>Prix Cafrim 2013</strong> (meilleur compositeur tradi-moderne).</p>
-    
-    <p>Au-delà de leurs prestations musicales, Flavie et Hervé sont les fondateurs du <strong>projet culturel Tswefap</strong>, initiative de préservation de la langue et des traditions Batoufam, témoignant de leur engagement pour la transmission du patrimoine culturel camerounais.</p>
-</div>
 </section>
 
-<section class="services-preview">
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="stats-container">
+        <div class="stat-item animate-on-scroll">
+            <span class="stat-number" data-target="{{ stats.experience }}">0</span>
+            <span class="stat-label">Années d'Expérience</span>
+        </div>
+        <div class="stat-item animate-on-scroll">
+            <span class="stat-number" data-target="{{ stats.evenements }}">0</span>
+            <span class="stat-label">Événements Réalisés</span>
+        </div>
+        <div class="stat-item animate-on-scroll">
+            <span class="stat-number" data-target="{{ stats.mariages }}">0</span>
+            <span class="stat-label">Mariages Célébrés</span>
+        </div>
+        <div class="stat-item animate-on-scroll">
+            <span class="stat-number" data-target="{{ stats.eleves }}">0</span>
+            <span class="stat-label">Élèves Formés</span>
+        </div>
+        <div class="stat-item animate-on-scroll">
+            <span class="stat-number" data-target="{{ stats.publications }}">0</span>
+            <span class="stat-label">Publications Pédagogiques</span>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
     <div class="container">
-        <h2>Nos Activités</h2>
+        <div class="section-title animate-on-scroll">
+            <h2>Nos Services</h2>
+            <p>Des prestations musicales d'exception pour tous vos événements</p>
+        </div>
         <div class="services-grid">
-            <div class="service-card">
-                <h3>Prestations Musicales</h3>
-                <p>Piano-bar, mariages, concerts, événements corporate</p>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3>Piano-Bar</h3>
+                <p>Ambiances musicales raffinées pour vos soirées privées, restaurants et hôtels. Répertoire varié allant du jazz aux standards internationaux.</p>
+                <a href="{{ url_for('services') }}#piano-bar" class="btn btn-primary">En Savoir Plus</a>
             </div>
-            <div class="service-card">
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Mariages</h3>
+                <p>Célébrez votre union avec une musique sur mesure. Cérémonie, cocktail et soirée dansante personnalisés selon vos goûts.</p>
+                <a href="{{ url_for('services') }}#mariages" class="btn btn-primary">En Savoir Plus</a>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <h3>Concerts</h3>
+                <p>Spectacles live mémorables pour festivals, centres culturels et événements corporatifs. Une expérience musicale authentique.</p>
+                <a href="{{ url_for('services') }}#concerts" class="btn btn-primary">En Savoir Plus</a>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
                 <h3>Formations</h3>
-                <p>Cours de piano, chant, arrangement musical</p>
+                <p>Cours de piano, chant et théorie musicale. Méthodes pédagogiques innovantes adaptées à tous niveaux par Hervé Nanfang.</p>
+                <a href="{{ url_for('formations') }}" class="btn btn-primary">En Savoir Plus</a>
             </div>
-            <div class="service-card">
-                <h3>Label A LAIZ</h3>
-                <p>Production musicale et accompagnement d'artistes</p>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <i class="fas fa-volume-up"></i>
+                </div>
+                <h3>A Laiz Sono</h3>
+                <p>Solutions complètes de sonorisation professionnelle pour tous types d'événements. Équipements de qualité et service technique expert.</p>
+                <a href="{{ url_for('services') }}#sono" class="btn btn-primary">En Savoir Plus</a>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">
+                    <i class="fas fa-globe-africa"></i>
+                </div>
+                <h3>Projet Tswefap</h3>
+                <p>Préservation du patrimoine linguistique Batoufam. Un projet culturel unique alliant tradition et innovation technologique.</p>
+                <a href="{{ url_for('tswefap') }}" class="btn btn-primary">Découvrir</a>
             </div>
         </div>
     </div>
 </section>
 
+<!-- About Section (résumé) -->
+<section class="about" id="apropos">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text animate-on-scroll">
+                <h2>Flavie & Hervé Nanfang</h2>
+                <p>Un duo artistique qui incarne l'excellence musicale camerounaise avec une vision résolument moderne et authentique.</p>
+                <p><strong>Flavie</strong> : Chanteuse polyvalente aux registres étendus, elle maîtrise aussi bien les standards jazz que les rythmes afro-contemporains. Sa présence scénique magnétique crée une connexion émotionnelle instantanée avec le public.</p>
+                <p><strong>Hervé</strong> : Pianiste classique et jazz, enseignant reconnu et auteur de plusieurs ouvrages pédagogiques. Passionné par la préservation culturelle, il développe le projet Tswefap pour valoriser la richesse linguistique Batoufam.</p>
+                <a href="{{ url_for('about') }}" class="btn btn-primary">Notre Histoire Complète</a>
+            </div>
+            <div class="about-image animate-on-scroll">
+                <img src="{{ url_for('static', filename='images/flavie-herve-duo.jpg') }}" alt="Flavie et Hervé Nanfang" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Témoignages -->
+<section class="testimonials">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Ce Que Disent Nos Clients</h2>
+            <p>La satisfaction de nos clients fait notre fierté</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Un duo exceptionnel ! Flavie et Hervé ont transformé notre mariage en un moment magique inoubliable. Leur professionnalisme et leur talent ont émerveillé tous nos invités."</p>
+                </div>
+                <div class="testimonial-author">
+                    <strong>Marie & Paul D.</strong>
+                    <span>Mariage - Yaoundé, 2023</span>
+                </div>
+            </div>
+            <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"L'ambiance piano-bar d'A Laiz Prod a donné une dimension très professionnelle à notre événement corporate. Nos clients internationaux ont été conquis !"</p>
+                </div>
+                <div class="testimonial-author">
+                    <strong>Jean-Claude M.</strong>
+                    <span>Événement d'entreprise - Douala, 2023</span>
+                </div>
+            </div>
+            <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Hervé est un pédagogue exceptionnel. Grâce à ses méthodes, ma fille a développé une véritable passion pour le piano. Merci pour cette transmission artistique !"</p>
+                </div>
+                <div class="testimonial-author">
+                    <strong>Sophie L.</strong>
+                    <span>Parent d'élève - 2023</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action final -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content animate-on-scroll">
+            <h2>Prêt à Vivre une Expérience Musicale Unique ?</h2>
+            <p>Contactez-nous dès aujourd'hui pour discuter de votre projet et recevoir un devis personnalisé.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Demander un Devis</a>
+                <a href="tel:+237XXXXXXX" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> Appeler Maintenant
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
 
+{% block additional_js %}
+<script>
+    // Animation des compteurs de statistiques
+    function animateCounter(element, target, duration) {
+        let start = 0;
+        const increment = target / (duration / 16);
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+                element.textContent = target + '+';
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(start) + '+';
+            }
+        }, 16);
+    }
 
+    // Observer pour déclencher l'animation des statistiques
+    const statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = document.querySelectorAll('.stat-number');
+                
+                counters.forEach((counter) => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    animateCounter(counter, target, 2000);
+                });
+                
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    });
+
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
+</script>
+{% endblock %}
