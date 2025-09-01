@@ -1,16 +1,33 @@
 {% extends "base.html" %}
 
+{% block title %}A Laiz Prod | Duo Musical Professionnel Cameroun - Flavie & Hervé Nanfang{% endblock %}
+{% block description %}A Laiz Prod - Duo musical professionnel camerounais. Piano-bar, mariages, concerts, formations musicales avec Flavie & Hervé Nanfang. Excellence musicale depuis 2009.{% endblock %}
+
 {% block content %}
     <!-- Hero Section -->
     <section class="hero" id="accueil">
+        <div class="hero-background">
+            <!-- Vous pouvez remplacer par une vraie image -->
+            <div class="hero-overlay"></div>
+        </div>
         <div class="hero-content">
             <h1>A Laiz Prod</h1>
             <p class="hero-subtitle">Excellence Musicale Camerounaise</p>
-            <p>Duo artistique Flavie & Hervé Nanfang - Piano-bar, Concerts, Mariages, Formations</p>
+            <p class="hero-description">Duo artistique Flavie & Hervé Nanfang - Piano-bar, Concerts, Mariages, Formations</p>
             <div class="cta-buttons">
-                <a href="{{ url_for('contact') }}" class="btn btn-primary">Réserver Maintenant</a>
-                <a href="{{ url_for('services') }}" class="btn btn-secondary">Découvrir Nos Services</a>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                    <i class="fas fa-calendar-check"></i> Réserver Maintenant
+                </a>
+                <a href="{{ url_for('services') }}" class="btn btn-secondary">
+                    <i class="fas fa-music"></i> Découvrir Nos Services
+                </a>
             </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+            <span>Découvrez notre univers</span>
         </div>
     </section>
 
@@ -48,87 +65,154 @@
                 <p>Des prestations musicales d'exception pour tous vos événements</p>
             </div>
             <div class="services-grid">
+                {% for service_key, service in services.items() %}
                 <div class="service-card animate-on-scroll">
                     <div class="service-icon">
-                        <i class="fas fa-music"></i>
+                        <i class="{{ service.icon }}"></i>
                     </div>
-                    <h3>Piano-Bar</h3>
-                    <p>Ambiances musicales raffinées pour vos soirées privées, restaurants et hôtels. Répertoire varié allant du jazz aux standards internationaux.</p>
-                    <a href="{{ url_for('services') }}#piano-bar" class="btn btn-primary">En Savoir Plus</a>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.description }}</p>
+                    <a href="{{ url_for('services') }}#{{ service.id }}" class="btn btn-primary">En Savoir Plus</a>
                 </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Mariages</h3>
-                    <p>Célébrez votre union avec une musique sur mesure. Cérémonie, cocktail et soirée dansante personnalisés selon vos goûts.</p>
-                    <a href="{{ url_for('services') }}#mariages" class="btn btn-primary">En Savoir Plus</a>
-                </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-microphone"></i>
-                    </div>
-                    <h3>Concerts</h3>
-                    <p>Spectacles live mémorables pour festivals, centres culturels et événements corporatifs. Une expérience musicale authentique.</p>
-                    <a href="{{ url_for('services') }}#concerts" class="btn btn-primary">En Savoir Plus</a>
-                </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Formations</h3>
-                    <p>Cours de piano, chant et théorie musicale. Méthodes pédagogiques innovantes adaptées à tous niveaux par Hervé Nanfang.</p>
-                    <a href="{{ url_for('formations') }}" class="btn btn-primary">En Savoir Plus</a>
-                </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-volume-up"></i>
-                    </div>
-                    <h3>A Laiz Sono</h3>
-                    <p>Solutions complètes de sonorisation professionnelle pour tous types d'événements. Équipements de qualité et service technique expert.</p>
-                    <a href="{{ url_for('services') }}#sono" class="btn btn-primary">En Savoir Plus</a>
-                </div>
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <i class="fas fa-globe-africa"></i>
-                    </div>
-                    <h3>Projet Tswefap</h3>
-                    <p>Préservation du patrimoine linguistique Batoufam. Un projet culturel unique alliant tradition et innovation technologique.</p>
-                    <a href="{{ url_for('about') }}#tswefap" class="btn btn-primary">Découvrir</a>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="apropos">
+    <!-- About Section Preview -->
+    <section class="about-preview" id="apropos">
         <div class="container">
             <div class="about-content">
                 <div class="about-text animate-on-scroll">
                     <h2>Flavie & Hervé Nanfang</h2>
-                    <p>Un duo artistique qui incarne l'excellence musicale camerounaise avec une vision résolument moderne et authentique.</p>
-                    <p><strong>Flavie</strong> : Chanteuse polyvalente aux registres étendus, elle maîtrise aussi bien les standards jazz que les rythmes afro-contemporains. Sa présence scénique magnétique crée une connexion émotionnelle instantanée avec le public.</p>
-                    <p><strong>Hervé</strong> : Pianiste classique et jazz, enseignant reconnu et auteur de plusieurs ouvrages pédagogiques. Passionné par la préservation culturelle, il développe le projet Tswefap pour valoriser la richesse linguistique Batoufam.</p>
-                    <a href="{{ url_for('about') }}" class="btn btn-primary">Notre Histoire Complète</a>
+                    <p class="lead">Un duo artistique qui incarne l'excellence musicale camerounaise avec une vision résolument moderne et authentique.</p>
+                    
+                    <div class="team-preview">
+                        <div class="team-member">
+                            <h4><i class="fas fa-microphone"></i> {{ team.flavie.name }}</h4>
+                            <p>{{ team.flavie.bio[:150] }}...</p>
+                        </div>
+                        <div class="team-member">
+                            <h4><i class="fas fa-piano"></i> {{ team.herve.name }}</h4>
+                            <p>{{ team.herve.bio[:150] }}...</p>
+                        </div>
+                    </div>
+                    
+                    <a href="{{ url_for('about') }}" class="btn btn-primary">
+                        <i class="fas fa-users"></i> Notre Histoire Complète
+                    </a>
                 </div>
                 <div class="about-image animate-on-scroll">
-                    <i class="fas fa-users"></i>
+                    <!-- Remplacer par une vraie image du duo -->
+                    <div class="placeholder-image">
+                        <i class="fas fa-users"></i>
+                        <p>Photo du Duo<br>Flavie & Hervé</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Label Section -->
+    <!-- Label & Tswefap Section -->
     <section class="label-section" id="label">
         <div class="container">
             <div class="section-title animate-on-scroll">
-                <h2 style="color: var(--primary-color);">A Laiz Music Label</h2>
+                <h2>A Laiz Music Label</h2>
                 <p>Notre vision artistique et nos créations originales</p>
             </div>
+            
             <div class="label-content">
-                <div class="label-description animate-on-scroll">
-                    <p>A Laiz Music n'est pas qu'un label, c'est une vision artistique qui unit tradition camerounaise et modernité. Nos créations originales reflètent l'âme de notre pays tout en s'ouvrant au monde.</p>
-                    <p>Du projet culturel <strong>Tswefap</strong> aux compositions jazz-afro, nous créons des ponts entre les générations et les cultures.</p>
+                <div class="label-main animate-on-scroll">
+                    <div class="label-description">
+                        <h3>Plus qu'un Label, une Vision</h3>
+                        <p>A Laiz Music n'est pas qu'un label, c'est une vision artistique qui unit tradition camerounaise et modernité. Nos créations originales reflètent l'âme de notre pays tout en s'ouvrant au monde.</p>
+                    </div>
+                    
+                    <div class="tswefap-highlight">
+                        <div class="tswefap-icon">
+                            <i class="fas fa-globe-africa"></i>
+                        </div>
+                        <div class="tswefap-content">
+                            <h3>Projet Culturel Tswefap</h3>
+                            <p>Au-delà de la musique, Hervé Nanfang porte un projet culturel ambitieux : <strong>Tswefap</strong>, une initiative de valorisation et de préservation de la richesse linguistique Batoufam.</p>
+                            <p>Ce projet illustre parfaitement notre philosophie : enraciner notre art dans la tradition tout en utilisant les outils modernes pour la transmission et l'innovation.</p>
+                            <div class="tswefap-goals">
+                                <h4>Objectifs du Projet :</h4>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Préserver le patrimoine linguistique camerounais</li>
+                                    <li><i class="fas fa-check"></i> Créer des ponts entre tradition orale et technologies numériques</li>
+                                    <li><i class="fas fa-check"></i> Transmettre aux générations futures</li>
+                                    <li><i class="fas fa-check"></i> Valoriser la culture Batoufam</li>
+                                </ul>
+                            </div>
+                            <a href="{{ url_for('about') }}#tswefap" class="btn btn-secondary">
+                                <i class="fas fa-book-open"></i> Découvrir le Projet
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Témoignages</h2>
+                <p>Ce que disent nos clients</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Un duo exceptionnel qui a rendu notre mariage inoubliable. Leur professionnalisme et leur talent ont créé une ambiance magique."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Marie & Paul Kouanang</h4>
+                        <span>Mariage - Douala 2023</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Les cours d'Hervé ont transformé ma approche du piano. Sa pédagogie est remarquable et adaptée à chaque élève."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Sandra Mbella</h4>
+                        <span>Élève en Formation Piano</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Pour nos soirées piano-bar, A Laiz Prod apporte toujours cette touche d'excellence qui fait la différence."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Hotel Hilton Yaoundé</h4>
+                        <span>Partenaire Récurrent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Final -->
+    <section class="cta-final">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2>Prêt à Créer des Moments Inoubliables ?</h2>
+                <p>Que vous cherchiez à célébrer un moment spécial, apprendre la musique ou découvrir notre projet culturel, nous sommes là pour vous accompagner.</p>
+                <div class="cta-buttons">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
+                        <i class="fas fa-phone"></i> Contactez-Nous
+                    </a>
+                    <a href="tel:+237XXXXXXXX" class="btn btn-secondary btn-large">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Direct
+                    </a>
                 </div>
             </div>
         </div>
@@ -147,6 +231,31 @@
                 element.setAttribute('data-target', values[index]);
             });
         })
-        .catch(error => console.log('Utilisation des valeurs par défaut'));
+        .catch(error => {
+            console.log('Utilisation des valeurs par défaut pour les stats');
+        });
+
+    // Auto-hide flash messages after 5 seconds
+    setTimeout(() => {
+        const flashMessages = document.getElementById('flash-messages');
+        if (flashMessages) {
+            flashMessages.style.opacity = '0';
+            setTimeout(() => flashMessages.remove(), 500);
+        }
+    }, 5000);
+
+    // Smooth scroll pour les ancres internes
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
 </script>
 {% endblock %}
