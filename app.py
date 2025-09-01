@@ -138,19 +138,12 @@ SERVICES_DATA = {
 
 # Données équipe
 TEAM_DATA = {
-    'flavie': {
-        'name': 'Flavie Nanfang',
-        'role': 'Chanteuse Professionnelle',
-        'bio': 'Chanteuse polyvalente aux registres étendus, Flavie maîtrise aussi bien les standards jazz que les rythmes afro-contemporains. Sa présence scénique magnétique et sa capacité à créer une connexion émotionnelle instantanée avec le public font d\'elle l\'une des voix les plus appréciées du paysage musical camerounais.',
-        'specialties': ['Jazz & Standards', 'Musique Afro-contemporaine', 'Gospel & Spiritual', 'Variété Française'],
-        'phone': '+237 679 611 031'  # À remplacer par le vrai numéro
-    },
     'herve': {
         'name': 'Hervé Nanfang',
         'role': 'Pianiste & Pédagogue',
         'bio': 'Pianiste de formation classique et jazz, Hervé est également un enseignant reconnu et auteur de plusieurs ouvrages pédagogiques. Sa maîtrise technique exceptionnelle se double d\'une approche pédagogique innovante qui a formé des centaines d\'élèves. Passionné par la préservation culturelle, il développe le projet Tswefap.',
         'specialties': ['Piano Classique & Jazz', 'Pédagogie Musicale', 'Arrangement Musical', 'Projet Culturel Tswefap'],
-        'phone': '+237 694 723 492'  # À remplacer par le vrai numéro
+        'phone': '+237 682 180 266'  # À remplacer par le vrai numéro
     }
 }
 
@@ -332,4 +325,5 @@ else:
     import os
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
+
 
