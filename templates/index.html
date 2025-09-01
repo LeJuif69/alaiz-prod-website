@@ -5,24 +5,21 @@
 
 {% block content %}
     <!-- Hero Section -->
-    <section class="hero" id="accueil">
-        <div class="hero-background">
-            <!-- Vous pouvez remplacer par une vraie image -->
-            <div class="hero-overlay"></div>
+<section class="hero" id="accueil">
+    <div class="hero-content">
+        <h1>A Laiz Prod</h1>
+        <p class="hero-subtitle">Label Musical Camerounais</p>
+        <p class="hero-description">Plateforme de créations artistiques, collaborations musicales et excellence pédagogique dirigée par Hervé Nanfang</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                <i class="fas fa-calendar-check"></i> Collaborer avec Nous
+            </a>
+            <a href="{{ url_for('services') }}" class="btn btn-secondary">
+                <i class="fas fa-music"></i> Nos Services
+            </a>
         </div>
-        <div class="hero-content">
-            <h1>A Laiz Prod</h1>
-            <p class="hero-subtitle">Excellence Musicale Camerounaise</p>
-            <p class="hero-description">Duo artistique Flavie & Hervé Nanfang - Piano-bar, Concerts, Mariages, Formations</p>
-            <div class="cta-buttons">
-                <a href="{{ url_for('contact') }}" class="btn btn-primary">
-                    <i class="fas fa-calendar-check"></i> Réserver Maintenant
-                </a>
-                <a href="{{ url_for('services') }}" class="btn btn-secondary">
-                    <i class="fas fa-music"></i> Découvrir Nos Services
-                </a>
-            </div>
-        </div>
+    </div>
+</section>
         
         <!-- Scroll Indicator -->
         <div class="scroll-indicator">
@@ -80,38 +77,41 @@
     </section>
 
     <!-- About Section Preview -->
-    <section class="about-preview" id="apropos">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text animate-on-scroll">
-                    <h2>Flavie & Hervé Nanfang</h2>
-                    <p class="lead">Un duo artistique qui incarne l'excellence musicale camerounaise avec une vision résolument moderne et authentique.</p>
-                    
-                    <div class="team-preview">
-                        <div class="team-member">
-                            <h4><i class="fas fa-microphone"></i> {{ team.flavie.name }}</h4>
-                            <p>{{ team.flavie.bio[:150] }}...</p>
-                        </div>
-                        <div class="team-member">
-                            <h4><i class="fas fa-piano"></i> {{ team.herve.name }}</h4>
-                            <p>{{ team.herve.bio[:150] }}...</p>
-                        </div>
+  <section class="about-preview" id="apropos">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text animate-on-scroll">
+                <h2>A Laiz Prod : Plus qu'un Label, une Vision</h2>
+                <p class="lead">Plateforme musicale camerounaise qui unit tradition et modernité à travers des collaborations artistiques d'exception.</p>
+                
+                <div class="label-vision">
+                    <div class="vision-point">
+                        <h4><i class="fas fa-users"></i> Collaborations Artistiques</h4>
+                        <p>Nous fédérons les talents camerounais et internationaux pour créer des œuvres uniques qui transcendent les genres musicaux.</p>
                     </div>
-                    
-                    <a href="{{ url_for('about') }}" class="btn btn-primary">
-                        <i class="fas fa-users"></i> Notre Histoire Complète
-                    </a>
+                    <div class="vision-point">
+                        <h4><i class="fas fa-graduation-cap"></i> Excellence Pédagogique</h4>
+                        <p>Hervé Nanfang partage son expertise à travers des formations innovantes qui forment la nouvelle génération de musiciens.</p>
+                    </div>
+                    <div class="vision-point">
+                        <h4><i class="fas fa-globe-africa"></i> Rayonnement Culturel</h4>
+                        <p>Du projet Tswefap aux créations contemporaines, nous valorisons le patrimoine camerounais sur la scène internationale.</p>
+                    </div>
                 </div>
-                <div class="about-image animate-on-scroll">
-                    <!-- Remplacer par une vraie image du duo -->
-                    <div class="placeholder-image">
-                        <i class="fas fa-users"></i>
-                        <p>Photo du Duo<br>Flavie & Hervé</p>
-                    </div>
+                
+                <a href="{{ url_for('about') }}" class="btn btn-primary">
+                    <i class="fas fa-compass"></i> Découvrir Notre Vision
+                </a>
+            </div>
+            <div class="about-image animate-on-scroll">
+                <div class="placeholder-image">
+                    <i class="fas fa-record-vinyl"></i>
+                    <p>A Laiz Prod<br><strong>Label Musical</strong></p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section> 
 
     <!-- Label & Tswefap Section -->
     <section class="label-section" id="label">
@@ -259,3 +259,4 @@
     });
 </script>
 {% endblock %}
+
