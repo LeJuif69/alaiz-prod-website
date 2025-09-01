@@ -3,17 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}A Laiz Prod | Excellence Musicale Camerounaise{% endblock %}</title>
-    <meta name="description" content="{% block description %}A Laiz Prod - Duo musical professionnel Flavie & Hervé Nanfang. Piano-bar, concerts, mariages, formations musicales au Cameroun.{% endblock %}">
+    
+    <!-- Titre et Description -->
+    <title>{% block title %}A Laiz Prod | Label Musical Camerounais{% endblock %}</title>
+    <meta name="description" content="{% block description %}A Laiz Prod - Label musical camerounais dirigé par Hervé Nanfang. Créations artistiques, collaborations musicales et formations d'excellence au Cameroun.{% endblock %}">
     
     <!-- Meta Tags SEO -->
-    <meta name="keywords" content="musique cameroun, piano bar yaoundé, mariage musique, concert live, formation piano, hervé nanfang, flavie nanfang">
-    <meta name="author" content="A Laiz Prod">
-    <meta property="og:title" content="{% block og_title %}A Laiz Prod | Excellence Musicale Camerounaise{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}Duo musical professionnel pour vos événements. Piano-bar, mariages, concerts, formations.{% endblock %}">
+    <meta name="keywords" content="label musical cameroun, hervé nanfang, collaboration artistique, formations musicales, piano yaoundé, tswefap, créations musicales">
+    <meta name="author" content="A Laiz Prod - Label Musical">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ request.url }}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block og_title %}A Laiz Prod | Label Musical Camerounais{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Label musical dirigé par Hervé Nanfang. Créations artistiques, collaborations et formations musicales d'excellence au Cameroun.{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{{ url_for('static', filename='images/alaiz-prod-og.jpg') }}{% endblock %}">
     <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:site_name" content="A Laiz Prod">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}A Laiz Prod | Label Musical Camerounais{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Label musical dirigé par Hervé Nanfang. Créations artistiques et collaborations musicales au Cameroun.{% endblock %}">
+    <meta name="twitter:image" content="{{ url_for('static', filename='images/alaiz-prod-og.jpg') }}">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -25,34 +39,110 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    
+    <!-- Données Structurées JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "A Laiz Prod",
+        "description": "Label musical camerounais dirigé par Hervé Nanfang. Créations artistiques, collaborations musicales et formations d'excellence.",
+        "url": "{{ request.host_url }}",
+        "sameAs": [
+            "{{ label.contact.social.facebook if label }}",
+            "{{ label.contact.social.instagram if label }}",
+            "{{ label.contact.social.youtube if label }}"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Yaoundé",
+            "addressCountry": "CM"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "{{ label.contact.main_phone if label }}",
+            "email": "{{ label.contact.email if label }}",
+            "contactType": "customer service"
+        }
+    }
+    </script>
     
     {% block extra_head %}{% endblock %}
 </head>
 <body>
     <!-- Loading Screen -->
     <div class="loading" id="loading">
-        <div class="spinner"></div>
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>A Laiz Prod</p>
+        </div>
     </div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="{{ url_for('index') }}" class="logo">A Laiz Prod</a>
+            <!-- Logo du Label -->
+            <a href="{{ url_for('index') }}" class="logo">
+                <span class="logo-text">A Laiz Prod</span>
+                <span class="logo-subtitle">Label Musical</span>
+            </a>
+            
+            <!-- Navigation Desktop -->
             <ul class="nav-links">
-                <li><a href="{{ url_for('index') }}">Accueil</a></li>
-                <li><a href="{{ url_for('services') }}">Services</a></li>
-                <li><a href="{{ url_for('about') }}">À Propos</a></li>
-                <li><a href="{{ url_for('formations') }}">Formations</a></li>
-                <li><a href="{{ url_for('index') }}#label">Label</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('index') }}" class="nav-link">Accueil</a></li>
+                <li><a href="{{ url_for('services') }}" class="nav-link">Productions</a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link">Le Label</a></li>
+                <li><a href="{{ url_for('formations') }}" class="nav-link">Formations</a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link">Collaborer</a></li>
             </ul>
             
-            <!-- Menu Mobile (Hamburger) -->
+            <!-- Menu Mobile Hamburger -->
             <div class="mobile-menu-btn" id="mobile-menu-btn">
                 <span></span>
                 <span></span>
                 <span></span>
+            </div>
+        </div>
+        
+        <!-- Menu Mobile -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="{{ url_for('index') }}" class="mobile-menu-link">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="{{ url_for('services') }}" class="mobile-menu-link">
+                    <i class="fas fa-music"></i>
+                    <span>Productions</span>
+                </a>
+                <a href="{{ url_for('about') }}" class="mobile-menu-link">
+                    <i class="fas fa-users"></i>
+                    <span>Le Label</span>
+                </a>
+                <a href="{{ url_for('formations') }}" class="mobile-menu-link">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Formations</span>
+                </a>
+                <a href="{{ url_for('contact') }}" class="mobile-menu-link">
+                    <i class="fas fa-handshake"></i>
+                    <span>Collaborer</span>
+                </a>
+                
+                <!-- Contact Rapide Mobile -->
+                <div class="mobile-contact">
+                    {% if label and label.director %}
+                    <a href="tel:{{ label.director.phone }}" class="mobile-contact-btn">
+                        <i class="fas fa-phone"></i>
+                        <span>{{ label.director.phone }}</span>
+                    </a>
+                    <a href="{{ label.contact.social.whatsapp }}" class="mobile-contact-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </nav>
@@ -63,8 +153,19 @@
             <div class="flash-messages" id="flash-messages">
                 {% for category, message in messages %}
                     <div class="alert alert-{{ category }}">
-                        <span>{{ message }}</span>
-                        <button type="button" class="close-alert" onclick="this.parentElement.remove()">×</button>
+                        <div class="alert-content">
+                            {% if category == 'success' %}
+                                <i class="fas fa-check-circle"></i>
+                            {% elif category == 'error' %}
+                                <i class="fas fa-exclamation-triangle"></i>
+                            {% else %}
+                                <i class="fas fa-info-circle"></i>
+                            {% endif %}
+                            <span>{{ message }}</span>
+                        </div>
+                        <button type="button" class="close-alert" onclick="this.parentElement.remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </div>
                 {% endfor %}
             </div>
@@ -72,7 +173,7 @@
     {% endwith %}
 
     <!-- Contenu Principal -->
-    <main>
+    <main class="main-content">
         {% block content %}{% endblock %}
     </main>
 
@@ -80,59 +181,157 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-main">
+                <!-- Section Label -->
                 <div class="footer-section">
-                    <h3>A Laiz Prod</h3>
-                    <p>Excellence musicale camerounaise depuis 2009. Duo professionnel Flavie & Hervé Nanfang.</p>
+                    <div class="footer-logo">
+                        <h3>A Laiz Prod</h3>
+                        <p class="footer-tagline">Label Musical Camerounais</p>
+                    </div>
+                    <p class="footer-description">
+                        Plateforme de créations artistiques et collaborations musicales d'excellence dirigée par Hervé Nanfang. 
+                        Révélateur de talents depuis 2009.
+                    </p>
+                    
+                    <!-- Réseaux Sociaux -->
                     <div class="social-links">
-                        <a href="https://facebook.com/alaizprod" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://instagram.com/alaizprod" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://youtube.com/alaizprod" aria-label="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="https://linkedin.com/in/hervénanfang" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://wa.me/237XXXXXXXX" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        {% if label and label.contact.social %}
+                        <a href="{{ label.contact.social.facebook }}" aria-label="Facebook" target="_blank" rel="noopener">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="{{ label.contact.social.instagram }}" aria-label="Instagram" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="{{ label.contact.social.youtube }}" aria-label="YouTube" target="_blank" rel="noopener">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="{{ label.contact.social.linkedin }}" aria-label="LinkedIn" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="{{ label.contact.social.whatsapp }}" aria-label="WhatsApp" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        {% endif %}
                     </div>
                 </div>
                 
+                <!-- Section Navigation -->
                 <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="{{ url_for('services') }}#piano-bar">Piano-Bar</a></li>
-                        <li><a href="{{ url_for('services') }}#mariages">Mariages</a></li>
-                        <li><a href="{{ url_for('services') }}#concerts">Concerts</a></li>
-                        <li><a href="{{ url_for('formations') }}">Formations</a></li>
+                    <h4>Le Label</h4>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('about') }}">Notre Vision</a></li>
+                        <li><a href="{{ url_for('services') }}">Productions</a></li>
+                        <li><a href="{{ url_for('about') }}#collaborations">Collaborations</a></li>
+                        <li><a href="{{ url_for('about') }}#tswefap">Projet Tswefap</a></li>
                     </ul>
                 </div>
                 
+                <!-- Section Services -->
+                <div class="footer-section">
+                    <h4>Nos Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('services') }}#productions">Productions Musicales</a></li>
+                        <li><a href="{{ url_for('services') }}#mariages">Créations Matrimoniales</a></li>
+                        <li><a href="{{ url_for('services') }}#concerts">Productions Scéniques</a></li>
+                        <li><a href="{{ url_for('formations') }}">Formations Musicales</a></li>
+                        <li><a href="{{ url_for('services') }}#sonorisation">Solutions Techniques</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Section Contact -->
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> Hervé: +237 XXX XXX XXX</p>
-                        <p><i class="fas fa-envelope"></i> contact@alaizprod.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Yaoundé, Cameroun</p>
+                    <div class="footer-contact">
+                        {% if label and label.director %}
+                        <div class="contact-item">
+                            <i class="fas fa-user-tie"></i>
+                            <div>
+                                <strong>{{ label.director.name }}</strong>
+                                <p>{{ label.director.title }}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Téléphone</strong>
+                                <p><a href="tel:{{ label.director.phone }}">{{ label.director.phone }}</a></p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        {% if label and label.contact %}
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p><a href="mailto:{{ label.contact.email }}">{{ label.contact.email }}</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Localisation</strong>
+                                <p>{{ label.contact.address }}</p>
+                                <small>Déplacements dans tout le Cameroun</small>
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 
+                <!-- Section Newsletter -->
                 <div class="footer-section">
-                    <h4>Projet Culturel</h4>
-                    <p>Découvrez <strong>Tswefap</strong>, notre initiative de préservation du patrimoine linguistique Batoufam.</p>
-                    <a href="{{ url_for('about') }}#tswefap" class="btn btn-sm btn-secondary">En savoir plus</a>
+                    <h4>Restez Connecté</h4>
+                    <p>Recevez nos actualités, nouvelles collaborations et événements exclusifs.</p>
+                    
+                    <div class="newsletter-signup">
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Votre email..." class="newsletter-input">
+                            <button type="button" class="newsletter-btn" onclick="subscribeNewsletter()">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <small>Nous respectons votre vie privée. Désabonnement facile.</small>
+                    </div>
                 </div>
             </div>
             
+            <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <p>&copy; 2024 A Laiz Prod. Tous droits réservés. | Développé avec passion pour l'art et la culture africaine</p>
+                <div class="footer-copyright">
+                    <p>&copy; {{ "now"|strftime("%Y") }} A Laiz Prod. Tous droits réservés.</p>
+                    <p>Label musical camerounais d'excellence depuis 2009</p>
+                </div>
+                
                 <div class="footer-legal">
-                    <a href="#" onclick="alert('Mentions légales à venir')">Mentions légales</a> | 
-                    <a href="#" onclick="alert('Politique de confidentialité à venir')">Confidentialité</a>
+                    <a href="#" onclick="showModal('mentions')">Mentions Légales</a>
+                    <span class="separator">|</span>
+                    <a href="#" onclick="showModal('privacy')">Confidentialité</a>
+                    <span class="separator">|</span>
+                    <a href="{{ url_for('contact') }}">Contact</a>
+                </div>
+                
+                <div class="footer-signature">
+                    <p>
+                        <i class="fas fa-heart" style="color: var(--secondary-color);"></i>
+                        Développé avec passion pour l'art et la culture africaine
+                    </p>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Bouton Retour en Haut -->
+    <button class="back-to-top" id="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- JavaScript Principal -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     
-    <!-- JavaScript Google Analytics (optionnel) -->
-    <!-- 
+    <!-- Google Analytics (optionnel) -->
+    <!--
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -142,7 +341,49 @@
     </script>
     -->
     
+    <!-- Scripts additionnels -->
+    <script>
+        // Newsletter subscription
+        function subscribeNewsletter() {
+            const email = document.querySelector('.newsletter-input').value;
+            if (email && email.includes('@')) {
+                // Ici vous pourriez ajouter l'API d'inscription newsletter
+                alert('Merci ! Nous vous tiendrons informé des actualités d\'A Laiz Prod.');
+                document.querySelector('.newsletter-input').value = '';
+            } else {
+                alert('Veuillez saisir un email valide.');
+            }
+        }
+        
+        // Modal system (pour mentions légales, etc.)
+        function showModal(type) {
+            let content = '';
+            if (type === 'mentions') {
+                content = 'Mentions légales en cours de préparation. Contactez-nous pour toute question.';
+            } else if (type === 'privacy') {
+                content = 'Politique de confidentialité en cours de préparation. Vos données sont protégées.';
+            }
+            alert(content); // Remplacer par une vraie modal si besoin
+        }
+        
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Newsletter input enter key
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterInput = document.querySelector('.newsletter-input');
+            if (newsletterInput) {
+                newsletterInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        subscribeNewsletter();
+                    }
+                });
+            }
+        });
+    </script>
+    
     {% block extra_js %}{% endblock %}
 </body>
 </html>
-
