@@ -1,16 +1,35 @@
 services:
   - type: web
-    name: alaiz-prod
+    name: alaiz-prod-label
     env: python
+    region: oregon
+    plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
     healthCheckPath: /
+    autoDeploy: true
     envVars:
       - key: FLASK_ENV
         value: production
+      - key: FLASK_DEBUG  
+        value: "False"
       - key: SECRET_KEY
         generateValue: true
+      - key: DIRECTOR_PHONE
+        sync: false
+      - key: DIRECTOR_EMAIL
+        sync: false
+      - key: CONTACT_EMAIL
+        sync: false
       - key: EMAIL_USER
         sync: false
       - key: EMAIL_PASS
+        sync: false
+      - key: FACEBOOK_URL
+        sync: false
+      - key: INSTAGRAM_URL
+        sync: false
+      - key: YOUTUBE_URL
+        sync: false
+      - key: WHATSAPP_URL
         sync: false
