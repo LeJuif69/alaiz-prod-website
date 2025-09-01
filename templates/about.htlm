@@ -1,0 +1,453 @@
+{% extends "base.html" %}
+
+{% block title %}À Propos - A Laiz Prod | Flavie & Hervé Nanfang - Duo Musical Cameroun{% endblock %}
+{% block description %}Découvrez l'histoire de Flavie & Hervé Nanfang, duo musical d'exception. Parcours artistique, projet Tswefap, excellence musicale camerounaise depuis 2009.{% endblock %}
+
+{% block content %}
+<div class="page-spacer"></div>
+
+<!-- About Hero -->
+<section class="about-hero">
+    <div class="container">
+        <div class="hero-content animate-on-scroll">
+            <h1>L'Histoire des Nanfang</h1>
+            <p class="hero-subtitle">Un duo artistique qui incarne l'excellence musicale camerounaise</p>
+            <p>Avec une vision résolument moderne et authentique, Flavie & Hervé Nanfang créent des ponts entre traditions et innovations.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Duo Presentation -->
+<section class="duo-presentation">
+    <div class="container">
+        <!-- Flavie Section -->
+        <div class="artist-profile">
+            <div class="artist-content">
+                <div class="artist-text animate-on-scroll">
+                    <div class="artist-header">
+                        <div class="artist-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <div>
+                            <h2>{{ team.flavie.name }}</h2>
+                            <p class="artist-role">{{ team.flavie.role }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="artist-bio">
+                        <h3>La Voix qui Touche l'Âme</h3>
+                        <p>{{ team.flavie.bio }}</p>
+                        <p>Formée aux techniques vocales internationales, elle apporte une dimension spirituelle et émotionnelle unique à chaque prestation. Son répertoire s'étend de la variété française aux gospel inspirants, en passant par les musiques traditionnelles camerounaises revisitées.</p>
+                    </div>
+                    
+                    <div class="artist-specialties">
+                        <h4>Spécialités :</h4>
+                        <div class="specialties-tags">
+                            {% for specialty in team.flavie.specialties %}
+                            <span class="specialty-tag">{{ specialty }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="artist-contact">
+                        <p><strong>Contact direct :</strong></p>
+                        <a href="tel:{{ team.flavie.phone }}" class="contact-link">
+                            <i class="fas fa-phone"></i> {{ team.flavie.phone }}
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="artist-image animate-on-scroll">
+                    <!-- Remplacer par une vraie photo de Flavie -->
+                    <div class="placeholder-image">
+                        <i class="fas fa-user-circle"></i>
+                        <p>Photo de<br><strong>Flavie Nanfang</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hervé Section -->
+        <div class="artist-profile alt">
+            <div class="artist-content">
+                <div class="artist-image animate-on-scroll">
+                    <!-- Remplacer par une vraie photo d'Hervé -->
+                    <div class="placeholder-image">
+                        <i class="fas fa-user-circle"></i>
+                        <p>Photo de<br><strong>Hervé Nanfang</strong></p>
+                    </div>
+                </div>
+                
+                <div class="artist-text animate-on-scroll">
+                    <div class="artist-header">
+                        <div class="artist-icon">
+                            <i class="fas fa-piano"></i>
+                        </div>
+                        <div>
+                            <h2>{{ team.herve.name }}</h2>
+                            <p class="artist-role">{{ team.herve.role }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="artist-bio">
+                        <h3>Le Maestro et Pédagogue</h3>
+                        <p>{{ team.herve.bio }}</p>
+                        <p>Son expertise en arrangement musical et sa vision artistique font de lui un créateur d'expériences musicales uniques, capable de fusionner tradition camerounaise et modernité occidentale.</p>
+                    </div>
+                    
+                    <div class="artist-specialties">
+                        <h4>Spécialités :</h4>
+                        <div class="specialties-tags">
+                            {% for specialty in team.herve.specialties %}
+                            <span class="specialty-tag">{{ specialty }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="artist-contact">
+                        <p><strong>Contact direct :</strong></p>
+                        <a href="tel:{{ team.herve.phone }}" class="contact-link">
+                            <i class="fas fa-phone"></i> {{ team.herve.phone }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Notre Histoire -->
+<section class="our-story">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Notre Histoire</h2>
+            <p>Plus d'une décennie au service de l'excellence musicale</p>
+        </div>
+        
+        <div class="story-timeline">
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-year">2009</div>
+                <div class="timeline-content">
+                    <h3>Les Débuts</h3>
+                    <p>Formation du duo A Laiz Prod. Premières prestations dans les restaurants et hôtels de Yaoundé. L'alchimie musicale entre Flavie et Hervé séduit immédiatement.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-year">2012</div>
+                <div class="timeline-content">
+                    <h3>Expansion</h3>
+                    <p>Lancement des services de formation musicale. Hervé développe ses méthodes pédagogiques uniques. Premier concert dans un festival national.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-year">2015</div>
+                <div class="timeline-content">
+                    <h3>Reconnaissance</h3>
+                    <p>A Laiz Prod devient la référence pour les mariages haut de gamme au Cameroun. Création d'A Laiz Sono pour répondre aux besoins techniques.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-year">2018</div>
+                <div class="timeline-content">
+                    <h3>Innovation Culturelle</h3>
+                    <p>Lancement du projet Tswefap. Hervé commence ses recherches sur la préservation linguistique Batoufam. Première publication pédagogique.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <h3>Aujourd'hui</h3>
+                    <p>500+ événements réalisés, 1000+ élèves formés, 12 publications pédagogiques. A Laiz Prod rayonne comme référence de l'excellence musicale camerounaise.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projet Tswefap -->
+<section id="tswefap" class="tswefap-section">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Projet Culturel Tswefap</h2>
+            <p>Préservation et valorisation du patrimoine linguistique Batoufam</p>
+        </div>
+        
+        <div class="tswefap-content">
+            <div class="tswefap-main animate-on-scroll">
+                <div class="tswefap-intro">
+                    <div class="tswefap-icon-large">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <div class="tswefap-text">
+                        <h3>Une Mission Culturelle Unique</h3>
+                        <p>Au-delà de la musique, Hervé Nanfang porte un projet culturel ambitieux : <strong>Tswefap</strong>, une initiative de valorisation et de préservation de la richesse linguistique Batoufam.</p>
+                        <p>Ce projet illustre parfaitement notre philosophie : enraciner notre art dans la tradition tout en utilisant les outils modernes pour la transmission et l'innovation.</p>
+                    </div>
+                </div>
+                
+                <div class="tswefap-objectives">
+                    <h3>Objectifs du Projet</h3>
+                    <div class="objectives-grid">
+                        <div class="objective-card">
+                            <i class="fas fa-book-open"></i>
+                            <h4>Préservation</h4>
+                            <p>Sauvegarder le patrimoine linguistique Batoufam pour les générations futures</p>
+                        </div>
+                        <div class="objective-card">
+                            <i class="fas fa-laptop"></i>
+                            <h4>Digitalisation</h4>
+                            <p>Créer des ponts entre tradition orale et technologies numériques modernes</p>
+                        </div>
+                        <div class="objective-card">
+                            <i class="fas fa-users"></i>
+                            <h4>Transmission</h4>
+                            <p>Faciliter l'apprentissage et la transmission intergénérationnelle</p>
+                        </div>
+                        <div class="objective-card">
+                            <i class="fas fa-globe"></i>
+                            <h4>Valorisation</h4>
+                            <p>Faire rayonner la richesse culturelle Batoufam dans le monde</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tswefap-achievements">
+                    <h3>Réalisations Concrètes</h3>
+                    <div class="achievements-list">
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Documentation Linguistique</h4>
+                                <p>Collecte et transcription de plus de 200 heures d'enregistrements auprès des anciens</p>
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Dictionnaire Numérique</h4>
+                                <p>Création d'un dictionnaire interactif Batoufam-Français de 3000+ entrées</p>
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Application Mobile</h4>
+                                <p>Développement d'une app d'apprentissage avec reconnaissance vocale</p>
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Partenariats Institutionnels</h4>
+                                <p>Collaboration avec l'Université de Yaoundé I et le Ministère de la Culture</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tswefap-impact animate-on-scroll">
+                <div class="impact-stats">
+                    <h3>Impact du Projet</h3>
+                    <div class="impact-numbers">
+                        <div class="impact-stat">
+                            <span class="impact-number">200+</span>
+                            <span class="impact-label">Heures Documentées</span>
+                        </div>
+                        <div class="impact-stat">
+                            <span class="impact-number">50</span>
+                            <span class="impact-label">Témoins Interrogés</span>
+                        </div>
+                        <div class="impact-stat">
+                            <span class="impact-number">3000+</span>
+                            <span class="impact-label">Mots Répertoriés</span>
+                        </div>
+                        <div class="impact-stat">
+                            <span class="impact-number">5</span>
+                            <span class="impact-label">Villages Impliqués</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tswefap-quote">
+                    <blockquote>
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Tswefap n'est pas seulement un projet de préservation linguistique. C'est un acte d'amour envers nos ancêtres et un cadeau pour nos enfants. Chaque mot sauvegardé est une parcelle de notre âme collective qui continue de vibrer."</p>
+                        <cite>— Hervé Nanfang, Fondateur du projet Tswefap</cite>
+                    </blockquote>
+                </div>
+                
+                <div class="tswefap-future">
+                    <h4>Perspectives d'Avenir</h4>
+                    <ul>
+                        <li><i class="fas fa-arrow-right"></i> Extension à d'autres langues camerounaises</li>
+                        <li><i class="fas fa-arrow-right"></i> Création d'un centre culturel Batoufam</li>
+                        <li><i class="fas fa-arrow-right"></i> Programme d'échanges internationaux</li>
+                        <li><i class="fas fa-arrow-right"></i> Publication d'ouvrages de référence</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Notre Philosophie -->
+<section class="our-philosophy">
+    <div class="container">
+        <div class="philosophy-content">
+            <div class="philosophy-text animate-on-scroll">
+                <h2>Notre Philosophie</h2>
+                <div class="philosophy-points">
+                    <div class="philosophy-point">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <h3>Excellence & Authenticité</h3>
+                            <p>Nous croyons que l'excellence naît de l'authenticité. Chaque prestation porte notre signature artistique unique, alliant technique irréprochable et émotion sincère.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="philosophy-point">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-bridge"></i>
+                        </div>
+                        <div>
+                            <h3>Tradition & Modernité</h3>
+                            <p>A Laiz Prod n'est pas seulement une entreprise artistique, c'est un pont entre traditions et modernité. Nous puisons dans nos racines pour nourrir notre créativité contemporaine.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="philosophy-point">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3>Transmission</h3>
+                            <p>Nous élevons chaque prestation au rang d'expérience inoubliable et connectons les générations par la transmission musicale, créant des souvenirs qui transcendent le temps.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="philosophy-point">
+                        <div class="philosophy-icon">
+                            <i class="fas fa-globe-africa"></i>
+                        </div>
+                        <div>
+                            <h3>Rayonnement Culturel</h3>
+                            <p>En intégrant technologies modernes et sagesse ancestrale, nous contribuons au rayonnement de la culture camerounaise sur la scène internationale.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="philosophy-visual animate-on-scroll">
+                <div class="philosophy-circle">
+                    <div class="circle-content">
+                        <h3>A Laiz Prod</h3>
+                        <p>Plus qu'une entreprise artistique</p>
+                        <div class="circle-elements">
+                            <span class="circle-element">Musique</span>
+                            <span class="circle-element">Culture</span>
+                            <span class="circle-element">Transmission</span>
+                            <span class="circle-element">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="about-cta">
+    <div class="container">
+        <div class="cta-content animate-on-scroll">
+            <h2>Rejoignez Notre Aventure Musicale</h2>
+            <p>Que vous cherchiez à célébrer un moment spécial, apprendre la musique ou découvrir notre projet culturel, nous sommes là pour vous accompagner.</p>
+            
+            <div class="cta-options">
+                <div class="cta-option">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Réserver un Événement</h3>
+                    <p>Piano-bar, mariage, concert sur mesure</p>
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary">Demander un Devis</a>
+                </div>
+                
+                <div class="cta-option">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Apprendre avec Nous</h3>
+                    <p>Formations piano, chant, théorie musicale</p>
+                    <a href="{{ url_for('formations') }}" class="btn btn-secondary">Voir les Cours</a>
+                </div>
+                
+                <div class="cta-option">
+                    <i class="fas fa-globe-africa"></i>
+                    <h3>Soutenir Tswefap</h3>
+                    <p>Contribuer à la préservation culturelle</p>
+                    <a href="{{ url_for('contact') }}" class="btn btn-secondary">En Savoir Plus</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Animation des stats Tswefap
+    const tswefapObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const numbers = entry.target.querySelectorAll('.impact-number');
+                numbers.forEach((number, index) => {
+                    const target = parseInt(number.textContent);
+                    animateNumber(number, 0, target, 2000, index * 200);
+                });
+                tswefapObserver.unobserve(entry.target);
+            }
+        });
+    });
+    
+    const impactStats = document.querySelector('.impact-numbers');
+    if (impactStats) {
+        tswefapObserver.observe(impactStats);
+    }
+    
+    function animateNumber(element, start, end, duration, delay) {
+        setTimeout(() => {
+            const startTime = Date.now();
+            const animate = () => {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const current = Math.floor(start + (end - start) * progress);
+                element.textContent = current + (end >= 1000 ? '+' : '');
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            };
+            animate();
+        }, delay);
+    }
+    
+    // Animation de la timeline
+    const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('animated');
+                }, index * 200);
+            }
+        });
+    });
+    
+    document.querySelectorAll('.timeline-item').forEach(item => {
+        timelineObserver.observe(item);
+    });
+</script>
+{% endblock %}
