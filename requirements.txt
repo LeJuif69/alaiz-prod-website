@@ -1,54 +1,9 @@
-
-
-Planifié la création de fichiers pour un site web amélioré.
-
-
-
-Parfait ! Votre site actuel a déjà du bon contenu. Voici tous les codes prêts à copier dans GitHub :
-
-📁 1. app.py (Fichier principal Flask)
-app.py - Application Flask Complète
-Code 
-
-Préparé à créer les fichiers nécessaires pour le projet.
-
-📁 2. requirements.txt
-requirements.txt
-Code 
-
-Planned base HTML template for website structure.
-
-📁 3. templates/base.html
-templates/base.html
-Artéfact interactif 
-
-Planned homepage template creation for web project.
-
-📁 4. templates/index.html
-templates/index.html
-Artéfact interactif 
-
-Planned to create contact page template in HTML.
-
-📁 5. templates/contact.html
-templates/contact.html
-Artéfact interactif 
-
-Planned to create comprehensive CSS file for premium site.
-
-📁 6. static/css/style.css
-static/css/style.css
-Code 
-
-
-
-
-Flask==2.3.3
+Flask==3.0.0
 Flask-Mail==0.9.1
 gunicorn==21.2.0
-Werkzeug==2.3.7
+Werkzeug==3.0.1
 Jinja2==3.1.2
 MarkupSafe==2.1.3
 itsdangerous==2.1.2
 click==8.1.7
-blinker==1.6.3
+blinker==1.7.0
