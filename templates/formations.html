@@ -1,50 +1,536 @@
 {% extends "base.html" %}
 
-{% block title %}Formations - A LAIZ PROD{% endblock %}
+{% block title %}Formations Musicales - A Laiz Prod | Cours Piano, Chant, Théorie avec Hervé Nanfang{% endblock %}
+{% block description %}Formations musicales d'excellence par Hervé Nanfang au Cameroun. Cours piano, chant, théorie musicale. Pédagogie adaptée tous niveaux, méthodes innovantes. Yaoundé.{% endblock %}
 
 {% block content %}
-<section class="page-header">
+<div class="page-spacer"></div>
+
+<!-- Formations Hero -->
+<section class="formations-hero">
     <div class="container">
-        <h1>Formations Musicales</h1>
-        <p>Cours de piano et chant avec Hervé et Flavie Nanfang</p>
+        <div class="hero-content animate-on-scroll">
+            <h1>Formations Musicales</h1>
+            <p class="hero-subtitle">Pédagogie d'excellence par Hervé Nanfang</p>
+            <p>Méthodes pédagogiques innovantes adaptées à tous niveaux, de l'initiation au perfectionnement professionnel</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Élèves Formés</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Ans d'Expérience</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Publications Pédagogiques</span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="formations-detail">
+<!-- Professeur Section -->
+<section class="professeur-section">
     <div class="container">
-        <div class="formation-item">
-            <h2>Cours de Piano</h2>
-            <p>Méthode pédagogique personnalisée par Hervé Nanfang</p>
-            <ul>
-                <li>Piano Débutant : 25 000 FCFA/mois (4 cours)</li>
-                <li>Piano Intermédiaire : 30 000 FCFA/mois</li>
-                <li>Cours particuliers : 15 000 FCFA/séance</li>
-            </ul>
-        </div>
-        
-        <div class="formation-item">
-            <h2>Cours de Chant</h2>
-            <p>Technique vocale et interprétation avec Flavie Nanfang</p>
-            <ul>
-                <li>Cours individuels : 30 000 FCFA/mois</li>
-                <li>Préparation concerts : 20 000 FCFA/séance</li>
-            </ul>
-        </div>
-        
-        <div class="formation-item">
-            <h2>Arrangement Musical</h2>
-            <p>Stage intensif d'arrangement et composition</p>
-            <ul>
-                <li>Stage weekend : 75 000 FCFA</li>
-                <li>Formation sur mesure selon niveau</li>
-            </ul>
-        </div>
-        
-        <div class="contact-cta">
-            <h2>Inscription</h2>
-            <p>Contact : alaizmusic@gmail.com</p>
-            <a href="{{ url_for('contact') }}" class="btn-primary">S'inscrire</a>
+        <div class="professeur-content">
+            <div class="professeur-image animate-on-scroll">
+                <!-- Remplacer par une vraie photo d'Hervé en situation d'enseignement -->
+                <div class="placeholder-image">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <p>Hervé Nanfang<br><strong>En cours</strong></p>
+                </div>
+            </div>
+            
+            <div class="professeur-text animate-on-scroll">
+                <h2>Hervé Nanfang, Votre Professeur</h2>
+                <div class="professeur-credentials">
+                    <div class="credential">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Formation classique et jazz</span>
+                    </div>
+                    <div class="credential">
+                        <i class="fas fa-book"></i>
+                        <span>Auteur de 12 publications pédagogiques</span>
+                    </div>
+                    <div class="credential">
+                        <i class="fas fa-users"></i>
+                        <span>1000+ élèves formés depuis 2009</span>
+                    </div>
+                    <div class="credential">
+                        <i class="fas fa-award"></i>
+                        <span>Méthodes pédagogiques reconnues</span>
+                    </div>
+                </div>
+                
+                <div class="professeur-bio">
+                    <p>"Mon approche pédagogique repose sur l'adaptation à chaque élève. Que vous soyez débutant complet ou musicien confirmé, j'adapte mes méthodes à votre rythme, vos objectifs et votre personnalité musicale."</p>
+                    <p>"La musique n'est pas seulement technique, c'est un langage universel. Mon rôle est de vous donner les clés pour vous exprimer pleinement à travers cet art magnifique."</p>
+                </div>
+                
+                <div class="professeur-contact">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                        <i class="fas fa-calendar-plus"></i> Réserver un Cours d'Essai
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<!-- Cours Disponibles -->
+<section class="cours-disponibles">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Nos Cours</h2>
+            <p>Une gamme complète de formations musicales adaptées à vos besoins</p>
+        </div>
+        
+        <div class="cours-grid">
+            {% for course in courses %}
+            <div class="cours-card animate-on-scroll">
+                <div class="cours-header">
+                    <div class="cours-icon">
+                        {% if 'Piano' in course.name %}
+                        <i class="fas fa-piano"></i>
+                        {% elif 'Chant' in course.name %}
+                        <i class="fas fa-microphone-alt"></i>
+                        {% else %}
+                        <i class="fas fa-music"></i>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h3>{{ course.name }}</h3>
+                        <span class="cours-level">Niveau {{ course.level }}</span>
+                    </div>
+                </div>
+                
+                <div class="cours-details">
+                    <p class="cours-description">{{ course.description }}</p>
+                    
+                    <div class="cours-info">
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span><strong>Durée :</strong> {{ course.duration }}</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-calendar"></i>
+                            <span><strong>Planning :</strong> {{ course.schedule }}</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-tag"></i>
+                            <span class="cours-price">{{ course.price }}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cours-cta">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-full">
+                        S'inscrire
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Méthode Pédagogique -->
+<section class="methode-pedagogique">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Notre Méthode Pédagogique</h2>
+            <p>Une approche structurée et personnalisée pour un apprentissage optimal</p>
+        </div>
+        
+        <div class="methode-steps">
+            <div class="step-item animate-on-scroll">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Évaluation Initiale</h3>
+                    <p>Bilan personnalisé pour comprendre votre niveau, vos objectifs et adapter parfaitement le programme à vos besoins spécifiques.</p>
+                </div>
+            </div>
+            
+            <div class="step-item animate-on-scroll">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Programme Personnalisé</h3>
+                    <p>Création d'un parcours d'apprentissage sur mesure, avec des étapes claires et des objectifs réalisables à votre rythme.</p>
+                </div>
+            </div>
+            
+            <div class="step-item animate-on-scroll">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Apprentissage Progressif</h3>
+                    <p>Alternance entre théorie et pratique, avec des exercices adaptés et un répertoire choisi selon vos goûts musicaux.</p>
+                </div>
+            </div>
+            
+            <div class="step-item animate-on-scroll">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Suivi & Évaluation</h3>
+                    <p>Évaluations régulières, ajustements du programme, et préparation aux examens ou concours si souhaité.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Niveaux & Ages -->
+<section class="niveaux-ages">
+    <div class="container">
+        <div class="niveaux-content">
+            <div class="niveaux-text animate-on-scroll">
+                <h2>Pour Tous les Âges, Tous les Niveaux</h2>
+                <p>Nos formations s'adaptent à chaque profil d'élève, des plus jeunes aux seniors, du débutant complet au musicien confirmé souhaitant se perfectionner.</p>
+                
+                <div class="age-groups">
+                    <div class="age-group">
+                        <div class="age-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <div class="age-info">
+                            <h3>Enfants (6-12 ans)</h3>
+                            <p>Approche ludique et progressive, développement de l'oreille musicale et des bases techniques solides.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="age-group">
+                        <div class="age-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="age-info">
+                            <h3>Adolescents (13-17 ans)</h3>
+                            <p>Formation complète alliant technique classique et répertoire moderne, préparation aux examens.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="age-group">
+                        <div class="age-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="age-info">
+                            <h3>Adultes (18+ ans)</h3>
+                            <p>Apprentissage adapté au rythme de vie adulte, focus sur les objectifs personnels et plaisir musical.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="age-group">
+                        <div class="age-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <div class="age-info">
+                            <h3>Seniors (60+ ans)</h3>
+                            <p>Découverte ou redécouverte musicale, stimulation cognitive et épanouissement personnel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="niveaux-visual animate-on-scroll">
+                <div class="niveau-pyramid">
+                    <div class="niveau-level niveau-pro">
+                        <span>Professionnel</span>
+                        <p>Perfectionnement, préparation concours</p>
+                    </div>
+                    <div class="niveau-level niveau-avance">
+                        <span>Avancé</span>
+                        <p>Technique approfondie, improvisation</p>
+                    </div>
+                    <div class="niveau-level niveau-inter">
+                        <span>Intermédiaire</span>
+                        <p>Morceaux complexes, harmonie</p>
+                    </div>
+                    <div class="niveau-level niveau-debut">
+                        <span>Débutant</span>
+                        <p>Bases techniques et théoriques</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Témoignages Élèves -->
+<section class="temoignages-eleves">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Témoignages d'Élèves</h2>
+            <p>Ce que disent nos élèves de leurs formations</p>
+        </div>
+        
+        <div class="temoignages-grid">
+            <div class="temoignage-card animate-on-scroll">
+                <div class="temoignage-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Hervé a une patience exceptionnelle et sait s'adapter à mon rythme. En 6 mois, j'ai progressé plus qu'en 2 ans d'autoapprentissage. Sa méthode est vraiment efficace !"</p>
+                </div>
+                <div class="temoignage-author">
+                    <div class="author-info">
+                        <h4>Sandra M.</h4>
+                        <span>Piano débutant, 28 ans</span>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="temoignage-card animate-on-scroll">
+                <div class="temoignage-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Mes parents m'ont inscrit chez Hervé quand j'avais 8 ans. Aujourd'hui à 16 ans, je prépare le conservatoire grâce à son enseignement exceptionnel. Il croit en ses élèves !"</p>
+                </div>
+                <div class="temoignage-author">
+                    <div class="author-info">
+                        <h4>Alex K.</h4>
+                        <span>Piano avancé, 16 ans</span>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="temoignage-card animate-on-scroll">
+                <div class="temoignage-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"À 65 ans, j'ai réalisé mon rêve d'apprendre le piano. Hervé a su adapter ses cours à mon âge et mes capacités. C'est un vrai bonheur chaque semaine !"</p>
+                </div>
+                <div class="temoignage-author">
+                    <div class="author-info">
+                        <h4>Marie T.</h4>
+                        <span>Piano senior, 65 ans</span>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Informations Pratiques -->
+<section class="informations-pratiques">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Informations Pratiques</h2>
+            <p>Tout ce que vous devez savoir pour commencer</p>
+        </div>
+        
+        <div class="infos-grid">
+            <div class="info-section animate-on-scroll">
+                <h3><i class="fas fa-map-marker-alt"></i> Lieu des Cours</h3>
+                <p><strong>Studio A Laiz Prod</strong><br>
+                Yaoundé, Cameroun<br>
+                (Adresse exacte fournie lors de l'inscription)</p>
+                <p>Studio équipé de pianos acoustiques et numériques professionnels, matériel pédagogique complet.</p>
+            </div>
+            
+            <div class="info-section animate-on-scroll">
+                <h3><i class="fas fa-calendar-alt"></i> Horaires</h3>
+                <p><strong>Lundi à Samedi :</strong> 9h00 - 19h00<br>
+                <strong>Dimanche :</strong> Sur rendez-vous</p>
+                <p>Créneaux flexibles selon vos disponibilités. Cours particuliers de 1h, possibilité de cours de 30min pour les enfants.</p>
+            </div>
+            
+            <div class="info-section animate-on-scroll">
+                <h3><i class="fas fa-euro-sign"></i> Tarifs & Paiement</h3>
+                <p><strong>Cours particuliers :</strong> 25.000 FCFA/mois<br>
+                <strong>Stages week-end :</strong> 40.000 FCFA</p>
+                <p>Paiement mensuel, possibilité de paiement trimestriel avec réduction. Matériel pédagogique inclus.</p>
+            </div>
+            
+            <div class="info-section animate-on-scroll">
+                <h3><i class="fas fa-gift"></i> Cours d'Essai</h3>
+                <p><strong>Premier cours gratuit</strong><br>
+                Sans engagement, 1h d'évaluation et découverte</p>
+                <p>Bilan personnalisé, présentation de la méthode, définition des objectifs et du programme adapté.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Formations -->
+<section class="faq-formations">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Questions Fréquentes</h2>
+            <p>Les réponses aux questions les plus posées</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Faut-il savoir lire la musique pour commencer ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Absolument pas !</strong> Nos cours s'adressent aux débutants complets. L'apprentissage du solfège se fait progressivement, en parallèle de la pratique instrumentale. Nous adaptons le rythme à chaque élève.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>À partir de quel âge peut-on commencer ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nous acceptons les enfants <strong>dès 6 ans</strong> pour le piano et <strong>dès 8 ans</strong> pour le chant. Il n'y a pas d'âge limite supérieur - nos plus anciens élèves ont plus de 70 ans !</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Faut-il avoir un piano à la maison ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Pour progresser efficacement, il est <strong>fortement recommandé</strong> d'avoir un instrument à la maison pour s'exercer. Un <strong>piano numérique</strong> de qualité convient parfaitement et coûte moins cher qu'un piano acoustique. Nous pouvons vous conseiller dans le choix.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Quelle est la durée d'engagement minimum ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Aucun engagement long terme !</strong> Vous payez mois par mois. Cependant, nous recommandons au minimum 3 mois pour voir des progrès significatifs et juger de votre motivation.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Proposez-vous des cours en ligne ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nous proposons des <strong>cours en ligne</strong> via Zoom/Teams pour les élèves qui ne peuvent pas se déplacer. Cependant, les cours en présentiel restent plus efficaces, surtout pour les débutants.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Inscription -->
+<section class="cta-inscription">
+    <div class="container">
+        <div class="cta-content animate-on-scroll">
+            <h2>Prêt à Commencer Votre Aventure Musicale ?</h2>
+            <p>Réservez votre cours d'essai gratuit et découvrez notre méthode pédagogique unique</p>
+            
+            <div class="cta-benefits">
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>1er cours gratuit sans engagement</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Bilan personnalisé inclus</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Matériel pédagogique fourni</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Méthode adaptée à votre niveau</span>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
+                    <i class="fas fa-calendar-plus"></i> Cours d'Essai Gratuit
+                </a>
+                <a href="tel:{{ team.herve.phone }}" class="btn btn-secondary btn-large">
+                    <i class="fas fa-phone"></i> Appeler Hervé
+                </a>
+            </div>
+            
+            <div class="cta-note">
+                <p><i class="fas fa-info-circle"></i> Le cours d'essai dure 1h et permet de définir ensemble vos objectifs et le programme personnalisé.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Animation des stats dans le hero
+    const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const numbers = entry.target.querySelectorAll('.stat-number');
+                const targets = [1000, 15, 12];
+                
+                numbers.forEach((number, index) => {
+                    animateNumber(number, 0, targets[index], 2000, index * 300);
+                });
+                
+                heroObserver.unobserve(entry.target);
+            }
+        });
+    });
+    
+    const heroStats = document.querySelector('.hero-stats');
+    if (heroStats) {
+        heroObserver.observe(heroStats);
+    }
+    
+    function animateNumber(element, start, end, duration, delay) {
+        setTimeout(() => {
+            const startTime = Date.now();
+            const animate = () => {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const current = Math.floor(start + (end - start) * progress);
+                element.textContent = current + (end >= 100 ? '+' : '');
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            };
+            animate();
+        }, delay);
+    }
+    
+    // Animation des étapes de la méthode
+    const stepsObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }, index * 200);
+            }
+        });
+    });
+    
+    document.querySelectorAll('.step-item').forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-50px)';
+        item.style.transition = 'all 0.6s ease';
+        stepsObserver.observe(item);
+    });
+</script>
 {% endblock %}
