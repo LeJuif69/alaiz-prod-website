@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erreur Serveur - A Laiz Prod</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-container">
+            <div class="error-content">
+                <div class="error-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h1>500</h1>
+                <h2>Nos instruments ont besoin d'un réglage !</h2>
+                <p>Une erreur technique temporaire s'est produite sur notre serveur. Nos techniciens sont sur le coup pour remettre tout en musique.</p>
+                
+                <div class="error-actions">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">
+                        <i class="fas fa-refresh"></i> Réessayer
+                    </a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i> Nous Contacter
+                    </a>
+                </div>
+                
+                <div class="error-contact-info">
+                    <h3>Besoin d'une assistance immédiate ?</h3>
+                    <div class="contact-options">
+                        <a href="tel:+237XXXXXXXX" class="contact-option">
+                            <i class="fas fa-phone"></i>
+                            <span>+237 XXX XXX XXX</span>
+                        </a>
+                        <a href="mailto:contact@alaizprod.com" class="contact-option">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@alaizprod.com</span>
+                        </a>
+                        <a href="https://wa.me/237XXXXXXXX" target="_blank" class="contact-option">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="error-musical-note">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .error-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #E53E3E 0%, #C53030 100%);
+            color: #FEFEFE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-container {
+            max-width: 600px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            color: #FED7D7;
+            margin-bottom: 1rem;
+            animation: spin 3s linear infinite;
+        }
+
+        .error-page h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 8rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(135deg, #FED7D7 0%, #FEFEFE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .error-page h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #FEFEFE;
+        }
+
+        .error-page p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .error-contact-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #FED7D7;
+        }
+
+        .contact-options {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-option {
+            color: #FEFEFE;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .error-musical-note {
+            position: absolute;
+            font-size: 20rem;
+            color: rgba(255, 255, 255, 0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            z-index: 0;
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .error-page h1 { font-size: 6rem; }
+            .error-page h2 { font-size: 1.5rem; }
+            .error-actions { flex-direction: column; align-items: center; }
+            .contact-options { flex-direction: column; align-items: center; }
+        }
+    </style>
+</body>
+</html>
