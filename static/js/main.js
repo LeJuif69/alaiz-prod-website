@@ -1,435 +1,598 @@
-// A LAIZ PROD - JavaScript corrigé et fonctionnel
-console.log('🚀 Initialisation A LAIZ PROD');
+// A LAIZ PROD - JavaScript Principal
+// =================================
 
-// Variables globales
-let isAudioPlaying = false;
-let aiChatActive = false;
-
-// Initialisation au chargement
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM chargé');
-    
-    // Masquer le loader rapidement
-    setTimeout(() => {
-        hideLoader();
-        initializeWebsite();
-    }, 1500);
+    // Initialisation
+    initializeApp();
 });
 
-function hideLoader() {
-    const loader = document.getElementById('loader');
-    if (loader) {
-        loader.style.opacity = '0';
-        loader.style.transition = 'opacity 0.5s ease';
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 500);
-    }
-}
-
-function initializeWebsite() {
-    console.log('Initialisation du site...');
+function initializeApp() {
+    // Loading screen
+    handleLoadingScreen();
     
-    try {
-        setupBasicInteractions();
-        setupAIChat();
-        setupFormHandlers();
-        setupNavigation();
-        loadWeatherData();
-        showNotification('✅ Site A LAIZ PROD chargé !', 'success');
-    } catch (error) {
-        console.error('Erreur initialisation:', error);
-        showNotification('⚠️ Certaines fonctionnalités peuvent être limitées', 'warning');
-    }
+    // Navigation
+    initializeNavigation();
+    
+    // Animations
+    initializeAnimations();
+    
+    // Forms
+    initializeForms();
+    
+    // Stats counters
+    initializeStatsCounters();
+    
+    // Flash messages
+    handleFlashMessages();
+    
+    // Smooth scrolling
+    initializeSmoothScrolling();
+    
+    // Mobile menu
+    initializeMobileMenu();
 }
 
-// Configuration des interactions de base
-function setupBasicInteractions() {
-    // Curseur personnalisé
-    const cursor = document.getElementById('cursor');
-    if (cursor) {
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-    }
-
-    // Animation des cartes au scroll
-    const cards = document.querySelectorAll('.glass-card');
-    cards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'all 0.6s ease';
-    });
-
-    // Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    });
-
-    cards.forEach(card => observer.observe(card));
-}
-
-// Chat IA
-function setupAIChat() {
-    window.toggleAIChat = function() {
-        const aiChat = document.getElementById('aiChat');
-        if (!aiChat) return;
-        
-        aiChatActive = !aiChatActive;
-        
-        if (aiChatActive) {
-            aiChat.style.display = 'flex';
-            aiChat.classList.add('active');
-            showNotification('🤖 Assistant IA activé', 'info');
-        } else {
-            aiChat.classList.remove('active');
+// =================================
+// LOADING SCREEN
+// =================================
+function handleLoadingScreen() {
+    window.addEventListener('load', function() {
+        const loading = document.getElementById('loading');
+        if (loading) {
             setTimeout(() => {
-                aiChat.style.display = 'none';
-            }, 300);
-        }
-    };
-
-    window.handleChatInput = function(event) {
-        if (event.key === 'Enter') {
-            sendChatMessage();
-        }
-    };
-
-    window.sendChatMessage = async function() {
-        const input = document.getElementById('chatInput');
-        const message = input.value.trim();
-        
-        if (!message) return;
-        
-        addChatMessage(message, 'user');
-        input.value = '';
-        
-        try {
-            const response = await fetch('/api/ai-chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ message: message })
-            });
-            
-            if (response.ok) {
-                const data = await response.json();
+                loading.style.opacity = '0';
                 setTimeout(() => {
-                    addChatMessage(data.response, 'bot');
-                }, 1000);
-            } else {
-                throw new Error('Erreur serveur');
-            }
-        } catch (error) {
-            console.error('Erreur chat:', error);
-            setTimeout(() => {
-                addChatMessage('Désolé, je ne peux pas répondre pour le moment.', 'bot');
+                    loading.style.display = 'none';
+                }, 500);
             }, 1000);
         }
-    };
-
-    function addChatMessage(message, sender) {
-        const messagesContainer = document.getElementById('chatMessages');
-        if (!messagesContainer) return;
-        
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `ai-message ${sender}`;
-        messageDiv.textContent = message;
-        messagesContainer.appendChild(messageDiv);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
+    });
 }
 
-// Gestion des formulaires
-function setupFormHandlers() {
-    const smartForm = document.getElementById('smartForm');
-    if (!smartForm) return;
-    
-    smartForm.addEventListener('submit', handleFormSubmit);
-    
-    const projectDescription = document.getElementById('projectDescription');
-    if (projectDescription) {
-        projectDescription.addEventListener('input', debounce(analyzeProject, 2000));
-    }
-}
-
-async function handleFormSubmit(event) {
-    event.preventDefault();
-    
-    const formData = new FormData(event.target);
-    const data = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        project: formData.get('project')
-    };
-    
-    showNotification('📤 Envoi en cours...', 'info');
-    
-    try {
-        const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        
-        if (response.ok) {
-            const result = await response.json();
-            showNotification('✅ Message envoyé avec succès !', 'success');
-            event.target.reset();
-            
-            // Masquer les suggestions
-            const suggestions = document.getElementById('aiSuggestions');
-            if (suggestions) suggestions.style.display = 'none';
-        } else {
-            throw new Error('Erreur serveur');
-        }
-    } catch (error) {
-        console.error('Erreur envoi:', error);
-        showNotification('❌ Erreur lors de l\'envoi', 'error');
-    }
-}
-
-async function analyzeProject() {
-    const description = document.getElementById('projectDescription');
-    const suggestions = document.getElementById('aiSuggestions');
-    const suggestionsList = document.getElementById('suggestionsList');
-    
-    if (!description || !suggestions || description.value.length < 10) {
-        if (suggestions) suggestions.style.display = 'none';
-        return;
-    }
-    
-    try {
-        const response = await fetch('/api/smart-form', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ description: description.value })
-        });
-        
-        if (response.ok) {
-            const data = await response.json();
-            
-            if (data.suggestions && data.suggestions.length > 0) {
-                suggestionsList.innerHTML = data.suggestions
-                    .map(s => `<p style="margin: 0.5rem 0; color: var(--text-light);">${s}</p>`)
-                    .join('');
-                suggestions.style.display = 'block';
-                showNotification('🤖 Suggestions IA générées', 'success');
-            }
-        }
-    } catch (error) {
-        console.error('Erreur analyse:', error);
-    }
-}
-
-// Navigation
-function setupNavigation() {
-    window.addEventListener('scroll', () => {
+// =================================
+// NAVIGATION
+// =================================
+function initializeNavigation() {
+    // Navbar background on scroll
+    window.addEventListener('scroll', function() {
         const navbar = document.getElementById('navbar');
         if (navbar) {
-            if (window.pageYOffset > 100) {
-                navbar.classList.add('scrolled');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(45, 55, 72, 0.98)';
+                navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.2)';
             } else {
-                navbar.classList.remove('scrolled');
+                navbar.style.background = 'rgba(45, 55, 72, 0.95)';
+                navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
             }
+        }
+    });
+    
+    // Active nav link highlighting
+    highlightActiveNavLink();
+}
+
+function highlightActiveNavLink() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+        if (linkPath === currentPath) {
+            link.style.color = 'var(--secondary-color)';
+            link.style.fontWeight = '600';
         }
     });
 }
 
-// Chargement météo
-async function loadWeatherData() {
-    try {
-        const response = await fetch('/api/weather');
-        if (response.ok) {
-            const data = await response.json();
-            
-            const tempElement = document.getElementById('temperature');
-            const conditionElement = document.getElementById('condition');
-            const iconElement = document.querySelector('.weather-icon');
-            
-            if (tempElement) tempElement.textContent = data.temperature + '°C';
-            if (conditionElement) conditionElement.textContent = data.condition;
-            if (iconElement) iconElement.textContent = data.icon;
-        }
-    } catch (error) {
-        console.log('Météo par défaut utilisée');
-    }
-}
-
-// Audio player
-function toggleAdvancedAudio() {
-    const playIcon = document.getElementById('advancedPlayIcon');
-    const progressBar = document.getElementById('audioProgress');
+// =================================
+// MOBILE MENU
+// =================================
+function initializeMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
     
-    if (!playIcon || !progressBar) return;
-    
-    if (!isAudioPlaying) {
-        playIcon.className = 'fas fa-pause';
-        isAudioPlaying = true;
-        
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += 2;
-            progressBar.style.width = progress + '%';
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
             
-            if (progress >= 100) {
-                clearInterval(interval);
-                playIcon.className = 'fas fa-play';
-                isAudioPlaying = false;
-                progressBar.style.width = '0%';
+            // Animation des barres du hamburger
+            const spans = mobileMenuBtn.querySelectorAll('span');
+            if (mobileMenuBtn.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
             }
-        }, 200);
+        });
         
-        showNotification('🎵 Lecture audio', 'info');
-    } else {
-        playIcon.className = 'fas fa-play';
-        isAudioPlaying = false;
-        progressBar.style.width = '0%';
+        // Fermer le menu mobile quand on clique sur un lien
+        navLinks.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            
+            const spans = mobileMenuBtn.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        });
     }
 }
 
-// Notifications
-function showNotification(message, type = 'info') {
-    const notification = document.getElementById('notification');
-    if (!notification) return;
-    
-    notification.textContent = message;
-    notification.style.display = 'block';
-    notification.style.opacity = '1';
-    
-    const colors = {
-        'success': '#00ffff',
-        'error': '#ff006e',
-        'info': '#f39c12',
-        'warning': '#ff9800'
+// =================================
+// SMOOTH SCROLLING
+// =================================
+function initializeSmoothScrolling() {
+    // Smooth scroll pour les ancres internes
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            
+            if (target) {
+                const navbarHeight = document.getElementById('navbar').offsetHeight;
+                const targetPosition = target.offsetTop - navbarHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// =================================
+// ANIMATIONS
+// =================================
+function initializeAnimations() {
+    // Observer pour les animations au scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                
+                // Animation spéciale pour les cartes
+                if (entry.target.classList.contains('service-card') || 
+                    entry.target.classList.contains('testimonial-card') ||
+                    entry.target.classList.contains('pricing-card')) {
+                    // Délai pour effet cascade
+                    const cards = entry.target.parentElement.children;
+                    const index = Array.from(cards).indexOf(entry.target);
+                    entry.target.style.animationDelay = `${index * 0.1}s`;
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observer tous les éléments avec la classe animate-on-scroll
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
     
-    notification.style.borderLeft = `4px solid ${colors[type]}`;
+    // Parallax léger pour les héros
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero-background');
+        
+        if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
+}
+
+// =================================
+// STATISTIQUES ANIMÉES
+// =================================
+function initializeStatsCounters() {
+    const statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.stat-number');
+                
+                counters.forEach((counter) => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    animateCounter(counter, target, 2000);
+                });
+                
+                // Ne déclencher qu'une fois
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    });
+
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+        statsObserver.observe(statsSection);
+    }
+}
+
+function animateCounter(element, target, duration) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+            element.textContent = target + '+';
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(start) + '+';
+        }
+    }, 16);
+}
+
+// =================================
+// FORMULAIRES
+// =================================
+function initializeForms() {
+    // Validation en temps réel
+    setupFormValidation();
     
-    setTimeout(() => {
-        notification.style.opacity = '0';
+    // Auto-formatage des champs
+    setupAutoFormatting();
+    
+    // Soumission des formulaires
+    setupFormSubmission();
+}
+
+function setupFormValidation() {
+    const forms = document.querySelectorAll('form');
+    
+    forms.forEach(form => {
+        const inputs = form.querySelectorAll('input[required], textarea[required]');
+        
+        inputs.forEach(input => {
+            // Validation en temps réel
+            input.addEventListener('blur', function() {
+                validateField(this);
+            });
+            
+            input.addEventListener('input', function() {
+                if (this.classList.contains('error')) {
+                    validateField(this);
+                }
+            });
+        });
+    });
+}
+
+function validateField(field) {
+    const value = field.value.trim();
+    const fieldType = field.type;
+    let isValid = true;
+    let errorMessage = '';
+    
+    // Validation selon le type de champ
+    switch(fieldType) {
+        case 'email':
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            isValid = emailRegex.test(value);
+            errorMessage = 'Email invalide';
+            break;
+            
+        case 'tel':
+            const phoneRegex = /^\+237[0-9]{8,9}$/;
+            isValid = phoneRegex.test(value.replace(/\s/g, ''));
+            errorMessage = 'Numéro de téléphone invalide (+237XXXXXXXX)';
+            break;
+            
+        case 'text':
+            if (field.name === 'name') {
+                isValid = value.length >= 2;
+                errorMessage = 'Le nom doit contenir au moins 2 caractères';
+            }
+            break;
+            
+        default:
+            isValid = value.length > 0;
+            errorMessage = 'Ce champ est requis';
+    }
+    
+    // Application du style d'erreur
+    if (isValid) {
+        field.classList.remove('error');
+        removeFieldError(field);
+    } else {
+        field.classList.add('error');
+        showFieldError(field, errorMessage);
+    }
+    
+    return isValid;
+}
+
+function showFieldError(field, message) {
+    removeFieldError(field); // Supprimer l'erreur existante
+    
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'field-error';
+    errorDiv.textContent = message;
+    errorDiv.style.color = 'var(--error-color)';
+    errorDiv.style.fontSize = '0.875rem';
+    errorDiv.style.marginTop = '0.25rem';
+    
+    field.parentNode.appendChild(errorDiv);
+    field.style.borderColor = 'var(--error-color)';
+}
+
+function removeFieldError(field) {
+    const existingError = field.parentNode.querySelector('.field-error');
+    if (existingError) {
+        existingError.remove();
+    }
+    field.style.borderColor = '';
+}
+
+function setupAutoFormatting() {
+    // Formatage automatique du téléphone
+    const phoneInputs = document.querySelectorAll('input[type="tel"]');
+    phoneInputs.forEach(input => {
+        input.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            // Ajouter automatiquement +237 pour les numéros camerounais
+            if (value.length > 0 && !value.startsWith('237')) {
+                if (value.startsWith('6') || value.startsWith('2')) {
+                    value = '237' + value;
+                }
+            }
+            
+            if (value.startsWith('237')) {
+                value = '+' + value;
+            }
+            
+            e.target.value = value;
+        });
+    });
+    
+    // Formatage automatique du nom (première lettre en majuscule)
+    const nameInputs = document.querySelectorAll('input[name="name"]');
+    nameInputs.forEach(input => {
+        input.addEventListener('blur', function(e) {
+            const words = e.target.value.toLowerCase().split(' ');
+            const formattedWords = words.map(word => 
+                word.charAt(0).toUpperCase() + word.slice(1)
+            );
+            e.target.value = formattedWords.join(' ');
+        });
+    });
+}
+
+function setupFormSubmission() {
+    const forms = document.querySelectorAll('form');
+    
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const requiredFields = form.querySelectorAll('input[required], textarea[required]');
+            let isFormValid = true;
+            
+            // Validation de tous les champs requis
+            requiredFields.forEach(field => {
+                if (!validateField(field)) {
+                    isFormValid = false;
+                }
+            });
+            
+            if (!isFormValid) {
+                e.preventDefault();
+                showNotification('Veuillez corriger les erreurs dans le formulaire', 'error');
+                return;
+            }
+            
+            // État de chargement du bouton
+            if (submitBtn) {
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+                submitBtn.disabled = true;
+                
+                // Restaurer le bouton après 5 secondes (au cas où)
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 5000);
+            }
+        });
+    });
+}
+
+// =================================
+// FAQ
+// =================================
+function toggleFAQ(element) {
+    const faqItem = element.parentNode;
+    const answer = faqItem.querySelector('.faq-answer');
+    const icon = element.querySelector('i');
+    
+    // Fermer toutes les autres FAQ
+    document.querySelectorAll('.faq-item.active').forEach(item => {
+        if (item !== faqItem) {
+            item.classList.remove('active');
+            item.querySelector('.faq-answer').style.maxHeight = '0px';
+            item.querySelector('.faq-question i').style.transform = 'rotate(0deg)';
+        }
+    });
+    
+    // Toggle la FAQ actuelle
+    faqItem.classList.toggle('active');
+    
+    if (faqItem.classList.contains('active')) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        answer.style.maxHeight = '0px';
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+
+// =================================
+// FLASH MESSAGES
+// =================================
+function handleFlashMessages() {
+    // Auto-masquer les flash messages après 5 secondes
+    const flashMessages = document.getElementById('flash-messages');
+    if (flashMessages) {
         setTimeout(() => {
-            notification.style.display = 'none';
-        }, 300);
-    }, 3000);
-}
-
-// Fonctions pour les boutons
-function toggleTheme() {
-    const body = document.body;
-    const current = body.getAttribute('data-theme') || 'default';
-    const themes = ['default', 'dark', 'neon'];
-    const next = themes[(themes.indexOf(current) + 1) % themes.length];
-    body.setAttribute('data-theme', next);
-    showNotification(`🎨 Thème: ${next}`, 'info');
-}
-
-function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => {
-            showNotification('Plein écran non supporté', 'warning');
-        });
-    } else {
-        document.exitFullscreen();
+            flashMessages.style.opacity = '0';
+            setTimeout(() => flashMessages.remove(), 500);
+        }, 5000);
     }
 }
 
-function shareWebsite() {
-    if (navigator.share) {
-        navigator.share({
-            title: 'A LAIZ PROD',
-            text: 'Découvrez A LAIZ PROD',
-            url: window.location.href
-        }).catch(console.error);
-    } else {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-            showNotification('🔗 Lien copié !', 'success');
-        }).catch(() => {
-            showNotification('Impossible de copier le lien', 'warning');
+// =================================
+// NOTIFICATIONS
+// =================================
+function showNotification(message, type = 'info', duration = 5000) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <span>${message}</span>
+        <button onclick="this.parentElement.remove()" style="background: none; border: none; color: inherit; font-size: 1.2rem; cursor: pointer; margin-left: 1rem;">×</button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animation d'entrée
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    // Auto-suppression
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, duration);
+}
+
+// =================================
+// LAZY LOADING DES IMAGES
+// =================================
+function initializeLazyLoading() {
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                observer.unobserve(img);
+            }
         });
-    }
+    });
+    
+    lazyImages.forEach(img => imageObserver.observe(img));
 }
 
-function toggleMusicVisualizer() {
-    showNotification('🎵 Visualiseur musical', 'info');
-}
+// =================================
+// UTILITAIRES
+// =================================
 
-function toggleVoiceRecognition() {
-    showNotification('🎤 Reconnaissance vocale bientôt disponible', 'info');
-}
-
-function openCalculator() {
-    showNotification('🧮 Calculateur de devis en développement', 'info');
-}
-
-function scheduleVR() {
-    showNotification('🥽 Démo VR bientôt disponible', 'info');
-}
-
-// Fonction utilitaire
-function debounce(func, wait) {
+// Debounce function pour optimiser les performances
+function debounce(func, wait, immediate) {
     let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
+    return function executedFunction() {
+        const context = this;
+        const args = arguments;
+        const later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
         };
+        const callNow = immediate && !timeout;
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
     };
 }
 
-// Raccourcis clavier
-document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey) {
-        switch(e.key) {
-            case '1':
-                window.location.href = '/';
-                e.preventDefault();
-                break;
-            case '2':
-                window.location.href = '/services';
-                e.preventDefault();
-                break;
-            case '3':
-                window.location.href = '/contact';
-                e.preventDefault();
-                break;
-            case 'i':
-                toggleAIChat();
-                e.preventDefault();
-                break;
+// Throttle function pour les événements de scroll
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
         }
     }
+}
+
+// Optimisation des événements de scroll avec throttle
+window.addEventListener('scroll', throttle(function() {
+    // Code optimisé pour le scroll
+    const scrolled = window.pageYOffset;
     
-    if (e.key === 'Escape' && aiChatActive) {
-        toggleAIChat();
+    // Parallax pour le hero
+    const hero = document.querySelector('.hero-background');
+    if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+    }
+    
+    // Bouton "retour en haut" (si ajouté)
+    const backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+        if (scrolled > 500) {
+            backToTop.style.opacity = '1';
+            backToTop.style.visibility = 'visible';
+        } else {
+            backToTop.style.opacity = '0';
+            backToTop.style.visibility = 'hidden';
+        }
+    }
+}, 16));
+
+// =================================
+// ANALYTICS & TRACKING
+// =================================
+function trackEvent(action, category, label) {
+    // Google Analytics tracking (si configuré)
+    if (typeof gtag !== 'undefined') {
+        gtag('event', action, {
+            'event_category': category,
+            'event_label': label
+        });
+    }
+    
+    console.log(`Event tracked: ${action} - ${category} - ${label}`);
+}
+
+// Track des clics sur les boutons CTA
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('btn-primary')) {
+        const buttonText = e.target.textContent.trim();
+        trackEvent('click', 'CTA Button', buttonText);
+    }
+    
+    if (e.target.closest('a[href^="tel:"]')) {
+        trackEvent('click', 'Phone Call', 'Phone Click');
+    }
+    
+    if (e.target.closest('a[href^="mailto:"]')) {
+        trackEvent('click', 'Email', 'Email Click');
+    }
+    
+    if (e.target.closest('a[href*="wa.me"]')) {
+        trackEvent('click', 'WhatsApp', 'WhatsApp Click');
     }
 });
 
-// Gestion des erreurs globales
-window.addEventListener('error', (e) => {
-    console.error('Erreur JavaScript:', e.error);
-});
-
-// Export global
+// =================================
+// EXPORTS POUR UTILISATION GLOBALE
+// =================================
 window.AlaizProd = {
-    toggleAIChat: toggleAIChat,
-    showNotification: showNotification,
-    toggleTheme: toggleTheme,
-    toggleFullscreen: toggleFullscreen,
-    shareWebsite: shareWebsite
+    showNotification,
+    toggleFAQ,
+    trackEvent
 };
 
-console.log('✅ A LAIZ PROD JavaScript chargé avec succès !');
+console.log('🎵 A Laiz Prod - Site chargé avec succès!');
