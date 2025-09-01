@@ -325,5 +325,10 @@ def internal_server_error(e):
     return render_template('500.html'), 500
 
 if __name__ == '__main__':
-    # En développement
+    # Configuration pour développement local
     app.run(debug=True, host='0.0.0.0', port=5000)
+else:
+    # Configuration pour production (Render, Heroku, etc.)
+    import os
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
