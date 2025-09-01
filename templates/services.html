@@ -1,80 +1,514 @@
 {% extends "base.html" %}
 
-{% block title %}Services - A LAIZ PROD{% endblock %}
+{% block title %}Services - A Laiz Prod | Piano-Bar, Mariages, Concerts, Formations{% endblock %}
+{% block description %}Découvrez tous les services musicaux d'A Laiz Prod au Cameroun : piano-bar, mariages, concerts, formations musicales, sonorisation. Devis gratuit.{% endblock %}
 
 {% block content %}
-<section class="page-header">
+<div class="page-spacer"></div>
+
+<!-- Services Hero -->
+<section class="services-hero">
     <div class="container">
-        <h1>Nos Services</h1>
-        <p>Prestations musicales professionnelles au Cameroun et à l'international</p>
+        <div class="hero-content animate-on-scroll">
+            <h1>Nos Services Musicaux</h1>
+            <p class="hero-subtitle">Des prestations d'exception adaptées à tous vos événements</p>
+            <p>De l'intimité du piano-bar à la grandeur des concerts, nous créons des expériences musicales inoubliables</p>
+        </div>
     </div>
 </section>
 
-<section class="services-detail">
+<!-- Services Navigation -->
+<section class="services-nav">
     <div class="container">
-        <div class="service-category">
-            <h2>Prestations au Cameroun</h2>
-            
-            <div class="service-item">
-                <h3>Piano-Bar Mini</h3>
-                <p>Prestation intimiste avec piano et voix</p>
-                <ul>
-                    <li>Durée : 2h30</li>
-                    <li>Répertoire : gospel, variété internationnales, standards</li>
-                    <li>Tarif : 100 000 FCFA</li>
-                </ul>
-            </div>
-            
-            <div class="service-item">
-                <h3>Piano-Bar Standard</h3>
-                <p>Formule complète avec interaction public</p>
-                <ul>
-                    <li>Durée : 4h</li>
-                    <li>Animation interactive</li>
-                    <li>Tarif : 200 000 FCFA</li>
-                </ul>
-            </div>
-            
-            <div class="service-item">
-                <h3>Mariage Complet</h3>
-                <p>Accompagnement musical total pour votre mariage</p>
-                <ul>
-                    <li>Cérémonie + réception</li>
-                    <li>Sonorisation incluse</li>
-                    <li>Tarif : 350 000 FCFA</li>
-                </ul>
-            </div>
-            
-            <div class="service-item">
-                <h3>A LAIZ SONO</h3>
-                <p>Location matériel de sonorisation</p>
-                <ul>
-                    <li>Son + éclairage</li>
-                    <li>Technicien inclus</li>
-                    <li>Tarif : sur devis</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="service-category">
-            <h2>Prestations Internationales</h2>
-            
-            <div class="service-item">
-                <h3>Piano-Bar International</h3>
-                <p>Concerts et prestations hors Cameroun</p>
-                <ul>
-                    <li>Transport et hébergement en sus</li>
-                    <li>Contrat selon destination</li>
-                    <li>Tarif : sur devis</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="contact-cta">
-            <h2>Demander un Devis</h2>
-            <p>Chaque prestation est adaptée à vos besoins spécifiques</p>
-            <a href="{{ url_for('contact') }}" class="btn-primary">Nous Contacter</a>
+        <div class="services-nav-links">
+            <a href="#piano-bar" class="nav-service-link">Piano-Bar</a>
+            <a href="#mariages" class="nav-service-link">Mariages</a>
+            <a href="#concerts" class="nav-service-link">Concerts</a>
+            <a href="#formations" class="nav-service-link">Formations</a>
+            <a href="#sono" class="nav-service-link">Sonorisation</a>
         </div>
     </div>
 </section>
+
+<!-- Piano-Bar Section -->
+<section id="piano-bar" class="service-detail">
+    <div class="container">
+        <div class="service-content">
+            <div class="service-text animate-on-scroll">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div>
+                        <h2>Piano-Bar</h2>
+                        <p class="service-tagline">Ambiances musicales raffinées</p>
+                    </div>
+                </div>
+                
+                <p class="service-description">{{ services.piano_bar.full_description }}</p>
+                
+                <div class="service-features">
+                    <h3>Ce qui est inclus :</h3>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Duo piano et voix professionnel</li>
+                        <li><i class="fas fa-check"></i> Répertoire varié : jazz, standards, variété française</li>
+                        <li><i class="fas fa-check"></i> Matériel sonore de qualité inclus</li>
+                        <li><i class="fas fa-check"></i> Adaptation à l'ambiance souhaitée</li>
+                        <li><i class="fas fa-check"></i> Interaction avec le public selon contexte</li>
+                    </ul>
+                </div>
+                
+                <div class="service-ideal">
+                    <h3>Idéal pour :</h3>
+                    <div class="ideal-tags">
+                        <span class="tag">Restaurants</span>
+                        <span class="tag">Hôtels</span>
+                        <span class="tag">Soirées privées</span>
+                        <span class="tag">Événements corporatifs</span>
+                        <span class="tag">Cocktails</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-packages animate-on-scroll">
+                <h3>Nos Formules Piano-Bar</h3>
+                {% for package in services.piano_bar.packages %}
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>{{ package.name }}</h4>
+                        <div class="package-price">{{ package.price }}</div>
+                    </div>
+                    <div class="package-details">
+                        <p><strong>Durée :</strong> {{ package.duration }}</p>
+                        <ul class="package-includes">
+                            {% for include in package.includes %}
+                            <li><i class="fas fa-check"></i> {{ include }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <div class="service-cta">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
+                        <i class="fas fa-calendar-check"></i> Réserver Piano-Bar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mariages Section -->
+<section id="mariages" class="service-detail alt">
+    <div class="container">
+        <div class="service-content">
+            <div class="service-text animate-on-scroll">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div>
+                        <h2>Mariages</h2>
+                        <p class="service-tagline">Votre jour parfait mérite une musique parfaite</p>
+                    </div>
+                </div>
+                
+                <p class="service-description">{{ services.mariages.full_description }}</p>
+                
+                <div class="service-features">
+                    <h3>Notre accompagnement mariage :</h3>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Consultation pré-mariage pour personnalisation</li>
+                        <li><i class="fas fa-check"></i> Musique d'entrée sur mesure</li>
+                        <li><i class="fas fa-check"></i> Accompagnement cérémonial</li>
+                        <li><i class="fas fa-check"></i> Animation cocktail et réception</li>
+                        <li><i class="fas fa-check"></i> Répertoire adapté à vos traditions</li>
+                        <li><i class="fas fa-check"></i> Coordination avec autres prestataires</li>
+                    </ul>
+                </div>
+                
+                <div class="service-moments">
+                    <h3>Moments musicaux :</h3>
+                    <div class="moments-grid">
+                        <div class="moment-item">
+                            <i class="fas fa-ring"></i>
+                            <h4>Cérémonie</h4>
+                            <p>Entrée, échange des vœux, sortie</p>
+                        </div>
+                        <div class="moment-item">
+                            <i class="fas fa-glass-cheers"></i>
+                            <h4>Cocktail</h4>
+                            <p>Ambiance jazzy et conviviale</p>
+                        </div>
+                        <div class="moment-item">
+                            <i class="fas fa-utensils"></i>
+                            <h4>Dîner</h4>
+                            <p>Musique de fond raffinée</p>
+                        </div>
+                        <div class="moment-item">
+                            <i class="fas fa-dancing"></i>
+                            <h4>Soirée</h4>
+                            <p>Animation et musique dansante</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-packages animate-on-scroll">
+                <h3>Formules Mariage</h3>
+                {% for package in services.mariages.packages %}
+                <div class="package-card featured">
+                    <div class="package-header">
+                        <h4>{{ package.name }}</h4>
+                        <div class="package-price">{{ package.price }}</div>
+                    </div>
+                    <div class="package-details">
+                        <p><strong>Prestation :</strong> {{ package.duration }}</p>
+                        <ul class="package-includes">
+                            {% for include in package.includes %}
+                            <li><i class="fas fa-heart"></i> {{ include }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <div class="wedding-note">
+                    <p><i class="fas fa-info-circle"></i> <strong>Chaque mariage est unique.</strong> Nous établissons un devis personnalisé après entretien pour comprendre vos souhaits, traditions et budget.</p>
+                </div>
+                
+                <div class="service-cta">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
+                        <i class="fas fa-heart"></i> Devis Mariage Gratuit
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Concerts Section -->
+<section id="concerts" class="service-detail">
+    <div class="container">
+        <div class="service-content">
+            <div class="service-text animate-on-scroll">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <div>
+                        <h2>Concerts & Spectacles</h2>
+                        <p class="service-tagline">Performances live qui marquent les esprits</p>
+                    </div>
+                </div>
+                
+                <p class="service-description">{{ services.concerts.full_description }}</p>
+                
+                <div class="service-features">
+                    <h3>Notre approche concert :</h3>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Répertoire original et reprises personnalisées</li>
+                        <li><i class="fas fa-check"></i> Performance scénique professionnelle</li>
+                        <li><i class="fas fa-check"></i> Adaptation au lieu et au public</li>
+                        <li><i class="fas fa-check"></i> Sound check et répétitions incluses</li>
+                        <li><i class="fas fa-check"></i> Interaction authentique avec l'audience</li>
+                    </ul>
+                </div>
+                
+                <div class="concert-repertoire">
+                    <h3>Répertoire Concert :</h3>
+                    <div class="repertoire-categories">
+                        <div class="repertoire-cat">
+                            <h4><i class="fas fa-music"></i> Jazz & Standards</h4>
+                            <p>Grands classiques du jazz international</p>
+                        </div>
+                        <div class="repertoire-cat">
+                            <h4><i class="fas fa-globe-africa"></i> World Music</h4>
+                            <p>Fusion afro-jazz et musiques du monde</p>
+                        </div>
+                        <div class="repertoire-cat">
+                            <h4><i class="fas fa-heart"></i> Créations Originales</h4>
+                            <p>Compositions signées A Laiz Prod</p>
+                        </div>
+                        <div class="repertoire-cat">
+                            <h4><i class="fas fa-church"></i> Spirituel & Gospel</h4>
+                            <p>Répertoire inspirant et émouvant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-packages animate-on-scroll">
+                <h3>Formules Concert</h3>
+                {% for package in services.concerts.packages %}
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>{{ package.name }}</h4>
+                        <div class="package-price">{{ package.price }}</div>
+                    </div>
+                    <div class="package-details">
+                        <p><strong>Durée :</strong> {{ package.duration }}</p>
+                        <ul class="package-includes">
+                            {% for include in package.includes %}
+                            <li><i class="fas fa-star"></i> {{ include }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <div class="service-cta">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
+                        <i class="fas fa-microphone"></i> Programmer un Concert
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Formations Section -->
+<section id="formations" class="service-detail alt">
+    <div class="container">
+        <div class="service-content">
+            <div class="service-text animate-on-scroll">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h2>Formations Musicales</h2>
+                        <p class="service-tagline">Pédagogie d'excellence par Hervé Nanfang</p>
+                    </div>
+                </div>
+                
+                <p class="service-description">{{ services.formations.full_description }}</p>
+                
+                <div class="service-features">
+                    <h3>Approche pédagogique :</h3>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Méthodes adaptées à chaque âge et niveau</li>
+                        <li><i class="fas fa-check"></i> Apprentissage progressif et structuré</li>
+                        <li><i class="fas fa-check"></i> Matériel pédagogique inclus</li>
+                        <li><i class="fas fa-check"></i> Suivi personnalisé et évaluations</li>
+                        <li><i class="fas fa-check"></i> Préparation aux examens et concours</li>
+                        <li><i class="fas fa-check"></i> Concerts d'élèves organisés</li>
+                    </ul>
+                </div>
+                
+                <div class="formation-disciplines">
+                    <h3>Disciplines enseignées :</h3>
+                    <div class="disciplines-grid">
+                        <div class="discipline-item">
+                            <i class="fas fa-piano"></i>
+                            <h4>Piano</h4>
+                            <p>Classique, jazz, variété</p>
+                        </div>
+                        <div class="discipline-item">
+                            <i class="fas fa-microphone-alt"></i>
+                            <h4>Chant</h4>
+                            <p>Technique vocale, interprétation</p>
+                        </div>
+                        <div class="discipline-item">
+                            <i class="fas fa-music"></i>
+                            <h4>Théorie</h4>
+                            <p>Solfège, harmonie, analyse</p>
+                        </div>
+                        <div class="discipline-item">
+                            <i class="fas fa-pen-fancy"></i>
+                            <h4>Composition</h4>
+                            <p>Création et arrangement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-packages animate-on-scroll">
+                <h3>Formules Formation</h3>
+                {% for package in services.formations.packages %}
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>{{ package.name }}</h4>
+                        <div class="package-price">{{ package.price }}</div>
+                    </div>
+                    <div class="package-details">
+                        <p><strong>Rythme :</strong> {{ package.duration }}</p>
+                        <ul class="package-includes">
+                            {% for include in package.includes %}
+                            <li><i class="fas fa-graduation-cap"></i> {{ include }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <div class="formation-note">
+                    <p><strong>Âges acceptés :</strong> Dès 6 ans pour les enfants, tous âges pour les adultes</p>
+                    <p><strong>Niveaux :</strong> Débutant complet à avancé/professionnel</p>
+                </div>
+                
+                <div class="service-cta">
+                    <a href="{{ url_for('formations') }}" class="btn btn-primary btn-large">
+                        <i class="fas fa-graduation-cap"></i> Voir Toutes les Formations
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sonorisation Section -->
+<section id="sono" class="service-detail">
+    <div class="container">
+        <div class="service-content">
+            <div class="service-text animate-on-scroll">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <div>
+                        <h2>A Laiz Sono</h2>
+                        <p class="service-tagline">Solutions techniques professionnelles</p>
+                    </div>
+                </div>
+                
+                <p class="service-description">{{ services.sono.full_description }}</p>
+                
+                <div class="service-features">
+                    <h3>Services techniques :</h3>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Matériel sonore professionnel (Line Array, consoles digitales)</li>
+                        <li><i class="fas fa-check"></i> Éclairage scénique et d'ambiance</li>
+                        <li><i class="fas fa-check"></i> Technicien qualifié sur site</li>
+                        <li><i class="fas fa-check"></i> Installation et configuration complète</li>
+                        <li><i class="fas check"></i> Support technique durant l'événement</li>
+                        <li><i class="fas fa-check"></i> Solutions sur mesure selon l'espace</li>
+                    </ul>
+                </div>
+                
+                <div class="sono-equipment">
+                    <h3>Équipements disponibles :</h3>
+                    <div class="equipment-categories">
+                        <div class="equipment-cat">
+                            <h4><i class="fas fa-volume-up"></i> Sonorisation</h4>
+                            <p>Enceintes, micros, tables de mixage</p>
+                        </div>
+                        <div class="equipment-cat">
+                            <h4><i class="fas fa-lightbulb"></i> Éclairage</h4>
+                            <p>Projecteurs LED, jeux de lumière</p>
+                        </div>
+                        <div class="equipment-cat">
+                            <h4><i class="fas fa-desktop"></i> Technique</h4>
+                            <p>Régie, câblage, alimentation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-packages animate-on-scroll">
+                <h3>Formules Sonorisation</h3>
+                {% for package in services.sono.packages %}
+                <div class="package-card">
+                    <div class="package-header">
+                        <h4>{{ package.name }}</h4>
+                        <div class="package-price">{{ package.price }}</div>
+                    </div>
+                    <div class="package-details">
+                        <p><strong>Adapté à :</strong> {{ package.duration }}</p>
+                        <ul class="package-includes">
+                            {% for include in package.includes %}
+                            <li><i class="fas fa-cog"></i> {{ include }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <div class="service-cta">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
+                        <i class="fas fa-volume-up"></i> Devis Sonorisation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Final -->
+<section class="services-cta-final">
+    <div class="container">
+        <div class="cta-content animate-on-scroll">
+            <h2>Besoin d'une Prestation Sur Mesure ?</h2>
+            <p>Chaque événement est unique. Contactez-nous pour créer ensemble la prestation parfaite pour votre projet.</p>
+            <div class="cta-stats">
+                <div class="cta-stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Événements Réussis</span>
+                </div>
+                <div class="cta-stat">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Années d'Expérience</span>
+                </div>
+                <div class="cta-stat">
+                    <span class="stat-number">24h</span>
+                    <span class="stat-label">Délai de Réponse</span>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
+                    <i class="fas fa-calendar-check"></i> Demander un Devis
+                </a>
+                <a href="tel:+237XXXXXXXX" class="btn btn-secondary btn-large">
+                    <i class="fas fa-phone"></i> Appeler Directement
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Smooth scroll pour la navigation des services
+    document.querySelectorAll('.nav-service-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            
+            if (target) {
+                const navbarHeight = document.getElementById('navbar').offsetHeight;
+                const servicesNavHeight = document.querySelector('.services-nav').offsetHeight;
+                const targetPosition = target.offsetTop - navbarHeight - servicesNavHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Highlight du lien actif
+                document.querySelectorAll('.nav-service-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            }
+        });
+    });
+    
+    // Highlight automatique du service visible
+    const serviceObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                const navLink = document.querySelector(`a[href="#${id}"]`);
+                
+                document.querySelectorAll('.nav-service-link').forEach(l => l.classList.remove('active'));
+                if (navLink) navLink.classList.add('active');
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll('.service-detail').forEach(section => {
+        serviceObserver.observe(section);
+    });
+</script>
 {% endblock %}
