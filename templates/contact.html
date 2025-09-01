@@ -1,58 +1,429 @@
 {% extends "base.html" %}
 
-{% block title %}Contact - A LAIZ PROD{% endblock %}
+{% block title %}Contact - A Laiz Prod | Réservation Événements Musicaux Cameroun{% endblock %}
+{% block description %}Contactez A Laiz Prod pour vos événements musicaux au Cameroun. Devis personnalisé pour piano-bar, mariages, concerts. Flavie & Hervé Nanfang - Yaoundé.{% endblock %}
 
 {% block content %}
-<section class="page-header">
-    <div class="container">
-        <h1>Nous Contacter</h1>
-        <p>Demander un devis ou plus d'informations</p>
-    </div>
-</section>
+<div class="page-spacer"></div>
 
-<section class="contact-detail">
+<!-- Contact Hero -->
+<section class="contact-hero">
     <div class="container">
-       043510
-        
-        <div class="contact-form">
-            <h2>Formulaire de Contact</h2>
-            <form method="POST" action="{{ url_for('contact') }}">
-                <div class="form-group">
-                    <label for="nom">Nom complet</label>
-                    <input type="text" id="nom" name="nom" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="whatsapp">WhatsApp</label>
-                    <input type="tel" id="whatsapp" name="whatsapp">
-                </div>
-                
-                <div class="form-group">
-                    <label for="service">Type de prestation</label>
-                    <select id="service" name="service">
-                        <option value="">-- Sélectionner --</option>
-                        <option value="piano-bar">Piano-Bar</option>
-                        <option value="mariage">Mariage</option>
-                        <option value="concert">Concert</option>
-                        <option value="formation">Formation</option>
-                        <option value="sono">Sonorisation</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                
-                <button type="submit" class="btn-primary">Envoyer</button>
-            </form>
+        <div class="hero-content animate-on-scroll">
+            <h1>Contactez-Nous</h1>
+            <p class="hero-subtitle">Réservez dès maintenant votre événement musical d'exception avec A Laiz Prod</p>
+            <p>Réponse garantie sous 24h | Devis gratuit et personnalisé</p>
         </div>
     </div>
 </section>
 
+<!-- Contact Main Section -->
+<section class="contact-main">
+    <div class="container">
+        <div class="contact-content">
+            <!-- Informations de Contact -->
+            <div class="contact-info animate-on-scroll">
+                <h3>Informations de Contact</h3>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Téléphones</h4>
+                        <p><strong>Flavie :</strong> <a href="tel:+237XXXXXXXX">+237 XXX XXX XXX</a></p>
+                        <p><strong>Hervé :</strong> <a href="tel:+237XXXXXXXX">+237 XXX XXX XXX</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email Professionnel</h4>
+                        <p><a href="mailto:contact@alaizprod.com">contact@alaizprod.com</a></p>
+                        <p><small>Réponse sous 24h garantie</small></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Localisation</h4>
+                        <p><strong>Yaoundé, Cameroun</strong></p>
+                        <p><small>Déplacements dans tout le Cameroun</small></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Disponibilités</h4>
+                        <p><strong>7j/7 pour vos événements</strong></p>
+                        <p><small>Bureau : Lun-Ven 9h-18h</small></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>WhatsApp Business</h4>
+                        <p><a href="https://wa.me/237XXXXXXXX?text=Bonjour, je souhaite avoir des informations sur vos services musicaux." target="_blank" class="whatsapp-link">
+                            <i class="fab fa-whatsapp"></i> Discuter directement
+                        </a></p>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="contact-social">
+                    <h4>Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="https://facebook.com/alaizprod" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/alaizprod" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/alaizprod" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://linkedin.com/in/hervénanfang" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulaire de Contact -->
+            <div class="contact-form animate-on-scroll">
+                <h3>Demande de Devis Personnalisé</h3>
+                <p class="form-intro">Remplissez ce formulaire pour recevoir votre devis personnalisé gratuitement.</p>
+                
+                <form method="POST" id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" placeholder="Votre nom complet" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Téléphone *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+237 XXX XXX XXX" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event_type">Type d'événement</label>
+                            <select id="event_type" name="event_type">
+                                <option value="">Sélectionnez le type d'événement</option>
+                                <option value="mariage">Mariage</option>
+                                <option value="piano-bar">Piano-Bar</option>
+                                <option value="concert">Concert</option>
+                                <option value="formation">Formation Musicale</option>
+                                <option value="sono">Sonorisation</option>
+                                <option value="evenement-corporatif">Événement Corporatif</option>
+                                <option value="soiree-privee">Soirée Privée</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event_date">Date souhaitée</label>
+                            <input type="date" id="event_date" name="event_date" min="{{ datetime.now().strftime('%Y-%m-%d') }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Lieu de l'événement</label>
+                        <input type="text" id="location" name="location" placeholder="Ville, quartier ou nom du lieu">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests">Nombre d'invités (approximatif)</label>
+                        <select id="guests" name="guests">
+                            <option value="">Sélectionnez</option>
+                            <option value="1-20">1 à 20 personnes</option>
+                            <option value="21-50">21 à 50 personnes</option>
+                            <option value="51-100">51 à 100 personnes</option>
+                            <option value="101-200">101 à 200 personnes</option>
+                            <option value="201-500">201 à 500 personnes</option>
+                            <option value="500+">Plus de 500 personnes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Décrivez votre projet</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Décrivez votre projet : style musical souhaité, durée de prestation, particularités, budget approximatif..."></textarea>
+                    </div>
+
+                    <div class="form-group-checkbox">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter" value="1">
+                            <span class="checkmark"></span>
+                            Je souhaite recevoir les actualités et offres spéciales d'A Laiz Prod
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large btn-full">
+                        <i class="fas fa-paper-plane"></i> Envoyer ma Demande
+                    </button>
+
+                    <p class="form-privacy">
+                        <i class="fas fa-shield-alt"></i> Vos données sont protégées et utilisées uniquement pour vous recontacter concernant votre demande.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Quick View -->
+<section class="pricing-quick-view">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Tarifs Indicatifs</h2>
+            <p>Nos forfaits de base - Devis détaillé sur mesure</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card animate-on-scroll">
+                <div class="pricing-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Mariages</h3>
+                <div class="pricing-info">
+                    <p class="price">À partir de <strong>150.000 FCFA</strong></p>
+                    <p class="includes">Cérémonie + Cocktail inclus</p>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Musique d'entrée personnalisée</li>
+                    <li><i class="fas fa-check"></i> Accompagnement cérémonie</li>
+                    <li><i class="fas fa-check"></i> Animation cocktail 2h</li>
+                    <li><i class="fas fa-check"></i> Matériel sonore inclus</li>
+                </ul>
+            </div>
+            
+            <div class="pricing-card animate-on-scroll featured">
+                <div class="pricing-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3>Piano-Bar</h3>
+                <div class="pricing-info">
+                    <p class="price">À partir de <strong>75.000 FCFA</strong></p>
+                    <p class="includes">2h de prestation minimum</p>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Duo piano et voix</li>
+                    <li><i class="fas fa-check"></i> Répertoire jazz & variété</li>
+                    <li><i class="fas fa-check"></i> Matériel sonore inclus</li>
+                    <li><i class="fas fa-check"></i> Personnalisation possible</li>
+                </ul>
+            </div>
+            
+            <div class="pricing-card animate-on-scroll">
+                <div class="pricing-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Formations</h3>
+                <div class="pricing-info">
+                    <p class="price"><strong>25.000 FCFA/mois</strong></p>
+                    <p class="includes">Cours particuliers</p>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> 8 séances de 1h par mois</li>
+                    <li><i class="fas fa-check"></i> Matériel pédagogique inclus</li>
+                    <li><i class="fas fa-check"></i> Suivi personnalisé</li>
+                    <li><i class="fas fa-check"></i> Tous niveaux acceptés</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="pricing-note">
+            <p><i class="fas fa-info-circle"></i> <strong>Ces tarifs sont indicatifs.</strong> Chaque prestation est unique et fait l'objet d'un devis personnalisé selon vos besoins spécifiques, la durée, le lieu et les services additionnels souhaités.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Questions Fréquemment Posées</h2>
+            <p>Trouvez rapidement les réponses à vos questions</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Combien de temps à l'avance faut-il réserver ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nous recommandons de réserver <strong>2-3 mois à l'avance pour les mariages</strong> et <strong>1 mois pour les autres événements</strong>. Cependant, contactez-nous même pour des demandes urgentes, nous faisons notre possible pour vous accommoder !</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Vous déplacez-vous partout au Cameroun ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Oui ! Nous nous déplaçons dans <strong>tout le Cameroun</strong>. Des frais de déplacement peuvent s'appliquer selon la distance et la logistique requise. Ces frais sont toujours indiqués clairement dans le devis.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Peut-on personnaliser le répertoire musical ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolument ! Nous adaptons notre répertoire à vos goûts et à l'ambiance souhaitée : <strong>jazz, variété française, musiques camerounaises, gospel, standards internationaux</strong>. Nous pouvons même apprendre des morceaux spéciaux pour votre événement.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Quel matériel sonore est inclus ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nous apportons tout le <strong>matériel sonore nécessaire</strong> : micros, enceintes, table de mixage, câblage. Pour les grandes événements, nous proposons aussi des solutions d'éclairage et de sonorisation renforcée via notre service A Laiz Sono.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Les formations musicales sont-elles pour tous les âges ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Oui ! Nos formations s'adressent à <strong>tous les âges et tous les niveaux</strong> : enfants (dès 6 ans), adolescents, adultes, seniors. Hervé Nanfang adapte sa pédagogie à chaque profil d'élève pour un apprentissage optimal.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="contact-cta">
+    <div class="container">
+        <div class="cta-content animate-on-scroll">
+            <h2>Une Question ? Un Projet ?</h2>
+            <p>N'hésitez pas à nous contacter pour discuter de votre projet musical.</p>
+            <div class="cta-buttons">
+                <a href="tel:+237XXXXXXXX" class="btn btn-primary btn-large">
+                    <i class="fas fa-phone"></i> Appeler Maintenant
+                </a>
+                <a href="https://wa.me/237XXXXXXXX?text=Bonjour, je souhaite des informations sur vos services" target="_blank" class="btn btn-secondary btn-large">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Form validation and enhancement
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contact-form');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+
+        // Auto-focus on first input
+        if (nameInput) nameInput.focus();
+
+        // Phone number formatting
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.startsWith('237')) {
+                value = '+' + value;
+            } else if (value.length > 0 && !value.startsWith('+237')) {
+                value = '+237' + value;
+            }
+            e.target.value = value;
+        });
+
+        // Form submission with enhanced validation
+        form.addEventListener('submit', function(e) {
+            const email = emailInput.value.trim();
+            const phone = phoneInput.value.replace(/\s/g, '');
+            const name = nameInput.value.trim();
+
+            // Validation email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                e.preventDefault();
+                showNotification('Veuillez saisir un email valide', 'error');
+                emailInput.focus();
+                return;
+            }
+
+            // Validation téléphone camerounais
+            const phoneRegex = /^\+237[0-9]{8,9}$/;
+            if (!phoneRegex.test(phone)) {
+                e.preventDefault();
+                showNotification('Veuillez saisir un numéro de téléphone camerounais valide (+237XXXXXXXX)', 'error');
+                phoneInput.focus();
+                return;
+            }
+
+            // Validation nom
+            if (name.length < 2) {
+                e.preventDefault();
+                showNotification('Veuillez saisir un nom valide', 'error');
+                nameInput.focus();
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+            submitBtn.disabled = true;
+        });
+    });
+
+    // FAQ Toggle function
+    function toggleFAQ(element) {
+        const faqItem = element.parentNode;
+        const answer = faqItem.querySelector('.faq-answer');
+        const icon = element.querySelector('i');
+        
+        faqItem.classList.toggle('active');
+        
+        if (faqItem.classList.contains('active')) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            answer.style.maxHeight = '0px';
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    // Notification system
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <span>${message}</span>
+            <button onclick="this.parentElement.remove()">×</button>
+        `;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 100);
+        
+        setTimeout(() => {
+            notification.remove();
+        }, 5000);
+    }
+</script>
 {% endblock %}
