@@ -11,6 +11,29 @@ def strftime_filter(date, fmt='%Y-%m-%d'):
     if isinstance(date, str):
         return date
     return date.strftime(fmt) if date else ''
+ Routes pour bloquer les bots WordPress/malveillants
+@app.route('/wp-admin')
+@app.route('/wp-admin/')
+@app.route('/wp-admin/<path:path>')
+@app.route('/wordpress/<path:path>')
+@app.route('/wp-login.php')
+@app.route('/wp-config.php')
+@app.route('/admin')
+@app.route('/admin/')
+@app.route('/admin/<path:path>')
+def block_bots(path=None):
+    """Bloquer les tentatives d'accès WordPress et autres bots"""
+    return '', 404
+
+# Route pour robots.txt
+@app.route('/robots.txt')
+def robots_txt():
+    return """User-agent: *
+Disallow: /wp-admin/
+Disallow: /admin/
+Disallow: /wordpress/
+Allow: /
+""", 200, {'Content-Type': 'text/plain'}
 
 # Configuration
 app.secret_key = os.environ.get('SECRET_KEY', 'alaiz-prod-secret-key-2024')
@@ -412,3 +435,4 @@ if __name__ == '__main__':
 else:
     # Configuration pour production (Gunicorn)
     application = app
+
