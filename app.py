@@ -4,6 +4,14 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+# Ajout des filtres Jinja2 manquants
+@app.template_filter('strftime')
+def strftime_filter(date, fmt='%Y-%m-%d'):
+    """Filtre pour formater les dates"""
+    if isinstance(date, str):
+        return date
+    return date.strftime(fmt) if date else ''
+
 # Configuration
 app.secret_key = os.environ.get('SECRET_KEY', 'alaiz-prod-secret-key-2024')
 app.config['DEBUG'] = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
@@ -16,9 +24,9 @@ label = {
     'director': {
         'name': 'Hervé Nanfang',
         'title': 'Directeur Artistique & Fondateur',
-        'phone': '+237 XXX XXX XXX',  # Remplacez par le vrai numéro
+        'phone': '+237 694 723 492',  # Remplacez par le vrai numéro
         'specialties': [
-            'Piano Classique & Jazz',
+            'Piano Variétés & Jazz',
             'Composition & Arrangements',
             'Direction Artistique',
             'Pédagogie Musicale',
@@ -32,7 +40,7 @@ label = {
             'facebook': 'https://facebook.com/alaizprod',
             'instagram': 'https://instagram.com/alaizprod',
             'youtube': 'https://youtube.com/@alaizprod',
-            'whatsapp': 'https://wa.me/237XXXXXXXX'  # Remplacez par le vrai numéro
+            'whatsapp': 'https://wa.me/237682180266'  # Remplacez par le vrai numéro
         }
     }
 }
@@ -47,8 +55,8 @@ services = {
         'packages': [
             {
                 'name': 'Essentiel',
-                'price': '180.000 FCFA',
-                'duration': '2-3 heures',
+                'price': '100.000 FCFA',
+                'duration': '2-4 heures',
                 'includes': [
                     'Hervé Nanfang au piano',
                     '1 chanteur(se) collaborateur',
@@ -77,7 +85,7 @@ services = {
         'packages': [
             {
                 'name': 'Harmonie',
-                'price': '350.000 FCFA',
+                'price': '200.000 FCFA',
                 'duration': 'Cérémonie + Cocktail (4h)',
                 'includes': [
                     'Équipe 3-4 artistes sur mesure',
@@ -118,7 +126,7 @@ services = {
             },
             {
                 'name': 'Spectacle Complet',
-                'price': '750.000 FCFA',
+                'price': '900.000 FCFA',
                 'duration': '90-120 minutes',
                 'includes': [
                     'Formation 6-8 artistes',
@@ -222,7 +230,7 @@ collaborations = {
 # Cours disponibles
 courses = [
     {
-        'name': 'Piano Classique & Jazz',
+        'name': 'Piano Variétés & Jazz',
         'level': 'Tous niveaux',
         'description': 'Formation complète basée sur les méthodes Hervé Nanfang et "Le petit pianiste"',
         'duration': '1h/semaine',
