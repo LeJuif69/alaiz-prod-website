@@ -1197,6 +1197,53 @@ p { margin-bottom: 1rem; }
     }
 }
 
+/* ----------- MENU MOBILE ----------- */
+
+/* Par défaut : caché */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 70px; /* sous la navbar */
+    right: 1rem;
+    width: 220px;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    z-index: 2000;
+}
+
+/* Quand on active le menu (via JS) */
+.mobile-menu.active {
+    display: flex;
+}
+
+/* Mobile : bouton visible, nav-links cachés */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+}
+
+/* Desktop : on masque tout ce qui est mobile */
+@media (min-width: 769px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: none !important;
+    }
+}
+
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 1024px) {
     .container { padding: 0 1.5rem; }
@@ -1318,4 +1365,5 @@ p { margin-bottom: 1rem; }
         padding: 0;
     }
 }
+
 
