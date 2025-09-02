@@ -1180,6 +1180,23 @@ p { margin-bottom: 1rem; }
     transform: translateY(0);
 }
 
+/* Cacher le menu mobile par défaut */
+.mobile-menu {
+    display: none;
+}
+
+/* Afficher uniquement en mobile */
+@media (max-width: 768px) {
+    .mobile-menu {
+        display: block;
+    }
+
+    /* Cacher le menu desktop en mobile */
+    .nav-links {
+        display: none;
+    }
+}
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 1024px) {
     .container { padding: 0 1.5rem; }
@@ -1301,3 +1318,4 @@ p { margin-bottom: 1rem; }
         padding: 0;
     }
 }
+
