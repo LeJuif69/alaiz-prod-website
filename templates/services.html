@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block title %}Services - A Laiz Prod | Piano-Bar, Mariages, Concerts, Formations{% endblock %}
-{% block description %}Découvrez tous les services musicaux d'A Laiz Prod au Cameroun : piano-bar, mariages, concerts, formations musicales, sonorisation. Devis gratuit.{% endblock %}
+{% block title %}Productions Musicales - A Laiz Prod | Label Camerounais - Créations Collaboratives{% endblock %}
+{% block description %}Découvrez nos productions musicales collaboratives au Cameroun : piano-bar, mariages, concerts, formations avec Hervé Nanfang. Label musical d'excellence depuis 2009.{% endblock %}
 
 {% block content %}
 <div class="page-spacer"></div>
@@ -10,9 +10,28 @@
 <section class="services-hero">
     <div class="container">
         <div class="hero-content animate-on-scroll">
-            <h1>Nos Services Musicaux</h1>
-            <p class="hero-subtitle">Des prestations d'exception adaptées à tous vos événements</p>
-            <p>De l'intimité du piano-bar à la grandeur des concerts, nous créons des expériences musicales inoubliables</p>
+            <div class="hero-badge">
+                <i class="fas fa-record-vinyl"></i>
+                <span>Label Musical Camerounais</span>
+            </div>
+            <h1>Nos Productions Musicales</h1>
+            <p class="hero-subtitle">Créations collaboratives d'exception dirigées par Hervé Nanfang</p>
+            <p>De l'intimité du piano-bar aux grandes productions scéniques, nous fédérons les talents pour créer des expériences musicales inoubliables</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Artistes Collaborateurs</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Productions Réalisées</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Années d'Excellence</span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -21,11 +40,11 @@
 <section class="services-nav">
     <div class="container">
         <div class="services-nav-links">
-            <a href="#piano-bar" class="nav-service-link">Piano-Bar</a>
-            <a href="#mariages" class="nav-service-link">Mariages</a>
-            <a href="#concerts" class="nav-service-link">Concerts</a>
+            <a href="#piano-bar" class="nav-service-link">Piano-Bar Collaboratif</a>
+            <a href="#mariages" class="nav-service-link">Mariages sur Mesure</a>
+            <a href="#concerts" class="nav-service-link">Productions Scéniques</a>
             <a href="#formations" class="nav-service-link">Formations</a>
-            <a href="#sono" class="nav-service-link">Sonorisation</a>
+            <a href="#sono" class="nav-service-link">A Laiz Sono</a>
         </div>
     </div>
 </section>
@@ -37,61 +56,109 @@
             <div class="service-text animate-on-scroll">
                 <div class="service-header">
                     <div class="service-icon">
-                        <i class="fas fa-music"></i>
+                        <i class="fas fa-piano"></i>
                     </div>
                     <div>
-                        <h2>Piano-Bar</h2>
-                        <p class="service-tagline">Ambiances musicales raffinées</p>
+                        <h2>Piano-Bar Collaboratif</h2>
+                        <p class="service-tagline">Hervé Nanfang & nos artistes collaborateurs</p>
                     </div>
                 </div>
                 
-                <p class="service-description">{{ services.piano_bar.full_description }}</p>
+                <p class="service-description">
+                    {{ services.piano_bar.full_description if services else "Réinventons l'art du piano-bar avec notre approche collaborative unique. Hervé Nanfang au piano, accompagné en rotation de nos chanteurs et instrumentistes partenaires, créent des ambiances musicales raffinées qui s'adaptent parfaitement à votre événement et à votre public." }}
+                </p>
+                
+                <div class="collaboration-highlight">
+                    <div class="highlight-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="highlight-content">
+                        <h3>Notre Approche Collaborative</h3>
+                        <p>Équipe tournante de 15+ artistes vocaux et instrumentistes qui se relayent pour créer des ambiances variées selon vos souhaits : jazz intimiste, soul chaleureuse, standards français ou créations afro-contemporaines.</p>
+                    </div>
+                </div>
                 
                 <div class="service-features">
                     <h3>Ce qui est inclus :</h3>
                     <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Duo piano et voix professionnel</li>
-                        <li><i class="fas fa-check"></i> Répertoire varié : jazz, standards, variété française</li>
-                        <li><i class="fas fa-check"></i> Matériel sonore de qualité inclus</li>
-                        <li><i class="fas fa-check"></i> Adaptation à l'ambiance souhaitée</li>
-                        <li><i class="fas fa-check"></i> Interaction avec le public selon contexte</li>
+                        <li><i class="fas fa-check"></i> Direction artistique Hervé Nanfang au piano</li>
+                        <li><i class="fas fa-check"></i> Rotation d'artistes vocaux selon l'ambiance</li>
+                        <li><i class="fas fa-check"></i> Répertoire adaptatif : jazz, standards, variété, créations</li>
+                        <li><i class="fas fa-check"></i> Sonorisation professionnelle incluse</li>
+                        <li><i class="fas fa-check"></i> Consultation préalable pour personnalisation</li>
+                        <li><i class="fas fa-check"></i> Interaction naturelle avec le public</li>
                     </ul>
                 </div>
                 
                 <div class="service-ideal">
-                    <h3>Idéal pour :</h3>
+                    <h3>Nos Résidences & Partenariats :</h3>
                     <div class="ideal-tags">
-                        <span class="tag">Restaurants</span>
-                        <span class="tag">Hôtels</span>
-                        <span class="tag">Soirées privées</span>
-                        <span class="tag">Événements corporatifs</span>
-                        <span class="tag">Cocktails</span>
+                        <span class="tag"><i class="fas fa-building"></i> Hilton Yaoundé</span>
+                        <span class="tag"><i class="fas fa-hotel"></i> Mont Fébé Hotel</span>
+                        <span class="tag"><i class="fas fa-utensils"></i> Restaurants prestige</span>
+                        <span class="tag"><i class="fas fa-home"></i> Événements privés</span>
+                        <span class="tag"><i class="fas fa-briefcase"></i> Cocktails corporatifs</span>
                     </div>
                 </div>
             </div>
             
             <div class="service-packages animate-on-scroll">
                 <h3>Nos Formules Piano-Bar</h3>
-                {% for package in services.piano_bar.packages %}
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>{{ package.name }}</h4>
-                        <div class="package-price">{{ package.price }}</div>
+                {% if services and services.piano_bar and services.piano_bar.packages %}
+                    {% for package in services.piano_bar.packages %}
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>{{ package.name }}</h4>
+                            <div class="package-price">{{ package.price }}</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Durée :</strong> {{ package.duration }}</p>
+                            <ul class="package-includes">
+                                {% for include in package.includes %}
+                                <li><i class="fas fa-check"></i> {{ include }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
-                    <div class="package-details">
-                        <p><strong>Durée :</strong> {{ package.duration }}</p>
-                        <ul class="package-includes">
-                            {% for include in package.includes %}
-                            <li><i class="fas fa-check"></i> {{ include }}</li>
-                            {% endfor %}
-                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>Essentiel</h4>
+                            <div class="package-price">180.000 FCFA</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Durée :</strong> 2-3 heures</p>
+                            <ul class="package-includes">
+                                <li><i class="fas fa-check"></i> Hervé Nanfang au piano</li>
+                                <li><i class="fas fa-check"></i> 1 chanteur(se) collaborateur</li>
+                                <li><i class="fas fa-check"></i> Répertoire jazz & standards</li>
+                                <li><i class="fas fa-check"></i> Sonorisation portable</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                {% endfor %}
+                    
+                    <div class="package-card featured">
+                        <div class="package-header">
+                            <h4>Premium</h4>
+                            <div class="package-price">320.000 FCFA</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Durée :</strong> 4-5 heures</p>
+                            <ul class="package-includes">
+                                <li><i class="fas fa-check"></i> Direction artistique Hervé Nanfang</li>
+                                <li><i class="fas fa-check"></i> 2 chanteurs en rotation</li>
+                                <li><i class="fas fa-check"></i> 1 instrumentiste (guitare/saxophone)</li>
+                                <li><i class="fas fa-check"></i> Répertoire élargi + créations A Laiz</li>
+                                <li><i class="fas fa-check"></i> Sonorisation professionnelle</li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
                 
                 <div class="service-cta">
                     <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
-                        <i class="fas fa-calendar-check"></i> Réserver Piano-Bar
+                        <i class="fas fa-piano"></i> Réserver Piano-Bar Collaboratif
                     </a>
                 </div>
             </div>
@@ -109,22 +176,35 @@
                         <i class="fas fa-heart"></i>
                     </div>
                     <div>
-                        <h2>Mariages</h2>
-                        <p class="service-tagline">Votre jour parfait mérite une musique parfaite</p>
+                        <h2>Créations Musicales pour Mariages</h2>
+                        <p class="service-tagline">Votre union célébrée par une équipe d'artistes sur mesure</p>
                     </div>
                 </div>
                 
-                <p class="service-description">{{ services.mariages.full_description }}</p>
+                <p class="service-description">
+                    {{ services.mariages.full_description if services else "Chaque mariage est unique, chaque création musicale l'est aussi. A Laiz Prod constitue une équipe d'artistes personnalisée selon vos goûts, traditions et rêves. De la cérémonie intime aux festivités, nous orchestrons la bande sonore parfaite de votre jour le plus précieux." }}
+                </p>
+                
+                <div class="collaboration-highlight">
+                    <div class="highlight-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <div class="highlight-content">
+                        <h3>Création sur Mesure</h3>
+                        <p>Notre approche collaborative nous permet de mixer chanteuses gospel, instrumentistes jazz, percussionnistes traditionnels ou quatuor à cordes selon votre vision. Arrangements personnalisés de vos chansons préférées inclus.</p>
+                    </div>
+                </div>
                 
                 <div class="service-features">
                     <h3>Notre accompagnement mariage :</h3>
                     <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Consultation pré-mariage pour personnalisation</li>
-                        <li><i class="fas fa-check"></i> Musique d'entrée sur mesure</li>
-                        <li><i class="fas fa-check"></i> Accompagnement cérémonial</li>
-                        <li><i class="fas fa-check"></i> Animation cocktail et réception</li>
-                        <li><i class="fas fa-check"></i> Répertoire adapté à vos traditions</li>
+                        <li><i class="fas fa-check"></i> Consultation approfondie avec le couple</li>
+                        <li><i class="fas fa-check"></i> Constitution d'équipe artistique personnalisée</li>
+                        <li><i class="fas fa-check"></i> Arrangements sur mesure de vos titres favoris</li>
+                        <li><i class="fas fa-check"></i> Accompagnement cérémonial adapté aux traditions</li>
+                        <li><i class="fas fa-check"></i> Animation cocktail et réception collaborative</li>
                         <li><i class="fas fa-check"></i> Coordination avec autres prestataires</li>
+                        <li><i class="fas fa-check"></i> Enregistrement professionnel des moments clés</li>
                     </ul>
                 </div>
                 
@@ -134,53 +214,89 @@
                         <div class="moment-item">
                             <i class="fas fa-ring"></i>
                             <h4>Cérémonie</h4>
-                            <p>Entrée, échange des vœux, sortie</p>
+                            <p>Entrée sur mesure, échange des vœux, sortie triomphale</p>
                         </div>
                         <div class="moment-item">
                             <i class="fas fa-glass-cheers"></i>
                             <h4>Cocktail</h4>
-                            <p>Ambiance jazzy et conviviale</p>
+                            <p>Ambiance collaborative jazz/soul avec nos artistes</p>
                         </div>
                         <div class="moment-item">
                             <i class="fas fa-utensils"></i>
                             <h4>Dîner</h4>
-                            <p>Musique de fond raffinée</p>
+                            <p>Musique de fond raffinée, sérénades personnalisées</p>
                         </div>
                         <div class="moment-item">
                             <i class="fas fa-dancing"></i>
                             <h4>Soirée</h4>
-                            <p>Animation et musique dansante</p>
+                            <p>Animation dansante avec DJ et musiciens live</p>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="service-packages animate-on-scroll">
-                <h3>Formules Mariage</h3>
-                {% for package in services.mariages.packages %}
-                <div class="package-card featured">
-                    <div class="package-header">
-                        <h4>{{ package.name }}</h4>
-                        <div class="package-price">{{ package.price }}</div>
+                <h3>Formules Mariage A Laiz Prod</h3>
+                {% if services and services.mariages and services.mariages.packages %}
+                    {% for package in services.mariages.packages %}
+                    <div class="package-card featured">
+                        <div class="package-header">
+                            <h4>{{ package.name }}</h4>
+                            <div class="package-price">{{ package.price }}</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Prestation :</strong> {{ package.duration }}</p>
+                            <ul class="package-includes">
+                                {% for include in package.includes %}
+                                <li><i class="fas fa-heart"></i> {{ include }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
-                    <div class="package-details">
-                        <p><strong>Prestation :</strong> {{ package.duration }}</p>
-                        <ul class="package-includes">
-                            {% for include in package.includes %}
-                            <li><i class="fas fa-heart"></i> {{ include }}</li>
-                            {% endfor %}
-                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <div class="package-card featured">
+                        <div class="package-header">
+                            <h4>Harmonie</h4>
+                            <div class="package-price">350.000 FCFA</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Prestation :</strong> Cérémonie + Cocktail (4h)</p>
+                            <ul class="package-includes">
+                                <li><i class="fas fa-heart"></i> Équipe 3-4 artistes sur mesure</li>
+                                <li><i class="fas fa-heart"></i> Arrangements personnalisés inclus</li>
+                                <li><i class="fas fa-heart"></i> Cérémonie + cocktail musical</li>
+                                <li><i class="fas fa-heart"></i> Consultation préparatoire</li>
+                                <li><i class="fas fa-heart"></i> Enregistrement moments clés</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                {% endfor %}
+                    
+                    <div class="package-card featured">
+                        <div class="package-header">
+                            <h4>Symphonie</h4>
+                            <div class="package-price">650.000 FCFA</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Prestation :</strong> Journée complète (8h)</p>
+                            <ul class="package-includes">
+                                <li><i class="fas fa-heart"></i> Équipe 5-8 artistes modulable</li>
+                                <li><i class="fas fa-heart"></i> Cérémonie + cocktail + dîner + soirée</li>
+                                <li><i class="fas fa-heart"></i> Créations musicales originales</li>
+                                <li><i class="fas fa-heart"></i> Support sonorisation A Laiz Sono</li>
+                                <li><i class="fas fa-heart"></i> Captation vidéo professionnelle</li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
                 
                 <div class="wedding-note">
-                    <p><i class="fas fa-info-circle"></i> <strong>Chaque mariage est unique.</strong> Nous établissons un devis personnalisé après entretien pour comprendre vos souhaits, traditions et budget.</p>
+                    <p><i class="fas fa-info-circle"></i> <strong>Chaque mariage est une création unique.</strong> Nous établissons un devis personnalisé après entretien approfondi pour comprendre votre vision, vos traditions et constituer l'équipe artistique parfaite.</p>
                 </div>
                 
                 <div class="service-cta">
                     <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
-                        <i class="fas fa-heart"></i> Devis Mariage Gratuit
+                        <i class="fas fa-heart"></i> Créer Mon Mariage Musical
                     </a>
                 </div>
             </div>
@@ -198,69 +314,117 @@
                         <i class="fas fa-microphone"></i>
                     </div>
                     <div>
-                        <h2>Concerts & Spectacles</h2>
-                        <p class="service-tagline">Performances live qui marquent les esprits</p>
+                        <h2>Productions Scéniques & Concerts</h2>
+                        <p class="service-tagline">Spectacles collaboratifs qui marquent les esprits</p>
                     </div>
                 </div>
                 
-                <p class="service-description">{{ services.concerts.full_description }}</p>
+                <p class="service-description">
+                    {{ services.concerts.full_description if services else "Nos productions scéniques rassemblent le meilleur de nos collaborateurs autour de créations artistiques d'exception. Sous la direction d'Hervé Nanfang, nous créons des spectacles uniques mêlant tradition camerounaise et influences internationales pour des expériences live inoubliables." }}
+                </p>
+                
+                <div class="collaboration-highlight">
+                    <div class="highlight-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="highlight-content">
+                        <h3>Équipes Artistiques Variables</h3>
+                        <p>De 3 à 12 artistes selon l'envergure : chanteurs, pianiste, guitaristes, saxophonistes, percussionnistes traditionnels. Chaque concert est une nouvelle aventure collaborative adaptée au lieu et au public.</p>
+                    </div>
+                </div>
                 
                 <div class="service-features">
                     <h3>Notre approche concert :</h3>
                     <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Répertoire original et reprises personnalisées</li>
-                        <li><i class="fas fa-check"></i> Performance scénique professionnelle</li>
-                        <li><i class="fas fa-check"></i> Adaptation au lieu et au public</li>
-                        <li><i class="fas fa-check"></i> Sound check et répétitions incluses</li>
+                        <li><i class="fas fa-check"></i> Direction artistique assurée par Hervé Nanfang</li>
+                        <li><i class="fas fa-check"></i> Répertoire original A Laiz + reprises personnalisées</li>
+                        <li><i class="fas fa-check"></i> Performance scénique professionnelle coordonnée</li>
+                        <li><i class="fas fa-check"></i> Adaptation créative au lieu et au public</li>
+                        <li><i class="fas fa-check"></i> Répétitions et sound check intégrés</li>
+                        <li><i class="fas fa-check"></i> Support technique A Laiz Sono disponible</li>
                         <li><i class="fas fa-check"></i> Interaction authentique avec l'audience</li>
                     </ul>
                 </div>
                 
                 <div class="concert-repertoire">
-                    <h3>Répertoire Concert :</h3>
+                    <h3>Nos Créations Phares :</h3>
                     <div class="repertoire-categories">
                         <div class="repertoire-cat">
-                            <h4><i class="fas fa-music"></i> Jazz & Standards</h4>
-                            <p>Grands classiques du jazz international</p>
+                            <h4><i class="fas fa-music"></i> "Racines & Ailes"</h4>
+                            <p>Voyage musical du folklore Batoufam au jazz moderne (90 min)</p>
                         </div>
                         <div class="repertoire-cat">
-                            <h4><i class="fas fa-globe-africa"></i> World Music</h4>
-                            <p>Fusion afro-jazz et musiques du monde</p>
+                            <h4><i class="fas fa-globe-africa"></i> "Jazz Tropical Night"</h4>
+                            <p>Fusion afro-jazz avec influences caribéennes (120 min)</p>
                         </div>
                         <div class="repertoire-cat">
-                            <h4><i class="fas fa-heart"></i> Créations Originales</h4>
-                            <p>Compositions signées A Laiz Prod</p>
+                            <h4><i class="fas fa-heart"></i> Créations sur Mesure</h4>
+                            <p>Spectacles personnalisés selon votre thématique</p>
                         </div>
                         <div class="repertoire-cat">
-                            <h4><i class="fas fa-church"></i> Spirituel & Gospel</h4>
-                            <p>Répertoire inspirant et émouvant</p>
+                            <h4><i class="fas fa-star"></i> Répertoire Classique</h4>
+                            <p>Standards jazz, gospel, world music adaptés</p>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="service-packages animate-on-scroll">
-                <h3>Formules Concert</h3>
-                {% for package in services.concerts.packages %}
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>{{ package.name }}</h4>
-                        <div class="package-price">{{ package.price }}</div>
+                <h3>Formules Productions Scéniques</h3>
+                {% if services and services.concerts and services.concerts.packages %}
+                    {% for package in services.concerts.packages %}
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>{{ package.name }}</h4>
+                            <div class="package-price">{{ package.price }}</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Durée :</strong> {{ package.duration }}</p>
+                            <ul class="package-includes">
+                                {% for include in package.includes %}
+                                <li><i class="fas fa-star"></i> {{ include }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
-                    <div class="package-details">
-                        <p><strong>Durée :</strong> {{ package.duration }}</p>
-                        <ul class="package-includes">
-                            {% for include in package.includes %}
-                            <li><i class="fas fa-star"></i> {{ include }}</li>
-                            {% endfor %}
-                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>Concert Intimiste</h4>
+                            <div class="package-price">400.000 FCFA</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Durée :</strong> 60-90 minutes</p>
+                            <ul class="package-includes">
+                                <li><i class="fas fa-star"></i> Formation 3-5 artistes</li>
+                                <li><i class="fas fa-star"></i> Direction Hervé Nanfang</li>
+                                <li><i class="fas fa-star"></i> Répertoire adapté au lieu</li>
+                                <li><i class="fas fa-star"></i> Sound check inclus</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                {% endfor %}
+                    
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>Spectacle Complet</h4>
+                            <div class="package-price">750.000 FCFA</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Durée :</strong> 90-120 minutes</p>
+                            <ul class="package-includes">
+                                <li><i class="fas fa-star"></i> Formation 6-8 artistes</li>
+                                <li><i class="fas fa-star"></i> Scénographie et costumes</li>
+                                <li><i class="fas fa-star"></i> Support technique intégré</li>
+                                <li><i class="fas fa-star"></i> Créations originales A Laiz</li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
                 
                 <div class="service-cta">
                     <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
-                        <i class="fas fa-microphone"></i> Programmer un Concert
+                        <i class="fas fa-microphone"></i> Commander une Production
                     </a>
                 </div>
             </div>
@@ -283,17 +447,30 @@
                     </div>
                 </div>
                 
-                <p class="service-description">{{ services.formations.full_description }}</p>
+                <p class="service-description">
+                    {{ services.formations.full_description if services else "Auteur de 12 ouvrages pédagogiques révolutionnaires, Hervé Nanfang transmet son expertise à travers des formations d'exception. De l'initiation musicale à la direction artistique, nos programmes cultivent l'excellence tout en préservant l'authenticité culturelle camerounaise." }}
+                </p>
+                
+                <div class="collaboration-highlight">
+                    <div class="highlight-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="highlight-content">
+                        <h3>Pédagogie Reconnue</h3>
+                        <p>Méthodes basées sur 12 publications pédagogiques intégrant rythmes camerounais et techniques classiques. Plus de 1000 élèves formés depuis 2009, dont plusieurs devenus nos collaborateurs professionnels.</p>
+                    </div>
+                </div>
                 
                 <div class="service-features">
-                    <h3>Approche pédagogique :</h3>
+                    <h3>Approche pédagogique unique :</h3>
                     <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Méthodes adaptées à chaque âge et niveau</li>
-                        <li><i class="fas fa-check"></i> Apprentissage progressif et structuré</li>
-                        <li><i class="fas fa-check"></i> Matériel pédagogique inclus</li>
-                        <li><i class="fas fa-check"></i> Suivi personnalisé et évaluations</li>
-                        <li><i class="fas fa-check"></i> Préparation aux examens et concours</li>
-                        <li><i class="fas fa-check"></i> Concerts d'élèves organisés</li>
+                        <li><i class="fas fa-check"></i> Méthodes Hervé Nanfang adaptées à chaque âge et niveau</li>
+                        <li><i class="fas fa-check"></i> Apprentissage progressif alliant classique et traditions</li>
+                        <li><i class="fas fa-check"></i> Ouvrages pédagogiques "Le petit pianiste" inclus</li>
+                        <li><i class="fas fa-check"></i> Suivi personnalisé et évaluations régulières</li>
+                        <li><i class="fas fa-check"></i> Préparation examens et intégration collaborative</li>
+                        <li><i class="fas fa-check"></i> Concerts d'élèves avec artistes A Laiz Prod</li>
+                        <li><i class="fas fa-check"></i> Possibilité d'intégrer le réseau collaborateurs</li>
                     </ul>
                 </div>
                 
@@ -303,22 +480,22 @@
                         <div class="discipline-item">
                             <i class="fas fa-piano"></i>
                             <h4>Piano</h4>
-                            <p>Classique, jazz, variété</p>
+                            <p>Classique, jazz, variété, créations A Laiz</p>
                         </div>
                         <div class="discipline-item">
                             <i class="fas fa-microphone-alt"></i>
                             <h4>Chant</h4>
-                            <p>Technique vocale, interprétation</p>
+                            <p>Technique vocale, interprétation, direction chorale</p>
                         </div>
                         <div class="discipline-item">
                             <i class="fas fa-music"></i>
                             <h4>Théorie</h4>
-                            <p>Solfège, harmonie, analyse</p>
+                            <p>Solfège, harmonie, analyse, traditions orales</p>
                         </div>
                         <div class="discipline-item">
                             <i class="fas fa-pen-fancy"></i>
                             <h4>Composition</h4>
-                            <p>Création et arrangement</p>
+                            <p>Création, arrangement, direction artistique</p>
                         </div>
                     </div>
                 </div>
@@ -326,31 +503,66 @@
             
             <div class="service-packages animate-on-scroll">
                 <h3>Formules Formation</h3>
-                {% for package in services.formations.packages %}
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>{{ package.name }}</h4>
-                        <div class="package-price">{{ package.price }}</div>
+                {% if services and services.formations and services.formations.packages %}
+                    {% for package in services.formations.packages %}
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>{{ package.name }}</h4>
+                            <div class="package-price">{{ package.price }}</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Rythme :</strong> {{ package.duration }}</p>
+                            <ul class="package-includes">
+                                {% for include in package.includes %}
+                                <li><i class="fas fa-graduation-cap"></i> {{ include }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
-                    <div class="package-details">
-                        <p><strong>Rythme :</strong> {{ package.duration }}</p>
-                        <ul class="package-includes">
-                            {% for include in package.includes %}
-                            <li><i class="fas fa-graduation-cap"></i> {{ include }}</li>
-                            {% endfor %}
-                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>Cours Individuels</h4>
+                            <div class="package-price">25.000 FCFA</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Rythme :</strong> 1h/semaine</p>
+                            <ul class="package-includes">
+                                <li><i class="fas fa-graduation-cap"></i> Cours personnalisé avec Hervé</li>
+                                <li><i class="fas fa-graduation-cap"></i> Méthode "Le petit pianiste"</li>
+                                <li><i class="fas fa-graduation-cap"></i> Suivi pédagogique individuel</li>
+                                <li><i class="fas fa-graduation-cap"></i> Concert d'élèves annuel</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                {% endfor %}
+                    
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>Ateliers Collectifs</h4>
+                            <div class="package-price">15.000 FCFA</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Rythme :</strong> 2h/semaine (4-6 élèves)</p>
+                            <ul class="package-includes">
+                                <li><i class="fas fa-graduation-cap"></i> Formation en petit groupe</li>
+                                <li><i class="fas fa-graduation-cap"></i> Apprentissage collaboratif</li>
+                                <li><i class="fas fa-graduation-cap"></i> Jeu d'ensemble encouragé</li>
+                                <li><i class="fas fa-graduation-cap"></i> Intégration projets A Laiz</li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
                 
                 <div class="formation-note">
                     <p><strong>Âges acceptés :</strong> Dès 6 ans pour les enfants, tous âges pour les adultes</p>
-                    <p><strong>Niveaux :</strong> Débutant complet à avancé/professionnel</p>
+                    <p><strong>Niveaux :</strong> Débutant complet à avancé/professionnel avec possibilité d'intégrer nos collaborations</p>
+                    <p><strong>Publications :</strong> 12 ouvrages pédagogiques incluant "Le petit pianiste" utilisés dans nos formations</p>
                 </div>
                 
                 <div class="service-cta">
                     <a href="{{ url_for('formations') }}" class="btn btn-primary btn-large">
-                        <i class="fas fa-graduation-cap"></i> Voir Toutes les Formations
+                        <i class="fas fa-graduation-cap"></i> Découvrir Toutes les Formations
                     </a>
                 </div>
             </div>
@@ -369,65 +581,113 @@
                     </div>
                     <div>
                         <h2>A Laiz Sono</h2>
-                        <p class="service-tagline">Solutions techniques professionnelles</p>
+                        <p class="service-tagline">Division technique professionnelle du label</p>
                     </div>
                 </div>
                 
-                <p class="service-description">{{ services.sono.full_description }}</p>
+                <p class="service-description">
+                    {{ services.sono.full_description if services else "A Laiz Sono, division technique de notre label, apporte l'excellence sonore à toutes vos productions. Équipements professionnels et équipe de 10+ techniciens experts garantissent la qualité acoustique optimale de vos événements, en parfaite synergie avec nos créations artistiques." }}
+                </p>
+                
+                <div class="collaboration-highlight">
+                    <div class="highlight-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="highlight-content">
+                        <h3>Synergie Artistique & Technique</h3>
+                        <p>Intégration parfaite entre nos productions musicales et le support technique. Nos techniciens connaissent intimement les besoins de chaque artiste collaborateur pour un rendu sonore optimal.</p>
+                    </div>
+                </div>
                 
                 <div class="service-features">
-                    <h3>Services techniques :</h3>
+                    <h3>Services techniques intégrés :</h3>
                     <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Matériel sonore professionnel (Line Array, consoles digitales)</li>
-                        <li><i class="fas fa-check"></i> Éclairage scénique et d'ambiance</li>
-                        <li><i class="fas fa-check"></i> Technicien qualifié sur site</li>
-                        <li><i class="fas fa-check"></i> Installation et configuration complète</li>
-                        <li><i class="fas check"></i> Support technique durant l'événement</li>
-                        <li><i class="fas fa-check"></i> Solutions sur mesure selon l'espace</li>
+                        <li><i class="fas fa-check"></i> Matériel sonore professionnel (JBL, Yamaha, Crown)</li>
+                        <li><i class="fas fa-check"></i> Éclairage scénique LED et d'ambiance</li>
+                        <li><i class="fas fa-check"></i> Équipe 10+ techniciens spécialisés A Laiz</li>
+                        <li><i class="fas fa-check"></i> Installation et configuration sur mesure</li>
+                        <li><i class="fas fa-check"></i> Support technique durant productions musicales</li>
+                        <li><i class="fas fa-check"></i> Solutions adaptées aux créations collaboratives</li>
+                        <li><i class="fas fa-check"></i> Enregistrement live et captation vidéo</li>
                     </ul>
                 </div>
                 
                 <div class="sono-equipment">
-                    <h3>Équipements disponibles :</h3>
+                    <h3>Notre parc matériel professionnel :</h3>
                     <div class="equipment-categories">
                         <div class="equipment-cat">
-                            <h4><i class="fas fa-volume-up"></i> Sonorisation</h4>
-                            <p>Enceintes, micros, tables de mixage</p>
+                            <h4><i class="fas fa-volume-up"></i> Audio</h4>
+                            <p>Line Array JBL, consoles Yamaha CL, micros Shure/Sennheiser</p>
                         </div>
                         <div class="equipment-cat">
                             <h4><i class="fas fa-lightbulb"></i> Éclairage</h4>
-                            <p>Projecteurs LED, jeux de lumière</p>
+                            <p>LED Chauvet, consoles Avolites, effets et strobes</p>
                         </div>
                         <div class="equipment-cat">
-                            <h4><i class="fas fa-desktop"></i> Technique</h4>
-                            <p>Régie, câblage, alimentation</p>
+                            <h4><i class="fas fa-video"></i> Captation</h4>
+                            <p>Caméras Sony, écrans LED, régie mobile, streaming</p>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="service-packages animate-on-scroll">
-                <h3>Formules Sonorisation</h3>
-                {% for package in services.sono.packages %}
-                <div class="package-card">
-                    <div class="package-header">
-                        <h4>{{ package.name }}</h4>
-                        <div class="package-price">{{ package.price }}</div>
+                <h3>Formules A Laiz Sono</h3>
+                {% if services and services.sono and services.sono.packages %}
+                    {% for package in services.sono.packages %}
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>{{ package.name }}</h4>
+                            <div class="package-price">{{ package.price }}</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Adapté à :</strong> {{ package.duration }}</p>
+                            <ul class="package-includes">
+                                {% for include in package.includes %}
+                                <li><i class="fas fa-cog"></i> {{ include }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
-                    <div class="package-details">
-                        <p><strong>Adapté à :</strong> {{ package.duration }}</p>
-                        <ul class="package-includes">
-                            {% for include in package.includes %}
-                            <li><i class="fas fa-cog"></i> {{ include }}</li>
-                            {% endfor %}
-                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h4>Pack Conférence</h4>
+                            <div class="package-price">125.000 FCFA</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Adapté à :</strong> Jusqu'à 100 personnes</p>
+                            <ul class="package-includes">
+                                <li><i class="fas fa-cog"></i> Micros sans fil + filaires</li>
+                                <li><i class="fas fa-cog"></i> Table de mixage professionnelle</li>
+                                <li><i class="fas fa-cog"></i> Enceintes monitoring</li>
+                                <li><i class="fas fa-cog"></i> Technicien A Laiz dédié</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                {% endfor %}
+                    
+                    <div class="package-card featured">
+                        <div class="package-header">
+                            <h4>Pack Production</h4>
+                            <div class="package-price">300.000 FCFA</div>
+                        </div>
+                        <div class="package-details">
+                            <p><strong>Adapté à :</strong> 100-300 personnes</p>
+                            <ul class="package-includes">
+                                <li><i class="fas fa-cog"></i> Système son principal complet</li>
+                                <li><i class="fas fa-cog"></i> Éclairage scénique LED</li>
+                                <li><i class="fas fa-cog"></i> Régie mobile A Laiz</li>
+                                <li><i class="fas fa-cog"></i> 2 techniciens + coordination</li>
+                                <li><i class="fas fa-cog"></i> Compatible productions musicales</li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
                 
                 <div class="service-cta">
                     <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
-                        <i class="fas fa-volume-up"></i> Devis Sonorisation
+                        <i class="fas fa-volume-up"></i> Devis Technique A Laiz Sono
                     </a>
                 </div>
             </div>
@@ -439,29 +699,53 @@
 <section class="services-cta-final">
     <div class="container">
         <div class="cta-content animate-on-scroll">
-            <h2>Besoin d'une Prestation Sur Mesure ?</h2>
-            <p>Chaque événement est unique. Contactez-nous pour créer ensemble la prestation parfaite pour votre projet.</p>
+            <div class="cta-badge">
+                <i class="fas fa-record-vinyl"></i>
+                <span>A Laiz Prod Label Musical</span>
+            </div>
+            <h2>Prêt pour une Collaboration Artistique d'Exception ?</h2>
+            <p>Chaque projet est unique, chaque création est sur mesure. Contactez Hervé Nanfang pour constituer l'équipe artistique parfaite pour votre événement et créer ensemble une expérience musicale inoubliable.</p>
+            
             <div class="cta-stats">
                 <div class="cta-stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Artistes Collaborateurs</span>
+                </div>
+                <div class="cta-stat">
                     <span class="stat-number">500+</span>
-                    <span class="stat-label">Événements Réussis</span>
+                    <span class="stat-label">Productions Réalisées</span>
                 </div>
                 <div class="cta-stat">
                     <span class="stat-number">15</span>
-                    <span class="stat-label">Années d'Expérience</span>
+                    <span class="stat-label">Années d'Excellence</span>
                 </div>
                 <div class="cta-stat">
                     <span class="stat-number">24h</span>
                     <span class="stat-label">Délai de Réponse</span>
                 </div>
             </div>
+            
             <div class="cta-buttons">
                 <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
-                    <i class="fas fa-calendar-check"></i> Demander un Devis
+                    <i class="fas fa-handshake"></i> Créer Ma Production Sur Mesure
                 </a>
+                {% if label and label.director and label.director.phone %}
+                <a href="tel:{{ label.director.phone }}" class="btn btn-secondary btn-large">
+                    <i class="fas fa-phone"></i> Hervé Nanfang Direct
+                </a>
+                {% else %}
                 <a href="tel:+237XXXXXXXX" class="btn btn-secondary btn-large">
                     <i class="fas fa-phone"></i> Appeler Directement
                 </a>
+                {% endif %}
+            </div>
+            
+            <div class="cta-director">
+                <div class="director-info">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Chaque collaboration est une aventure artistique unique. Ensemble, créons la bande sonore parfaite de vos moments d'exception."</p>
+                    <cite>— Hervé Nanfang, Directeur Artistique A Laiz Prod</cite>
+                </div>
             </div>
         </div>
     </div>
@@ -478,8 +762,8 @@
             const target = document.querySelector(targetId);
             
             if (target) {
-                const navbarHeight = document.getElementById('navbar').offsetHeight;
-                const servicesNavHeight = document.querySelector('.services-nav').offsetHeight;
+                const navbarHeight = document.getElementById('navbar') ? document.getElementById('navbar').offsetHeight : 80;
+                const servicesNavHeight = document.querySelector('.services-nav') ? document.querySelector('.services-nav').offsetHeight : 80;
                 const targetPosition = target.offsetTop - navbarHeight - servicesNavHeight - 20;
                 
                 window.scrollTo({
@@ -505,10 +789,80 @@
                 if (navLink) navLink.classList.add('active');
             }
         });
-    }, { threshold: 0.3 });
+    }, { 
+        threshold: 0.3,
+        rootMargin: '-100px 0px -60% 0px'
+    });
     
     document.querySelectorAll('.service-detail').forEach(section => {
         serviceObserver.observe(section);
+    });
+
+    // Animation des statistiques
+    function animateStats() {
+        const stats = document.querySelectorAll('.stat-number');
+        
+        stats.forEach(stat => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.textContent);
+                        let current = 0;
+                        const increment = target / 50;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                entry.target.textContent = target + (target > 10 ? '+' : '');
+                                clearInterval(timer);
+                            } else {
+                                entry.target.textContent = Math.floor(current) + (target > 10 ? '+' : '');
+                            }
+                        }, 30);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(stat);
+        });
+    }
+
+    // Animation des cartes au scroll
+    function animatePackageCards() {
+        const cards = document.querySelectorAll('.package-card');
+        
+        cards.forEach((card, index) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.transform = 'translateY(0)';
+                            entry.target.style.opacity = '1';
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            card.style.transform = 'translateY(30px)';
+            card.style.opacity = '0';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    }
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', function() {
+        animateStats();
+        animatePackageCards();
+        
+        // Auto-select first nav item si aucun hash
+        if (!window.location.hash) {
+            const firstNavLink = document.querySelector('.nav-service-link');
+            if (firstNavLink) {
+                firstNavLink.classList.add('active');
+            }
+        }
     });
 </script>
 {% endblock %}
