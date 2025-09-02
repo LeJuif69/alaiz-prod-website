@@ -1,182 +1,850 @@
-<section class="about-hero">
-    <div class="container">
-        <div class="hero-content animate-on-scroll">
-            <h1>A Laiz Prod : Notre Vision</h1>
-            <p class="hero-subtitle">Label musical qui révolutionne la scène artistique camerounaise</p>
-            <p>Plateforme de créations, collaborations et transmission musicale dirigée par Hervé Nanfang, avec une ouverture sur le monde et un ancrage culturel profond.</p>
-        </div>
-    </div>
-</section>
+{% extends "base.html" %}
 
-<!-- Fondateur & Directeur Artistique -->
-<section class="fondateur-section">
-    <div class="container">
-        <div class="artist-profile">
-            <div class="artist-content">
-                <div class="artist-text animate-on-scroll">
-                    <div class="artist-header">
-                        <div class="artist-icon">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <div>
-                            <h2>Hervé Nanfang</h2>
-                            <p class="artist-role">Fondateur & Directeur Artistique</p>
+{% block title %}À Propos - A Laiz Prod | Histoire du Label Musical Camerounais{% endblock %}
+{% block description %}Découvrez l'histoire d'A Laiz Prod, label musical camerounais dirigé par Hervé Nanfang. Vision artistique, projet Tswefap, formations d'excellence depuis 2009.{% endblock %}
+
+{% block og_title %}À Propos d'A Laiz Prod - Excellence Musicale Camerounaise{% endblock %}
+{% block og_description %}L'histoire inspirante d'Hervé Nanfang et la naissance d'A Laiz Prod. Du piano classique aux collaborations internationales, découvrez notre parcours.{% endblock %}
+
+{% block content %}
+    <!-- Hero About Section -->
+    <section class="about-hero">
+        <div class="about-hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="about-hero-content animate-on-scroll">
+                <div class="breadcrumb">
+                    <a href="{{ url_for('index') }}">Accueil</a>
+                    <span>/</span>
+                    <span>À Propos</span>
+                </div>
+                
+                <h1>L'Histoire d'A Laiz Prod</h1>
+                <p class="hero-subtitle">
+                    De la passion d'un pianiste classique à l'écosystème musical collaboratif qui révolutionne la scène camerounaise
+                </p>
+                
+                <div class="hero-timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">2009</span>
+                        <span class="timeline-event">Fondation</span>
+                    </div>
+                    <div class="timeline-separator"></div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">2015</span>
+                        <span class="timeline-event">Expansion</span>
+                    </div>
+                    <div class="timeline-separator"></div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">2020</span>
+                        <span class="timeline-event">Label</span>
+                    </div>
+                    <div class="timeline-separator"></div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">2025</span>
+                        <span class="timeline-event">Aujourd'hui</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Fondateur : Hervé Nanfang -->
+    <section class="founder-section">
+        <div class="container">
+            <div class="founder-content">
+                <div class="founder-image animate-on-scroll">
+                    <div class="image-container">
+                        <img src="{{ url_for('static', filename='images/team/herve-nanfang-profile.jpg') }}" 
+                             alt="Hervé Nanfang - Fondateur et Directeur Artistique A Laiz Prod"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display: none;">
+                            <i class="fas fa-user-tie"></i>
+                            <p>Hervé Nanfang</p>
                         </div>
                     </div>
                     
-                    <div class="artist-bio">
-                        <h3>Le Visionnaire derrière A Laiz Prod</h3>
-                        <p>Hervé Nanfang a fondé A Laiz Prod avec une vision claire : créer un écosystème musical camerounais d'excellence qui unit tradition et innovation. Pianiste de formation classique et jazz, pédagogue reconnu et auteur de plusieurs ouvrages, il dirige aujourd'hui un label qui rayonne bien au-delà des frontières nationales.</p>
-                        <p>Son approche unique consiste à fédérer les talents autour de projets artistiques ambitieux, tout en préservant l'authenticité culturelle camerounaise. De la direction d'orchestre aux collaborations internationales, Hervé orchestre une symphonie artistique qui fait d'A Laiz Prod une référence incontournable.</p>
+                    <div class="founder-credentials">
+                        <h4>Diplômes & Certifications</h4>
+                        <ul>
+                            <li><i class="fas fa-medal"></i> Diplôme Supérieur de Piano Classique</li>
+                            <li><i class="fas fa-star"></i> Formation Jazz & Musiques Actuelles</li>
+                            <li><i class="fas fa-certificate"></i> Pédagogie Musicale Avancée</li>
+                            <li><i class="fas fa-award"></i> Certification Direction Artistique</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="founder-text animate-on-scroll">
+                    {% if label and label.director %}
+                    <div class="founder-badge">
+                        <i class="fas fa-crown"></i>
+                        <span>Fondateur & Directeur Artistique</span>
                     </div>
                     
-                    <div class="artist-roles">
-                        <h4>Rôles au sein du Label :</h4>
-                        <div class="roles-grid">
-                            <div class="role-item">
+                    <h2>{{ label.director.name }}</h2>
+                    <p class="founder-title">{{ label.director.title }}</p>
+                    
+                    <div class="founder-bio">
+                        <p class="lead">
+                            Pianiste classique de formation, compositeur visionnaire et pédagogue passionné, 
+                            Hervé Nanfang incarne l'excellence musicale camerounaise depuis plus de 15 ans.
+                        </p>
+                        
+                        <p>
+                            Né d'une famille mélomane, Hervé découvre le piano dès l'âge de 6 ans. Sa formation rigoureuse 
+                            en piano classique, enrichie par sa curiosité pour le jazz et les musiques du monde, 
+                            forge une approche artistique unique qui transcende les genres.
+                        </p>
+                        
+                        <p>
+                            En 2009, guidé par une vision claire de démocratiser l'excellence musicale au Cameroun, 
+                            il fonde <strong>A Laiz Prod</strong> avec une mission : créer un pont entre tradition et modernité, 
+                            entre formation d'excellence et création collaborative.
+                        </p>
+                    </div>
+                    
+                    <div class="founder-quote">
+                        <blockquote>
+                            <i class="fas fa-quote-left"></i>
+                            <p>"La musique n'a pas de frontières, mais elle a des racines. Mon rôle est de cultiver ces racines 
+                            camerounaises pour qu'elles fleurissent sur la scène internationale."</p>
+                        </blockquote>
+                    </div>
+                    
+                    <div class="founder-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
                                 <i class="fas fa-music"></i>
-                                <span>Direction Artistique</span>
                             </div>
-                            <div class="role-item">
-                                <i class="fas fa-users"></i>
-                                <span>Coordination Collaborations</span>
+                            <div class="highlight-content">
+                                <h4>Maître Pédagogue</h4>
+                                <p>Auteur de 12 ouvrages pédagogiques révolutionnant l'enseignement musical au Cameroun</p>
                             </div>
-                            <div class="role-item">
-                                <i class="fas fa-graduation-cap"></i>
-                                <span>Formation & Pédagogie</span>
-                            </div>
-                            <div class="role-item">
+                        </div>
+                        
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
                                 <i class="fas fa-globe-africa"></i>
-                                <span>Projet Culturel Tswefap</span>
+                            </div>
+                            <div class="highlight-content">
+                                <h4>Gardien de la Culture</h4>
+                                <p>Initiateur du projet Tswefap pour la préservation du patrimoine linguistique Batoufam</p>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="highlight-content">
+                                <h4>Fédérateur de Talents</h4>
+                                <p>Plus de 50 collaborations artistiques menées vers l'excellence</p>
                             </div>
                         </div>
                     </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline de l'Histoire du Label -->
+    <section class="history-timeline">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>15 Années d'Excellence Musicale</h2>
+                <p>L'évolution d'A Laiz Prod, de studio pédagogique à label musical de référence</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item left animate-on-scroll">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2009</div>
+                        <h3>Naissance d'A Laiz Prod</h3>
+                        <p>Hervé Nanfang fonde A Laiz Prod comme studio de formation musicale, avec une vision : 
+                        démocratiser l'enseignement musical d'excellence au Cameroun.</p>
+                        <div class="timeline-achievements">
+                            <span class="achievement">Premier studio</span>
+                            <span class="achievement">3 élèves</span>
+                            <span class="achievement">Cours de piano</span>
+                        </div>
+                    </div>
+                    <div class="timeline-marker">
+                        <i class="fas fa-seedling"></i>
+                    </div>
                 </div>
                 
-                <div class="artist-image animate-on-scroll">
-                    <div class="placeholder-image">
-                        <i class="fas fa-user-tie"></i>
-                        <p>Hervé Nanfang<br><strong>Directeur Artistique</strong></p>
+                <div class="timeline-item right animate-on-scroll">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2012</div>
+                        <h3>Première Publication Pédagogique</h3>
+                        <p>Sortie du premier manuel "Méthode Piano Débutant" qui révolutionne l'apprentissage musical 
+                        en intégrant les rythmes camerounais aux techniques classiques.</p>
+                        <div class="timeline-achievements">
+                            <span class="achievement">1er livre publié</span>
+                            <span class="achievement">500 exemplaires</span>
+                            <span class="achievement">Adoption dans 10 écoles</span>
+                        </div>
+                    </div>
+                    <div class="timeline-marker">
+                        <i class="fas fa-book"></i>
+                    </div>
+                </div>
+                
+                <div class="timeline-item left animate-on-scroll">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2015</div>
+                        <h3>Expansion & Collaborations</h3>
+                        <p>A Laiz Prod s'ouvre aux collaborations artistiques. Première prestation piano-bar 
+                        au Hilton Yaoundé, marquant le début de notre approche collaborative.</p>
+                        <div class="timeline-achievements">
+                            <span class="achievement">50+ élèves</span>
+                            <span class="achievement">Partenariat Hilton</span>
+                            <span class="achievement">5 publications</span>
+                        </div>
+                    </div>
+                    <div class="timeline-marker">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right animate-on-scroll">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2018</div>
+                        <h3>Projet Tswefap</h3>
+                        <p>Lancement du projet culturel Tswefap pour la préservation du patrimoine linguistique Batoufam. 
+                        Innovation technologique au service de la tradition.</p>
+                        <div class="timeline-achievements">
+                            <span class="achievement">Application mobile</span>
+                            <span class="achievement">200h documentées</span>
+                            <span class="achievement">3000+ mots</span>
+                        </div>
+                    </div>
+                    <div class="timeline-marker">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                </div>
+                
+                <div class="timeline-item left animate-on-scroll">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <h3>Transformation en Label</h3>
+                        <p>A Laiz Prod devient officiellement un label musical, fédérant les talents autour 
+                        de créations collaboratives d'exception.</p>
+                        <div class="timeline-achievements">
+                            <span class="achievement">Statut label</span>
+                            <span class="achievement">10 artistes collaborateurs</span>
+                            <span class="achievement">A Laiz Sono</span>
+                        </div>
+                    </div>
+                    <div class="timeline-marker">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right animate-on-scroll">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025</div>
+                        <h3>Excellence Reconnue</h3>
+                        <p>Aujourd'hui, A Laiz Prod est reconnu comme la référence de l'excellence musicale camerounaise, 
+                        alliant tradition, innovation et rayonnement international.</p>
+                        <div class="timeline-achievements">
+                            <span class="achievement">500+ projets</span>
+                            <span class="achievement">1000+ élèves formés</span>
+                            <span class="achievement">50+ collaborateurs</span>
+                        </div>
+                    </div>
+                    <div class="timeline-marker">
+                        <i class="fas fa-crown"></i>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Collaborations & Artistes -->
-<section class="collaborations-section">
-    <div class="container">
-        <div class="section-title animate-on-scroll">
-            <h2>Nos Collaborations Artistiques</h2>
-            <p>A Laiz Prod fédère et accompagne des talents multiples</p>
-        </div>
-        
-        <div class="collaborations-grid">
-            <div class="collaboration-card animate-on-scroll">
-                <div class="collab-icon">
-                    <i class="fas fa-microphone"></i>
+    <!-- Section Vision & Valeurs -->
+    <section class="vision-values">
+        <div class="container">
+            <div class="vision-content">
+                <div class="vision-text animate-on-scroll">
+                    <h2>Notre Vision & Nos Valeurs</h2>
+                    <p class="lead">
+                        A Laiz Prod transcende le concept traditionnel du label musical pour devenir un véritable 
+                        écosystème artistique où l'excellence rime avec authenticité.
+                    </p>
                 </div>
-                <h3>Artistes Vocaux</h3>
-                <p>Nous collaborons avec des chanteuses et chanteurs d'exception pour des projets variés : gospel, jazz, afro-contemporain, variété française.</p>
-                <div class="collab-examples">
-                    <span class="collab-tag">Gospel</span>
-                    <span class="collab-tag">Jazz Vocal</span>
-                    <span class="collab-tag">World Music</span>
-                </div>
-            </div>
-            
-            <div class="collaboration-card animate-on-scroll">
-                <div class="collab-icon">
-                    <i class="fas fa-guitar"></i>
-                </div>
-                <h3>Musiciens Instrumentistes</h3>
-                <p>Violonistes, guitaristes, percussionnistes... Une famille d'instrumentistes qui enrichit nos créations avec leurs spécialités.</p>
-                <div class="collab-examples">
-                    <span class="collab-tag">Cordes</span>
-                    <span class="collab-tag">Percussions</span>
-                    <span class="collab-tag">Vents</span>
-                </div>
-            </div>
-            
-            <div class="collaboration-card animate-on-scroll">
-                <div class="collab-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <h3>Créateurs & Arrangeurs</h3>
-                <p>Compositeurs, arrangeurs, producteurs... Nous travaillons avec les meilleurs créatifs pour donner vie à nos visions artistiques.</p>
-                <div class="collab-examples">
-                    <span class="collab-tag">Composition</span>
-                    <span class="collab-tag">Arrangement</span>
-                    <span class="collab-tag">Production</span>
-                </div>
-            </div>
-            
-            <div class="collaboration-card animate-on-scroll">
-                <div class="collab-icon">
-                    <i class="fas fa-globe"></i>
-                </div>
-                <h3>Partenaires Internationaux</h3>
-                <p>Nos collaborations s'étendent au-delà des frontières avec des artistes et institutions culturelles internationales.</p>
-                <div class="collab-examples">
-                    <span class="collab-tag">Europe</span>
-                    <span class="collab-tag">Afrique</span>
-                    <span class="collab-tag">Amérique</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Vision du Label -->
-<section class="label-vision-detailed">
-    <div class="container">
-        <div class="vision-content">
-            <div class="vision-text animate-on-scroll">
-                <h2>Notre Philosophie de Label</h2>
                 
-                <div class="philosophy-points">
-                    <div class="philosophy-point">
-                        <div class="philosophy-icon">
+                <div class="values-grid">
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Excellence</h3>
+                        <p>Nous cultivons l'excellence dans chaque création, chaque formation, chaque collaboration. 
+                        Notre exigence de qualité guide toutes nos décisions artistiques.</p>
+                    </div>
+                    
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Authenticité</h3>
+                        <p>Nous restons fidèles à nos racines camerounaises tout en embrassant l'universalité de la musique. 
+                        Nos créations reflètent cette identité unique.</p>
+                    </div>
+                    
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">
                             <i class="fas fa-handshake"></i>
                         </div>
-                        <div>
-                            <h3>Collaborations Créatives</h3>
-                            <p>Nous croyons que la magie naît de la rencontre des talents. Chaque projet A Laiz Prod est une symphonie de compétences où chaque artiste apporte sa signature unique.</p>
-                        </div>
+                        <h3>Collaboration</h3>
+                        <p>Nous croyons en la puissance des synergies créatives. Chaque projet est une aventure humaine 
+                        où les talents se révèlent mutuellement.</p>
                     </div>
                     
-                    <div class="philosophy-point">
-                        <div class="philosophy-icon">
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">
                             <i class="fas fa-seedling"></i>
                         </div>
-                        <div>
-                            <h3>Développement des Talents</h3>
-                            <p>Au-delà de la production, nous accompagnons les artistes dans leur épanouissement créatif et professionnel, créant un écosystème musical durable.</p>
+                        <h3>Transmission</h3>
+                        <p>Former la nouvelle génération de créateurs musicaux est notre mission sacrée. 
+                        Nous cultivons les talents de demain avec passion.</p>
+                    </div>
+                    
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Rayonnement</h3>
+                        <p>Nous portons la richesse musicale camerounaise vers les sommets internationaux, 
+                        créant des ponts entre les cultures.</p>
+                    </div>
+                    
+                    <div class="value-card animate-on-scroll">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Préservation</h3>
+                        <p>À travers le projet Tswefap et nos créations, nous préservons et valorisons 
+                        notre patrimoine culturel pour les générations futures.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projet Tswefap Détaillé -->
+    <section class="tswefap-detailed" id="tswefap">
+        <div class="container">
+            <div class="tswefap-header animate-on-scroll">
+                <div class="tswefap-badge">
+                    <i class="fas fa-globe-africa"></i>
+                    <span>Projet Culturel d'Exception</span>
+                </div>
+                
+                <h2>Tswefap : Préservation du Patrimoine Batoufam</h2>
+                <p class="section-subtitle">
+                    Un projet technologique innovant au service de la préservation culturelle, 
+                    initié par Hervé Nanfang dans sa région natale.
+                </p>
+            </div>
+            
+            <div class="tswefap-content">
+                <div class="tswefap-story animate-on-scroll">
+                    <h3>L'Histoire du Projet</h3>
+                    <p>
+                        Né d'une prise de conscience personnelle d'Hervé Nanfang sur l'érosion progressive du patrimoine 
+                        linguistique de sa communauté Batoufam, Tswefap (qui signifie "notre parole" en langue locale) 
+                        est devenu bien plus qu'un projet : une mission de sauvetage culturel.
+                    </p>
+                    
+                    <p>
+                        Face au constat alarmant que de nombreux mots et expressions traditionnelles disparaissaient 
+                        avec les anciens, Hervé a mobilisé ses compétences musicales et pédagogiques pour créer 
+                        un système d'apprentissage innovant alliant technologie moderne et sagesse ancestrale.
+                    </p>
+                </div>
+                
+                <div class="tswefap-features">
+                    <div class="feature-item animate-on-scroll">
+                        <div class="feature-visual">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Collecte Sonore Authentique</h4>
+                            <p>Plus de 200 heures d'enregistrements auprès des anciens de la communauté, 
+                            capturant non seulement les mots mais aussi les intonations et contextes culturels.</p>
+                            <div class="feature-stats">
+                                <span>200+ heures</span>
+                                <span>50 contributeurs</span>
+                                <span>15 villages</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="philosophy-point">
-                        <div class="philosophy-icon">
-                            <i class="fas fa-bridge"></i>
+                    <div class="feature-item animate-on-scroll">
+                        <div class="feature-visual">
+                            <i class="fas fa-brain"></i>
                         </div>
-                        <div>
-                            <h3>Pont Culturel</h3>
-                            <p>A Laiz Prod est un pont entre les générations, les cultures et les continents, permettant à la musique camerounaise de dialoguer avec le monde.</p>
+                        <div class="feature-content">
+                            <h4>Intelligence Artificielle Dédiée</h4>
+                            <p>Développement d'un système de reconnaissance vocale spécialement entraîné pour 
+                            les spécificités tonales et phonétiques de la langue Batoufam.</p>
+                            <div class="feature-stats">
+                                <span>IA personnalisée</span>
+                                <span>Reconnaissance vocale</span>
+                                <span>Analyse tonale</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="philosophy-point">
-                        <div class="philosophy-icon">
-                            <i class="fas fa-award"></i>
+                    <div class="feature-item animate-on-scroll">
+                        <div class="feature-visual">
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
-                        <div>
-                            <h3>Excellence & Innovation</h3>
-                            <p>Chaque production porte notre exigence d'excellence technique et notre passion pour l'innovation artistique, tout en respectant l'authenticité musicale.</p>
+                        <div class="feature-content">
+                            <h4>Application Interactive</h4>
+                            <p>Plateforme d'apprentissage ludique permettant aux jeunes générations 
+                            de redécouvrir et maîtriser leur langue maternelle à travers des exercices adaptés.</p>
+                            <div class="feature-stats">
+                                <span>3000+ mots</span>
+                                <span>500+ expressions</span>
+                                <span>200+ utilisateurs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tswefap-impact animate-on-scroll">
+                    <h3>Impact & Reconnaissance</h3>
+                    
+                    <div class="impact-grid">
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <h4>Prix Innovation Culturelle</h4>
+                            <p>Ministère de la Culture du Cameroun - 2022</p>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>Adoption Pédagogique</h4>
+                            <p>12 écoles primaires utilisent Tswefap</p>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Communauté Active</h4>
+                            <p>Plus de 500 familles impliquées</p>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h4>Rayonnement International</h4>
+                            <p>Présentation UNESCO & OIF</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tswefap-quote">
+                        <blockquote>
+                            <i class="fas fa-quote-left"></i>
+                            <p>"Tswefap nous a permis de redécouvrir des trésors linguistiques que nous pensions perdus à jamais. 
+                            Nos enfants parlent maintenant notre langue avec fierté."</p>
+                            <cite>— Chef Traditionnel Batoufam</cite>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Équipe & Collaborateurs -->
+    <section class="team-collaborators">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>L'Écosystème A Laiz Prod</h2>
+                <p>Les talents qui font la richesse de notre label musical</p>
+            </div>
+            
+            <div class="team-content">
+                <!-- Core Team -->
+                <div class="core-team animate-on-scroll">
+                    <h3>Équipe Permanente</h3>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <img src="{{ url_for('static', filename='images/team/herve-nanfang.jpg') }}" 
+                                     alt="Hervé Nanfang"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="photo-placeholder" style="display: none;">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>Hervé Nanfang</h4>
+                                <p>Directeur Artistique & Fondateur</p>
+                                <div class="member-skills">
+                                    <span>Piano Classique</span>
+                                    <span>Composition</span>
+                                    <span>Pédagogie</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <div class="photo-placeholder">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>Sarah Mbondo</h4>
+                                <p>Chanteuse Résidente & Coach Vocal</p>
+                                <div class="member-skills">
+                                    <span>Jazz Vocal</span>
+                                    <span>Soul</span>
+                                    <span>Afro-Contemporary</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <div class="photo-placeholder">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>Paul Enama</h4>
+                                <p>Pianiste Jazz & Arrangement</p>
+                                <div class="member-skills">
+                                    <span>Jazz Piano</span>
+                                    <span>Arrangement</span>
+                                    <span>Composition</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <div class="photo-placeholder">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>Marie Fotso</h4>
+                                <p>Coordinatrice Pédagogique</p>
+                                <div class="member-skills">
+                                    <span>Formation</span>
+                                    <span>Coordination</span>
+                                    <span>Développement</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collaborateurs Réguliers -->
+                <div class="collaborators animate-on-scroll">
+                    <h3>Réseau de Collaborateurs</h3>
+                    <div class="collaborators-categories">
+                        <div class="collaborator-category">
+                            <div class="category-icon">
+                                <i class="fas fa-microphone"></i>
+                            </div>
+                            <h4>Chanteurs</h4>
+                            <p>15+ artistes vocaux spécialisés dans différents genres : jazz, soul, afro-pop, gospel</p>
+                            <div class="category-count">15+ Talents</div>
+                        </div>
+                        
+                        <div class="collaborator-category">
+                            <div class="category-icon">
+                                <i class="fas fa-guitar"></i>
+                            </div>
+                            <h4>Instrumentistes</h4>
+                            <p>Musiciens professionnels : guitare, basse, batterie, cuivres, cordes, percussions traditionnelles</p>
+                            <div class="category-count">20+ Musiciens</div>
+                        </div>
+                        
+                        <div class="collaborator-category">
+                            <div class="category-icon">
+                                <i class="fas fa-pen-alt"></i>
+                            </div>
+                            <h4>Compositeurs</h4>
+                            <p>Créateurs de mélodies originales, arrangeurs et auteurs-compositeurs pour tous styles</p>
+                            <div class="category-count">8+ Créateurs</div>
+                        </div>
+                        
+                        <div class="collaborator-category">
+                            <div class="category-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <h4>Techniciens</h4>
+                            <p>Ingénieurs son, techniciens éclairage, opérateurs vidéo pour productions complètes</p>
+                            <div class="category-count">10+ Techniciens</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- Section Partenaires -->
+    <section class="partners">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Nos Partenaires de Confiance</h2>
+                <p>Institutions et entreprises qui accompagnent notre vision</p>
+            </div>
+            
+            <div class="partners-grid">
+                <div class="partner-category animate-on-scroll">
+                    <h3>Partenaires Hôteliers</h3>
+                    <div class="partners-list">
+                        <div class="partner-item">
+                            <div class="partner-logo">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="partner-info">
+                                <h4>Hilton Yaoundé</h4>
+                                <p>Résidence piano-bar exclusive depuis 2015</p>
+                            </div>
+                        </div>
+                        
+                        <div class="partner-item">
+                            <div class="partner-logo">
+                                <i class="fas fa-hotel"></i>
+                            </div>
+                            <div class="partner-info">
+                                <h4>Mont Fébé Hotel</h4>
+                                <p>Événements musicaux & formations</p>
+                            </div>
+                        </div>
+                        
+                        <div class="partner-item">
+                            <div class="partner-logo">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="partner-info">
+                                <h4>Djeuga Palace</h4>
+                                <p>Concerts privés & galas d'exception</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="partner-category animate-on-scroll">
+                    <h3>Partenaires Institutionnels</h3>
+                    <div class="partners-list">
+                        <div class="partner-item">
+                            <div class="partner-logo">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="partner-info">
+                                <h4>Université de Yaoundé I</h4>
+                                <p>Programmes de formation musicale</p>
+                            </div>
+                        </div>
+                        
+                        <div class="partner-item">
+                            <div class="partner-logo">
+                                <i class="fas fa-landmark"></i>
+                            </div>
+                            <div class="partner-info">
+                                <h4>Ministère de la Culture</h4>
+                                <p>Projet Tswefap & promotion culturelle</p>
+                            </div>
+                        </div>
+                        
+                        <div class="partner-item">
+                            <div class="partner-logo">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="partner-info">
+                                <h4>Institut Français</h4>
+                                <p>Échanges culturels & concerts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="partner-category animate-on-scroll">
+                    <h3>Partenaires Médias</h3>
+                    <div class="partners-list">
+                        <div class="partner-item">
+                            <div class="partner-logo">
+                                <i class="fas fa-broadcast-tower"></i>
+                            </div>
+                            <div class="partner-info">
+                                <h4>Canal 2 International</h4>
+                                <p>Couverture médiatique événements</p>
+                            </div>
+                        </div>
+                        
+                        <div class="partner-item">
+                            <div class="partner-logo">
+                                <i class="fas fa-radio"></i>
+                            </div>
+                            <div class="partner-info">
+                                <h4>Radio France Internationale</h4>
+                                <p>Promotion internationale des créations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="about-cta">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2>Rejoignez l'Aventure A Laiz Prod</h2>
+                <p>Que vous soyez artiste, musicien, partenaire ou passionné de musique, 
+                il y a une place pour vous dans notre écosystème créatif.</p>
+                
+                <div class="cta-buttons">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
+                        <i class="fas fa-handshake"></i> Devenir Collaborateur
+                    </a>
+                    <a href="{{ url_for('formations') }}" class="btn btn-secondary btn-large">
+                        <i class="fas fa-graduation-cap"></i> Formations avec Hervé
+                    </a>
+                </div>
+                
+                <div class="contact-direct">
+                    {% if label and label.director %}
+                    <p>Ou contactez directement Hervé Nanfang :</p>
+                    <a href="tel:{{ label.director.phone }}" class="contact-link">
+                        <i class="fas fa-phone"></i> {{ label.director.phone }}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Animation de la timeline
+    function animateTimeline() {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        timelineItems.forEach((item, index) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-in');
+                        }, index * 200);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(item);
+        });
+    }
+
+    // Animation des cartes valeurs
+    function animateValueCards() {
+        const cards = document.querySelectorAll('.value-card');
+        
+        cards.forEach((card, index) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.transform = 'translateY(0)';
+                            entry.target.style.opacity = '1';
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            card.style.transform = 'translateY(50px)';
+            card.style.opacity = '0';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    }
+
+    // Animation des features Tswefap
+    function animateTswefapFeatures() {
+        const features = document.querySelectorAll('.feature-item');
+        
+        features.forEach((feature, index) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('feature-animate');
+                        }, index * 300);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(feature);
+        });
+    }
+
+    // Animation des membres d'équipe
+    function animateTeamMembers() {
+        const members = document.querySelectorAll('.team-member');
+        
+        members.forEach((member, index) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.transform = 'translateY(0)';
+                            entry.target.style.opacity = '1';
+                        }, index * 150);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            member.style.transform = 'translateY(30px)';
+            member.style.opacity = '0';
+            member.style.transition = 'all 0.5s ease';
+            observer.observe(member);
+        });
+    }
+
+    // Chargement des données de l'équipe depuis l'API
+    function loadTeamData() {
+        fetch('{{ url_for("api_collaborations") }}')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Données équipe chargées:', data);
+                // Mise à jour dynamique si nécessaire
+            })
+            .catch(error => {
+                console.log('Utilisation des données par défaut pour l\'équipe');
+            });
+    }
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', function() {
+        animateTimeline();
+        animateValueCards();
+        animateTswefapFeatures();
+        animateTeamMembers();
+        loadTeamData();
+    });
+</script>
+{% endblock %}
