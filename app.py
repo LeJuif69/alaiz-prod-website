@@ -11,7 +11,8 @@ def strftime_filter(date, fmt='%Y-%m-%d'):
     if isinstance(date, str):
         return date
     return date.strftime(fmt) if date else ''
- Routes pour bloquer les bots WordPress/malveillants
+
+# Routes pour bloquer les bots WordPress/malveillants
 @app.route('/wp-admin')
 @app.route('/wp-admin/')
 @app.route('/wp-admin/<path:path>')
@@ -47,7 +48,7 @@ label = {
     'director': {
         'name': 'Hervé Nanfang',
         'title': 'Directeur Artistique & Fondateur',
-        'phone': '+237 694 723 492',  # Remplacez par le vrai numéro
+        'phone': '+237 694 723 492',
         'specialties': [
             'Piano Variétés & Jazz',
             'Composition & Arrangements',
@@ -63,13 +64,13 @@ label = {
             'facebook': 'https://facebook.com/alaizprod',
             'instagram': 'https://instagram.com/alaizprod',
             'youtube': 'https://youtube.com/@alaizprod',
-            'whatsapp': 'https://wa.me/237682180266'  # Remplacez par le vrai numéro
+            'whatsapp': 'https://wa.me/237682180266'
         }
     }
 }
 
-# Services/Productions du Label
-services = {
+# Services/Productions du Label (renommé pour éviter conflit)
+services_data = {
     'piano_bar': {
         'name': 'Piano-Bar Collaboratif',
         'icon': 'fas fa-piano',
@@ -301,7 +302,7 @@ def index():
     try:
         return render_template('index.html', 
                              label=label, 
-                             services=services, 
+                             services=services_data, 
                              collaborations=collaborations,
                              stats=stats)
     except Exception as e:
@@ -331,7 +332,7 @@ def services():
     try:
         return render_template('services.html', 
                              label=label, 
-                             services=services,
+                             services=services_data,
                              stats=stats)
     except:
         return redirect(url_for('index'))
@@ -351,7 +352,7 @@ def contact():
     try:
         return render_template('contact.html', 
                              label=label,
-                             services=services)
+                             services=services_data)
     except:
         return redirect(url_for('index'))
 
@@ -366,7 +367,7 @@ def api_collaborations():
 
 @app.route('/api/services')
 def api_services():
-    return jsonify(services)
+    return jsonify(services_data)
 
 # Route pour traitement formulaire contact
 @app.route('/contact', methods=['POST'])
@@ -435,6 +436,3 @@ if __name__ == '__main__':
 else:
     # Configuration pour production (Gunicorn)
     application = app
-
-
-
