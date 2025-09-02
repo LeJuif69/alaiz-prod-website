@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block title %}Contact - A Laiz Prod | Réservation Événements Musicaux Cameroun{% endblock %}
-{% block description %}Contactez A Laiz Prod pour vos événements musicaux au Cameroun. Devis personnalisé pour piano-bar, mariages, concerts. Flavie & Hervé Nanfang - Yaoundé.{% endblock %}
+{% block title %}Contact - A Laiz Prod | Hervé Nanfang - Directeur Artistique Label Musical Cameroun{% endblock %}
+{% block description %}Contactez A Laiz Prod, label musical camerounais dirigé par Hervé Nanfang. Collaborations artistiques, formations, productions sur mesure. Réponse garantie sous 24h. Yaoundé.{% endblock %}
 
 {% block content %}
 <div class="page-spacer"></div>
@@ -10,317 +10,535 @@
 <section class="contact-hero">
     <div class="container">
         <div class="hero-content animate-on-scroll">
-            <h1>Contactez-Nous</h1>
-            <p class="hero-subtitle">Réservez dès maintenant votre événement musical d'exception avec A Laiz Prod</p>
-            <p>Réponse garantie sous 24h | Devis gratuit et personnalisé</p>
+            <div class="hero-badge">
+                <i class="fas fa-handshake"></i>
+                <span>Contact Label A Laiz Prod</span>
+            </div>
+            <h1>Créons Ensemble Votre Projet Musical</h1>
+            <p class="hero-subtitle">Hervé Nanfang et l'équipe A Laiz Prod vous accompagnent dans la réalisation de vos ambitions artistiques</p>
+            <p>Que vous soyez artiste, organisateur d'événements, institution ou mélomane passionné, nous sommes à votre écoute pour créer des expériences musicales d'exception qui vous ressemblent.</p>
+            
+            <div class="hero-guarantees">
+                <div class="guarantee-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Réponse garantie sous 24h</span>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fas fa-phone"></i>
+                    <span>Consultation gratuite</span>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fas fa-handshake"></i>
+                    <span>Devis personnalisé offert</span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Contact Main Section -->
-<section class="contact-main">
+<!-- Contact Methods -->
+<section class="contact-methods">
     <div class="container">
-        <div class="contact-content">
-            <!-- Informations de Contact -->
-            <div class="contact-info animate-on-scroll">
-                <h3>Informations de Contact</h3>
+        <div class="section-title animate-on-scroll">
+            <h2>Comment Nous Contacter</h2>
+            <p>Plusieurs moyens pour nous joindre selon votre préférence</p>
+        </div>
+        
+        <div class="methods-grid">
+            <div class="method-card animate-on-scroll priority">
+                <div class="method-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Contact Direct Hervé Nanfang</h3>
+                <p class="method-subtitle">Directeur Artistique A Laiz Prod</p>
                 
-                <div class="contact-item">
-                    <div class="contact-icon">
+                <div class="contact-details">
+                    {% if label and label.director %}
+                    <div class="contact-item">
                         <i class="fas fa-phone"></i>
+                        <div class="contact-info">
+                            <a href="tel:{{ label.director.phone }}" class="contact-primary">{{ label.director.phone }}</a>
+                            <span>Disponible 7j/7 • 8h-20h</span>
+                        </div>
                     </div>
-                    <div class="contact-details">
-                        <h4>Téléphones</h4>
-                        <p><strong>Hervé :</strong> <a href="tel:+237682180266">+237 694 723 492</a></p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Email Professionnel</h4>
-                        <p><a href="mailto:contact@alaizprod.com">contact@alaizprod.com</a></p>
-                        <p><small>Réponse sous 24h garantie</small></p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Localisation</h4>
-                        <p><strong>Yaoundé, Cameroun</strong></p>
-                        <p><small>Déplacements dans tout le Cameroun</small></p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Disponibilités</h4>
-                        <p><strong>7j/7 pour vos événements</strong></p>
-                        <p><small>Bureau : Lun-Ven 9h-18h</small></p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-icon">
+                    
+                    <div class="contact-item">
                         <i class="fab fa-whatsapp"></i>
+                        <div class="contact-info">
+                            <a href="https://wa.me/237{{ label.director.phone.replace('+237', '').replace(' ', '') }}" target="_blank" class="contact-primary">WhatsApp</a>
+                            <span>Message instantané</span>
+                        </div>
                     </div>
-                    <div class="contact-details">
-                        <h4>WhatsApp Business</h4>
-                        <p><a href="https://wa.me/237XXXXXXXX?text=Bonjour, je souhaite avoir des informations sur vos services musicaux." target="_blank" class="whatsapp-link">
-                            <i class="fab fa-whatsapp"></i> Discuter directement
-                        </a></p>
+                    {% else %}
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-info">
+                            <a href="tel:+237XXXXXXXX" class="contact-primary">+237 XXX XXX XXX</a>
+                            <span>Disponible 7j/7 • 8h-20h</span>
+                        </div>
                     </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div class="contact-info">
+                            <a href="https://wa.me/237XXXXXXXX" target="_blank" class="contact-primary">WhatsApp</a>
+                            <span>Message instantané</span>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
-
-                <!-- Social Links -->
-                <div class="contact-social">
-                    <h4>Suivez-nous</h4>
-                    <div class="social-links">
-                        <a href="https://facebook.com/alaizprod" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://instagram.com/alaizprod" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://youtube.com/alaizprod" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="https://linkedin.com/in/hervénanfang" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                
+                <div class="method-note">
+                    <p><i class="fas fa-star"></i> <strong>Contact privilégié</strong> pour collaborations artistiques, projets créatifs et formations personnalisées</p>
                 </div>
             </div>
-
-            <!-- Formulaire de Contact -->
-            <div class="contact-form animate-on-scroll">
-                <h3>Demande de Devis Personnalisé</h3>
-                <p class="form-intro">Remplissez ce formulaire pour recevoir votre devis personnalisé gratuitement.</p>
+            
+            <div class="method-card animate-on-scroll">
+                <div class="method-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email Professionnel</h3>
+                <p class="method-subtitle">Pour demandes détaillées et devis</p>
                 
-                <form method="POST" id="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Nom complet *</label>
-                            <input type="text" id="name" name="name" placeholder="Votre nom complet" required>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-at"></i>
+                        <div class="contact-info">
+                            {% if label and label.contact %}
+                            <a href="mailto:{{ label.contact.email }}" class="contact-primary">{{ label.contact.email }}</a>
+                            {% else %}
+                            <a href="mailto:contact@alaizprod.com" class="contact-primary">contact@alaizprod.com</a>
+                            {% endif %}
+                            <span>Réponse sous 24h garantie</span>
                         </div>
+                    </div>
+                </div>
+                
+                <div class="method-note">
+                    <p><i class="fas fa-file-alt"></i> <strong>Idéal pour</strong> envoi de documents, portfolios artistiques, cahiers des charges détaillés</p>
+                </div>
+            </div>
+            
+            <div class="method-card animate-on-scroll">
+                <div class="method-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Studios A Laiz Prod</h3>
+                <p class="method-subtitle">Rendez-vous sur site</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <div class="contact-info">
+                            <span class="contact-primary">Yaoundé, Cameroun</span>
+                            <span>Adresse exacte sur rendez-vous</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="contact-info">
+                            <span class="contact-primary">Lun-Sam : 8h00-19h00</span>
+                            <span>Dimanche sur rendez-vous</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="method-note">
+                    <p><i class="fas fa-calendar"></i> <strong>Sur rendez-vous uniquement</strong> • Visite des studios, auditions, consultations approfondies</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form -->
+<section class="contact-form-section">
+    <div class="container">
+        <div class="form-header animate-on-scroll">
+            <h2>Formulaire de Contact Personnalisé</h2>
+            <p>Décrivez-nous votre projet pour recevoir une réponse adaptée et un devis sur mesure</p>
+        </div>
+        
+        <div class="form-container">
+            <div class="contact-form animate-on-scroll">
+                <form id="contactForm" class="contact-form-grid">
+                    <!-- Type de Demande -->
+                    <div class="form-section full-width">
+                        <h3><i class="fas fa-list"></i> Type de Demande</h3>
+                        <div class="request-types">
+                            <label class="request-type-card">
+                                <input type="radio" name="request_type" value="collaboration" required>
+                                <div class="card-content">
+                                    <i class="fas fa-handshake"></i>
+                                    <h4>Collaboration Artistique</h4>
+                                    <p>Rejoindre le réseau A Laiz, projets créatifs, enregistrements</p>
+                                </div>
+                            </label>
+                            
+                            <label class="request-type-card">
+                                <input type="radio" name="request_type" value="production" required>
+                                <div class="card-content">
+                                    <i class="fas fa-music"></i>
+                                    <h4>Production Musicale</h4>
+                                    <p>Mariages, événements, concerts, piano-bar, créations sur mesure</p>
+                                </div>
+                            </label>
+                            
+                            <label class="request-type-card">
+                                <input type="radio" name="request_type" value="formation" required>
+                                <div class="card-content">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <h4>Formation Musicale</h4>
+                                    <p>Cours avec Hervé, ateliers, méthodes pédagogiques, mentorat</p>
+                                </div>
+                            </label>
+                            
+                            <label class="request-type-card">
+                                <input type="radio" name="request_type" value="technique" required>
+                                <div class="card-content">
+                                    <i class="fas fa-volume-up"></i>
+                                    <h4>A Laiz Sono</h4>
+                                    <p>Sonorisation, éclairage, support technique événements</p>
+                                </div>
+                            </label>
+                            
+                            <label class="request-type-card">
+                                <input type="radio" name="request_type" value="media" required>
+                                <div class="card-content">
+                                    <i class="fas fa-microphone-alt"></i>
+                                    <h4>Presse & Médias</h4>
+                                    <p>Interviews, articles, partenariats médiatiques, relations presse</p>
+                                </div>
+                            </label>
+                            
+                            <label class="request-type-card">
+                                <input type="radio" name="request_type" value="autre" required>
+                                <div class="card-content">
+                                    <i class="fas fa-question"></i>
+                                    <h4>Autre Demande</h4>
+                                    <p>Partenariat, conseil, projet spécifique à discuter</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Informations Personnelles -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Vos Coordonnées</h3>
+                        <div class="form-group">
+                            <label for="full-name">Nom Complet *</label>
+                            <input type="text" id="full-name" name="full_name" required placeholder="Prénom et nom">
+                        </div>
+                        
                         <div class="form-group">
                             <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                            <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Téléphone *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+237 XXX XXX XXX">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Localisation</label>
+                            <input type="text" id="location" name="location" placeholder="Ville, pays">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="profession">Profession/Activité</label>
+                            <input type="text" id="profession" name="profession" placeholder="Artiste, organisateur, institution...">
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="phone">Téléphone *</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+237 XXX XXX XXX" required>
-                    </div>
-
-                    <div class="form-row">
+                    
+                    <!-- Détails du Projet -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-project-diagram"></i> Votre Projet</h3>
                         <div class="form-group">
-                            <label for="event_type">Type d'événement</label>
-                            <select id="event_type" name="event_type">
-                                <option value="">Sélectionnez le type d'événement</option>
-                                <option value="mariage">Mariage</option>
-                                <option value="piano-bar">Piano-Bar</option>
-                                <option value="concert">Concert</option>
-                                <option value="formation">Formation Musicale</option>
-                                <option value="sono">Sonorisation</option>
-                                <option value="evenement-corporatif">Événement Corporatif</option>
-                                <option value="soiree-privee">Soirée Privée</option>
-                                <option value="autre">Autre</option>
+                            <label for="project-title">Titre/Nom du Projet</label>
+                            <input type="text" id="project-title" name="project_title" placeholder="Concert, mariage, formation...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-date">Date Souhaitée</label>
+                            <input type="date" id="project-date" name="project_date">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget-range">Budget Indicatif</label>
+                            <select id="budget-range" name="budget_range">
+                                <option value="">Non défini</option>
+                                <option value="50-200k">50.000 - 200.000 FCFA</option>
+                                <option value="200-500k">200.000 - 500.000 FCFA</option>
+                                <option value="500k-1m">500.000 FCFA - 1M FCFA</option>
+                                <option value="1m-2m">1M - 2M FCFA</option>
+                                <option value="2m+">Plus de 2M FCFA</option>
                             </select>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="event_date">Date souhaitée</label>
-                            <input type="date" id="event_date" name="event_date" min="{{ datetime.now().strftime('%Y-%m-%d') }}">
+                            <label for="urgence">Degré d'Urgence</label>
+                            <select id="urgence" name="urgence">
+                                <option value="normal">Normal (réponse sous 24-48h)</option>
+                                <option value="rapide">Rapide (réponse sous 12h)</option>
+                                <option value="urgent">Urgent (réponse immédiate souhaitée)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="preferred-contact">Contact Préféré</label>
+                            <select id="preferred-contact" name="preferred_contact">
+                                <option value="email">Email</option>
+                                <option value="phone">Téléphone</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="rdv">Rendez-vous studio</option>
+                            </select>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="location">Lieu de l'événement</label>
-                        <input type="text" id="location" name="location" placeholder="Ville, quartier ou nom du lieu">
+                    
+                    <!-- Description Détaillée -->
+                    <div class="form-section full-width">
+                        <h3><i class="fas fa-edit"></i> Description Détaillée</h3>
+                        <div class="form-group">
+                            <label for="project-description">Décrivez-nous votre projet en détail</label>
+                            <textarea id="project-description" name="project_description" rows="6" placeholder="Expliquez-nous votre vision, vos besoins, vos attentes, le contexte de votre projet... Plus vous serez précis, plus notre réponse sera adaptée et personnalisée."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="musical-preferences">Préférences Musicales (si applicable)</label>
+                            <textarea id="musical-preferences" name="musical_preferences" rows="3" placeholder="Styles musicaux souhaités, artistes références, ambiance recherchée..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="specific-requests">Demandes Particulières</label>
+                            <textarea id="specific-requests" name="specific_requests" rows="3" placeholder="Contraintes techniques, exigences spéciales, informations importantes à connaître..."></textarea>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="guests">Nombre d'invités (approximatif)</label>
-                        <select id="guests" name="guests">
-                            <option value="">Sélectionnez</option>
-                            <option value="1-20">1 à 20 personnes</option>
-                            <option value="21-50">21 à 50 personnes</option>
-                            <option value="51-100">51 à 100 personnes</option>
-                            <option value="101-200">101 à 200 personnes</option>
-                            <option value="201-500">201 à 500 personnes</option>
-                            <option value="500+">Plus de 500 personnes</option>
-                        </select>
+                    
+                    <!-- Consentement & Envoi -->
+                    <div class="form-section full-width">
+                        <div class="form-consent">
+                            <label class="consent-checkbox">
+                                <input type="checkbox" name="consent" required>
+                                <span class="checkmark"></span>
+                                <span class="consent-text">J'accepte d'être contacté par A Laiz Prod concernant ma demande et autorise l'utilisation de mes données pour le traitement de celle-ci. Aucune utilisation commerciale sans consentement explicite.</span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-paper-plane"></i> Envoyer Ma Demande
+                            </button>
+                        </div>
+                        
+                        <div class="form-guarantees">
+                            <div class="guarantee">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Données sécurisées</span>
+                            </div>
+                            <div class="guarantee">
+                                <i class="fas fa-clock"></i>
+                                <span>Réponse sous 24h</span>
+                            </div>
+                            <div class="guarantee">
+                                <i class="fas fa-gift"></i>
+                                <span>Consultation gratuite</span>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="message">Décrivez votre projet</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Décrivez votre projet : style musical souhaité, durée de prestation, particularités, budget approximatif..."></textarea>
-                    </div>
-
-                    <div class="form-group-checkbox">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="newsletter" value="1">
-                            <span class="checkmark"></span>
-                            Je souhaite recevoir les actualités et offres spéciales d'A Laiz Prod
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-large btn-full">
-                        <i class="fas fa-paper-plane"></i> Envoyer ma Demande
-                    </button>
-
-                    <p class="form-privacy">
-                        <i class="fas fa-shield-alt"></i> Vos données sont protégées et utilisées uniquement pour vous recontacter concernant votre demande.
-                    </p>
                 </form>
             </div>
+            
+            <!-- Sidebar Informations -->
+            <div class="contact-sidebar animate-on-scroll">
+                <div class="sidebar-card">
+                    <div class="sidebar-header">
+                        <i class="fas fa-info-circle"></i>
+                        <h3>Processus de Réponse</h3>
+                    </div>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Réception & Analyse</h4>
+                                <p>Votre demande est analysée par Hervé Nanfang personnellement</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Réponse Personnalisée</h4>
+                                <p>Réponse détaillée sous 24h avec premières propositions</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Consultation Gratuite</h4>
+                                <p>Échange approfondi pour préciser votre projet</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Proposition Sur Mesure</h4>
+                                <p>Devis détaillé et équipe artistique constituée</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-card">
+                    <div class="sidebar-header">
+                        <i class="fas fa-star"></i>
+                        <h3>Nos Engagements</h3>
+                    </div>
+                    <ul class="engagements-list">
+                        <li><i class="fas fa-check"></i> Réponse garantie sous 24h maximum</li>
+                        <li><i class="fas fa-check"></i> Consultation gratuite sans engagement</li>
+                        <li><i class="fas fa-check"></i> Devis détaillé offert</li>
+                        <li><i class="fas fa-check"></i> Confidentialité totale des projets</li>
+                        <li><i class="fas fa-check"></i> Adaptation à tous budgets</li>
+                        <li><i class="fas fa-check"></i> Support post-projet inclus</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-card testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <blockquote>
+                            "Chaque demande est unique et mérite une attention particulière. Notre engagement : vous offrir une expérience musicale qui dépasse vos attentes et révèle votre vision artistique."
+                        </blockquote>
+                        <cite>— Hervé Nanfang, Directeur Artistique</cite>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Pricing Quick View -->
-<section class="pricing-quick-view">
+<!-- FAQ Contact -->
+<section class="faq-contact">
     <div class="container">
         <div class="section-title animate-on-scroll">
-            <h2>Tarifs Indicatifs</h2>
-            <p>Nos forfaits de base - Devis détaillé sur mesure</p>
+            <h2>Questions Fréquentes</h2>
+            <p>Réponses aux questions les plus posées sur nos services</p>
         </div>
         
-        <div class="pricing-grid">
-            <div class="pricing-card animate-on-scroll">
-                <div class="pricing-icon">
-                    <i class="fas fa-heart"></i>
+        <div class="faq-grid">
+            <div class="faq-column">
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Combien de temps pour avoir une réponse ?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Maximum 24h pour toute demande.</strong> Pour les urgences (moins de 7 jours), appelez directement Hervé. Pour les projets complexes, première réponse sous 24h puis échange approfondi selon vos disponibilités.</p>
+                    </div>
                 </div>
-                <h3>Mariages</h3>
-                <div class="pricing-info">
-                    <p class="price">À partir de <strong>150.000 FCFA</strong></p>
-                    <p class="includes">Cérémonie + Cocktail inclus</p>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>La consultation est-elle vraiment gratuite ?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Oui, totalement gratuite et sans engagement.</strong> Nous échangeons sur votre projet, analysons vos besoins, proposons des solutions. Vous ne payez que si vous décidez de travailler avec nous.</p>
+                    </div>
                 </div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Musique d'entrée personnalisée</li>
-                    <li><i class="fas fa-check"></i> Accompagnement cérémonie</li>
-                    <li><i class="fas fa-check"></i> Animation cocktail 2h</li>
-                    <li><i class="fas fa-check"></i> Matériel sonore inclus</li>
-                </ul>
-            </div>
-            
-            <div class="pricing-card animate-on-scroll featured">
-                <div class="pricing-icon">
-                    <i class="fas fa-music"></i>
-                </div>
-                <h3>Piano-Bar</h3>
-                <div class="pricing-info">
-                    <p class="price">À partir de <strong>75.000 FCFA</strong></p>
-                    <p class="includes">2h de prestation minimum</p>
-                </div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Duo piano et voix</li>
-                    <li><i class="fas fa-check"></i> Répertoire jazz & variété</li>
-                    <li><i class="fas fa-check"></i> Matériel sonore inclus</li>
-                    <li><i class="fas fa-check"></i> Personnalisation possible</li>
-                </ul>
-            </div>
-            
-            <div class="pricing-card animate-on-scroll">
-                <div class="pricing-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <h3>Formations</h3>
-                <div class="pricing-info">
-                    <p class="price"><strong>25.000 FCFA/mois</strong></p>
-                    <p class="includes">Cours particuliers</p>
-                </div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> 8 séances de 1h par mois</li>
-                    <li><i class="fas fa-check"></i> Matériel pédagogique inclus</li>
-                    <li><i class="fas fa-check"></i> Suivi personnalisé</li>
-                    <li><i class="fas fa-check"></i> Tous niveaux acceptés</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="pricing-note">
-            <p><i class="fas fa-info-circle"></i> <strong>Ces tarifs sont indicatifs.</strong> Chaque prestation est unique et fait l'objet d'un devis personnalisé selon vos besoins spécifiques, la durée, le lieu et les services additionnels souhaités.</p>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ Section -->
-<section class="faq-section">
-    <div class="container">
-        <div class="section-title animate-on-scroll">
-            <h2>Questions Fréquemment Posées</h2>
-            <p>Trouvez rapidement les réponses à vos questions</p>
-        </div>
-        
-        <div class="faq-container">
-            <div class="faq-item animate-on-scroll">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h4>Combien de temps à l'avance faut-il réserver ?</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Nous recommandons de réserver <strong>2-3 mois à l'avance pour les mariages</strong> et <strong>1 mois pour les autres événements</strong>. Cependant, contactez-nous même pour des demandes urgentes, nous faisons notre possible pour vous accommoder !</p>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Travaillez-vous en dehors de Yaoundé ?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Oui, dans tout le Cameroun et à l'international.</strong> Frais de déplacement selon distance. Nous avons déjà réalisé des projets à Douala, Bafoussam, et même en France.</p>
+                    </div>
                 </div>
             </div>
             
-            <div class="faq-item animate-on-scroll">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h4>Vous déplacez-vous partout au Cameroun ?</h4>
-                    <i class="fas fa-chevron-down"></i>
+            <div class="faq-column">
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Quel est votre budget minimum ?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Nous adaptons nos prestations à tous budgets.</strong> Dès 50.000 FCFA pour certaines formations, jusqu'à plusieurs millions pour les grandes productions. Dites-nous votre budget, nous trouvons une solution.</p>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    <p>Oui ! Nous nous déplaçons dans <strong>tout le Cameroun</strong>. Des frais de déplacement peuvent s'appliquer selon la distance et la logistique requise. Ces frais sont toujours indiqués clairement dans le devis.</p>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Comment rejoindre vos collaborateurs ?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Contactez-nous avec votre portfolio artistique.</strong> Hervé évalue personnellement chaque candidature. Critères : excellence technique, professionnalisme, esprit collaboratif, ouverture culturelle.</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="faq-item animate-on-scroll">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h4>Peut-on personnaliser le répertoire musical ?</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Absolument ! Nous adaptons notre répertoire à vos goûts et à l'ambiance souhaitée : <strong>jazz, variété française, musiques camerounaises, gospel, standards internationaux</strong>. Nous pouvons même apprendre des morceaux spéciaux pour votre événement.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item animate-on-scroll">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h4>Quel matériel sonore est inclus ?</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Nous apportons tout le <strong>matériel sonore nécessaire</strong> : micros, enceintes, table de mixage, câblage. Pour les grandes événements, nous proposons aussi des solutions d'éclairage et de sonorisation renforcée via notre service A Laiz Sono.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item animate-on-scroll">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <h4>Les formations musicales sont-elles pour tous les âges ?</h4>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Oui ! Nos formations s'adressent à <strong>tous les âges et tous les niveaux</strong> : enfants (dès 6 ans), adolescents, adultes, seniors. Hervé Nanfang adapte sa pédagogie à chaque profil d'élève pour un apprentissage optimal.</p>
+                
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Que faire en cas d'urgence ?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Appelez directement Hervé Nanfang.</strong> Pour les urgences (événement dans moins de 7 jours), contact téléphonique prioritaire. WhatsApp également très réactif.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Contact CTA -->
-<section class="contact-cta">
+<!-- Contact CTA Final -->
+<section class="contact-cta-final">
     <div class="container">
         <div class="cta-content animate-on-scroll">
-            <h2>Une Question ? Un Projet ?</h2>
-            <p>N'hésitez pas à nous contacter pour discuter de votre projet musical.</p>
+            <div class="cta-icon">
+                <i class="fas fa-music"></i>
+            </div>
+            <h2>Votre Projet Musical Nous Attend</h2>
+            <p>Hervé Nanfang et toute l'équipe A Laiz Prod sont impatients de découvrir votre vision et de la transformer en réalité musicale exceptionnelle.</p>
+            
+            <div class="cta-highlights">
+                <div class="highlight-item">
+                    <i class="fas fa-users"></i>
+                    <h3>50+ Collaborateurs</h3>
+                    <p>Réseau d'artistes pour tous projets</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-calendar"></i>
+                    <h3>500+ Projets</h3>
+                    <p>15 années d'expérience réussie</p>
+                </div>
+                <div class="highlight-item">
+                    <i class="fas fa-star"></i>
+                    <h3>Excellence Garantie</h3>
+                    <p>Qualité A Laiz Prod reconnue</p>
+                </div>
+            </div>
+            
             <div class="cta-buttons">
-                <a href="tel:+237XXXXXXXX" class="btn btn-primary btn-large">
+                <a href="#contactForm" class="btn btn-primary btn-large" onclick="scrollToForm()">
+                    <i class="fas fa-edit"></i> Remplir le Formulaire
+                </a>
+                {% if label and label.director and label.director.phone %}
+                <a href="tel:{{ label.director.phone }}" class="btn btn-secondary btn-large">
+                    <i class="fas fa-phone"></i> Appeler Hervé Maintenant
+                </a>
+                {% else %}
+                <a href="tel:+237XXXXXXXX" class="btn btn-secondary btn-large">
                     <i class="fas fa-phone"></i> Appeler Maintenant
                 </a>
-                <a href="https://wa.me/237XXXXXXXX?text=Bonjour, je souhaite des informations sur vos services" target="_blank" class="btn btn-secondary btn-large">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
+                {% endif %}
+            </div>
+            
+            <div class="cta-final-note">
+                <p><i class="fas fa-heart"></i> "Votre satisfaction est notre plus belle récompense. Faisons de votre projet une réussite mémorable."</p>
             </div>
         </div>
     </div>
@@ -329,101 +547,315 @@
 
 {% block extra_js %}
 <script>
-    // Form validation and enhancement
+    // Gestion du formulaire de contact
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('contact-form');
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const phoneInput = document.getElementById('phone');
-
-        // Auto-focus on first input
-        if (nameInput) nameInput.focus();
-
-        // Phone number formatting
-        phoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.startsWith('237')) {
-                value = '+' + value;
-            } else if (value.length > 0 && !value.startsWith('+237')) {
-                value = '+237' + value;
-            }
-            e.target.value = value;
+        const contactForm = document.getElementById('contactForm');
+        const requestTypes = document.querySelectorAll('input[name="request_type"]');
+        
+        // Gestion de la sélection du type de demande
+        requestTypes.forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Retirer la classe selected de tous les cards
+                document.querySelectorAll('.request-type-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+                
+                // Ajouter la classe selected au card choisi
+                if (this.checked) {
+                    this.closest('.request-type-card').classList.add('selected');
+                }
+                
+                // Adaptation du formulaire selon le type
+                adaptFormToRequestType(this.value);
+            });
         });
-
-        // Form submission with enhanced validation
-        form.addEventListener('submit', function(e) {
-            const email = emailInput.value.trim();
-            const phone = phoneInput.value.replace(/\s/g, '');
-            const name = nameInput.value.trim();
-
-            // Validation email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                e.preventDefault();
-                showNotification('Veuillez saisir un email valide', 'error');
-                emailInput.focus();
+        
+        // Soumission du formulaire
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            
+            // Validation personnalisée
+            if (!validateForm(formData)) {
                 return;
             }
-
-            // Validation téléphone camerounais
-            const phoneRegex = /^\+237[0-9]{8,9}$/;
-            if (!phoneRegex.test(phone)) {
-                e.preventDefault();
-                showNotification('Veuillez saisir un numéro de téléphone camerounais valide (+237XXXXXXXX)', 'error');
-                phoneInput.focus();
-                return;
-            }
-
-            // Validation nom
-            if (name.length < 2) {
-                e.preventDefault();
-                showNotification('Veuillez saisir un nom valide', 'error');
-                nameInput.focus();
-                return;
-            }
-
-            // Show loading state
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
-            submitBtn.disabled = true;
+            
+            // Affichage du loading
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+            submitButton.disabled = true;
+            
+            // Simulation d'envoi (remplacer par vraie logique)
+            setTimeout(() => {
+                showNotification('Votre demande a été envoyée avec succès ! Nous vous contacterons dans les 24h.', 'success');
+                
+                // Reset du formulaire
+                this.reset();
+                document.querySelectorAll('.request-type-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+                
+                // Restaurer le bouton
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                
+                // Scroll vers le haut de la section
+                document.querySelector('.contact-form-section').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }, 2000);
         });
     });
-
-    // FAQ Toggle function
+    
+    // Adaptation du formulaire selon le type de demande
+    function adaptFormToRequestType(type) {
+        const budgetField = document.getElementById('budget-range');
+        const projectTitle = document.getElementById('project-title');
+        
+        // Adapter les options de budget selon le type
+        let budgetOptions = '';
+        let placeholder = '';
+        
+        switch(type) {
+            case 'collaboration':
+                budgetOptions = `
+                    <option value="">Non applicable</option>
+                    <option value="discussion">À discuter selon projet</option>
+                `;
+                placeholder = 'Collaboration artistique, projet créatif...';
+                break;
+            case 'production':
+                budgetOptions = `
+                    <option value="">Non défini</option>
+                    <option value="200-500k">200.000 - 500.000 FCFA</option>
+                    <option value="500k-1m">500.000 FCFA - 1M FCFA</option>
+                    <option value="1m-2m">1M - 2M FCFA</option>
+                    <option value="2m+">Plus de 2M FCFA</option>
+                `;
+                placeholder = 'Mariage, concert, événement...';
+                break;
+            case 'formation':
+                budgetOptions = `
+                    <option value="">Non défini</option>
+                    <option value="15-25k">15.000 - 25.000 FCFA/mois</option>
+                    <option value="25-40k">25.000 - 40.000 FCFA/mois</option>
+                    <option value="formation-pro">Formation professionnelle sur devis</option>
+                `;
+                placeholder = 'Cours piano, chant, formation...';
+                break;
+            case 'technique':
+                budgetOptions = `
+                    <option value="">Non défini</option>
+                    <option value="100-300k">100.000 - 300.000 FCFA</option>
+                    <option value="300-500k">300.000 - 500.000 FCFA</option>
+                    <option value="500k+">Plus de 500.000 FCFA</option>
+                `;
+                placeholder = 'Sonorisation événement...';
+                break;
+            default:
+                budgetOptions = `
+                    <option value="">Non défini</option>
+                    <option value="50-200k">50.000 - 200.000 FCFA</option>
+                    <option value="200-500k">200.000 - 500.000 FCFA</option>
+                    <option value="500k+">Plus de 500.000 FCFA</option>
+                `;
+                placeholder = 'Votre projet...';
+        }
+        
+        budgetField.innerHTML = budgetOptions;
+        projectTitle.placeholder = placeholder;
+    }
+    
+    // Validation du formulaire
+    function validateForm(formData) {
+        let isValid = true;
+        const errors = [];
+        
+        // Vérifier les champs obligatoires
+        if (!formData.get('request_type')) {
+            errors.push('Veuillez sélectionner un type de demande');
+            isValid = false;
+        }
+        
+        if (!formData.get('full_name') || formData.get('full_name').length < 2) {
+            errors.push('Veuillez saisir votre nom complet');
+            isValid = false;
+        }
+        
+        if (!formData.get('email') || !isValidEmail(formData.get('email'))) {
+            errors.push('Veuillez saisir un email valide');
+            isValid = false;
+        }
+        
+        if (!formData.get('phone')) {
+            errors.push('Veuillez saisir votre numéro de téléphone');
+            isValid = false;
+        }
+        
+        if (!formData.get('consent')) {
+            errors.push('Veuillez accepter les conditions de traitement des données');
+            isValid = false;
+        }
+        
+        if (!isValid) {
+            showNotification(errors.join('. '), 'error');
+        }
+        
+        return isValid;
+    }
+    
+    // Validation email
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    
+    // Système de notifications
+    function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <div class="notification-content">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i>
+                <span>${message}</span>
+            </div>
+            <button class="notification-close" onclick="this.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto-remove après 6 secondes
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 6000);
+    }
+    
+    // Toggle FAQ
     function toggleFAQ(element) {
-        const faqItem = element.parentNode;
+        const faqItem = element.parentElement;
         const answer = faqItem.querySelector('.faq-answer');
         const icon = element.querySelector('i');
         
+        // Fermer les autres FAQ
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+                item.classList.remove('active');
+                const otherAnswer = item.querySelector('.faq-answer');
+                const otherIcon = item.querySelector('.faq-question i');
+                if (otherAnswer) otherAnswer.style.maxHeight = null;
+                if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+        
+        // Toggle l'item courant
         faqItem.classList.toggle('active');
         
         if (faqItem.classList.contains('active')) {
             answer.style.maxHeight = answer.scrollHeight + 'px';
             icon.style.transform = 'rotate(180deg)';
         } else {
-            answer.style.maxHeight = '0px';
+            answer.style.maxHeight = null;
             icon.style.transform = 'rotate(0deg)';
         }
     }
-
-    // Notification system
-    function showNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.innerHTML = `
-            <span>${message}</span>
-            <button onclick="this.parentElement.remove()">×</button>
-        `;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 100);
-        
-        setTimeout(() => {
-            notification.remove();
-        }, 5000);
+    
+    // Scroll vers le formulaire
+    function scrollToForm() {
+        document.getElementById('contactForm').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
     }
+    
+    // Animation des cartes au scroll
+    function animateCards() {
+        const cards = document.querySelectorAll('.method-card, .sidebar-card');
+        
+        cards.forEach((card, index) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.transform = 'translateY(0)';
+                            entry.target.style.opacity = '1';
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            card.style.transform = 'translateY(30px)';
+            card.style.opacity = '0';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    }
+    
+    // Initialisation
+    animateCards();
+    
+    // Style pour les FAQ
+    const style = document.createElement('style');
+    style.textContent = `
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        .request-type-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .request-type-card:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .request-type-card.selected {
+            border-color: var(--secondary-color);
+            background: rgba(214, 158, 46, 0.1);
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+        }
+        .notification.success {
+            border-left: 4px solid #10B981;
+        }
+        .notification.error {
+            border-left: 4px solid #EF4444;
+        }
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .notification-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+    `;
+    document.head.appendChild(style);
 </script>
 {% endblock %}
-
