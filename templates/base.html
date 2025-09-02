@@ -383,9 +383,24 @@
             }
         });
     </script>
-    
+
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("active");
+        });
+    }
+});
+</script>
+
     {% block extra_js %}{% endblock %}
 </body>
 </html>
+
 
 
