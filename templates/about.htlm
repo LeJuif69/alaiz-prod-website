@@ -88,34 +88,34 @@
                     
                     <div class="founder-bio">
                         <p class="lead">
-                            Pianiste classique de formation, compositeur visionnaire et pédagogue passionné, 
+                            Pianiste, compositeur visionnaire et pédagogue passionné, 
                             Hervé Nanfang incarne l'excellence musicale camerounaise depuis plus de 15 ans.
                         </p>
                         
-                            <p>
-    Issu d’un environnement riche en traditions musicales, Hervé est marqué dès son enfance 
-    par la voix de sa mère, chanteuse reconnue du répertoire Batoufam et bamiléké, surnommée 
-    affectueusement « 33 tours ». Ce n’est qu’à l’âge de 18 ans qu’il découvre le piano, 
-    instrument qui deviendra son compagnon de route et le vecteur de son expression artistique. 
-    Son parcours atypique, nourri de curiosité et d’ouverture, l’amène à explorer aussi bien 
-    les sonorités classiques que le jazz, les musiques africaines et les influences du monde.
-</p>
-
-<p>
-    En 2009, animé par une vision claire de démocratiser l’excellence musicale au Cameroun, 
-    il fonde <strong>A Laiz Prod</strong>. Sa mission : bâtir un pont entre tradition et modernité, 
-    entre transmission académique et créativité collaborative, pour faire rayonner la musique 
-    camerounaise sur toutes les scènes.
-</p>
-
-<div class="founder-quote">
-    <blockquote>
-        <i class="fas fa-quote-left"></i>
-        <p>"La musique n’a pas de frontières, mais elle a des racines. Mon rôle est de 
-        cultiver ces racines camerounaises pour qu’elles fleurissent sur la scène internationale."</p>
-    </blockquote>
-</div>
-
+                        <p>
+                            Issu d'un environnement riche en traditions musicales, Hervé est marqué dès son enfance 
+                            par la voix de sa mère, chanteuse reconnue du répertoire Batoufam et bamiléké, surnommée 
+                            affectueusement « 33 tours ». Ce n'est qu'à l'âge de 18 ans qu'il découvre le piano, 
+                            instrument qui deviendra son compagnon de route et le vecteur de son expression artistique. 
+                            Son parcours atypique, nourri de curiosité et d'ouverture, l'amène à explorer aussi bien 
+                            les sonorités classiques que le jazz, les musiques africaines et les influences du monde.
+                        </p>
+                        
+                        <p>
+                            En 2009, animé par une vision claire de démocratiser l'excellence musicale au Cameroun, 
+                            il fonde <strong>A Laiz Prod</strong>. Sa mission : bâtir un pont entre tradition et modernité, 
+                            entre transmission académique et créativité collaborative, pour faire rayonner la musique 
+                            camerounaise sur toutes les scènes.
+                        </p>
+                    </div>
+                    
+                    <div class="founder-quote">
+                        <blockquote>
+                            <i class="fas fa-quote-left"></i>
+                            <p>"La musique n'a pas de frontières, mais elle a des racines. Mon rôle est de 
+                            cultiver ces racines camerounaises pour qu'elles fleurissent sur la scène internationale."</p>
+                        </blockquote>
+                    </div>
                     
                     <div class="founder-highlights">
                         <div class="highlight-item">
@@ -184,7 +184,7 @@
                     <div class="timeline-content">
                         <div class="timeline-year">2012</div>
                         <h3>Première Publication Pédagogique</h3>
-                        <p>Sortie du premier manuel "Méthode Piano Débutant" qui révolutionne l'apprentissage musical 
+                        <p>Sortie du premier manuel "Le petit pianiste", alors enseignant au Complexe la Gaieté, qui révolutionne l'apprentissage musical 
                         en intégrant les rythmes camerounais aux techniques classiques.</p>
                         <div class="timeline-achievements">
                             <span class="achievement">1er livre publié</span>
