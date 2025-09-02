@@ -327,7 +327,7 @@ def about():
 
 @app.route('/services')
 @app.route('/productions')
-def services_page():
+def services():
     try:
         return render_template('services.html', 
                              label=label, 
@@ -435,4 +435,5 @@ if __name__ == '__main__':
 else:
     # Configuration pour production (Gunicorn)
     application = app
+
 
