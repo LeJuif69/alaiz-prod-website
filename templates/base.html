@@ -384,7 +384,8 @@
         });
     </script>
 
-
+    {% block extra_js %}{% endblock %}
+    
     <script>
 document.addEventListener("DOMContentLoaded", () => {
     const menuBtn = document.getElementById("mobile-menu-btn");
@@ -397,8 +398,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 </script>
-
-    {% block extra_js %}{% endblock %}
+    
 </body>
 </html>
 
