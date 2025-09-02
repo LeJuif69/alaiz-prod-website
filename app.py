@@ -346,7 +346,7 @@ def formations():
     except:
         return redirect(url_for('index'))
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET'])
 def contact():
     try:
         return render_template('contact.html', 
@@ -435,5 +435,6 @@ if __name__ == '__main__':
 else:
     # Configuration pour production (Gunicorn)
     application = app
+
 
 
