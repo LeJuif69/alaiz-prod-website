@@ -1,0 +1,320 @@
+/**
+ * NOUVELLES FONCTIONNALITÉS - A LAIZ PROD
+ * =======================================
+ */
+
+// PORTFOLIO AUDIO
+function initAudioPortfolio() {
+    document.querySelectorAll('.play-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const audioType = this.getAttribute('data-audio');
+            const icon = this.querySelector('i');
+            
+            // Toggle play/pause state
+            if (icon.classList.contains('fa-play')) {
+                icon.classList.replace('fa-play', 'fa-pause');
+                console.log(`Playing ${audioType}`);
+                
+                // Ici vous intégrerez votre lecteur audio réel
+                // Exemple avec HTML5 Audio API :
+                // const audio = new Audio(`/assets/audio/${audioType}.mp3`);
+                // audio.play();
+                
+                // Reset après 3 secondes pour demo
+                setTimeout(() => {
+                    icon.classList.replace('fa-pause', 'fa-play');
+                }, 3000);
+            } else {
+                icon.classList.replace('fa-pause', 'fa-play');
+                console.log(`Pausing ${audioType}`);
+            }
+        });
+    });
+}
+
+// GALERIE TABS
+function initGalleryTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.getAttribute('data-tab');
+            
+            // Remove active class from all
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active to current
+            button.classList.add('active');
+            const targetContent = document.getElementById(targetTab);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+}
+
+// TÉMOIGNAGES SLIDER
+function initTestimonialsSlider() {
+    let currentTestimonial = 0;
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    if (testimonials.length === 0) return;
+
+    function showTestimonial(index) {
+        testimonials.forEach((testimonial, i) => {
+            testimonial.classList.toggle('active', i === index);
+        });
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextTestimonial() {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        showTestimonial(currentTestimonial);
+    }
+
+    function prevTestimonial() {
+        currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+        showTestimonial(currentTestimonial);
+    }
+
+    // Event listeners
+    if (nextBtn) nextBtn.addEventListener('click', nextTestimonial);
+    if (prevBtn) prevBtn.addEventListener('click', prevTestimonial);
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentTestimonial = index;
+            showTestimonial(currentTestimonial);
+        });
+    });
+
+    // Auto-rotation every 5 seconds
+    setInterval(nextTestimonial, 5000);
+}
+
+// CALENDRIER DE DISPONIBILITÉS
+function initAvailabilityCalendar() {
+    let currentDate = new Date();
+    const calendarGrid = document.getElementById('calendarGrid');
+    const currentMonthElement = document.getElementById('currentMonth');
+    const prevMonthBtn = document.getElementById('prevMonth');
+    const nextMonthBtn = document.getElementById('nextMonth');
+    const selectedDateInput = document.getElementById('selectedDate');
+
+    if (!calendarGrid) return;
+
+    // Dates réservées (à connecter à votre backend)
+    const bookedDates = [
+        '2024-09-15',
+        '2024-09-22',
+        '2024-09-28',
+        '2024-10-05',
+        '2024-10-12'
+    ];
+
+    function generateCalendar(year, month) {
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const daysInMonth = lastDay.getDate();
+        const startingDayOfWeek = firstDay.getDay();
+
+        calendarGrid.innerHTML = '';
+
+        // Headers des jours
+        const dayHeaders = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+        dayHeaders.forEach(day => {
+            const dayElement = document.createElement('div');
+            dayElement.classList.add('calendar-day', 'header');
+            dayElement.textContent = day;
+            calendarGrid.appendChild(dayElement);
+        });
+
+        // Cellules vides avant le 1er du mois
+        for (let i = 0; i < startingDayOfWeek; i++) {
+            const emptyDay = document.createElement('div');
+            emptyDay.classList.add('calendar-day', 'other-month');
+            calendarGrid.appendChild(emptyDay);
+        }
+
+        // Jours du mois
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayElement = document.createElement('div');
+            dayElement.classList.add('calendar-day');
+            dayElement.textContent = day;
+
+            const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const isPast = new Date(dateString) < new Date().setHours(0, 0, 0, 0);
+            const isBooked = bookedDates.includes(dateString);
+
+            if (isPast || isBooked) {
+                dayElement.classList.add('booked');
+            } else {
+                dayElement.classList.add('available');
+                dayElement.addEventListener('click', () => selectDate(dateString, dayElement));
+            }
+
+            calendarGrid.appendChild(dayElement);
+        }
+
+        // Mise à jour du mois affiché
+        const monthNames = [
+            'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+            'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+        ];
+        if (currentMonthElement) {
+            currentMonthElement.textContent = `${monthNames[month]} ${year}`;
+        }
+    }
+
+    function selectDate(dateString, dayElement) {
+        // Supprimer la sélection précédente
+        document.querySelectorAll('.calendar-day.selected').forEach(day => {
+            day.classList.remove('selected');
+            day.classList.add('available');
+        });
+
+        // Sélectionner la nouvelle date
+        dayElement.classList.remove('available');
+        dayElement.classList.add('selected');
+
+        // Formater la date pour l'affichage
+        const date = new Date(dateString);
+        const options = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        };
+        if (selectedDateInput) {
+            selectedDateInput.value = date.toLocaleDateString('fr-FR', options);
+        }
+    }
+
+    // Navigation mois précédent/suivant
+    if (prevMonthBtn) {
+        prevMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+    }
+
+    if (nextMonthBtn) {
+        nextMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+    }
+
+    // Initialiser le calendrier
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+}
+
+// FORMULAIRE DE RÉSERVATION RAPIDE
+function initQuickBooking() {
+    const quickBookingForm = document.getElementById('quickBookingForm');
+    if (!quickBookingForm) return;
+
+    quickBookingForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const selectedDateInput = document.getElementById('selectedDate');
+        const selectedDate = selectedDateInput ? selectedDateInput.value : '';
+        
+        if (!selectedDate) {
+            alert('Veuillez sélectionner une date disponible.');
+            return;
+        }
+
+        // Ici vous intégrerez l'envoi vers votre backend
+        // const formData = new FormData(this);
+        // fetch('/api/bookings', { method: 'POST', body: formData })
+        
+        alert(`Demande de réservation reçue pour le ${selectedDate}. Nous vous contacterons dans les plus brefs délais !`);
+        
+        // Reset du formulaire
+        this.reset();
+        if (selectedDateInput) selectedDateInput.value = '';
+        document.querySelectorAll('.calendar-day.selected').forEach(day => {
+            day.classList.remove('selected');
+            day.classList.add('available');
+        });
+    });
+}
+
+// LIGHTBOX POUR LA GALERIE
+function initPhotoLightbox() {
+    document.querySelectorAll('.photo-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            const overlay = this.querySelector('.photo-overlay');
+            const title = overlay ? overlay.querySelector('h4').textContent : 'Image';
+            
+            // Ici vous pouvez intégrer une vraie lightbox (ex: Fancybox, Lightbox2)
+            console.log(`Ouverture lightbox: ${title}`);
+            
+            // Version simple avec modal
+            openImageModal(img.src, title);
+        });
+    });
+}
+
+function openImageModal(imageSrc, title) {
+    // Création d'un modal simple pour les images
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        cursor: pointer;
+    `;
+    
+    const img = document.createElement('img');
+    img.src = imageSrc;
+    img.style.cssText = 'max-width: 90%; max-height: 90%; object-fit: contain;';
+    
+    modal.appendChild(img);
+    document.body.appendChild(modal);
+    
+    modal.addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+}
+
+// INITIALISATION GÉNÉRALE
+function initNouvellesFonctionnalites() {
+    // Attendre que le DOM soit chargé
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            initAudioPortfolio();
+            initGalleryTabs();
+            initTestimonialsSlider();
+            initAvailabilityCalendar();
+            initQuickBooking();
+            initPhotoLightbox();
+        });
+    } else {
+        initAudioPortfolio();
+        initGalleryTabs();
+        initTestimonialsSlider();
+        initAvailabilityCalendar();
+        initQuickBooking();
+        initPhotoLightbox();
+    }
+}
+
+// Démarrer les nouvelles fonctionnalités
+initNouvellesFonctionnalites();
