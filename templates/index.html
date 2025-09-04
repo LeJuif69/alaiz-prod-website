@@ -260,3 +260,304 @@
 </script>
 {% endblock %}
 
+<!-- 1. PORTFOLIO AUDIO SECTION -->
+<section class="portfolio-audio" id="portfolio">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Portfolio Audio</h2>
+            <p>Découvrez notre univers musical à travers ces extraits de nos prestations</p>
+        </div>
+        <div class="audio-grid">
+            <div class="audio-card animate-on-scroll">
+                <div class="audio-info">
+                    <h3>Jazz Standards</h3>
+                    <p>Sélection de nos meilleurs jazz standards en piano-bar</p>
+                    <span class="audio-duration">3:45</span>
+                </div>
+                <div class="audio-player">
+                    <button class="play-btn" data-audio="jazz-standards">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="audio-wave"></div>
+                </div>
+            </div>
+            <div class="audio-card animate-on-scroll">
+                <div class="audio-info">
+                    <h3>Musique de Mariage</h3>
+                    <p>Extraits de cérémonies et cocktails personnalisés</p>
+                    <span class="audio-duration">4:12</span>
+                </div>
+                <div class="audio-player">
+                    <button class="play-btn" data-audio="wedding-music">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="audio-wave"></div>
+                </div>
+            </div>
+            <div class="audio-card animate-on-scroll">
+                <div class="audio-info">
+                    <h3>Concert Live</h3>
+                    <p>Performance live au Centre Culturel de Yaoundé</p>
+                    <span class="audio-duration">5:30</span>
+                </div>
+                <div class="audio-player">
+                    <button class="play-btn" data-audio="live-concert">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="audio-wave"></div>
+                </div>
+            </div>
+            <div class="audio-card animate-on-scroll">
+                <div class="audio-info">
+                    <h3>Rythmes Afro</h3>
+                    <p>Fusion moderne des rythmes traditionnels camerounais</p>
+                    <span class="audio-duration">4:05</span>
+                </div>
+                <div class="audio-player">
+                    <button class="play-btn" data-audio="afro-rhythms">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="audio-wave"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. GALERIE SECTION -->
+<section class="gallery" id="galerie">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Galerie</h2>
+            <p>Revivez nos plus beaux moments sur scène et en coulisses</p>
+        </div>
+        <div class="gallery-tabs">
+            <button class="tab-btn active" data-tab="photos">Photos</button>
+            <button class="tab-btn" data-tab="videos">Vidéos</button>
+        </div>
+        <div class="gallery-content">
+            <div class="tab-content active" id="photos">
+                <div class="photo-grid">
+                    <div class="photo-item animate-on-scroll" data-category="concert">
+                        <img src="assets/images/concert-1.jpg" alt="Concert Live" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%232D3748\' width=\'400\' height=\'300\'/><circle cx=\'200\' cy=\'150\' r=\'50\' fill=\'%23D69E2E\'/><text x=\'200\' y=\'200\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\'>Concert Live</text></svg>'">
+                        <div class="photo-overlay">
+                            <h4>Concert Centre Culturel</h4>
+                            <p>Yaoundé 2024</p>
+                        </div>
+                    </div>
+                    <div class="photo-item animate-on-scroll" data-category="mariage">
+                        <img src="assets/images/mariage-1.jpg" alt="Mariage"
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%232D3748\' width=\'400\' height=\'300\'/><path d=\'M200 100 L220 140 L180 140 Z\' fill=\'%23D69E2E\'/><text x=\'200\' y=\'200\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\'>Mariage VIP</text></svg>'">
+                        <div class="photo-overlay">
+                            <h4>Mariage de Prestige</h4>
+                            <p>Douala 2024</p>
+                        </div>
+                    </div>
+                    <div class="photo-item animate-on-scroll" data-category="piano-bar">
+                        <img src="assets/images/piano-bar-1.jpg" alt="Piano Bar"
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%232D3748\' width=\'400\' height=\'300\'/><rect x=\'150\' y=\'120\' width=\'100\' height=\'60\' fill=\'%23D69E2E\'/><text x=\'200\' y=\'200\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\'>Piano Bar</text></svg>'">
+                        <div class="photo-overlay">
+                            <h4>Soirée Piano-Bar</h4>
+                            <p>Hôtel Hilton 2024</p>
+                        </div>
+                    </div>
+                    <div class="photo-item animate-on-scroll" data-category="formation">
+                        <img src="assets/images/formation-1.jpg" alt="Formation"
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 300\'><rect fill=\'%232D3748\' width=\'400\' height=\'300\'/><rect x=\'100\' y=\'100\' width=\'200\' height=\'100\' fill=\'%23D69E2E\'/><text x=\'200\' y=\'220\' text-anchor=\'middle\' fill=\'white\' font-size=\'14\'>Formation</text></svg>'">
+                        <div class="photo-overlay">
+                            <h4>Cours de Piano</h4>
+                            <p>École de Musique 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="videos">
+                <div class="video-grid">
+                    <div class="video-item animate-on-scroll">
+                        <div class="video-thumbnail">
+                            <img src="assets/images/video-thumb-1.jpg" alt="Video Thumbnail"
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 225\'><rect fill=\'%232D3748\' width=\'400\' height=\'225\'/><polygon points=\'160,90 160,135 200,112.5\' fill=\'%23D69E2E\'/><text x=\'200\' y=\'180\' text-anchor=\'middle\' fill=\'white\' font-size=\'12\'>Concert Complet</text></svg>'">
+                            <div class="video-play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <h4>Concert Intégral - Festival Jazz Yaoundé</h4>
+                        <p>45 min • 15K vues</p>
+                    </div>
+                    <div class="video-item animate-on-scroll">
+                        <div class="video-thumbnail">
+                            <img src="assets/images/video-thumb-2.jpg" alt="Video Thumbnail"
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 225\'><rect fill=\'%232D3748\' width=\'400\' height=\'225\'/><polygon points=\'160,90 160,135 200,112.5\' fill=\'%23D69E2E\'/><text x=\'200\' y=\'180\' text-anchor=\'middle\' fill=\'white\' font-size=\'12\'>Behind Scenes</text></svg>'">
+                            <div class="video-play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <h4>Coulisses d'un Mariage d'Exception</h4>
+                        <p>12 min • 8K vues</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. TÉMOIGNAGES SECTION -->
+<section class="testimonials">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Témoignages</h2>
+            <p>Ce que disent nos clients de nos prestations</p>
+        </div>
+        <div class="testimonials-slider">
+            <div class="testimonial-card animate-on-scroll active">
+                <div class="testimonial-content">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p>"Flavie et Hervé ont transformé notre mariage en un moment magique inoubliable. Leur professionnalisme et leur talent ont émerveillé tous nos invités. Nous recommandons vivement A Laiz Prod !"</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Marie & Jean Dupont</h4>
+                            <span>Mariage - Yaoundé, Décembre 2023</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-content">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p>"En tant que directeur d'hôtel, j'ai fait appel plusieurs fois à A Laiz Prod pour nos soirées piano-bar. L'ambiance qu'ils créent est exceptionnelle et nos clients redemandent systématiquement leurs performances."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Michel Onana</h4>
+                            <span>Directeur Hôtel Président - Yaoundé</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card animate-on-scroll">
+                <div class="testimonial-content">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p>"Les formations d'Hervé m'ont permis de passer d'un niveau débutant à un niveau avancé en piano. Sa pédagogie est remarquable et ses manuels sont d'une qualité exceptionnelle."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Laure Essomba</h4>
+                            <span>Élève en formation piano</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-nav">
+            <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <div class="testimonial-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
+            <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<!-- 4. CALENDRIER DE DISPONIBILITÉS -->
+<section class="availability" id="disponibilites">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Disponibilités</h2>
+            <p>Consultez notre agenda et réservez directement votre date</p>
+        </div>
+        <div class="availability-content">
+            <div class="calendar-container animate-on-scroll">
+                <div class="calendar-header">
+                    <button class="calendar-nav prev" id="prevMonth">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h3 id="currentMonth">Janvier 2024</h3>
+                    <button class="calendar-nav next" id="nextMonth">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar will be generated by JavaScript -->
+                </div>
+                <div class="calendar-legend">
+                    <div class="legend-item">
+                        <span class="legend-color available"></span>
+                        <span>Disponible</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color booked"></span>
+                        <span>Réservé</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color selected"></span>
+                        <span>Sélectionné</span>
+                    </div>
+                </div>
+            </div>
+            <div class="booking-form animate-on-scroll">
+                <h3>Réservation Express</h3>
+                <form id="quickBookingForm">
+                    <div class="form-group">
+                        <label>Date sélectionnée</label>
+                        <input type="text" id="selectedDate" readonly placeholder="Cliquez sur une date disponible">
+                    </div>
+                    <div class="form-group">
+                        <label>Type d'événement</label>
+                        <select required>
+                            <option value="">Choisissez...</option>
+                            <option value="mariage">Mariage</option>
+                            <option value="piano-bar">Piano-bar</option>
+                            <option value="concert">Concert</option>
+                            <option value="formation">Formation</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nom complet</label>
+                        <input type="text" required placeholder="Votre nom complet">
+                    </div>
+                    <div class="form-group">
+                        <label>Téléphone</label>
+                        <input type="tel" required placeholder="+237 XXX XXX XXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required placeholder="votre@email.com">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i>
+                        Confirmer la Réservation
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
