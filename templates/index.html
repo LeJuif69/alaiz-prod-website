@@ -260,69 +260,161 @@
 </script>
 {% endblock %}
 
-<!-- 1. PORTFOLIO AUDIO SECTION -->
+<!-- ================================================
+     SECTION PORTFOLIO AUDIO - A LAIZ PROD
+     À intégrer dans templates/index.html
+     ================================================ -->
+
+<!-- Portfolio Audio Section -->
 <section class="portfolio-audio" id="portfolio">
     <div class="container">
         <div class="section-title animate-on-scroll">
             <h2>Portfolio Audio</h2>
-            <p>Découvrez notre univers musical à travers ces extraits de nos prestations</p>
+            <p>Découvrez notre univers musical à travers ces extraits de nos prestations d'exception</p>
         </div>
+        
         <div class="audio-grid">
+            <!-- Jazz Standards -->
             <div class="audio-card animate-on-scroll">
                 <div class="audio-info">
-                    <h3>Jazz Standards</h3>
-                    <p>Sélection de nos meilleurs jazz standards en piano-bar</p>
+                    <h3><i class="fas fa-music"></i> Jazz Standards</h3>
+                    <p>Une sélection raffinée de nos meilleurs standards jazz interprétés en piano-bar. Ambiance feutrée et sophistiquée pour vos soirées d'exception.</p>
                     <span class="audio-duration">3:45</span>
                 </div>
                 <div class="audio-player">
-                    <button class="play-btn" data-audio="jazz-standards">
+                    <button class="play-btn" data-audio="jazz-standards" title="Écouter Jazz Standards">
                         <i class="fas fa-play"></i>
                     </button>
                     <div class="audio-wave"></div>
                 </div>
             </div>
+
+            <!-- Musique de Mariage -->
             <div class="audio-card animate-on-scroll">
                 <div class="audio-info">
-                    <h3>Musique de Mariage</h3>
-                    <p>Extraits de cérémonies et cocktails personnalisés</p>
+                    <h3><i class="fas fa-heart"></i> Musique de Mariage</h3>
+                    <p>Extraits de cérémonies et cocktails personnalisés. Des moments magiques créés sur mesure pour célébrer votre amour en musique.</p>
                     <span class="audio-duration">4:12</span>
                 </div>
                 <div class="audio-player">
-                    <button class="play-btn" data-audio="wedding-music">
+                    <button class="play-btn" data-audio="wedding-music" title="Écouter Musique de Mariage">
                         <i class="fas fa-play"></i>
                     </button>
                     <div class="audio-wave"></div>
                 </div>
             </div>
+
+            <!-- Concert Live -->
             <div class="audio-card animate-on-scroll">
                 <div class="audio-info">
-                    <h3>Concert Live</h3>
-                    <p>Performance live au Centre Culturel de Yaoundé</p>
+                    <h3><i class="fas fa-microphone"></i> Concert Live</h3>
+                    <p>Performance live captée au Centre Culturel de Yaoundé. L'énergie pure de nos concerts en public dans toute sa splendeur.</p>
                     <span class="audio-duration">5:30</span>
                 </div>
                 <div class="audio-player">
-                    <button class="play-btn" data-audio="live-concert">
+                    <button class="play-btn" data-audio="live-concert" title="Écouter Concert Live">
                         <i class="fas fa-play"></i>
                     </button>
                     <div class="audio-wave"></div>
                 </div>
             </div>
+
+            <!-- Rythmes Afro -->
             <div class="audio-card animate-on-scroll">
                 <div class="audio-info">
-                    <h3>Rythmes Afro</h3>
-                    <p>Fusion moderne des rythmes traditionnels camerounais</p>
+                    <h3><i class="fas fa-globe-africa"></i> Rythmes Afro</h3>
+                    <p>Fusion moderne des rythmes traditionnels camerounais. Un voyage musical authentique entre héritage culturel et innovation contemporaine.</p>
                     <span class="audio-duration">4:05</span>
                 </div>
                 <div class="audio-player">
-                    <button class="play-btn" data-audio="afro-rhythms">
+                    <button class="play-btn" data-audio="afro-rhythms" title="Écouter Rythmes Afro">
                         <i class="fas fa-play"></i>
                     </button>
                     <div class="audio-wave"></div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Section Call-to-Action -->
+        <div class="audio-cta animate-on-scroll" style="text-align: center; margin-top: 4rem;">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-family: 'Playfair Display', serif;">
+                Envie d'en écouter plus ?
+            </h3>
+            <p style="color: var(--text-light); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Contactez-nous pour découvrir notre répertoire complet et discuter de votre projet musical personnalisé.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Nous Contacter
+                </a>
+                <a href="tel:{{ config.FLAVIE_PHONE or '+237XXXXXXXXX' }}" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> Appeler Directement
+                </a>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Section YouTube Integration (Optionnel) -->
+<section class="youtube-preview" style="background: var(--primary-color); padding: 4rem 0; margin-top: 0;">
+    <div class="container" style="text-align: center;">
+        <div class="animate-on-scroll">
+            <h3 style="color: var(--secondary-color); margin-bottom: 1rem; font-family: 'Playfair Display', serif; font-size: 2rem;">
+                Retrouvez-nous sur YouTube
+            </h3>
+            <p style="color: white; margin-bottom: 2rem; opacity: 0.9;">
+                Concerts complets, tutoriels et coulisses de nos prestations
+            </p>
+            <a href="{{ config.YOUTUBE_URL or '#' }}" class="btn btn-secondary" target="_blank" rel="noopener">
+                <i class="fab fa-youtube"></i> Visiter notre chaîne YouTube
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Styles spécifiques pour cette section (à intégrer dans style.css) */
+.audio-cta .btn {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.audio-cta .btn-primary {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #ED8936 100%);
+    color: white;
+    border: none;
+}
+
+.audio-cta .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(214, 158, 46, 0.3);
+}
+
+.audio-cta .btn-secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.audio-cta .btn-secondary:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .audio-cta .btn {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+}
+</style>
 
 <!-- 2. GALERIE SECTION -->
 <section class="gallery" id="galerie">
@@ -561,3 +653,4 @@
         </div>
     </div>
 </section>
+
