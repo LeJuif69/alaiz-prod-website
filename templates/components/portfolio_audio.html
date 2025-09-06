@@ -1,0 +1,89 @@
+<!-- Portfolio Audio Section -->
+<section class="portfolio-audio" id="portfolio">
+    <div class="container">
+        <div class="section-title">
+            <h2>Portfolio Audio</h2>
+            <p>Découvrez notre univers musical à travers ces extraits de nos prestations d'exception</p>
+        </div>
+        
+        <div class="audio-grid">
+            <!-- Jazz Standards -->
+            <div class="audio-card">
+                <div class="audio-info">
+                    <h3><i class="fas fa-music"></i> Jazz Standards</h3>
+                    <p>Une sélection raffinée de nos meilleurs standards jazz interprétés en piano-bar. Ambiance feutrée et sophistiquée pour vos soirées d'exception.</p>
+                    <span class="audio-duration">3:45</span>
+                </div>
+                <div class="audio-player">
+                    <button class="play-btn" data-audio="jazz-standards" title="Écouter Jazz Standards">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="audio-wave"></div>
+                </div>
+            </div>
+
+            <!-- Musique de Mariage -->
+            <div class="audio-card">
+                <div class="audio-info">
+                    <h3><i class="fas fa-heart"></i> Musique de Mariage</h3>
+                    <p>Extraits de cérémonies et cocktails personnalisés. Des moments magiques créés sur mesure pour célébrer votre amour en musique.</p>
+                    <span class="audio-duration">4:12</span>
+                </div>
+                <div class="audio-player">
+                    <button class="play-btn" data-audio="wedding-music" title="Écouter Musique de Mariage">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="audio-wave"></div>
+                </div>
+            </div>
+
+            <!-- Concert Live -->
+            <div class="audio-card">
+                <div class="audio-info">
+                    <h3><i class="fas fa-microphone"></i> Concert Live</h3>
+                    <p>Performance live captée au Centre Culturel de Yaoundé. L'énergie pure de nos concerts en public dans toute sa splendeur.</p>
+                    <span class="audio-duration">5:30</span>
+                </div>
+                <div class="audio-player">
+                    <button class="play-btn" data-audio="live-concert" title="Écouter Concert Live">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="audio-wave"></div>
+                </div>
+            </div>
+
+            <!-- Rythmes Afro -->
+            <div class="audio-card">
+                <div class="audio-info">
+                    <h3><i class="fas fa-globe-africa"></i> Rythmes Afro</h3>
+                    <p>Fusion moderne des rythmes traditionnels camerounais. Un voyage musical authentique entre héritage culturel et innovation contemporaine.</p>
+                    <span class="audio-duration">4:05</span>
+                </div>
+                <div class="audio-player">
+                    <button class="play-btn" data-audio="afro-rhythms" title="Écouter Rythmes Afro">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="audio-wave"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Call-to-Action -->
+        <div style="text-align: center; margin-top: 4rem;">
+            <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-family: 'Playfair Display', serif;">
+                Envie d'en écouter plus ?
+            </h3>
+            <p style="color: var(--text-light); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Contactez-nous pour découvrir notre répertoire complet et discuter de votre projet musical personnalisé.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Nous Contacter
+                </a>
+                <a href="tel:{{ config.FLAVIE_PHONE or '+237XXXXXXXXX' }}" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> Appeler Directement
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

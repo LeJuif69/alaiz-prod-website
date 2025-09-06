@@ -596,3 +596,153 @@ window.AlaizProd = {
 };
 
 console.log('🎵 A Laiz Prod - Site chargé avec succès!');
+
+/**
+ * PORTFOLIO AUDIO - A LAIZ PROD
+ */
+
+// Classe pour gérer le portfolio audio
+class AudioPortfolio {
+    constructor() {
+        this.currentAudio = null;
+        this.currentButton = null;
+        this.audioFiles = {
+            'jazz-standards': '/static/audio/jazz-standards.mp3',
+            'wedding-music': '/static/audio/wedding-music.mp3',
+            'live-concert': '/static/audio/live-concert.mp3',
+            'afro-rhythms': '/static/audio/afro-rhythms.mp3'
+        };
+        this.init();
+    }
+
+    init() {
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => this.handlePlayPause(e));
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.audio-card')) {
+                this.stopAllAudio();
+            }
+        });
+    }
+
+    handlePlayPause(event) {
+        const button = event.currentTarget;
+        const audioType = button.getAttribute('data-audio');
+        const icon = button.querySelector('i');
+        const audioWave = button.closest('.audio-player').querySelector('.audio-wave');
+        
+        if (button === this.currentButton && this.currentAudio && !this.currentAudio.paused) {
+            this.pauseAudio(button, icon, audioWave);
+            return;
+        }
+
+        this.stopAllAudio();
+        this.playAudio(audioType, button, icon, audioWave);
+    }
+
+    playAudio(audioType, button, icon, audioWave) {
+        try {
+            this.currentAudio = new Audio(this.audioFiles[audioType]);
+            this.currentButton = button;
+
+            this.currentAudio.volume = 0.7;
+            this.currentAudio.loop = false;
+
+            this.currentAudio.addEventListener('loadstart', () => {
+                this.updateUI(button, icon, audioWave, 'loading');
+            });
+
+            this.currentAudio.addEventListener('canplay', () => {
+                this.updateUI(button, icon, audioWave, 'playing');
+                this.currentAudio.play();
+            });
+
+            this.currentAudio.addEventListener('ended', () => {
+                this.updateUI(button, icon, audioWave, 'stopped');
+                this.resetCurrentAudio();
+            });
+
+            this.currentAudio.addEventListener('error', (e) => {
+                console.warn(`Erreur audio pour ${audioType}:`, e);
+                this.showAudioError(button);
+                this.resetCurrentAudio();
+            });
+
+            this.currentAudio.load();
+
+        } catch (error) {
+            console.warn('Erreur lors de la lecture audio:', error);
+            this.showAudioError(button);
+        }
+    }
+
+    pauseAudio(button, icon, audioWave) {
+        if (this.currentAudio) {
+            this.currentAudio.pause();
+            this.updateUI(button, icon, audioWave, 'paused');
+        }
+    }
+
+    stopAllAudio() {
+        if (this.currentAudio) {
+            this.currentAudio.pause();
+            this.currentAudio.currentTime = 0;
+        }
+
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            const icon = btn.querySelector('i');
+            const audioWave = btn.closest('.audio-player').querySelector('.audio-wave');
+            this.updateUI(btn, icon, audioWave, 'stopped');
+        });
+
+        this.resetCurrentAudio();
+    }
+
+    updateUI(button, icon, audioWave, state) {
+        button.classList.remove('playing', 'loading');
+        audioWave.classList.remove('playing');
+        
+        switch (state) {
+            case 'loading':
+                icon.className = 'fas fa-spinner fa-spin';
+                break;
+            case 'playing':
+                icon.className = 'fas fa-pause';
+                button.classList.add('playing');
+                audioWave.classList.add('playing');
+                break;
+            case 'paused':
+            case 'stopped':
+            default:
+                icon.className = 'fas fa-play';
+                break;
+        }
+    }
+
+    showAudioError(button) {
+        const icon = button.querySelector('i');
+        icon.className = 'fas fa-exclamation-triangle';
+        
+        setTimeout(() => {
+            icon.className = 'fas fa-play';
+        }, 2000);
+    }
+
+    resetCurrentAudio() {
+        this.currentAudio = null;
+        this.currentButton = null;
+    }
+}
+
+// Initialisation du portfolio audio
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('.portfolio-audio')) {
+        new AudioPortfolio();
+    }
+});
