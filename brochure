@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brochure - A Laiz Prod</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; line-height: 1.6; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .brochure-container { width: 100%; max-width: 1000px; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+        .header { background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%); color: white; padding: 40px; text-align: center; }
+        .logo { font-size: 3.5rem; margin-bottom: 15px; }
+        .header h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 700; }
+        .header p { font-size: 1.4rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        .nav-tabs { display: flex; background: #f8f9fa; border-bottom: 2px solid #e9ecef; padding: 0 20px; flex-wrap: wrap; }
+        .nav-tab { padding: 15px 25px; font-weight: 600; color: #6c757d; cursor: pointer; transition: all 0.3s ease; border-bottom: 3px solid transparent; }
+        .nav-tab.active { color: #8B4513; border-bottom: 3px solid #8B4513; }
+        .nav-tab:hover { color: #D2691E; }
+        .content { padding: 40px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .section-title { font-size: 2rem; color: #8B4513; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 2px solid #f1f1f1; }
+        .pricing-table { width: 100%; border-collapse: collapse; margin: 25px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden; }
+        .pricing-table th { background: #8B4513; color: white; text-align: left; padding: 15px; }
+        .pricing-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; }
+        .pricing-table tr:nth-child(even) { background: #f8f9fa; }
+        .pricing-table tr:last-child td { border-bottom: none; }
+        .pricing-table .highlight { background: #fff3cd; font-weight: 600; }
+        .tech-specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 25px 0; }
+        .tech-card { background: #f9f9f9; border-radius: 10px; padding: 20px; border-left: 4px solid #D2691E; }
+        .tech-card h3 { color: #8B4513; margin-bottom: 15px; font-size: 1.4rem; }
+        .spec-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #e9ecef; }
+        .spec-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .spec-title { font-weight: 600; color: #333; display: block; }
+        .spec-desc { color: #666; }
+        .terms { background: #e7f3ff; padding: 20px; border-radius: 10px; margin: 25px 0; }
+        .terms h3 { color: #0c63e4; margin-bottom: 15px; }
+        .terms-list { list-style: none; }
+        .terms-list li { padding: 8px 0; padding-left: 30px; position: relative; }
+        .terms-list li:before { content: '•'; position: absolute; left: 0; color: #0c63e4; font-weight: bold; font-size: 1.5rem; line-height: 1; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 25px 0; }
+        .contact-info { display: flex; align-items: center; margin-bottom: 20px; }
+        .contact-icon { width: 50px; height: 50px; background: #8B4513; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-right: 15px; }
+        .contact-details h4 { font-size: 1.2rem; margin-bottom: 5px; }
+        .action-buttons { display: flex; justify-content: center; gap: 20px; padding: 30px; background: #f8f9fa; border-top: 1px solid #e9ecef; }
+        .btn { padding: 15px 30px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; border: none; }
+        .btn-download { background: #28a745; color: white; }
+        .btn-download:hover { background: #218838; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3); }
+        .btn-print { background: #17a2b8; color: white; }
+        .btn-print:hover { background: #138496; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(23, 162, 184, 0.3); }
+        @media (max-width: 768px) {
+            .header { padding: 30px 20px; }
+            .header h1 { font-size: 2.2rem; }
+            .nav-tab { flex: 1; text-align: center; padding: 12px; font-size: 0.9rem; }
+            .content { padding: 25px; }
+            .pricing-table { display: block; overflow-x: auto; }
+        }
+        @media print {
+            body { background: white; }
+            .brochure-container { box-shadow: none; border-radius: 0; }
+            .action-buttons { display: none; }
+            .nav-tabs { display: none; }
+            .tab-content { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="brochure-container" id="brochure-content">
+        <div class="header">
+            <div class="logo"><i class="fas fa-music"></i> <i class="fas fa-film"></i> <i class="fas fa-camera"></i></div>
+            <h1>A LAIZ PROD</h1>
+            <p>Votre partenaire pour des événements musicaux exceptionnels</p>
+        </div>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="pricing">Grille Tarifaire</div>
+            <div class="nav-tab" data-tab="technical">Fiche Technique</div>
+            <div class="nav-tab" data-tab="conditions">Modalités</div>
+            <div class="nav-tab" data-tab="contact">Contact</div>
+        </div>
+        
+        <div class="content">
+            <div class="tab-content active" id="pricing">
+                <h2 class="section-title">Grille Tarifaire - Prestations PianoBar & Orchestre</h2>
+                <h3 style="color: #8B4513; margin: 20px 0 15px;">PianoBar – Forfaits</h3>
+                <table class="pricing-table">
+                    <thead><tr><th>Forfait</th><th>Description</th><th>Durée</th><th>Tarif (FCFA)</th></tr></thead>
+                    <tbody>
+                        <tr><td>PianoBar Mini</td><td>Piano + Voix, ambiance intimiste (cocktail, café, petit événement)</td><td>1 à 2 heures</td><td>100 000</td></tr>
+                        <tr><td>PianoBar Standard</td><td>Piano + Voix, ambiance renforcée (cocktail, réception, soirée privée)</td><td>2 à 3 heures</td><td>150 000</td></tr>
+                        <tr class="highlight"><td>PianoBar Bouquet (mariage complet)</td><td>Vin d'honneur + Soirée de mariage (piano + voix)</td><td>Selon programme</td><td>250 000</td></tr>
+                    </tbody>
+                </table>
+                
+                <h3 style="color: #8B4513; margin: 30px 0 15px;">Orchestre – Formules</h3>
+                <table class="pricing-table">
+                    <thead><tr><th>Formule</th><th>Description</th><th>Formation</th><th>Tarif (FCFA)</th></tr></thead>
+                    <tbody>
+                        <tr><td>Petit Orchestre</td><td>Groupe live 5 musiciens</td><td>5 musiciens minimum</td><td>À partir de 400 000</td></tr>
+                        <tr><td>Orchestre Étendu</td><td>Groupe live 6 (et plus) musiciens (selon besoin)</td><td>6 (et plus) musiciens</td><td>Sur devis selon effectif</td></tr>
+                    </tbody>
+                </table>
+                
+                <h3 style="color: #8B4513; margin: 30px 0 15px;">Sonorisation & Options</h3>
+                <table class="pricing-table">
+                    <thead><tr><th>Service</th><th>Description</th><th>Tarif</th></tr></thead>
+                    <tbody>
+                        <tr><td>Sonorisation événementielle (sans lumière)</td><td>Système son professionnel complet</td><td>Sur devis</td></tr>
+                        <tr><td>Fourniture musiciens + instruments + sono (pack complet)</td><td>Prestation clé en main (musiciens + sono + instruments)</td><td>Sur devis</td></tr>
+                        <tr><td>Déplacement hors ville</td><td>Transport & logistique</td><td>Sur devis</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="technical">
+                <h2 class="section-title">Fiche Technique - A LAIZ PROD</h2>
+                <div class="tech-specs">
+                    <div class="tech-card">
+                        <h3>Présentation du groupe</h3>
+                        <div class="spec-item"><span class="spec-title">Nom :</span><span class="spec-desc">A LAIZ Music</span></div>
+                        <div class="spec-item"><span class="spec-title">Formations proposées :</span><span class="spec-desc">PianoBar (piano + voix solo ou duo), Orchestre (5 à 10 musiciens)</span></div>
+                        <div class="spec-item"><span class="spec-title">Styles :</span><span class="spec-desc">Variété internationale, Jazz, Afro, Standards</span></div>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <h3>Besoins techniques – PianoBar</h3>
+                        <div class="spec-item"><span class="spec-title">Console numérique :</span><span class="spec-desc">8 à 12 pistes max</span></div>
+                        <div class="spec-item"><span class="spec-title">Micros chant :</span><span class="spec-desc">3</span></div>
+                        <div class="spec-item"><span class="spec-title">Retours de scène :</span><span class="spec-desc">2</span></div>
+                        <div class="spec-item"><span class="spec-title">Backline :</span><span class="spec-desc">Yamaha PSR-X900, Roland (clavier)</span></div>
+                        <div class="spec-item"><span class="spec-title">Surface scène recommandée :</span><span class="spec-desc">3 m x 2 m minimum</span></div>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <h3>Besoins techniques – Orchestre</h3>
+                        <div class="spec-item"><span class="spec-title">Console numérique :</span><span class="spec-desc">Adaptée à 5–8 musiciens</span></div>
+                        <div class="spec-item"><span class="spec-title">Micros chant/instruments :</span><span class="spec-desc">Selon formation</span></div>
+                        <div class="spec-item"><span class="spec-title">Retours de scène :</span><span class="spec-desc">Minimum 4</span></div>
+                        <div class="spec-item"><span class="spec-title">Surface scène recommandée :</span><span class="spec-desc">5 m x 3 m minimum</span></div>
+                    </div>
+                </div>
+                
+                <h3 style="color: #8B4513; margin: 30px 0 15px;">Plans de scène</h3>
+                <div class="tech-specs">
+                    <div class="tech-card">
+                        <h3>Plan PianoBar</h3>
+                        <div class="spec-item"><span class="spec-desc">Piano côté gauche, chanteur côté droit</span></div>
+                        <div class="spec-item"><span class="spec-desc">2 retours de scène</span></div>
+                        <div class="spec-item"><span class="spec-desc">Console et régie en fond</span></div>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <h3>Plan Orchestre</h3>
+                        <div class="spec-item"><span class="spec-desc">Pianos et claviers côté gauche</span></div>
+                        <div class="spec-item"><span class="spec-desc">Percussions/batterie centre arrière</span></div>
+                        <div class="spec-item"><span class="spec-desc">Cuivres/guitares côté droit</span></div>
+                        <div class="spec-item"><span class="spec-desc">Retours de scène répartis en avant</span></div>
+                        <div class="spec-item"><span class="spec-desc">Console et régie technique en fond</span></div>
+                    </div>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>Timing</h3>
+                    <div class="spec-item"><span class="spec-title">Montage & installation :</span><span class="spec-desc">Selon lieu</span></div>
+                    <div class="spec-item"><span class="spec-title">Balance son :</span><span class="spec-desc">Minimum 45 min avant événement</span></div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="conditions">
+                <h2 class="section-title">Modalités de Réservation</h2>
+                <div class="terms">
+                    <h3>Conditions générales</h3>
+                    <ul class="terms-list">
+                        <li>Acompte à la réservation pour confirmation de la prestation</li>
+                        <li>Solde à régler avant le début de la prestation</li>
+                        <li>Devis personnalisé établi sur demande selon vos besoins spécifiques</li>
+                        <li>Conditions d'annulation précisées au contrat</li>
+                        <li>Forfait déplacement pour événements hors ville</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>Contact technique</h3>
+                    <div class="spec-item"><span class="spec-title">Régisseur son :</span><span class="spec-desc">Donald - 682 180 266 - innovartmusic@gmail.com</span></div>
+                    <div class="spec-item"><span class="spec-title">Production :</span><span class="spec-desc">A Laiz Prod - 694 723 492 - contact@alaizopays.art</span></div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="contact">
+                <h2 class="section-title">Contactez-nous</h2>
+                <div class="contact-grid">
+                    <div>
+                        <div class="contact-info">
+                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                            <div class="contact-details"><h4>Téléphone</h4><p>+237 694 723 492</p></div>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="contact-details"><h4>Email</h4><p>contact@alaizopays.art</p></div>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-icon"><i class="fas fa-globe"></i></div>
+                            <div class="contact-details"><h4>Site Web</h4><p>www.alaizopays.art</p></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 style="margin-bottom: 20px; color: #8B4513;">Disponible 7j/7 pour vos événements</h3>
+                        <p>Notre équipe est à votre écoute pour discuter de votre projet et vous proposer une solution sur mesure.</p>
+                        <p>N'hésitez pas à nous contacter pour obtenir un devis personnalisé ou pour toute question concernant nos services.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-download" onclick="generatePDF()"><i class="fas fa-download"></i> Télécharger la brochure PDF</button>
+            <button class="btn btn-print" onclick="window.print()"><i class="fas fa-print"></i> Imprimer la brochure</button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+        
+        function generatePDF() {
+            const element = document.getElementById('brochure-content');
+            const opt = {
+                margin: 10,
+                filename: 'Brochure-A-Laiz-Prod.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>
