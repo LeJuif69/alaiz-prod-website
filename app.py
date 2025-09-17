@@ -356,9 +356,44 @@ def contact():
     except:
         return redirect(url_for('index'))
         
+# NOUVELLE ROUTE POUR LA BROCHURE INTERNATIONALE
+@app.route('/international')
 @app.route('/brochure-internationale')
 def brochure_internationale():
-    return render_template('brochure-internationale.html')
+    """Route pour la brochure internationale"""
+    return render_template('brochure-internationale.html',
+                         title='A Laiz Prod - Services Internationaux',
+                         description='Tarifs Europe, Amérique, Asie, Moyen-Orient')
+
+# Si vous voulez permettre le téléchargement en PDF
+@app.route('/download/brochure-internationale')
+def download_brochure_internationale():
+    """Téléchargement de la brochure en PDF"""
+    return send_from_directory('assets/documents', 
+                             'brochure-internationale.pdf',
+                             as_attachment=True,
+                             download_name='ALaiz_Brochure_Internationale_2024.pdf')
+
+# Si vous avez une API pour lister les documents
+@app.route('/api/documents')
+def api_documents():
+    return {
+        'documents': [
+            {
+                'id': 'brochure-int',
+                'name': 'Brochure Internationale',
+                'type': 'html',
+                'url': '/brochure-internationale',
+                'download': '/download/brochure-internationale',
+                'languages': ['fr', 'en'],
+                'description': 'Tarifs et conditions pour événements internationaux'
+            }
+            # Autres documents...
+        ]
+    }
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 # Routes API pour données dynamiques
 @app.route('/api/stats')
@@ -440,4 +475,5 @@ if __name__ == '__main__':
 else:
     # Configuration pour production (Gunicorn)
     application = app
+
 
