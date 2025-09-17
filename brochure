@@ -3,243 +3,931 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brochure - A Laiz Prod</title>
+    <title>Brochure Internationale - A Laiz Prod</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; line-height: 1.6; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .brochure-container { width: 100%; max-width: 1000px; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
-        .header { background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%); color: white; padding: 40px; text-align: center; }
-        .logo { font-size: 3.5rem; margin-bottom: 15px; }
-        .header h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 700; }
-        .header p { font-size: 1.4rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
-        .nav-tabs { display: flex; background: #f8f9fa; border-bottom: 2px solid #e9ecef; padding: 0 20px; flex-wrap: wrap; }
-        .nav-tab { padding: 15px 25px; font-weight: 600; color: #6c757d; cursor: pointer; transition: all 0.3s ease; border-bottom: 3px solid transparent; }
-        .nav-tab.active { color: #8B4513; border-bottom: 3px solid #8B4513; }
-        .nav-tab:hover { color: #D2691E; }
-        .content { padding: 40px; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .section-title { font-size: 2rem; color: #8B4513; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 2px solid #f1f1f1; }
-        .pricing-table { width: 100%; border-collapse: collapse; margin: 25px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden; }
-        .pricing-table th { background: #8B4513; color: white; text-align: left; padding: 15px; }
-        .pricing-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; }
-        .pricing-table tr:nth-child(even) { background: #f8f9fa; }
-        .pricing-table tr:last-child td { border-bottom: none; }
-        .pricing-table .highlight { background: #fff3cd; font-weight: 600; }
-        .tech-specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 25px 0; }
-        .tech-card { background: #f9f9f9; border-radius: 10px; padding: 20px; border-left: 4px solid #D2691E; }
-        .tech-card h3 { color: #8B4513; margin-bottom: 15px; font-size: 1.4rem; }
-        .spec-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #e9ecef; }
-        .spec-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .spec-title { font-weight: 600; color: #333; display: block; }
-        .spec-desc { color: #666; }
-        .terms { background: #e7f3ff; padding: 20px; border-radius: 10px; margin: 25px 0; }
-        .terms h3 { color: #0c63e4; margin-bottom: 15px; }
-        .terms-list { list-style: none; }
-        .terms-list li { padding: 8px 0; padding-left: 30px; position: relative; }
-        .terms-list li:before { content: '•'; position: absolute; left: 0; color: #0c63e4; font-weight: bold; font-size: 1.5rem; line-height: 1; }
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 25px 0; }
-        .contact-info { display: flex; align-items: center; margin-bottom: 20px; }
-        .contact-icon { width: 50px; height: 50px; background: #8B4513; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-right: 15px; }
-        .contact-details h4 { font-size: 1.2rem; margin-bottom: 5px; }
-        .action-buttons { display: flex; justify-content: center; gap: 20px; padding: 30px; background: #f8f9fa; border-top: 1px solid #e9ecef; }
-        .btn { padding: 15px 30px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; border: none; }
-        .btn-download { background: #28a745; color: white; }
-        .btn-download:hover { background: #218838; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3); }
-        .btn-print { background: #17a2b8; color: white; }
-        .btn-print:hover { background: #138496; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(23, 162, 184, 0.3); }
-        @media (max-width: 768px) {
-            .header { padding: 30px 20px; }
-            .header h1 { font-size: 2.2rem; }
-            .nav-tab { flex: 1; text-align: center; padding: 12px; font-size: 0.9rem; }
-            .content { padding: 25px; }
-            .pricing-table { display: block; overflow-x: auto; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .brochure-container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            padding: 15px 25px;
+            font-weight: 600;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .nav-tab.active {
+            color: #8B4513;
+            border-bottom: 3px solid #8B4513;
+        }
+        
+        .nav-tab:hover {
+            color: #D2691E;
+        }
+        
+        /* Content */
+        .content {
+            padding: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: #8B4513;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f1f1;
+        }
+        
+        /* Service Cards */
+        .service-category {
+            margin-bottom: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .category-header {
+            background: linear-gradient(90deg, #8B4513, #D2691E);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .category-icon {
+            font-size: 2rem;
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .pricing-table th {
+            background: #8B4513;
+            color: white;
+            text-align: left;
+            padding: 15px;
+        }
+        
+        .pricing-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .pricing-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #D69E2E;
+        }
+        
+        .includes {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .popular {
+            background: #FFF8DC;
+            position: relative;
+        }
+        
+        .popular::before {
+            content: 'POPULAIRE';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #FF6347;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        /* International Zones */
+        .zone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .zone-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #D2691E;
+        }
+        
+        .zone-flag {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .zone-title {
+            font-size: 1.4rem;
+            color: #8B4513;
+            margin-bottom: 15px;
+        }
+        
+        .zone-price {
+            font-size: 1.1rem;
+            color: #D69E2E;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .zone-conditions {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        /* Festival Packages */
+        .festival-package {
+            background: white;
+            border: 2px solid #D69E2E;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .package-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .package-name {
+            font-size: 1.5rem;
+            color: #2D3748;
+        }
+        
+        .package-price {
+            font-size: 1.8rem;
+            color: #D69E2E;
+            font-weight: bold;
+        }
+        
+        .package-includes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .include-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .include-icon {
+            color: #28a745;
+            font-size: 1.2rem;
+        }
+        
+        /* Technical Rider */
+        .rider-section {
+            background: #f5f5f5;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        
+        .rider-title {
+            font-size: 1.3rem;
+            color: #8B4513;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .requirement-list {
+            list-style: none;
+            margin-left: 20px;
+        }
+        
+        .requirement-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .requirement-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #D69E2E;
+            font-weight: bold;
+        }
+        
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 25px 0;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #8B4513;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+        }
+        
+        .btn-download {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-download:hover {
+            background: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .btn-print {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .btn-print:hover {
+            background: #138496;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(23, 162, 184, 0.3);
+        }
+        
+        /* Media queries */
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                text-align: center;
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .package-includes {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+        
         @media print {
-            body { background: white; }
-            .brochure-container { box-shadow: none; border-radius: 0; }
-            .action-buttons { display: none; }
-            .nav-tabs { display: none; }
-            .tab-content { display: block !important; }
+            body {
+                background: white;
+            }
+            
+            .brochure-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .action-buttons {
+                display: none;
+            }
+            
+            .nav-tabs {
+                display: none;
+            }
+            
+            .tab-content {
+                display: block !important;
+            }
         }
     </style>
 </head>
 <body>
     <div class="brochure-container" id="brochure-content">
         <div class="header">
-            <div class="logo"><i class="fas fa-music"></i> <i class="fas fa-film"></i> <i class="fas fa-camera"></i></div>
+            <div class="logo">
+                <i class="fas fa-music"></i> <i class="fas fa-film"></i> <i class="fas fa-camera"></i>
+            </div>
             <h1>A LAIZ PROD</h1>
-            <p>Votre partenaire pour des événements musicaux exceptionnels</p>
+            <p>Excellence Musicale Internationale - International Musical Excellence</p>
         </div>
         
         <div class="nav-tabs">
-            <div class="nav-tab active" data-tab="pricing">Grille Tarifaire</div>
-            <div class="nav-tab" data-tab="technical">Fiche Technique</div>
-            <div class="nav-tab" data-tab="conditions">Modalités</div>
+            <div class="nav-tab active" data-tab="local">Services Locaux</div>
+            <div class="nav-tab" data-tab="international">International</div>
+            <div class="nav-tab" data-tab="festivals">Packages Festivals</div>
+            <div class="nav-tab" data-tab="rider">Rider Technique</div>
             <div class="nav-tab" data-tab="contact">Contact</div>
         </div>
         
         <div class="content">
-            <div class="tab-content active" id="pricing">
-                <h2 class="section-title">Grille Tarifaire - Prestations PianoBar & Orchestre</h2>
-                <h3 style="color: #8B4513; margin: 20px 0 15px;">PianoBar – Forfaits</h3>
-                <table class="pricing-table">
-                    <thead><tr><th>Forfait</th><th>Description</th><th>Durée</th><th>Tarif (FCFA)</th></tr></thead>
-                    <tbody>
-                        <tr><td>PianoBar Mini</td><td>Piano + Voix, ambiance intimiste (cocktail, café, petit événement)</td><td>1 à 2 heures</td><td>100 000</td></tr>
-                        <tr><td>PianoBar Standard</td><td>Piano + Voix, ambiance renforcée (cocktail, réception, soirée privée)</td><td>2 à 3 heures</td><td>150 000</td></tr>
-                        <tr class="highlight"><td>PianoBar Bouquet (mariage complet)</td><td>Vin d'honneur + Soirée de mariage (piano + voix)</td><td>Selon programme</td><td>250 000</td></tr>
-                    </tbody>
-                </table>
+            <!-- Services Locaux -->
+            <div class="tab-content active" id="local">
+                <h2 class="section-title">Services Nationaux - Cameroun</h2>
                 
-                <h3 style="color: #8B4513; margin: 30px 0 15px;">Orchestre – Formules</h3>
-                <table class="pricing-table">
-                    <thead><tr><th>Formule</th><th>Description</th><th>Formation</th><th>Tarif (FCFA)</th></tr></thead>
-                    <tbody>
-                        <tr><td>Petit Orchestre</td><td>Groupe live 5 musiciens</td><td>5 musiciens minimum</td><td>À partir de 400 000</td></tr>
-                        <tr><td>Orchestre Étendu</td><td>Groupe live 6 (et plus) musiciens (selon besoin)</td><td>6 (et plus) musiciens</td><td>Sur devis selon effectif</td></tr>
-                    </tbody>
-                </table>
+                <!-- Piano-Bar -->
+                <div class="service-category">
+                    <div class="category-header">
+                        <span class="category-icon">🎹</span>
+                        <span class="category-title">Piano-Bar & Animation Lounge</span>
+                    </div>
+                    
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>Formule</th>
+                                <th>Durée</th>
+                                <th>Tarif (FCFA)</th>
+                                <th>Inclus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>PianoBar Mini</strong>
+                                    <div class="includes">Ambiance intimiste</div>
+                                </td>
+                                <td>1 à 2 heures</td>
+                                <td class="price">100.000</td>
+                                <td>Piano + Voix, cocktail, café, petit événement</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>PianoBar Standard</strong>
+                                    <div class="includes">Ambiance renforcée</div>
+                                </td>
+                                <td>2 à 3 heures</td>
+                                <td class="price">150.000</td>
+                                <td>Piano + Voix, cocktail, réception, soirée privée</td>
+                            </tr>
+                            <tr class="popular">
+                                <td>
+                                    <strong>PianoBar Bouquet</strong>
+                                    <div class="includes">Mariage complet</div>
+                                </td>
+                                <td>Selon programme</td>
+                                <td class="price">250.000</td>
+                                <td>Vin d'honneur + Soirée de mariage (piano + voix)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 
-                <h3 style="color: #8B4513; margin: 30px 0 15px;">Sonorisation & Options</h3>
-                <table class="pricing-table">
-                    <thead><tr><th>Service</th><th>Description</th><th>Tarif</th></tr></thead>
-                    <tbody>
-                        <tr><td>Sonorisation événementielle (sans lumière)</td><td>Système son professionnel complet</td><td>Sur devis</td></tr>
-                        <tr><td>Fourniture musiciens + instruments + sono (pack complet)</td><td>Prestation clé en main (musiciens + sono + instruments)</td><td>Sur devis</td></tr>
-                        <tr><td>Déplacement hors ville</td><td>Transport & logistique</td><td>Sur devis</td></tr>
-                    </tbody>
-                </table>
+                <!-- Orchestre -->
+                <div class="service-category">
+                    <div class="category-header">
+                        <span class="category-icon">🎭</span>
+                        <span class="category-title">Orchestre - Formations Live</span>
+                    </div>
+                    
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>Formule</th>
+                                <th>Formation</th>
+                                <th>Tarif (FCFA)</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Petit Orchestre</strong>
+                                    <div class="includes">Groupe live compact</div>
+                                </td>
+                                <td>5 musiciens minimum</td>
+                                <td class="price">À partir de 400.000</td>
+                                <td>Formation complète pour événements moyens à grands</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Orchestre Étendu</strong>
+                                    <div class="includes">Formation complète</div>
+                                </td>
+                                <td>6+ musiciens</td>
+                                <td class="price">Sur devis</td>
+                                <td>Groupe live selon besoin, configuration personnalisée</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Pack Complet</strong>
+                                    <div class="includes">Clé en main</div>
+                                </td>
+                                <td>Selon besoin</td>
+                                <td class="price">Sur devis</td>
+                                <td>Musiciens + instruments + sonorisation complète</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Sonorisation -->
+                <div class="service-category">
+                    <div class="category-header">
+                        <span class="category-icon">🔊</span>
+                        <span class="category-title">A Laiz Sono - Location Sonorisation</span>
+                    </div>
+                    
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>Pack</th>
+                                <th>Capacité</th>
+                                <th>Tarif/Jour (FCFA)</th>
+                                <th>Matériel Inclus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Basic</strong>
+                                    <div class="includes">Petit événement</div>
+                                </td>
+                                <td>50-100 pers</td>
+                                <td class="price">100.000</td>
+                                <td>2 enceintes, console 8 pistes, 2 micros, câblage</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Standard</strong>
+                                    <div class="includes">Salle moyenne</div>
+                                </td>
+                                <td>100-300 pers</td>
+                                <td class="price">150.000</td>
+                                <td>4 enceintes, sub, console 16 pistes, 4 micros, retours</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Pro</strong>
+                                    <div class="includes">Grand événement</div>
+                                </td>
+                                <td>300-1000 pers</td>
+                                <td class="price">300.000</td>
+                                <td>Système professionnel, subs, console numérique, kit micro complet, éclairage LED</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             
-            <div class="tab-content" id="technical">
-                <h2 class="section-title">Fiche Technique - A LAIZ PROD</h2>
-                <div class="tech-specs">
-                    <div class="tech-card">
-                        <h3>Présentation du groupe</h3>
-                        <div class="spec-item"><span class="spec-title">Nom :</span><span class="spec-desc">A LAIZ Music</span></div>
-                        <div class="spec-item"><span class="spec-title">Formations proposées :</span><span class="spec-desc">PianoBar (piano + voix solo ou duo), Orchestre (5 à 10 musiciens)</span></div>
-                        <div class="spec-item"><span class="spec-title">Styles :</span><span class="spec-desc">Variété internationale, Jazz, Afro, Standards</span></div>
+            <!-- International -->
+            <div class="tab-content" id="international">
+                <h2 class="section-title">Services Internationaux</h2>
+                
+                <div class="zone-grid">
+                    <!-- Europe -->
+                    <div class="zone-card">
+                        <div class="zone-flag">🇪🇺</div>
+                        <div class="zone-title">Union Européenne</div>
+                        <div class="zone-price">Concert/Festival: 2.500 - 5.000 €</div>
+                        <div class="zone-price">Événement Corporate: 1.500 - 3.000 €</div>
+                        <div class="zone-price">Mariage Destination: 3.000 - 7.000 €</div>
+                        <div class="zone-conditions">
+                            + Vols A/R, hébergement 3-4*, per diem 100€/jour, visa inclus
+                        </div>
                     </div>
                     
-                    <div class="tech-card">
-                        <h3>Besoins techniques – PianoBar</h3>
-                        <div class="spec-item"><span class="spec-title">Console numérique :</span><span class="spec-desc">8 à 12 pistes max</span></div>
-                        <div class="spec-item"><span class="spec-title">Micros chant :</span><span class="spec-desc">3</span></div>
-                        <div class="spec-item"><span class="spec-title">Retours de scène :</span><span class="spec-desc">2</span></div>
-                        <div class="spec-item"><span class="spec-title">Backline :</span><span class="spec-desc">Yamaha PSR-X900, Roland (clavier)</span></div>
-                        <div class="spec-item"><span class="spec-title">Surface scène recommandée :</span><span class="spec-desc">3 m x 2 m minimum</span></div>
+                    <!-- Amérique du Nord -->
+                    <div class="zone-card">
+                        <div class="zone-flag">🇺🇸🇨🇦</div>
+                        <div class="zone-title">Amérique du Nord</div>
+                        <div class="zone-price">Concert/Festival: 4.000 - 8.000 $</div>
+                        <div class="zone-price">Corporate Event: 3.000 - 5.000 $</div>
+                        <div class="zone-price">Private Wedding: 5.000 - 10.000 $</div>
+                        <div class="zone-conditions">
+                            + Vols business class, hôtel 4★, per diem 150$/jour, ESTA inclus
+                        </div>
                     </div>
                     
-                    <div class="tech-card">
-                        <h3>Besoins techniques – Orchestre</h3>
-                        <div class="spec-item"><span class="spec-title">Console numérique :</span><span class="spec-desc">Adaptée à 5–8 musiciens</span></div>
-                        <div class="spec-item"><span class="spec-title">Micros chant/instruments :</span><span class="spec-desc">Selon formation</span></div>
-                        <div class="spec-item"><span class="spec-title">Retours de scène :</span><span class="spec-desc">Minimum 4</span></div>
-                        <div class="spec-item"><span class="spec-title">Surface scène recommandée :</span><span class="spec-desc">5 m x 3 m minimum</span></div>
+                    <!-- Asie-Pacifique -->
+                    <div class="zone-card">
+                        <div class="zone-flag">🇯🇵🇸🇬</div>
+                        <div class="zone-title">Asie-Pacifique</div>
+                        <div class="zone-price">Asian Tour (5 dates): ¥2-4M</div>
+                        <div class="zone-price">Singapore Event: 8.000 - 15.000 SGD</div>
+                        <div class="zone-price">Luxury Hotel Dubai: 15.000 AED/semaine</div>
+                        <div class="zone-conditions">
+                            + Vols premium economy, hôtel 5★, guide local, dietary requirements
+                        </div>
+                    </div>
+                    
+                    <!-- Afrique -->
+                    <div class="zone-card">
+                        <div class="zone-flag">🌍</div>
+                        <div class="zone-title">Afrique (hors Cameroun)</div>
+                        <div class="zone-price">Événement Corporate: 1.500 - 3.000 €</div>
+                        <div class="zone-price">Tournée Africaine: Sur devis</div>
+                        <div class="zone-price">Festival: 2.000 - 4.000 €</div>
+                        <div class="zone-conditions">
+                            + Transport, hébergement, repas équipe, visas régionaux
+                        </div>
                     </div>
                 </div>
                 
-                <h3 style="color: #8B4513; margin: 30px 0 15px;">Plans de scène</h3>
-                <div class="tech-specs">
-                    <div class="tech-card">
-                        <h3>Plan PianoBar</h3>
-                        <div class="spec-item"><span class="spec-desc">Piano côté gauche, chanteur côté droit</span></div>
-                        <div class="spec-item"><span class="spec-desc">2 retours de scène</span></div>
-                        <div class="spec-item"><span class="spec-desc">Console et régie en fond</span></div>
+                <div style="background: #FFF8DC; padding: 25px; border-radius: 10px; margin-top: 30px;">
+                    <h3 style="color: #8B4513; margin-bottom: 15px;">💱 Taux de Change Référence</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                        <div><strong>1 USD</strong><br>≈ 615 FCFA<br>≈ 0.95 EUR</div>
+                        <div><strong>1 EUR</strong><br>≈ 656 FCFA<br>≈ 1.05 USD</div>
+                        <div><strong>1000 JPY</strong><br>≈ 4,100 FCFA<br>≈ 6.30 EUR</div>
+                        <div><strong>1 AED</strong><br>≈ 168 FCFA<br>≈ 0.26 EUR</div>
                     </div>
-                    
-                    <div class="tech-card">
-                        <h3>Plan Orchestre</h3>
-                        <div class="spec-item"><span class="spec-desc">Pianos et claviers côté gauche</span></div>
-                        <div class="spec-item"><span class="spec-desc">Percussions/batterie centre arrière</span></div>
-                        <div class="spec-item"><span class="spec-desc">Cuivres/guitares côté droit</span></div>
-                        <div class="spec-item"><span class="spec-desc">Retours de scène répartis en avant</span></div>
-                        <div class="spec-item"><span class="spec-desc">Console et régie technique en fond</span></div>
-                    </div>
-                </div>
-                
-                <div class="tech-card">
-                    <h3>Timing</h3>
-                    <div class="spec-item"><span class="spec-title">Montage & installation :</span><span class="spec-desc">Selon lieu</span></div>
-                    <div class="spec-item"><span class="spec-title">Balance son :</span><span class="spec-desc">Minimum 45 min avant événement</span></div>
                 </div>
             </div>
             
-            <div class="tab-content" id="conditions">
-                <h2 class="section-title">Modalités de Réservation</h2>
-                <div class="terms">
-                    <h3>Conditions générales</h3>
-                    <ul class="terms-list">
-                        <li>Acompte à la réservation pour confirmation de la prestation</li>
-                        <li>Solde à régler avant le début de la prestation</li>
-                        <li>Devis personnalisé établi sur demande selon vos besoins spécifiques</li>
-                        <li>Conditions d'annulation précisées au contrat</li>
-                        <li>Forfait déplacement pour événements hors ville</li>
+            <!-- Packages Festivals -->
+            <div class="tab-content" id="festivals">
+                <h2 class="section-title">Packages Festivals Européens</h2>
+                
+                <div class="festival-package">
+                    <div class="package-header">
+                        <div class="package-name">🎵 PACKAGE JAZZ FESTIVAL</div>
+                        <div class="package-price">3.500 €</div>
+                    </div>
+                    <p style="color: #666; margin-bottom: 20px;">Montreux, North Sea, Nice Jazz Festival...</p>
+                    <div class="package-includes">
+                        <div class="include-item"><span class="include-icon">✓</span> Performance 75 minutes</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Duo ou Quartet formation</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Sound check 2h avant</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Interviews presse incluses</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Meet & Greet VIP (30 min)</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Merchandising autorisé</div>
+                    </div>
+                    <div style="background: #f0f0f0; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                        <strong>Conditions spéciales :</strong> Transport depuis Cameroun, hébergement 3 nuits, per diem 100€/jour, backline fourni par festival
+                    </div>
+                </div>
+                
+                <div class="festival-package">
+                    <div class="package-header">
+                        <div class="package-name">🌍 PACKAGE WORLD MUSIC</div>
+                        <div class="package-price">4.500 €</div>
+                    </div>
+                    <p style="color: #666; margin-bottom: 20px;">WOMAD, Paléo, Roskilde, Sziget...</p>
+                    <div class="package-includes">
+                        <div class="include-item"><span class="include-icon">✓</span> Show 90 minutes Afro-fusion</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Formation 5 musiciens</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Workshop/Masterclass inclus</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Documentary filming rights</div>
+                        <div class="include-item"><span class="include-icon">✓</span> 2 performances possibles</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Cultural exchange program</div>
+                    </div>
+                    <div style="background: #f0f0f0; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                        <strong>Inclus :</strong> Vols A/R, hébergement 4 nuits, transport local, catering végétarien disponible, streaming rights negotiable
+                    </div>
+                </div>
+                
+                <div class="festival-package">
+                    <div class="package-header">
+                        <div class="package-name">✨ PACKAGE PRESTIGE</div>
+                        <div class="package-price">7.500 €</div>
+                    </div>
+                    <p style="color: #666; margin-bottom: 20px;">Cannes Film Festival, Monaco Events, Swiss Private...</p>
+                    <div class="package-includes">
+                        <div class="include-item"><span class="include-icon">✓</span> Performance exclusive 2h</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Répertoire 100% personnalisé</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Tenue de soirée fournie</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Confidentialité garantie (NDA)</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Transport limousine</div>
+                        <div class="include-item"><span class="include-icon">✓</span> Suite 5★ sea view</div>
+                    </div>
+                    <div style="background: #FFD700; padding: 15px; border-radius: 8px; margin-top: 20px; color: #333;">
+                        <strong>VIP :</strong> Charter privé possible, personal assistant, dietary chef, security if needed, photo/video restrictions apply
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rider Technique -->
+            <div class="tab-content" id="rider">
+                <h2 class="section-title">Rider Technique International</h2>
+                
+                <div class="rider-section">
+                    <div class="rider-title">SONORISATION</div>
+                    <ul class="requirement-list">
+                        <li>Console numérique 24/32 canaux (Yamaha, Allen&Heath, Behringer X32)</li>
+                        <li>Système Line Array ou point source adapté à la jauge</li>
+                        <li>4 retours de scène minimum (type L-Acoustics 115XT HiQ)</li>
+                        <li>Microphones : 3x SM58, 2x DI Box stéréo, 4x SM57</li>
+                        <li>Compresseurs et reverb aux auxiliaires</li>
                     </ul>
                 </div>
                 
-                <div class="tech-card">
-                    <h3>Contact technique</h3>
-                    <div class="spec-item"><span class="spec-title">Régisseur son :</span><span class="spec-desc">Donald - 682 180 266 - innovartmusic@gmail.com</span></div>
-                    <div class="spec-item"><span class="spec-title">Production :</span><span class="spec-desc">A Laiz Prod - 694 723 492 - contact@alaizopays.art</span></div>
+                <div class="rider-section">
+                    <div class="rider-title">BACKLINE</div>
+                    <ul class="requirement-list">
+                        <li>Piano numérique 88 touches lesté (Yamaha, Roland, Korg)</li>
+                        <li>Stand double en X + banquette réglable</li>
+                        <li>Amplificateur clavier si pas de retours (Roland KC-550)</li>
+                        <li>Pupitre + éclairage pupitre</li>
+                        <li>Alimentation électrique stabilisée</li>
+                    </ul>
+                </div>
+                
+                <div class="rider-section">
+                    <div class="rider-title">ÉCLAIRAGE</div>
+                    <ul class="requirement-list">
+                        <li>Face : 6 PC 1kW ou équivalent LED</li>
+                        <li>Contre : 8 PAR LED RGBWA</li>
+                        <li>2 poursuites si grande salle</li>
+                        <li>Machine à brouillard/hazer léger</li>
+                        <li>Console lumière programmable DMX</li>
+                    </ul>
+                </div>
+                
+                <div class="rider-section">
+                    <div class="rider-title">HOSPITALITÉ</div>
+                    <ul class="requirement-list">
+                        <li>2 chambres single non-fumeur</li>
+                        <li>Hôtel 3★ minimum centre-ville</li>
+                        <li>Repas chaud si prestation > 4h</li>
+                        <li>Eau plate (6 x 50cl minimum)</li>
+                        <li>Fruits frais + snacks</li>
+                        <li>Options végétariennes disponibles</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #1a1a1a; color: white; padding: 30px; border-radius: 10px; margin: 30px 0; text-align: center;">
+                    <h3 style="color: #D69E2E; margin-bottom: 20px;">STAGE PLOT - CONFIGURATION STANDARD</h3>
+                    <div style="background: white; color: black; padding: 40px; border-radius: 10px; position: relative; min-height: 300px;">
+                        <div style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-weight: bold;">
+                            ↓ AUDIENCE / PUBLIC ↓
+                        </div>
+                        
+                        <div style="position: absolute; top: 50%; left: 30%; transform: translate(-50%, -50%); background: #D69E2E; color: white; padding: 15px; border-radius: 8px;">
+                            KEYBOARDS<br>HERVÉ
+                        </div>
+                        
+                        <div style="position: absolute; top: 50%; right: 30%; transform: translate(50%, -50%); background: #8B4513; color: white; padding: 15px; border-radius: 8px;">
+                            VOCALS<br>FLAVIE
+                        </div>
+                        
+                        <div style="position: absolute; bottom: 30%; left: 50%; transform: translateX(-50%); background: #666; color: white; padding: 10px; border-radius: 5px;">
+                            MONITORS (x4)
+                        </div>
+                        
+                        <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);">
+                            Minimum Stage Size: 6m x 4m | Optimal: 8m x 6m
+                        </div>
+                    </div>
                 </div>
             </div>
             
+            <!-- Contact -->
             <div class="tab-content" id="contact">
-                <h2 class="section-title">Contactez-nous</h2>
+                <h2 class="section-title">Contact International</h2>
+                
                 <div class="contact-grid">
                     <div>
                         <div class="contact-info">
-                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                            <div class="contact-details"><h4>Téléphone</h4><p>+237 694 723 492</p></div>
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Téléphone</h4>
+                                <p>+237 694 723 492</p>
+                                <p>+237 682 180 266</p>
+                            </div>
                         </div>
+                        
                         <div class="contact-info">
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="contact-details"><h4>Email</h4><p>contact@alaizopays.art</p></div>
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>contact@alaizopays.art</p>
+                                <p>booking@alaizopays.art</p>
+                            </div>
                         </div>
+                        
                         <div class="contact-info">
-                            <div class="contact-icon"><i class="fas fa-globe"></i></div>
-                            <div class="contact-details"><h4>Site Web</h4><p>www.alaizopays.art</p></div>
+                            <div class="contact-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Site Web</h4>
+                                <p>www.alaizopays.art</p>
+                            </div>
                         </div>
                     </div>
                     
                     <div>
-                        <h3 style="margin-bottom: 20px; color: #8B4513;">Disponible 7j/7 pour vos événements</h3>
+                        <h3 style="margin-bottom: 20px; color: #8B4513;">Disponible 7j/7 pour vos événements internationaux</h3>
                         <p>Notre équipe est à votre écoute pour discuter de votre projet et vous proposer une solution sur mesure.</p>
                         <p>N'hésitez pas à nous contacter pour obtenir un devis personnalisé ou pour toute question concernant nos services.</p>
+                        
+                        <div style="margin-top: 30px;">
+                            <h4 style="color: #8B4513; margin-bottom: 15px;">Langues parlées :</h4>
+                            <p>Français, Anglais, Espagnol basique</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: #2D3748; color: white; padding: 30px; border-radius: 10px; margin-top: 40px;">
+                    <h3 style="color: #D69E2E; text-align: center; margin-bottom: 20px;">INTERNATIONAL BOOKING</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: center;">
+                        <div>
+                            <h4 style="color: #FFD700;">Management</h4>
+                            <p>Hervé Nanfang<br>+237 682 180 266<br>herve@alaizprod.com</p>
+                        </div>
+                        <div>
+                            <h4 style="color: #FFD700;">Production</h4>
+                            <p>A Laiz Prod<br>+237 694 723 492<br>booking@alaizopays.art</p>
+                        </div>
+                        <div>
+                            <h4 style="color: #FFD700;">Technical</h4>
+                            <p>Donald<br>+237 682 180 266<br>innovartmusic@gmail.com</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="action-buttons">
-            <button class="btn btn-download" onclick="generatePDF()"><i class="fas fa-download"></i> Télécharger la brochure PDF</button>
-            <button class="btn btn-print" onclick="window.print()"><i class="fas fa-print"></i> Imprimer la brochure</button>
+            <button class="btn btn-download" onclick="generatePDF()">
+                <i class="fas fa-download"></i> Télécharger la brochure PDF
+            </button>
+            <button class="btn btn-print" onclick="window.print()">
+                <i class="fas fa-print"></i> Imprimer la brochure
+            </button>
         </div>
     </div>
 
     <script>
+        // Navigation par onglets
         document.querySelectorAll('.nav-tab').forEach(tab => {
             tab.addEventListener('click', () => {
+                // Désactiver tous les onglets
                 document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Activer l'onglet cliqué
                 tab.classList.add('active');
                 document.getElementById(tab.dataset.tab).classList.add('active');
             });
         });
         
+        // Génération du PDF
         function generatePDF() {
+            // Configuration de html2pdf
             const element = document.getElementById('brochure-content');
             const opt = {
                 margin: 10,
-                filename: 'Brochure-A-Laiz-Prod.pdf',
+                filename: 'Brochure-Internationale-A-Laiz-Prod.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2 },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
+            
+            // Génération du PDF
             html2pdf().set(opt).from(element).save();
         }
     </script>
