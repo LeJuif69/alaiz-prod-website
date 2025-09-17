@@ -355,6 +355,10 @@ def contact():
                              services=services_data)
     except:
         return redirect(url_for('index'))
+        
+@app.route('/brochure-internationale')
+def brochure_internationale():
+    return render_template('brochure-internationale.html')
 
 # Routes API pour données dynamiques
 @app.route('/api/stats')
@@ -436,3 +440,4 @@ if __name__ == '__main__':
 else:
     # Configuration pour production (Gunicorn)
     application = app
+
