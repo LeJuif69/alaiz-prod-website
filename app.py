@@ -1,151 +1,132 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Laiz Prod - Excellence musicale camerounaise</title>
-    <meta name="description" content="A Laiz Prod - Label musical camerounais alliant tradition africaine et modernité. Production musicale, événements, formation artistique.">
-    <meta name="keywords" content="musique camerounaise, production musicale, label, tradition, modernité, événements, formation artistique">
-    <meta name="author" content="A Laiz Prod">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://alaizprod.com/">
-    <meta property="og:title" content="A Laiz Prod - Excellence musicale camerounaise">
-    <meta property="og:description" content="Label musical camerounais alliant tradition africaine et modernité. Production musicale, événements, formation artistique.">
-    <meta property="og:image" content="{{ url_for('static', filename='images/og-image.jpg') }}">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://alaizprod.com/">
-    <meta property="twitter:title" content="A Laiz Prod - Excellence musicale camerounaise">
-    <meta property="twitter:description" content="Label musical camerounais alliant tradition africaine et modernité. Production musicale, événements, formation artistique.">
-    <meta property="twitter:image" content="{{ url_for('static', filename='images/og-image.jpg') }}">
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@500;600&family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Analytics -->
-    {% if google_analytics_id %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_id }}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '{{ google_analytics_id }}');
-    </script>
-    {% endif %}
-    
-    <!-- Facebook Pixel -->
-    {% if facebook_pixel_id %}
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '{{ facebook_pixel_id }}');
-      fbq('track', 'PageView');
-    </script>
-    <noscript>
-      <img height="1" width="1" style="display:none" 
-           src="https://www.facebook.com/tr?id={{ facebook_pixel_id }}&ev=PageView&noscript=1"/>
-    </noscript>
-    {% endif %}
-</head>
-<body>
-    <!-- Header & Navigation -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="#accueil">A Laiz Prod</a>
-            </div>
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#label">Le Label</a></li>
-                    <li><a href="#pedagogie">Pédagogie</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+from flask import Flask, render_template, request, jsonify
+import os
+from dotenv import load_dotenv
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import logging
+from logging.handlers import RotatingFileHandler
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
 
-    <main>
-        <!-- Hero Section -->
-        <section id="accueil" class="hero">
-            <div class="hero-overlay"></div>
-            <div class="container">
-                <div class="hero-content">
-                    <h1>A Laiz Prod</h1>
-                    <p class="tagline">L'excellence musicale camerounaise – Un pont entre tradition et modernité</p>
-                    <div class="cta-buttons">
-                        <a href="#label" class="btn btn-primary">Découvrir nos services</a>
-                        <a href="#contact" class="btn btn-secondary">Nous contacter</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+# Load environment variables
+load_dotenv()
 
-        <!-- Le reste du contenu reste inchangé -->
-        <!-- ... -->
+# Initialize Sentry if DSN is provided
+if os.getenv('SENTRY_DSN'):
+    sentry_sdk.init(
+        dsn=os.getenv('SENTRY_DSN'),
+        integrations=[FlaskIntegration()],
+        traces_sample_rate=1.0
+    )
 
-    </main>
+app = Flask(__name__)
+app.secret_key = os.getenv('SECRET_KEY', 'fallback-secret-key')
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>A Laiz Prod</h3>
-                    <p>L'excellence musicale camerounaise – Un pont entre tradition et modernité.</p>
-                    <div class="social-links">
-                        <a href="{{ facebook_url }}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="{{ instagram_url }}" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="{{ youtube_url }}" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="{{ linkedin_url }}" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="{{ whatsapp_url }}" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="#accueil">Accueil</a></li>
-                        <li><a href="#label">Le Label</a></li>
-                        <li><a href="#pedagogie">Pédagogie</a></li>
-                        <li><a href="#blog">Blog</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Coordonnées</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> {{ director_phone }}</p>
-                        <p><i class="fas fa-envelope"></i> {{ contact_email }}</p>
-                        <p><i class="fas fa-calendar-alt"></i> {{ booking_email }}</p>
-                    </div>
-                </div>
-            </div>
+# Configure logging
+if not app.debug:
+    if not os.path.exists('logs'):
+        os.mkdir('logs')
+    file_handler = RotatingFileHandler('logs/alaiz_prod.log', maxBytes=10240, backupCount=10)
+    file_handler.setFormatter(logging.Formatter(
+        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
+    ))
+    file_handler.setLevel(logging.INFO)
+    app.logger.addHandler(file_handler)
+    app.logger.setLevel(logging.INFO)
+    app.logger.info('A Laiz Prod startup')
+
+@app.route('/')
+def index():
+    # Pass all environment variables to template
+    context = {
+        'director_phone': os.getenv('DIRECTOR_PHONE', '+237682180266'),
+        'director_email': os.getenv('DIRECTOR_EMAIL', 'herve@alaizprod.com'),
+        'contact_email': os.getenv('CONTACT_EMAIL', 'contact@alaizprod.com'),
+        'booking_email': os.getenv('BOOKING_EMAIL', 'booking@alaizprod.com'),
+        'facebook_url': os.getenv('FACEBOOK_URL', 'https://facebook.com/alaizprod'),
+        'instagram_url': os.getenv('INSTAGRAM_URL', 'https://instagram.com/alaizprod'),
+        'youtube_url': os.getenv('YOUTUBE_URL', 'https://youtube.com/alaizprodlabel'),
+        'linkedin_url': os.getenv('LINKEDIN_URL', 'https://linkedin.com/in/hervenanfang'),
+        'whatsapp_url': os.getenv('WHATSAPP_URL', 'https://wa.me/237694723492'),
+        'google_analytics_id': os.getenv('GOOGLE_ANALYTICS_ID', ''),
+        'facebook_pixel_id': os.getenv('FACEBOOK_PIXEL_ID', ''),
+    }
+    return render_template('index.html', **context)
+
+@app.route('/contact', methods=['POST'])
+def contact():
+    if request.method == 'POST':
+        try:
+            # Get form data
+            name = request.form.get('name')
+            email = request.form.get('email')
+            message = request.form.get('message')
             
-            <div class="footer-bottom">
-                <p>&copy; 2023 A Laiz Prod. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer>
+            # Basic validation
+            if not name or not email or not message:
+                return jsonify({'success': False, 'message': 'Tous les champs sont obligatoires.'})
+            
+            # Send email
+            send_contact_email(name, email, message)
+            
+            # Log the contact form submission
+            app.logger.info(f'Nouveau message de {name} ({email})')
+            
+            return jsonify({'success': True, 'message': 'Merci pour votre message! Nous vous contacterons bientôt.'})
+        
+        except Exception as e:
+            app.logger.error(f'Erreur lors de l\'envoi du message: {str(e)}')
+            return jsonify({'success': False, 'message': 'Une erreur s\'est produite. Veuillez réessayer.'})
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
-</html>
+def send_contact_email(name, email, message):
+    """Send contact form submission via email"""
+    # Use environment variables for email configuration
+    smtp_server = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+    smtp_port = int(os.getenv('SMTP_PORT', 587))
+    smtp_username = os.getenv('SMTP_USERNAME', os.getenv('EMAIL_USER', ''))
+    smtp_password = os.getenv('SMTP_PASSWORD', os.getenv('EMAIL_PASS', ''))
+    
+    # Get recipient email from environment or use default
+    recipient_email = os.getenv('CONTACT_EMAIL', 'contact@alaizprod.com')
+    
+    # Create message
+    msg = MIMEMultipart()
+    msg['From'] = smtp_username
+    msg['To'] = recipient_email
+    msg['Reply-To'] = email
+    msg['Subject'] = f'Nouveau message de {name} - Site A Laiz Prod'
+    
+    body = f"""
+    Nouveau message depuis le site A Laiz Prod:
+    
+    Nom: {name}
+    Email: {email}
+    
+    Message:
+    {message}
+    
+    ---
+    Cet email a été envoyé automatiquement depuis le formulaire de contact du site.
+    """
+    
+    msg.attach(MIMEText(body, 'plain'))
+    
+    # Send email
+    with smtplib.SMTP(smtp_server, smtp_port) as server:
+        server.starttls()
+        server.login(smtp_username, smtp_password)
+        server.send_message(msg)
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('500.html'), 500
+
+if __name__ == '__main__':
+    port = int(os.getenv('PORT', 5000))
+    debug_mode = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
+    app.run(debug=debug_mode, port=port)
