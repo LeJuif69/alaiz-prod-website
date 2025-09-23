@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, flash, redirect, url_for
 import os
 from dotenv import load_dotenv
 import smtplib
@@ -6,10 +6,17 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
+# Importations pour les formulaires sécurisés
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextAreaField, SelectField, SubmitField
+from wtforms.validators import DataRequired, Email, Length
+
+# Charger les variables d'environnement depuis le fichier.env
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv('SECRET_KEY', 'alaiz-prod-2010-herve-nanfang')
+# La clé secrète est maintenant lue depuis le fichier.env, c'est plus sécurisé
+app.config = os.environ.get('SECRET_KEY')
 
 # DONNÉES RÉELLES A LAIZ PROD
 ALAIZ_DATA = {
@@ -166,3 +173,4 @@ if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     debug = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
     app.run(host='0.0.0.0', port=port, debug=debug)
+
