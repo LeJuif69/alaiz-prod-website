@@ -246,90 +246,115 @@
 
     <!-- Section 5: Contact -->
     <section id="contact" class="section contact-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Contactez A Laiz Prod</h2>
-                <p class="section-subtitle">Discutons de votre projet musical</p>
-            </div>
-            
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Coordonnées</h3>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-user"></i>
-                        <div>
-                            <strong>Hervé Nanfang</strong>
-                            <p>Directeur artistique</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            {% for tel in telephones %}
-                            <p>{{ tel }}</p>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <p>{{ email_contact }}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <p>{{ adresse }}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="social-links">
-                        {% for reseau, url in reseaux_sociaux.items() %}
-                        <a href="{{ url }}" target="_blank" class="social-link">
-                            <i class="fab fa-{{ reseau }}"></i>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h3>Envoyez un message</h3>
-                    <form id="contactForm" action="{{ url_for('contact') }}" method="POST">
-                        <div class="form-group">
-                            <input type="text" name="nom" placeholder="Votre nom" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Votre email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" name="telephone" placeholder="Votre téléphone">
-                        </div>
-                        <div class="form-group">
-                            <select name="service" required>
-                                <option value="">Type de service</option>
-                                <option value="Prestation musicale">Prestation musicale</option>
-                                <option value="Location d'instruments">Location d'instruments</option>
-                                <option value="Formation">Formation musicale</option>
-                                <option value="Production">Production musicale</option>
-                                <option value="Autre">Autre</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" placeholder="Décrivez votre projet..." rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i>
-                            Envoyer le message
-                        </button>
-                    </form>
-                </div>
-            </div>
+  <div class="container">
+    <div class="section-header">
+      <h2>Contactez A Laiz Prod</h2>
+      <p class="section-subtitle">Discutons de votre projet musical</p>
+    </div>
+
+    <div class="contact-content">
+      <!-- 🟢 Bloc gauche : Coordonnées et réseaux sociaux -->
+      <div class="contact-info">
+        <h3>Coordonnées</h3>
+
+        <div class="contact-item">
+          <i class="fas fa-user"></i>
+          <div>
+            <strong>Hervé Nanfang</strong>
+            <p>Directeur artistique</p>
+          </div>
         </div>
-    </section>
+
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <div>
+            <p>+237 694 723 492</p>
+            <p>+237 682 180 266</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <p>contact@alaizopays.art</p>
+            <p>booking@alaizopays.art</p>
+            <p>formation@alaizopays.art</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <p>Rue Nachtigall, Melen, Yaoundé</p>
+          </div>
+        </div>
+
+        <div class="social-links">
+          {% for reseau, url in reseaux_sociaux.items() %}
+          <a href="{{ url }}" target="_blank" class="social-link">
+            <i class="fab fa-{{ reseau }}"></i>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- 🟢 Bloc droit : Formulaire Flask-WTF -->
+      <div class="contact-form">
+        <h3>Envoyez un message</h3>
+
+        {# Messages flash (succès ou erreur) #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('contact') }}" novalidate>
+          {{ form.csrf_token }}
+
+          <div class="form-group">
+            {{ form.nom.label }}
+            {{ form.nom(class="form-control", placeholder="Votre nom complet") }}
+            {% if form.nom.errors %}
+              <ul class="errors">{% for error in form.nom.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+          </div>
+
+          <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email(class="form-control", placeholder="Votre adresse email") }}
+            {% if form.email.errors %}
+              <ul class="errors">{% for error in form.email.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+          </div>
+
+          <div class="form-group">
+            {{ form.telephone.label }}
+            {{ form.telephone(class="form-control", placeholder="Votre numéro (optionnel)") }}
+          </div>
+
+          <div class="form-group">
+            {{ form.service.label }}
+            {{ form.service(class="form-control") }}
+          </div>
+
+          <div class="form-group">
+            {{ form.message.label }}
+            {{ form.message(class="form-control", rows="5", placeholder="Écrivez votre message ici...") }}
+            {% if form.message.errors %}
+              <ul class="errors">{% for error in form.message.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+          </div>
+
+          {{ form.submit(class="btn btn-primary") }}
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -371,3 +396,4 @@
     <script src="{{ url_for('static', filename='js/alaiz.js') }}"></script>
 </body>
 </html>
+
