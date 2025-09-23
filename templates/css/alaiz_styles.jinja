@@ -1,5 +1,5 @@
 /* =============================== */
-/* CSS DYNAMIQUE - A LAIZ PROD      */
+/* CSS DYNAMIQUE RESPONSIVE - A LAIZ PROD */
 /* =============================== */
 
 /* ===== VARIABLES BRAND INJECTÉES ===== */
@@ -44,6 +44,8 @@ body {
     color: var(--alaiz-black);
     background-color: var(--alaiz-cream);
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -54,7 +56,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h2.section-header {
     font-family: var(--font-subheading);
-    color: var(--alaiz-terra);
+    color: var(--alaiz-terracotta);
+    margin-bottom: var(--space-lg);
 }
 
 /* =============================== */
@@ -165,4 +168,60 @@ footer a {
 }
 footer a:hover {
     color: var(--alaiz-gold-light);
+}
+
+/* =============================== */
+/* RESPONSIVE MEDIA QUERIES         */
+/* =============================== */
+
+/* Petits appareils (mobiles) */
+@media (max-width: 767px) {
+    nav a {
+        display: block;
+        margin: var(--space-sm) 0;
+        text-align: center;
+    }
+
+    .section {
+        padding: var(--space-lg) var(--space-md);
+    }
+
+    form {
+        width: 90%;
+        padding: var(--space-sm);
+    }
+
+    h1, h2, h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Tablettes */
+@media (min-width: 768px) and (max-width: 1023px) {
+    nav a {
+        margin: 0 var(--space-sm);
+    }
+
+    .section {
+        padding: var(--space-xl) var(--space-md);
+    }
+
+    h1, h2, h3 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Grands écrans */
+@media (min-width: 1024px) {
+    form {
+        max-width: 700px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
 }
