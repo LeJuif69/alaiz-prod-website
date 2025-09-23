@@ -3,178 +3,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ site_data.nom }} - {{ site_data.slogan }}</title>
-  <link rel="stylesheet" href="{{ url_for('dynamic_styles') }}">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>{{ nom }} - {{ slogan }}</title>
+    <meta name="description" content="A Laiz Prod - Label musical camerounais fondé en 2010 par Hervé Nanfang. Production musicale, événements, formation artistique à Yaoundé.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ nom }} - {{ slogan }}">
+    <meta property="og:description" content="Label musical d'excellence depuis 2010. Production, événements, formation à Yaoundé.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alaizopays.art/">
+    <meta property="og:image" content="{{ url_for('static', filename='images/og-image.jpg') }}">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="{{ url_for('static', filename='css/alaiz.min.css') }}" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;600&display=swap" as="style">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/alaiz.min.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-<!-- ====== Accueil ====== -->
-<section id="accueil" class="section accueil-section">
-    <div class="container">
-        <h1>Bienvenue sur {{ site_data.nom }}</h1>
-        <p>{{ site_data.slogan }}</p>
-        <a href="#contact-section" class="btn btn-primary">Nous contacter</a>
-    </div>
-</section>
-
-<!-- ====== Le Label ====== -->
-<section id="label" class="section label-section">
-    <div class="container">
-        <h2>À propos de {{ site_data.nom }}</h2>
-        <p>Fondé par {{ site_data.directeur }} en {{ site_data.annee_fondation }}, {{ site_data.nom }} est un label musical camerounais qui fusionne tradition et innovation. Nous organisons concerts, formations et productions musicales de qualité.</p>
-        <h3>Spécialités</h3>
-        <ul>
-            {% for spec in site_data.specialites %}
-            <li>{{ spec }}</li>
-            {% endfor %}
-        </ul>
-
-        <h3>Artistes phares</h3>
-        <ul>
-            {% for artiste in site_data.artistes_phares %}
-            <li>{{ artiste }}</li>
-            {% endfor %}
-        </ul>
-
-        <h3>Réalisations</h3>
-        <ul>
-            {% for real in site_data.realisations %}
-            <li>{{ real }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-</section>
-
-<!-- ====== Pédagogie ====== -->
-<section id="pedagogie" class="section pedagogie-section">
-    <div class="container">
-        <h2>Nos Formations</h2>
-        <p>Nous offrons des formations adaptées à tous les niveaux :</p>
-        <ul>
-            {% for formation in site_data.formations %}
-            <li>{{ formation }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-</section>
-
-<!-- ====== Blog ====== -->
-<section id="blog" class="section blog-section">
-    <div class="container">
-        <h2>Nos Articles</h2>
-        <p>Suivez nos dernières actualités et conseils :</p>
-        <ul>
-            {% for categorie in site_data.categories_blog %}
-            <li>{{ categorie }}</li>
-            {% endfor %}
-        </ul>
-        <p>Fréquence de publication : hebdomadaire</p>
-    </div>
-</section>
-
-<!-- ====== Contact ====== -->
-<section id="contact-section" class="section contact-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>Contactez A Laiz Prod</h2>
-            <p class="section-subtitle">Discutons de votre projet musical</p>
+    <!-- Navigation -->
+    <nav class="nav" id="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#accueil" class="logo">
+                    <span class="logo-icon">🎵</span>
+                    {{ nom }}
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#label">Le Label</a></li>
+                <li><a href="#pedagogie">Pédagogie</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
+    </nav>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-
-        <div class="contact-content">
-            <div class="contact-info">
-                <h3>Coordonnées</h3>
-                <div class="contact-item">
-                    <i class="fas fa-user"></i>
-                    <div>
-                        <strong>{{ site_data.directeur }}</strong>
-                        <p>Directeur artistique</p>
+    <!-- Section 1: Accueil -->
+    <section id="accueil" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="tradition">Tradition.</span>
+                            <span class="innovation">Innovation.</span>
+                            <span class="emotion">Émotion.</span>
+                        </h1>
+                        
+                        <p class="hero-subtitle">{{ nom }} - Fondé en {{ annee_fondation }}</p>
+                        <p class="hero-description">
+                            Label musical d'excellence dirigé par <strong>Hervé Nanfang</strong>. 
+                            {{ annees_experience }} ans d'expérience dans la production musicale, 
+                            l'événementiel et la formation artistique au Cameroun.
+                        </p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <div class="stat-number">{{ annees_experience }}+</div>
+                                <div class="stat-label">Ans d'expertise</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">150+</div>
+                                <div class="stat-label">Événements</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">50+</div>
+                                <div class="stat-label">Artistes formés</div>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-actions">
+                            <a href="#contact" class="btn btn-primary">
+                                <i class="fas fa-calendar-check"></i>
+                                Réserver une prestation
+                            </a>
+                            <a href="#pedagogie" class="btn btn-secondary">
+                                <i class="fas fa-graduation-cap"></i>
+                                Découvrir nos formations
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-media">
+                        <div class="media-card">
+                            <!-- IMAGE AVEC LAZY LOADING -->
+                            <img 
+                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmNGU5Ii8+PC9zdmc+" 
+                                data-src="{{ url_for('static', filename='images/herve-nanfang-piano.jpg') }}" 
+                                alt="Hervé Nanfang - Directeur A Laiz Prod" 
+                                class="media-image lazy-load" 
+                                loading="lazy"
+                                width="400" 
+                                height="400"
+                            >
+                            <div class="media-badge">
+                                <i class="fas fa-music"></i>
+                                Piano-Bar A Laiz
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        {% for tel in site_data.telephones %}
-                            <p>{{ tel }}</p>
+            </div>
+        </div>
+        
+        <div class="hero-scroll">
+            <span>Découvrir le label</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Section 2: Le Label -->
+    <section id="label" class="section label-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Le Label A Laiz Prod</h2>
+                <p class="section-subtitle">Excellence musicale depuis 2010</p>
+            </div>
+            
+            <div class="label-content">
+                <div class="label-presentation">
+                    <h3>Notre Mission</h3>
+                    <p>{{ description_label }}</p>
+                    
+                    <div class="specialites-grid">
+                        <h4>Nos Domaines d'Expertise</h4>
+                        <div class="specialites-list">
+                            {% for specialite in specialites %}
+                            <div class="specialite-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>{{ specialite }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="label-realisations">
+                    <h3>Réalisations Phares</h3>
+                    <div class="realisations-list">
+                        {% for realisation in realisations_phares %}
+                        <div class="realisation-item">
+                            <i class="fas fa-trophy"></i>
+                            <span>{{ realisation }}</span>
+                        </div>
                         {% endfor %}
                     </div>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <p>{{ site_data.email_contact }}</p>
+            </div>
+            
+            <div class="collaborations-section">
+                <h3>Artistes & Collaborations</h3>
+                <div class="artistes-grid">
+                    {% for artiste in artistes_collaborations %}
+                    <div class="artiste-card">
+                        <div class="artiste-initial">{{ artiste[0] }}</div>
+                        <div class="artiste-name">{{ artiste }}</div>
                     </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <p>{{ site_data.adresse }}</p>
-                    </div>
-                </div>
-                <div class="social-links">
-                    {% for reseau, url in site_data.reseaux_sociaux.items() %}
-                        <a href="{{ url }}" target="_blank" class="social-link">
-                            <i class="fab fa-{{ reseau }}"></i>
-                        </a>
                     {% endfor %}
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="contact-form">
-                <h3>Envoyez un message</h3>
-                <form method="POST" action="{{ url_for('contact') }}">
-                    {{ form.csrf_token }}
-
-                    <div class="form-group">
-                        {{ form.nom.label }}
-                        {{ form.nom(class="form-control", placeholder="Votre nom complet") }}
-                        {% if form.nom.errors %}
-                            <ul class="errors">{% for error in form.nom.errors %}<li>{{ error }}</li>{% endfor %}</ul>
-                        {% endif %}
+    <!-- Section 3: Pédagogie -->
+    <section id="pedagogie" class="section pedagogie-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pédagogie Musicale</h2>
+                <p class="section-subtitle">Transmettre le patrimoine, inspirer l'innovation</p>
+            </div>
+            
+            <div class="pedagogie-content">
+                <div class="pedagogie-intro">
+                    <h3>Notre Philosophie</h3>
+                    <p>{{ description_pedagogie }}</p>
+                </div>
+                
+                <div class="formations-grid">
+                    <h3>Formations Disponibles</h3>
+                    <div class="formations-container">
+                        {% for formation in formations %}
+                        <div class="formation-card">
+                            <div class="formation-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>{{ formation.nom }}</h4>
+                            <p>{{ formation.description }}</p>
+                        </div>
+                        {% endfor %}
                     </div>
-
-                    <div class="form-group">
-                        {{ form.email.label }}
-                        {{ form.email(class="form-control", placeholder="Votre adresse email") }}
-                        {% if form.email.errors %}
-                            <ul class="errors">{% for error in form.email.errors %}<li>{{ error }}</li>{% endfor %}</ul>
-                        {% endif %}
+                </div>
+                
+                <div class="partenaires-section">
+                    <h3>Établissements Partenaires</h3>
+                    <div class="partenaires-list">
+                        {% for partenaire in partenaires %}
+                        <div class="partenaire-item">{{ partenaire }}</div>
+                        {% endfor %}
                     </div>
-
-                    <div class="form-group">
-                        {{ form.telephone.label }}
-                        {{ form.telephone(class="form-control", placeholder="Votre numéro (optionnel)") }}
+                </div>
+                
+                <div class="instruments-section">
+                    <h3>Parc Instrumental</h3>
+                    <div class="instruments-grid">
+                        {% for instrument in instruments %}
+                        <span class="instrument-tag">{{ instrument }}</span>
+                        {% endfor %}
                     </div>
-
-                    <div class="form-group">
-                        {{ form.service.label }}
-                        {{ form.service(class="form-control") }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.message.label }}
-                        {{ form.message(class="form-control", rows="5", placeholder="Écrivez votre message ici...") }}
-                        {% if form.message.errors %}
-                            <ul class="errors">{% for error in form.message.errors %}<li>{{ error }}</li>{% endfor %}</ul>
-                        {% endif %}
-                    </div>
-
-                    {{ form.submit(class="btn btn-primary") }}
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!-- Section 4: Blog -->
+    <section id="blog" class="section blog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Blog & Actualités</h2>
+                <p class="section-subtitle">Coulisses, conseils et analyses musicales</p>
+            </div>
+            
+            <div class="blog-categories">
+                {% for categorie in categories_blog %}
+                <button class="category-btn">{{ categorie }}</button>
+                {% endfor %}
+            </div>
+            
+            <div class="blog-articles">
+                {% for article in articles_blog %}
+                <article class="article-card">
+                    <div class="article-image">
+                        <!-- IMAGE BLOG AVEC LAZY LOADING -->
+                        <img 
+                            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzUwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmNGU5Ii8+PC9zdmc+" 
+                            data-src="{{ url_for('static', filename='images/blog/' + article.image) }}" 
+                            alt="{{ article.titre }}"
+                            class="lazy-load" 
+                            loading="lazy"
+                            width="350" 
+                            height="200"
+                        >
+                        <span class="article-category">{{ article.categorie }}</span>
+                    </div>
+                    <div class="article-content">
+                        <h3>{{ article.titre }}</h3>
+                        <span class="article-date">{{ article.date }}</span>
+                        <p>{{ article.resume }}</p>
+                        <a href="#" class="article-link">Lire la suite →</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Contact -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contactez A Laiz Prod</h2>
+                <p class="section-subtitle">Discutons de votre projet musical</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Coordonnées</h3>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-user"></i>
+                        <div>
+                            <strong>Hervé Nanfang</strong>
+                            <p>Directeur artistique & Pédagogue</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            {% for tel in telephones %}
+                            <p>{{ tel }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <p><strong>Contact :</strong> {{ emails.contact }}</p>
+                            <p><strong>Booking :</strong> {{ emails.booking }}</p>
+                            <p><strong>Formation :</strong> {{ emails.formation }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <p>{{ adresse }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h4>Suivez-nous</h4>
+                        {% for reseau, url in reseaux_sociaux.items() %}
+                        <a href="{{ url }}" target="_blank" class="social-link">
+                            <i class="fab fa-{{ reseau }}"></i>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Envoyez un message</h3>
+                    <form id="contactForm" action="{{ url_for('contact') }}" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="nom" placeholder="Votre nom complet *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Votre email *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="telephone" placeholder="Votre téléphone">
+                        </div>
+                        <div class="form-group">
+                            <select name="service" required>
+                                <option value="">Objet de votre message *</option>
+                                <option value="Prestation musicale">Prestation musicale</option>
+                                <option value="Location d'instruments">Location d'instruments</option>
+                                <option value="Formation">Formation musicale</option>
+                                <option value="Production">Production musicale</option>
+                                <option value="Partenariat">Partenariat</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Décrivez votre projet... *" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>{{ nom }}</h3>
+                    <p>{{ slogan }}</p>
+                    <p>Fondé en {{ annee_fondation }} · {{ adresse }}</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#label">Le Label</a></li>
+                        <li><a href="#pedagogie">Pédagogie</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        {% for specialite in specialites %}
+                        <li><a href="#contact">{{ specialite }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Rapide</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> {{ telephones[0] }}</li>
+                        <li><i class="fas fa-envelope"></i> {{ emails.contact }}</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; {{ annee_courante }} {{ nom }}. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript avec lazy loading -->
+    <script src="{{ url_for('static', filename='js/alaiz.min.js') }}"></script>
+    
+    <!-- Script de lazy loading additionnel -->
+    <script>
+    // Lazy loading avancé pour les images
+    document.addEventListener('DOMContentLoaded', function() {
+        const lazyImages = [].slice.call(document.querySelectorAll('img.lazy-load'));
+        
+        if ('IntersectionObserver' in window) {
+            const lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        const lazyImage = entry.target;
+                        lazyImage.src = lazyImage.dataset.src;
+                        lazyImage.classList.remove('lazy-load');
+                        lazyImageObserver.unobserve(lazyImage);
+                        
+                        // Ajouter une transition fluide
+                        lazyImage.style.opacity = '0';
+                        lazyImage.style.transition = 'opacity 0.3s ease-in';
+                        setTimeout(() => {
+                            lazyImage.style.opacity = '1';
+                        }, 10);
+                    }
+                });
+            });
+
+            lazyImages.forEach(function(lazyImage) {
+                lazyImageObserver.observe(lazyImage);
+            });
+        } else {
+            // Fallback pour les vieux navigateurs
+            lazyImages.forEach(function(lazyImage) {
+                lazyImage.src = lazyImage.dataset.src;
+                lazyImage.classList.remove('lazy-load');
+            });
+        }
+    });
+    </script>
 </body>
 </html>
-
