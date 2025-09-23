@@ -1,0 +1,168 @@
+/* =============================== */
+/* CSS DYNAMIQUE - A LAIZ PROD      */
+/* =============================== */
+
+/* ===== VARIABLES BRAND INJECTÉES ===== */
+:root {
+    /* Couleurs principales */
+    --alaiz-gold: {{ brand.alaiz_gold }};
+    --alaiz-gold-light: {{ brand.alaiz_gold_light }};
+    --alaiz-black: {{ brand.alaiz_black }};
+    --alaiz-earth: {{ brand.alaiz_earth }};
+    --alaiz-terracotta: {{ brand.alaiz_terracotta }};
+    --alaiz-white: {{ brand.alaiz_white }};
+    --alaiz-cream: {{ brand.alaiz_cream }};
+    --alaiz-gray: {{ brand.alaiz_gray }};
+
+    /* Typographie */
+    --font-heading: {{ brand.font_heading }};
+    --font-subheading: {{ brand.font_subheading }};
+    --font-body: {{ brand.font_body }};
+
+    /* Espacements et styles globaux */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    --shadow-light: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-medium: 0 3px 6px rgba(0,0,0,0.15);
+    --shadow-heavy: 0 5px 15px rgba(0,0,0,0.25);
+}
+
+/* =============================== */
+/* TYPOGRAPHIE GENERALE             */
+/* =============================== */
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--alaiz-black);
+    background-color: var(--alaiz-cream);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--alaiz-gold);
+    margin-bottom: var(--space-md);
+}
+
+h2.section-header {
+    font-family: var(--font-subheading);
+    color: var(--alaiz-terra);
+}
+
+/* =============================== */
+/* LIENS ET BOUTONS                 */
+/* =============================== */
+a {
+    color: var(--alaiz-gold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--alaiz-gold-light);
+}
+
+.button-primary {
+    background-color: var(--alaiz-gold);
+    color: var(--alaiz-white);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-lg);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.button-primary:hover {
+    background-color: var(--alaiz-gold-light);
+}
+
+/* =============================== */
+/* HEADER / NAVIGATION             */
+/* =============================== */
+header {
+    background-color: var(--alaiz-black);
+    color: var(--alaiz-white);
+    padding: var(--space-md) 0;
+}
+nav a {
+    margin: 0 var(--space-md);
+    color: var(--alaiz-white);
+    font-weight: bold;
+}
+nav a:hover {
+    color: var(--alaiz-gold);
+}
+
+/* =============================== */
+/* SECTIONS PRINCIPALES             */
+/* =============================== */
+.section {
+    padding: var(--space-xl) 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.contact-section {
+    background-color: var(--alaiz-white);
+    color: var(--alaiz-black);
+}
+
+/* Formulaires */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+form .form-group {
+    margin-bottom: var(--space-md);
+}
+form input, form select, form textarea {
+    width: 100%;
+    padding: var(--space-sm);
+    border: 1px solid var(--alaiz-gray);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+}
+form input:focus, form select:focus, form textarea:focus {
+    border-color: var(--alaiz-gold);
+    outline: none;
+}
+
+/* Flash messages */
+.alert {
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-md);
+    border-radius: var(--radius-sm);
+}
+.alert-success {
+    background-color: #DFF2BF;
+    color: #4F8A10;
+}
+.alert-danger {
+    background-color: #FFBABA;
+    color: #D8000C;
+}
+
+/* =============================== */
+/* FOOTER                           */
+/* =============================== */
+footer {
+    background-color: var(--alaiz-black);
+    color: var(--alaiz-white);
+    padding: var(--space-md) 0;
+    text-align: center;
+}
+footer a {
+    color: var(--alaiz-gold);
+}
+footer a:hover {
+    color: var(--alaiz-gold-light);
+}
