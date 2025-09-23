@@ -18,6 +18,15 @@ app = Flask(__name__)
 # La clé secrète est maintenant lue depuis le fichier.env, c'est plus sécurisé
 app.config = os.environ.get('SECRET_KEY')
 
+# --- DÉFINITION DU FORMULAIRE DE CONTACT SÉCURISÉ AVEC FLASK-WTF ---
+class ContactForm(FlaskForm):
+    nom = StringField('Nom', validators=)
+    email = StringField('Email', validators=)
+    telephone = StringField('Téléphone (Optionnel)')
+    service = SelectField('Service Concerné', choices=, validators=)
+    message = TextAreaField('Message', validators=)
+    submit = SubmitField('Envoyer le Message')
+
 # DONNÉES RÉELLES A LAIZ PROD
 ALAIZ_DATA = {
     "nom": "A Laiz Prod",
@@ -88,62 +97,72 @@ ALAIZ_DATA = {
     }
 }
 
-@app.route('/')
-def accueil():
+# --- CONTEXTE GLOBAL POUR LES TEMPLATES ---
+# Rend les variables de style et les données du label disponibles sur toutes les pages
+@app.context_processor
+def inject_global_context():
     annee_courante = datetime.now().year
     annees_experience = annee_courante - ALAIZ_DATA["annee_fondation"]
     
-    context = {
-        **ALAIZ_DATA,
-        "annees_experience": annees_experience,
-        "annee_courante": annee_courante
+    return {
+        'primary_color': os.environ.get('PRIMARY_COLOR'),
+        'secondary_color': os.environ.get('SECONDARY_COLOR'),
+        'accent_color': os.environ.get('ACCENT_COLOR'),
+        'font_headings': os.environ.get('FONT_HEADINGS'),
+        'font_body': os.environ.get('FONT_BODY'),
+        'site_data': ALAIZ_DATA,
+        'annees_experience': annees_experience,
+        'annee_courante': annee_courante
     }
-    return render_template('index.html', **context)
 
-@app.route('/contact', methods=['POST'])
+# --- ROUTES DE L'APPLICATION ---
+@app.route('/')
+def accueil():
+    contact_form = ContactForm()
+    return render_template('index.html', form=contact_form)
+
+@app.route('/contact', methods=)
 def contact():
-    if request.method == 'POST':
+    form = ContactForm()
+    if form.validate_on_submit():
+        # Le formulaire est valide et sécurisé (protection CSRF incluse)
         try:
-            nom = request.form.get('nom')
-            email = request.form.get('email')
-            telephone = request.form.get('telephone')
-            service = request.form.get('service')
-            message = request.form.get('message')
+            nom = form.nom.data
+            email = form.email.data
+            telephone = form.telephone.data
+            # On récupère le label du service, pas juste la valeur
+            service_label = dict(form.service.choices).get(form.service.data)
+            message = form.message.data
             
-            if not nom or not email or not message:
-                return jsonify({
-                    'success': False, 
-                    'message': 'Le nom, l\'email et le message sont obligatoires.'
-                })
+            envoyer_email_contact(nom, email, telephone, service_label, message)
             
-            # Envoi d'email
-            envoyer_email_contact(nom, email, telephone, service, message)
-            
-            return jsonify({
-                'success': True, 
-                'message': 'Merci pour votre message ! Hervé vous contactera rapidement.'
-            })
-            
+            flash('Merci pour votre message! Nous vous contacterons rapidement.', 'success')
         except Exception as e:
-            return jsonify({
-                'success': False, 
-                'message': 'Une erreur s\'est produite. Contactez-nous directement par téléphone.'
-            })
+            print(f"Erreur lors de l'envoi de l'email : {e}")
+            flash('Une erreur s\'est produite. Veuillez nous contacter directement par téléphone.', 'danger')
+        
+        return redirect(url_for('accueil') + '#contact-section')
+
+    # Si le formulaire n'est pas valide, on recharge la page d'accueil.
+    # Les erreurs seront affichées dans le template HTML.
+    flash('Le formulaire contient des erreurs. Veuillez vérifier les champs en rouge.', 'danger')
+    return render_template('index.html', form=form)
+
 
 def envoyer_email_contact(nom, email, telephone, service, message):
-    """Fonction pour envoyer les emails de contact"""
-    smtp_server = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+    smtp_server = os.getenv('SMTP_SERVER')
     smtp_port = int(os.getenv('SMTP_PORT', 587))
     smtp_username = os.getenv('SMTP_USERNAME')
     smtp_password = os.getenv('SMTP_PASSWORD')
     
     if not all([smtp_server, smtp_username, smtp_password]):
-        return
+        print("ERREUR: Variables SMTP non configurées dans le fichier.env")
+        raise Exception("Configuration SMTP manquante")
     
     msg = MIMEMultipart()
     msg['From'] = smtp_username
-    msg['To'] = ALAIZ_DATA["email_contact"]
-    msg['Subject'] = f'Nouveau message A Laiz Prod - {service}'
+    msg = ALAIZ_DATA["email_contact"]
+    msg = f'Nouveau message A Laiz Prod - {service}'
     
     corps_message = f"""
     NOUVEAU MESSAGE - A LAIZ PROD
@@ -159,7 +178,6 @@ def envoyer_email_contact(nom, email, telephone, service, message):
     
     ---
     Envoyé le {datetime.now().strftime('%d/%m/%Y à %H:%M')}
-    Site: https://alaizopays.art
     """
     
     msg.attach(MIMEText(corps_message, 'plain'))
@@ -173,4 +191,3 @@ if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     debug = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
     app.run(host='0.0.0.0', port=port, debug=debug)
-
