@@ -3,320 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Laiz Prod - Excellence musicale camerounaise</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@500;600&family=Open+Sans&display=swap" rel="stylesheet">
+    <title>{{ nom }} - {{ slogan }}</title>
+    <meta name="description" content="A Laiz Prod - Label musical camerounais fondé en 2010 par Hervé Nanfang. Production musicale, événements, formations et location d'instruments.">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/alaiz.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-12047862292"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-12047862292');
-</script>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="#accueil">A Laiz Prod</a>
+    <!-- Navigation -->
+    <nav class="nav" id="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#accueil" class="logo">
+                    <span class="logo-icon">🎵</span>
+                    {{ nom }}
+                </a>
             </div>
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#label">Le Label</a></li>
-                    <li><a href="#pedagogie">Pédagogie</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </nav>
+            
+            <ul class="nav-menu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#label">Le Label</a></li>
+                <li><a href="#pedagogie">Pédagogie</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="accueil" class="hero">
+    <!-- Section 1: Accueil -->
+    <section id="accueil" class="hero">
+        <div class="hero-background">
             <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
             <div class="container">
-                <div class="hero-content">
-                    <h1>A Laiz Prod</h1>
-                    <p class="tagline">L'excellence musicale camerounaise – Un pont entre tradition et modernité</p>
-                    <div class="cta-buttons">
-                        <a href="#label" class="btn btn-primary">Découvrir nos services</a>
-                        <a href="#contact" class="btn btn-secondary">Nous contacter</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Portfolio/Réalisations Section (dans Accueil) -->
-        <section class="portfolio">
-            <div class="container">
-                <h2>Nos Réalisations</h2>
-                <p class="section-intro">Découvrez une sélection de nos projets les plus marquants.</p>
-                
-                <div class="portfolio-filters">
-                    <button class="filter-btn active" data-filter="all">Tous</button>
-                    <button class="filter-btn" data-filter="mariages">Mariages</button>
-                    <button class="filter-btn" data-filter="corporate">Corporate</button>
-                    <button class="filter-btn" data-filter="concerts">Concerts</button>
-                    <button class="filter-btn" data-filter="formation">Formation</button>
-                </div>
-                
-                <div class="portfolio-grid">
-                    <!-- Les éléments du portfolio seront ajoutés dynamiquement -->
-                    <div class="portfolio-item">
-                        <img src="{{ url_for('static', filename='images/project1.jpg') }}" alt="Projet musical 1">
-                        <div class="portfolio-overlay">
-                            <h3>Concert Afro-Jazz</h3>
-                            <p>Production et organisation</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="{{ url_for('static', filename='images/project2.jpg') }}" alt="Projet musical 2">
-                        <div class="portfolio-overlay">
-                            <h3>Album Traditionnel</h3>
-                            <p>Enregistrement et mastering</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="{{ url_for('static', filename='images/project3.jpg') }}" alt="Projet musical 3">
-                        <div class="portfolio-overlay">
-                            <h3>Formation Artistique</h3>
-                            <p>Ateliers pour jeunes talents</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="stats">
-            <div class="container">
-                <h2>Nos Chiffres</h2>
-                
-                <div class="stats-grid">
-                    <div class="stat">
-                        <div class="stat-number" data-count="150">0</div>
-                        <div class="stat-label">Événements produits</div>
-                    </div>
-                    
-                    <div class="stat">
-                        <div class="stat-number" data-count="8">0</div>
-                        <div class="stat-label">Années d'expérience</div>
-                    </div>
-                    
-                    <div class="stat">
-                        <div class="stat-number" data-count="200">0</div>
-                        <div class="stat-label">Clients satisfaits</div>
-                    </div>
-                    
-                    <div class="stat">
-                        <div class="stat-number" data-count="500">0</div>
-                        <div class="stat-label">Publications</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Le Label Section -->
-        <section id="label" class="label">
-            <div class="container">
-                <h2>Notre Label</h2>
-                <p class="section-intro">A Laiz Prod incarne l'excellence musicale camerounaise, mêlant harmonieusement héritage culturel et innovation contemporaine.</p>
-                
-                <div class="pillars">
-                    <div class="pillar">
-                        <div class="pillar-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h3>Excellence</h3>
-                        <p>Nous visons la perfection dans chaque projet, avec un souci du détail et une qualité sonore exceptionnelle.</p>
-                    </div>
-                    
-                    <div class="pillar">
-                        <div class="pillar-icon">
-                            <i class="fas fa-roots"></i>
-                        </div>
-                        <h3>Héritage</h3>
-                        <p>Nous puisons dans les richesses culturelles camerounaises et africaines pour créer des œuvres authentiques.</p>
-                    </div>
-                    
-                    <div class="pillar">
-                        <div class="pillar-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h3>Innovation</h3>
-                        <p>Nous repoussons les limites créatives en intégrant les technologies et tendances musicales les plus récentes.</p>
-                    </div>
-                </div>
-
-                <!-- Projet Tswefap intégré dans Le Label -->
-                <div class="tswefap">
-                    <h2>Projet Tswefap</h2>
-                    <p class="section-intro">Une initiative culturelle majeure pour préserver et promouvoir les richesses musicales traditionnelles.</p>
-                    
-                    <div class="tswefap-objectives">
-                        <div class="objective-card">
-                            <h3>Préservation</h3>
-                            <p>Sauvegarder les patrimoines musicaux traditionnels camerounais menacés de disparition.</p>
+                <div class="hero-grid">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="tradition">Tradition.</span>
+                            <span class="innovation">Innovation.</span>
+                            <span class="emotion">Émotion.</span>
+                        </h1>
+                        
+                        <p class="hero-subtitle">{{ nom }} - Fondé en {{ annee_fondation }}</p>
+                        <p class="hero-description">
+                            Label musical d'excellence dirigé par <strong>Hervé Nanfang</strong>. 
+                            {{ annees_experience }} ans d'expérience dans la production musicale, 
+                            l'événementiel et la formation artistique au Cameroun.
+                        </p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <div class="stat-number">{{ annees_experience }}+</div>
+                                <div class="stat-label">Ans d'expertise</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">150+</div>
+                                <div class="stat-label">Événements</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">50+</div>
+                                <div class="stat-label">Artistes formés</div>
+                            </div>
                         </div>
                         
-                        <div class="objective-card">
-                            <h3>Innovation</h3>
-                            <p>Revisiter les sonorités traditionnelles avec des arrangements contemporains.</p>
-                        </div>
-                        
-                        <div class="objective-card">
-                            <h3>Formation</h3>
-                            <p>Transmettre les savoirs musicaux traditionnels aux jeunes générations.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pédagogie Section -->
-        <section id="pedagogie" class="pedagogie">
-            <div class="container">
-                <h2>Notre Pédagogie</h2>
-                <p class="section-intro">Transmettre notre savoir-faire et accompagner les talents émergents.</p>
-                
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3>Formation Artistique</h3>
-                        <p>Programmes de formation pour développer les talents musicaux émergents.</p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <h3>Accompagnement</h3>
-                        <p>Suivi personnalisé pour les artistes tout au long de leur développement.</p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-microphone"></i>
-                        </div>
-                        <h3>Ateliers Pratiques</h3>
-                        <p>Sessions pratiques d'enregistrement, de composition et de performance.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Blog Section -->
-        <section id="blog" class="blog">
-            <div class="container">
-                <h2>Notre Blog</h2>
-                <p class="section-intro">Actualités, réflexions et partages sur la musique camerounaise.</p>
-                
-                <div class="blog-grid">
-                    <div class="blog-card">
-                        <div class="blog-image">
-                            <img src="{{ url_for('static', filename='images/blog1.jpg') }}" alt="Article de blog 1">
-                        </div>
-                        <div class="blog-content">
-                            <h3>L'évolution de la musique traditionnelle</h3>
-                            <p>Comment les rythmes ancestraux inspirent la création contemporaine.</p>
-                            <a href="#" class="read-more">Lire la suite</a>
+                        <div class="hero-actions">
+                            <a href="#contact" class="btn btn-primary">
+                                <i class="fas fa-calendar-check"></i>
+                                Réserver une prestation
+                            </a>
+                            <a href="#formations" class="btn btn-secondary">
+                                <i class="fas fa-graduation-cap"></i>
+                                Découvrir nos formations
+                            </a>
                         </div>
                     </div>
                     
-                    <div class="blog-card">
-                        <div class="blog-image">
-                            <img src="{{ url_for('static', filename='images/blog2.jpg') }}" alt="Article de blog 2">
-                        </div>
-                        <div class="blog-content">
-                            <h3>Les défis de la production musicale</h3>
-                            <p>Entre authenticité et modernité, trouver le juste équilibre.</p>
-                            <a href="#" class="read-more">Lire la suite</a>
-                        </div>
-                    </div>
-                    
-                    <div class="blog-card">
-                        <div class="blog-image">
-                            <img src="{{ url_for('static', filename='images/blog3.jpg') }}" alt="Article de blog 3">
-                        </div>
-                        <div class="blog-content">
-                            <h3>Rencontre avec un artiste émergent</h3>
-                            <p>Portrait d'un talent prometteur de la scène camerounaise.</p>
-                            <a href="#" class="read-more">Lire la suite</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2>Contactez-nous</h2>
-                <p class="section-intro">Une question, un projet ? N'hésitez pas à nous contacter.</p>
-                
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h3>Nos coordonnées</h3>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>Yaoundé, Cameroun</p>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <p>+237 XXX XXX XXX</p>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <p>contact@alaizprod.com</p>
-                        </div>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                            <a href="#"><i class="fab fa-soundcloud"></i></a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-form">
-                        <h3>Envoyez-nous un message</h3>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <input type="text" placeholder="Votre nom" required>
+                    <div class="hero-media">
+                        <div class="media-card">
+                            <img src="{{ url_for('static', filename='images/herve-nanfang-piano.jpg') }}" 
+                                 alt="Hervé Nanfang - Directeur A Laiz Prod"
+                                 class="media-image">
+                            <div class="media-badge">
+                                <i class="fas fa-music"></i>
+                                Piano-Bar A Laiz
                             </div>
-                            <div class="form-group">
-                                <input type="email" placeholder="Votre email" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea placeholder="Votre message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Envoyer</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+        
+        <div class="hero-scroll">
+            <span>Découvrir le label</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
 
+    <!-- Section 2: Le Label -->
+    <section id="label" class="section label-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Le Label A Laiz Prod</h2>
+                <p class="section-subtitle">Excellence musicale depuis 2010</p>
+            </div>
+            
+            <div class="label-content">
+                <div class="label-presentation">
+                    <h3>Notre Mission</h3>
+                    <p>{{ description_label }}</p>
+                    
+                    <div class="specialites-grid">
+                        <h4>Nos Domaines d'Expertise</h4>
+                        <div class="specialites-list">
+                            {% for specialite in specialites %}
+                            <div class="specialite-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>{{ specialite }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="label-realisations">
+                    <h3>Réalisations Phares</h3>
+                    <div class="realisations-list">
+                        {% for realisation in realisations_phares %}
+                        <div class="realisation-item">
+                            <i class="fas fa-trophy"></i>
+                            <span>{{ realisation }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="collaborations-section">
+                <h3>Artistes & Collaborations</h3>
+                <div class="artistes-grid">
+                    {% for artiste in artistes_collaborations %}
+                    <div class="artiste-card">
+                        <div class="artiste-initial">{{ artiste[0] }}</div>
+                        <div class="artiste-name">{{ artiste }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Pédagogie -->
+    <section id="pedagogie" class="section pedagogie-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pédagogie Musicale</h2>
+                <p class="section-subtitle">Transmettre le patrimoine, inspirer l'innovation</p>
+            </div>
+            
+            <div class="pedagogie-content">
+                <div class="pedagogie-intro">
+                    <h3>Notre Philosophie</h3>
+                    <p>{{ description_pedagogie }}</p>
+                </div>
+                
+                <div class="formations-grid">
+                    <h3>Formations Disponibles</h3>
+                    <div class="formations-container">
+                        {% for formation in formations %}
+                        <div class="formation-card">
+                            <div class="formation-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>{{ formation.nom }}</h4>
+                            <p>{{ formation.description }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="partenaires-section">
+                    <h3>Établissements Partenaires</h3>
+                    <div class="partenaires-list">
+                        {% for partenaire in partenaires %}
+                        <div class="partenaire-item">{{ partenaire }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="instruments-section">
+                    <h3>Parc Instrumental</h3>
+                    <div class="instruments-grid">
+                        {% for instrument in instruments %}
+                        <span class="instrument-tag">{{ instrument }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Blog -->
+    <section id="blog" class="section blog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Blog & Actualités</h2>
+                <p class="section-subtitle">Coulisses, conseils et analyses musicales</p>
+            </div>
+            
+            <div class="blog-categories">
+                {% for categorie in categories_blog %}
+                <button class="category-btn">{{ categorie }}</button>
+                {% endfor %}
+            </div>
+            
+            <div class="blog-articles">
+                {% for article in articles_blog %}
+                <article class="article-card">
+                    <div class="article-image">
+                        <img src="{{ url_for('static', filename='images/blog/' + article.image) }}" 
+                             alt="{{ article.titre }}">
+                        <span class="article-category">{{ article.categorie }}</span>
+                    </div>
+                    <div class="article-content">
+                        <h3>{{ article.titre }}</h3>
+                        <span class="article-date">{{ article.date }}</span>
+                        <p>{{ article.resume }}</p>
+                        <a href="#" class="article-link">Lire la suite →</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Contact -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contactez A Laiz Prod</h2>
+                <p class="section-subtitle">Discutons de votre projet musical</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Coordonnées</h3>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-user"></i>
+                        <div>
+                            <strong>Hervé Nanfang</strong>
+                            <p>Directeur artistique & Pédagogue</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            {% for tel in telephones %}
+                            <p>{{ tel }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <p><strong>Contact :</strong> {{ emails.contact }}</p>
+                            <p><strong>Booking :</strong> {{ emails.booking }}</p>
+                            <p><strong>Formation :</strong> {{ emails.formation }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <p>{{ adresse }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h4>Suivez-nous</h4>
+                        {% for reseau, url in reseaux_sociaux.items() %}
+                        <a href="{{ url }}" target="_blank" class="social-link">
+                            <i class="fab fa-{{ reseau }}"></i>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Envoyez un message</h3>
+                    <form id="contactForm" action="{{ url_for('contact') }}" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="nom" placeholder="Votre nom complet *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Votre email *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="telephone" placeholder="Votre téléphone">
+                        </div>
+                        <div class="form-group">
+                            <select name="service" required>
+                                <option value="">Objet de votre message *</option>
+                                <option value="Prestation musicale">Prestation musicale</option>
+                                <option value="Location d'instruments">Location d'instruments</option>
+                                <option value="Formation">Formation musicale</option>
+                                <option value="Production">Production musicale</option>
+                                <option value="Partenariat">Partenariat</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Décrivez votre projet... *" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>A Laiz Prod</h3>
-                    <p>L'excellence musicale camerounaise – Un pont entre tradition et modernité.</p>
+                    <h3>{{ nom }}</h3>
+                    <p>{{ slogan }}</p>
+                    <p>Fondé en {{ annee_fondation }} · {{ adresse }}</p>
                 </div>
                 
                 <div class="footer-section">
@@ -331,24 +358,29 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Informations</h4>
+                    <h4>Services</h4>
                     <ul>
-                        <li><a href="#">Mentions légales</a></li>
-                        <li><a href="#">Politique de confidentialité</a></li>
-                        <li><a href="#">Conditions d'utilisation</a></li>
+                        {% for specialite in specialites %}
+                        <li><a href="#contact">{{ specialite }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Rapide</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> {{ telephones[0] }}</li>
+                        <li><i class="fas fa-envelope"></i> {{ emails.contact }}</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 A Laiz Prod. Tous droits réservés.</p>
+                <p>&copy; {{ annee_courante }} {{ nom }}. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <div id="form-message" style="display:none; color:green; margin-top:10px;"></div>
+    <script src="{{ url_for('static', filename='js/alaiz.js') }}"></script>
 </body>
 </html>
-
-
