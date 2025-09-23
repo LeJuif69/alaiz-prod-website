@@ -1,3 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_data.nom }} - {{ site_data.slogan }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- ====== Accueil ====== -->
+<section id="accueil" class="section accueil-section">
+    <div class="container">
+        <h1>Bienvenue sur {{ site_data.nom }}</h1>
+        <p>{{ site_data.slogan }}</p>
+        <a href="#contact-section" class="btn btn-primary">Nous contacter</a>
+    </div>
+</section>
+
+<!-- ====== Le Label ====== -->
+<section id="label" class="section label-section">
+    <div class="container">
+        <h2>À propos de {{ site_data.nom }}</h2>
+        <p>Fondé par {{ site_data.directeur }} en {{ site_data.annee_fondation }}, {{ site_data.nom }} est un label musical camerounais qui fusionne tradition et innovation. Nous organisons concerts, formations et productions musicales de qualité.</p>
+        <h3>Spécialités</h3>
+        <ul>
+            {% for spec in site_data.specialites %}
+            <li>{{ spec }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Artistes phares</h3>
+        <ul>
+            {% for artiste in site_data.artistes_phares %}
+            <li>{{ artiste }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Réalisations</h3>
+        <ul>
+            {% for real in site_data.realisations %}
+            <li>{{ real }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+<!-- ====== Pédagogie ====== -->
+<section id="pedagogie" class="section pedagogie-section">
+    <div class="container">
+        <h2>Nos Formations</h2>
+        <p>Nous offrons des formations adaptées à tous les niveaux :</p>
+        <ul>
+            {% for formation in site_data.formations %}
+            <li>{{ formation }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+<!-- ====== Blog ====== -->
+<section id="blog" class="section blog-section">
+    <div class="container">
+        <h2>Nos Articles</h2>
+        <p>Suivez nos dernières actualités et conseils :</p>
+        <ul>
+            {% for categorie in site_data.categories_blog %}
+            <li>{{ categorie }}</li>
+            {% endfor %}
+        </ul>
+        <p>Fréquence de publication : hebdomadaire</p>
+    </div>
+</section>
+
+<!-- ====== Contact ====== -->
 <section id="contact-section" class="section contact-section">
     <div class="container">
         <div class="section-header">
@@ -5,7 +81,6 @@
             <p class="section-subtitle">Discutons de votre projet musical</p>
         </div>
 
-        <!-- Messages de succès ou d'erreur -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -15,10 +90,8 @@
         {% endwith %}
 
         <div class="contact-content">
-            <!-- Informations de contact -->
             <div class="contact-info">
                 <h3>Coordonnées</h3>
-
                 <div class="contact-item">
                     <i class="fas fa-user"></i>
                     <div>
@@ -26,7 +99,6 @@
                         <p>Directeur artistique</p>
                     </div>
                 </div>
-
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
                     <div>
@@ -35,21 +107,18 @@
                         {% endfor %}
                     </div>
                 </div>
-
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
                     <div>
                         <p>{{ site_data.email_contact }}</p>
                     </div>
                 </div>
-
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <div>
                         <p>{{ site_data.adresse }}</p>
                     </div>
                 </div>
-
                 <div class="social-links">
                     {% for reseau, url in site_data.reseaux_sociaux.items() %}
                         <a href="{{ url }}" target="_blank" class="social-link">
@@ -59,7 +128,6 @@
                 </div>
             </div>
 
-            <!-- Formulaire -->
             <div class="contact-form">
                 <h3>Envoyez un message</h3>
                 <form method="POST" action="{{ url_for('contact') }}">
@@ -105,3 +173,7 @@
         </div>
     </div>
 </section>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
