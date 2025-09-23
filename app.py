@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, Response
 import os
 from dotenv import load_dotenv
 import smtplib
@@ -15,7 +15,7 @@ from wtforms.validators import DataRequired, Email, Length
 load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-change-in-production')
 
 # --- FORMULAIRE CONTACT SÉCURISÉ ---
 class ContactForm(FlaskForm):
@@ -34,80 +34,113 @@ class ContactForm(FlaskForm):
     message = TextAreaField('Message', validators=[DataRequired(), Length(min=10)])
     submit = SubmitField('Envoyer le Message')
 
-# --- DONNÉES DU LABEL ---
+# --- DONNÉES CENTRALISÉES A LAIZ PROD ---
 ALAIZ_DATA = {
-    "nom": os.environ.get('LABEL_NAME', 'A Laiz Prod'),
+    "nom": "A Laiz Prod",
     "slogan": "Tradition. Innovation. Émotion.",
-    "directeur": os.environ.get('DIRECTOR_NAME', 'Hervé Nanfang'),
+    "directeur": "Hervé Nanfang",
     "telephones": ["+237 694 723 492", "+237 682 180 266"],
-    "email_contact": os.environ.get('CONTACT_EMAIL', 'contact@alaizopays.art'),
-    "adresse": os.environ.get('ADDRESS', 'Rue Nachtigall, Melen, Yaoundé, Cameroun'),
+    "email_contact": "contact@alaizopays.art",
+    "email_booking": "booking@alaizopays.art",
+    "email_formation": "formation@alaizopays.art",
+    "adresse": "Rue Nachtigall, Melen, Yaoundé, Cameroun",
     "annee_fondation": 2010,
+    
+    # 🎨 IDENTITÉ VISUELLE DYNAMIQUE CENTRALISÉE
+    "BRAND_STYLE": {
+        # Couleurs principales
+        "alaiz_gold": "#D4AF37",
+        "alaiz_gold_light": "#E8C766", 
+        "alaiz_black": "#0A0A0A",
+        "alaiz_earth": "#8B4513",
+        "alaiz_terracotta": "#A0522D",
+        "alaiz_white": "#FFFFFF",
+        "alaiz_cream": "#F8F4E9",
+        "alaiz_gray": "#2A2A2A",
+        
+        # Typographie
+        "font_heading": "'Playfair Display', serif",
+        "font_subheading": "'Montserrat', sans-serif", 
+        "font_body": "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        
+        # Espacements et rayons
+        "space_xs": "0.25rem",
+        "space_sm": "0.5rem",
+        "space_md": "1rem",
+        "space_lg": "2rem", 
+        "space_xl": "3rem",
+        "radius_sm": "4px",
+        "radius_md": "8px",
+        "radius_lg": "12px"
+    },
+    
     "specialites": [
         "Production musicale & direction artistique",
         "Événementiel musical (concerts, mariages, institutionnel)",
         "Location d'instruments et matériel technique",
         "Concept Piano-Bar A Laiz"
     ],
+    
     "instruments": [
         "Yamaha Genos", "Tyros", "Roland Fantom", "Korg PA5X", 
         "Yamaha SX900", "SX600", "Sonorisation et lumière"
     ],
+    
     "artistes_phares": [
         "Aladji Touré", "Étienne Bappé", "Kares Fotso", "Lady Ponce",
         "Richard Amougou", "Tala André Marie", "Stypak Samo", "Angélique Kidjo",
         "Sagbohan Danialou", "Rikos Campos", "Toofan", "Big Caïd"
     ],
+    
     "realisations": [
         "Album Shepo (2013) + nouvel album en préparation",
         "Bafoussam Worship Experience (30 novembre 2025)",
         "Inauguration de MikeLand (Bénin)",
         "Première partie d'Asalfo (Magic System)",
         "Première partie de Diam's (2010)",
-        "Yafé (Yaoundé en Fête, 2012)",
-        "PROMOTE, Écrans Noirs",
-        "Africa Star Dakar 2010",
-        "Stars 2 Demain (Cameroun, Dakar, Abidjan)",
-        "Coupe d'Afrique de Musique CAFRIM 2013 - Trophée du Meilleur Compositeur Tradi-Moderne"
+        "CAFRIM 2013 - Trophée du Meilleur Compositeur Tradi-Moderne"
     ],
+    
     "formations": [
         "Chant et technique vocale",
-        "Piano et claviers",
+        "Piano et claviers arrangeurs",
         "Technique de scène",
         "Composition musicale",
         "MAO (Musique Assistée par Ordinateur)",
         "Musicologie appliquée aux médias visuels",
-        "Histoire de l'art"
+        "Histoire de l'art musical"
     ],
-    "categories_blog": [
-        "Événements", "Formation", "Musique & Culture", "Conseils pour artistes"
-    ],
+    
     "reseaux_sociaux": {
-        "facebook": os.environ.get('SOCIAL_FACEBOOK_URL', 'https://facebook.com/alaizprodcameroun'),
-        "instagram": os.environ.get('SOCIAL_INSTAGRAM_URL', 'https://instagram.com/alaizprod_officiel'),
-        "youtube": os.environ.get('SOCIAL_YOUTUBE_URL', 'https://youtube.com/@alaizprod'),
-        "whatsapp": os.environ.get('SOCIAL_WHATSAPP_URL', 'https://wa.me/237694723492')
+        "facebook": "https://facebook.com/alaizprodcameroun",
+        "instagram": "https://instagram.com/alaizprod_officiel", 
+        "youtube": "https://youtube.com/@alaizprod",
+        "whatsapp": "https://wa.me/237694723492"
     }
 }
 
-# --- CONTEXTE GLOBAL POUR LES TEMPLATES ---
+# --- CONTEXTE GLOBAL POUR TEMPLATES ---
 @app.context_processor
 def inject_global_context():
     annee_courante = datetime.now().year
     annees_experience = annee_courante - ALAIZ_DATA["annee_fondation"]
     
     return {
-        'primary_color': os.environ.get('PRIMARY_COLOR', '#DAA520'),
-        'secondary_color': os.environ.get('SECONDARY_COLOR', '#000000'),
-        'accent_color': os.environ.get('ACCENT_COLOR', '#FFFFFF'),
-        'font_headings': os.environ.get('FONT_HEADINGS', 'Arial'),
-        'font_body': os.environ.get('FONT_BODY', 'Helvetica'),
         'site_data': ALAIZ_DATA,
+        'brand_style': ALAIZ_DATA["BRAND_STYLE"],
         'annees_experience': annees_experience,
         'annee_courante': annee_courante
     }
 
-# --- ROUTES ---
+# --- ROUTE POUR CSS DYNAMIQUE ---
+@app.route('/dynamic_styles.css')
+def dynamic_styles():
+    """Génère le CSS avec les variables de style injectées"""
+    css_content = render_template('css/alaiz_styles.jinja', 
+                                brand=ALAIZ_DATA["BRAND_STYLE"])
+    return Response(css_content, mimetype='text/css')
+
+# --- ROUTES PRINCIPALES ---
 @app.route('/')
 def accueil():
     contact_form = ContactForm()
@@ -125,15 +158,18 @@ def contact():
             message = form.message.data
             
             envoyer_email_contact(nom, email, telephone, service_label, message)
-            
             flash('Merci pour votre message ! Nous vous contacterons rapidement.', 'success')
+            
         except Exception as e:
-            print(f"Erreur lors de l'envoi de l'email : {e}")
-            flash("Une erreur s'est produite. Veuillez nous contacter directement par téléphone.", 'danger')
+            print(f"Erreur envoi email : {e}")
+            flash("Une erreur s'est produite. Contactez-nous directement.", 'danger')
         
         return redirect(url_for('accueil') + '#contact-section')
-
-    flash('Le formulaire contient des erreurs. Veuillez vérifier les champs en rouge.', 'danger')
+    
+    # Si erreurs de validation
+    if form.errors:
+        flash('Veuillez corriger les erreurs dans le formulaire.', 'danger')
+    
     return render_template('index.html', form=form)
 
 # --- FONCTION ENVOI EMAIL ---
@@ -144,7 +180,7 @@ def envoyer_email_contact(nom, email, telephone, service, message):
     smtp_password = os.getenv('SMTP_PASSWORD')
     
     if not all([smtp_server, smtp_username, smtp_password]):
-        raise Exception("Configuration SMTP manquante dans le fichier .env")
+        raise Exception("Configuration SMTP manquante dans .env")
     
     msg = MIMEMultipart()
     msg['From'] = smtp_username
@@ -152,19 +188,19 @@ def envoyer_email_contact(nom, email, telephone, service, message):
     msg['Subject'] = f'Nouveau message A Laiz Prod - {service}'
     
     corps_message = f"""
-    NOUVEAU MESSAGE - A LAIZ PROD
-    =============================
-    
-    De: {nom}
-    Email: {email}
-    Téléphone: {telephone or 'Non renseigné'}
-    Service: {service or 'Non spécifié'}
-    
-    Message:
-    {message}
-    
-    ---
-    Envoyé le {datetime.now().strftime('%d/%m/%Y à %H:%M')}
+NOUVEAU MESSAGE - A LAIZ PROD
+=============================
+
+De: {nom}
+Email: {email}
+Téléphone: {telephone or 'Non renseigné'}
+Service: {service or 'Non spécifié'}
+
+Message:
+{message}
+
+---
+Envoyé le {datetime.now().strftime('%d/%m/%Y à %H:%M')}
     """
     
     msg.attach(MIMEText(corps_message, 'plain'))
@@ -174,7 +210,7 @@ def envoyer_email_contact(nom, email, telephone, service, message):
         server.login(smtp_username, smtp_password)
         server.send_message(msg)
 
-# --- LANCEMENT DU SERVEUR ---
+# --- LANCEMENT SERVEUR ---
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     debug = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
