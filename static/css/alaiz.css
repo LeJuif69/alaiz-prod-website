@@ -1,0 +1,29 @@
+/* Variables spécifiques A Laiz Prod */
+:root {
+    --alaiz-gold: #D4AF37;
+    --alaiz-gold-light: #E8C766;
+    --alaiz-gold-dark: #B8941F;
+    --alaiz-black: #0A0A0A;
+    --alaiz-earth: #8B4513;
+    --alaiz-terracotta: #A0522D;
+    --alaiz-white: #FFFFFF;
+    --alaiz-cream: #F8F4E9;
+    
+    --font-heading: 'Playfair Display', serif;
+    --font-subheading: 'Montserrat', sans-serif;
+}
+
+/* Styles de base avec l'esprit A Laiz Prod */
+.hero-title .tradition { color: var(--alaiz-gold); }
+.hero-title .innovation { color: var(--alaiz-white); }
+.hero-title .emotion { color: var(--alaiz-terracotta); }
+
+.specialite-card {
+    background: linear-gradient(135deg, var(--alaiz-cream), var(--alaiz-white));
+    border-left: 4px solid var(--alaiz-gold);
+}
+
+.artiste-card {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--alaiz-gold);
+}
