@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -8,7 +9,17 @@ app.use(cors());
 app.use(express.json());
 
 // Route GET racine pour le health-check Render
-app.get('/', (req, res) => res.send('API ok'));
+app.get('/', (req, res) => {
+  res.send('API ok');
+});
+
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString() 
+  });
+});
 
 // POST endpoint for playlist generation
 app.post('/api/playlist/generate', async (req, res) => {
@@ -99,14 +110,9 @@ app.post('/api/playlist/generate', async (req, res) => {
   }
 });
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
-});
-
 // Start server
-app.listen(PORT, () => {
-  console.log(`Serveur en écoute sur le port ${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Serveur en écoute sur le port ${process.env.PORT}`);
 });
 
 module.exports = app;
