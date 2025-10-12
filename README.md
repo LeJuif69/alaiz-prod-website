@@ -28,10 +28,8 @@ cd alaiz-prod
 ```bash
 # Créer l'environnement virtuel
 python -m venv venv
-
 # Activer (Linux/Mac)
 source venv/bin/activate
-
 # Activer (Windows)
 venv\Scripts\activate
 ```
@@ -45,7 +43,6 @@ pip install -r requirements.txt
 ```bash
 # Copier le fichier d'environnement
 cp .env.example .env
-
 # Éditer .env avec vos vraies valeurs
 nano .env
 ```
@@ -59,204 +56,240 @@ Le site sera accessible sur `http://localhost:5000`
 
 ## ⚙️ Configuration Détaillée
 
-### Variables d'Environnement Critiques
-
-Modifiez le fichier `.env` avec vos vraies informations :
-
+### Variables d'Environnement (.env)
 ```bash
-# Coordonnées réelles
-FLAVIE_PHONE=+237XXXXXXXXX
-HERVE_PHONE=+237XXXXXXXXX
-CONTACT_EMAIL=contact@alaizprod.com
+# Flask Configuration
+FLASK_APP=app.py
+FLASK_ENV=development
+SECRET_KEY=your-secret-key-here
 
-# Email (pour formulaire de contact)
-EMAIL_USER=votre_email@gmail.com
-EMAIL_PASS=votre_mot_de_passe_app
+# Email Configuration (pour le formulaire de contact)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USERNAME=votre-email@gmail.com
+EMAIL_PASSWORD=votre-mot-de-passe-app
+EMAIL_USE_TLS=True
+EMAIL_RECIPIENT=contact@alaizprod.com
 
-# Réseaux sociaux
-FACEBOOK_URL=https://facebook.com/alaizprod
-INSTAGRAM_URL=https://instagram.com/alaizprod
-YOUTUBE_URL=https://youtube.com/alaizprod
-WHATSAPP_URL=https://wa.me/237XXXXXXXXX
+# Render Deployment
+PORT=5000
 ```
 
-### Configuration Gmail
-
-Pour le formulaire de contact, configurez un mot de passe d'application Gmail :
-
-1. **Activer la 2FA** sur votre compte Gmail
-2. **Générer un mot de passe d'application** :
-   - Aller dans Paramètres Google > Sécurité
-   - Mots de passe des applications
-   - Générer pour "Mail"
-3. **Utiliser ce mot de passe** dans `EMAIL_PASS`
-
-## 📁 Structure du Projet
-
+### Structure du Projet
 ```
-alaiz-prod/
+alaiz-prod-website/
 ├── app.py                 # Application Flask principale
-├── requirements.txt       # Dépendances Python
-├── .env                  # Variables d'environnement (à créer)
-├── .env.example          # Exemple de configuration
-├── .gitignore           # Fichiers à ignorer par Git
-├── README.md            # Documentation
-│
-├── templates/           # Templates HTML
-│   ├── base.html       # Template de base
-│   ├── index.html      # Page d'accueil
-│   ├── services.html   # Page services
-│   ├── about.html      # Page à propos
-│   ├── formations.html # Page formations
-│   ├── contact.html    # Page contact
-│   ├── 404.html        # Page erreur 404
-│   └── 500.html        # Page erreur 500
-│
-└── static/             # Fichiers statiques
-    ├── css/
-    │   └── style.css   # CSS principal
-    ├── js/
-    │   └── main.js     # JavaScript principal
-    └── images/         # Images (à ajouter)
-        ├── hero-bg.jpg
-        ├── team/
-        └── favicon.ico
+├── render.yaml           # Configuration Render
+├── requirements.txt      # Dépendances Python
+├── runtime.txt          # Version Python
+├── Procfile            # Configuration Heroku/Render
+├── .env                # Variables d'environnement
+├── static/             # Assets statiques (CSS, JS, images)
+├── templates/          # Templates Jinja2
+├── components/         # Composants réutilisables
+├── data/              # Fichiers de données
+├── assets/            # Images et médias
+└── tests/             # Tests automatisés
 ```
 
-## 🎨 Personnalisation
+## 🔧 Backend - Architecture & Documentation
 
-### Remplacer le Contenu Placeholder
+### Workflow Render - Déploiement Automatique
 
-**⚠️ IMPORTANT - À faire avant mise en production :**
+#### 1. Push Backend (Flask/Python)
+- **Trigger** : Push sur branche `main` ou `feature/restructure`
+- **Action** : Render détecte les changements dans `app.py`, `requirements.txt`, `render.yaml`
+- **Processus** :
+  1. Installation automatique des dépendances (`pip install -r requirements.txt`)
+  2. Reconstruction de l'API Flask avec Gunicorn
+  3. Redémarrage automatique du service backend
+  4. Tests de santé via endpoint `/health`
+- **Temps** : ~2-3 minutes
+- **URL Live** : Backend API accessible immédiatement
 
-1. **Coordonnées** dans `app.py` et templates :
-   ```python
-   # Remplacer dans app.py, ligne ~50
-   'phone': '+237 XXX XXX XXX'  # → Vrais numéros
-   ```
+#### 2. Push Frontend (Templates/Static)
+- **Trigger** : Modifications dans `/templates`, `/static`, `/components`
+- **Action** : Render reconstruit le site statique automatiquement
+- **Processus** :
+  1. Compilation des templates Jinja2
+  2. Minification CSS/JS automatique
+  3. Optimisation des images
+  4. Mise en cache CDN
+- **Temps** : ~1-2 minutes
+- **URL Live** : Site web mis à jour instantanément
 
-2. **Images** :
-   - Ajouter vraies photos dans `static/images/`
-   - Photo du duo pour la section "À Propos"
-   - Photo d'Hervé en situation d'enseignement
-   - Image de fond pour le hero
+### API Endpoints Documentation
 
-3. **Réseaux Sociaux** :
-   - Remplacer tous les liens `#` par les vraies URLs
-   - Vérifier tous les templates
-
-### Couleurs et Branding
-
-Les couleurs sont définies dans `static/css/style.css` :
-
-```css
-:root {
-    --primary-color: #2D3748;    /* Indigo foncé */
-    --secondary-color: #D69E2E;  /* Or élégant */
-    --accent-color: #FEFEFE;     /* Blanc crème */
+#### 1. `/health` - Endpoint de Santé
+**Méthode** : `GET`
+**Description** : Vérification de l'état du backend
+**Réponse** :
+```json
+{
+  "status": "healthy",
+  "timestamp": "2024-01-15T10:30:00Z",
+  "version": "1.0.0",
+  "database": "connected",
+  "email_service": "operational"
 }
 ```
+**Usage** : Surveillance automatique, monitoring Render
 
-## 🚢 Déploiement Production
-
-### Option 1 : Déploiement Simple
-
-```bash
-# Installer gunicorn
-pip install gunicorn
-
-# Lancer en production
-gunicorn --bind 0.0.0.0:5000 app:app
-```
-
-### Option 2 : Déploiement avec Nginx
-
-1. **Configuration Nginx** (`/etc/nginx/sites-available/alaizprod`):
-```nginx
-server {
-    listen 80;
-    server_name alaizopays.art www.alaizopays.art;
-
-    location / {
-        proxy_pass http://127.0.0.1:5000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-
-    location /static {
-        alias /path/to/your/alaiz-prod/static;
-        expires 30d;
-    }
+#### 2. `/contact` - Formulaire de Contact
+**Méthode** : `POST`
+**Description** : Traitement des messages de contact
+**Paramètres** :
+```json
+{
+  "name": "string (required)",
+  "email": "string (required, valid email)",
+  "subject": "string (required)",
+  "message": "string (required, min 10 chars)",
+  "phone": "string (optional)"
 }
 ```
+**Réponses** :
+- **200** : Message envoyé avec succès
+- **400** : Erreur de validation
+- **500** : Erreur serveur/email
 
-2. **Activer le site** :
-```bash
-sudo ln -s /etc/nginx/sites-available/alaizprod /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
+#### 3. `/playlist` - Gestion Playlists (Future)
+**Méthode** : `GET`, `POST`
+**Description** : Gestion des playlists musicales A Laiz Prod
+**Fonctionnalités prévues** :
+- Récupération des playlists Spotify/YouTube
+- Création de playlists personnalisées
+- Intégration avec les services de streaming
+
+### Structure Communication Frontend ↔ Backend
+
+#### 1. Architecture de Communication
+```
+Frontend (Templates Jinja2)
+        ↓
+   AJAX Requests
+        ↓
+Backend Flask API
+        ↓
+   Database/Services
+        ↓
+   JSON Response
+        ↓
+   Frontend Update
 ```
 
-3. **SSL avec Let's Encrypt** :
-```bash
-sudo certbot --nginx -d alaizopays.art -d www.alaizopays.art
+#### 2. Flux de Données - Formulaire Contact
+```javascript
+// Frontend - Envoi de formulaire
+fetch('/contact', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest'
+  },
+  body: JSON.stringify(formData)
+})
+.then(response => response.json())
+.then(data => {
+  if (data.success) {
+    showSuccessMessage(data.message);
+  } else {
+    showErrorMessage(data.error);
+  }
+});
 ```
 
-### Option 3 : Déploiement sur Plateforme Cloud
-
-**Heroku** :
-```bash
-# Procfile
-echo "web: gunicorn app:app" > Procfile
-
-# Déploiement
-heroku create alaiz-prod
-git push heroku main
+#### 3. Backend - Traitement et Réponse
+```python
+@app.route('/contact', methods=['POST'])
+def contact():
+    try:
+        data = request.get_json()
+        # Validation des données
+        if not validate_contact_form(data):
+            return jsonify({'error': 'Données invalides'}), 400
+        
+        # Envoi email
+        send_email(data)
+        
+        return jsonify({
+            'success': True,
+            'message': 'Message envoyé avec succès'
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 ```
 
-**Vercel/Netlify** : Compatible avec adaptations mineures
+### Conseils de Surveillance et Maintenance
 
-## 🔍 SEO et Performance
+#### 1. Monitoring Automatique
+```bash
+# Vérification de santé toutes les 5 minutes
+curl -f https://alaiz-prod-backend.onrender.com/health || alert_admin
 
-### Optimisations Incluses
-- ✅ Balises meta dynamiques
-- ✅ Données structurées (Schema.org)
-- ✅ Sitemap automatique
-- ✅ Compression CSS/JS
-- ✅ Lazy loading images
-- ✅ Cache headers
-- ✅ Mobile-first responsive
+# Logs en temps réel
+render logs --app alaiz-prod-backend --tail
 
-### Tests Recommandés
-- **PageSpeed Insights** : Objectif 90+/100
-- **Mobile-Friendly Test** : Google
-- **Lighthouse Audit** : Performance, SEO, Accessibility
-
-## 📊 Analytics
-
-### Google Analytics (Optionnel)
-Décommenter dans `templates/base.html` :
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+# Métriques de performance
+render metrics --app alaiz-prod-backend
 ```
 
-### Facebook Pixel (Optionnel)
-Ajouter votre pixel ID dans les variables d'environnement.
+#### 2. Alertes Critiques à Surveiller
+- **Santé API** : Réponse `/health` > 5 secondes
+- **Taux d'erreur** : > 5% d'erreurs 5xx
+- **Mémoire** : Utilisation > 80%
+- **Email** : Échec d'envoi de formulaires
+- **SSL** : Expiration certificat < 30 jours
 
-## 🛠️ Maintenance
-
-### Logs
+#### 3. Maintenance Préventive Mensuelle
 ```bash
-# Voir les logs en temps réel
-tail -f logs/alaiz-prod.log
+# Mise à jour des dépendances
+pip install -r requirements.txt --upgrade
+pip freeze > requirements.txt
+
+# Nettoyage des logs
+render logs --clear --app alaiz-prod-backend
+
+# Test des endpoints
+curl -X POST https://alaiz-prod-backend.onrender.com/contact \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test","email":"test@test.com","subject":"Test","message":"Test message"}'
+
+# Vérification de la base de données
+python -c "from app import test_db_connection; test_db_connection()"
 ```
 
-### Backup
-```bash
-# Backup automatique (ajouter au cron)
-#!/bin/bash
-DATE=$(date +%Y%m%d_%H%M%S)
-tar -czf backup_$DATE.tar.gz app.py templates/ static/ .env
+#### 4. Plan de Récupération d'Urgence
+**En cas de panne critique :**
+1. **Diagnostic rapide** : Vérifier `/health` et logs Render
+2. **Rollback** : Retour à la version précédente stable
+3. **Communication** : Notification clients via page de statut
+4. **Correction** : Fix en mode maintenance
+5. **Tests** : Validation complète avant remise en production
+
+#### 5. Optimisations de Performance
+```python
+# Cache Redis pour les réponses fréquentes
+from flask_caching import Cache
+cache = Cache(app, config={'CACHE_TYPE': 'redis'})
+
+@app.route('/health')
+@cache.cached(timeout=60)
+def health():
+    return jsonify({'status': 'healthy'})
+
+# Compression GZIP
+from flask_compress import Compress
+Compress(app)
+
+# Rate limiting
+from flask_limiter import Limiter
+limiter = Limiter(app, key_func=get_remote_address)
+
+@app.route('/contact', methods=['POST'])
+@limiter.limit("5 per minute")
+def contact():
+    # ... code existant
 ```
 
 ### Mises à Jour
