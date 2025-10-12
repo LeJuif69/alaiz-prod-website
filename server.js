@@ -7,6 +7,9 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Route GET racine pour le health-check Render
+app.get('/', (req, res) => res.send('API ok'));
+
 // POST endpoint for playlist generation
 app.post('/api/playlist/generate', async (req, res) => {
   try {
