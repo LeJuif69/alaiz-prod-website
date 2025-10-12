@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { API_URL } from '../config.js';
 
 const PlaylistGenerator = () => {
   const [playlist, setPlaylist] = useState(null);
@@ -18,7 +17,7 @@ const PlaylistGenerator = () => {
     
     try {
       // Envoi des paramètres utilisateur à l'API
-      const response = await fetch(`${API_URL}/playlist/generate`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/playlist/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +63,6 @@ const PlaylistGenerator = () => {
             className="input-field"
           />
         </div>
-
         <div className="input-group">
           <label htmlFor="mood">Mood:</label>
           <input
@@ -76,7 +74,6 @@ const PlaylistGenerator = () => {
             className="input-field"
           />
         </div>
-
         <div className="input-group">
           <label htmlFor="artiste">Artiste:</label>
           <input
